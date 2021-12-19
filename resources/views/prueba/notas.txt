@@ -1,0 +1,23 @@
+@section('plugins.Sweetalert2', true)
+
+@section('plugins.Toastr', true)
+
+@section('js')
+<!-- page script -->
+<script>
+    //toastr.success("Hello World!");
+    
+    $('.toastrDefaultSuccess').click(function() {
+      toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    });
+
+    $('.sweetalert2DefaultSuccess').click(function() {
+        //alert('Test');
+        Swal.fire(
+        'Good job!',
+        'You clicked the button!',
+        'success'
+        )
+    }); 
+</script>
+@stop

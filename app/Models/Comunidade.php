@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Comunidade extends Model
+{
+    use HasFactory;
+
+    public function tipos_comunidades(){
+        return $this->belongsTo(Tipos_comunidade::class, 'id_tipo_comunidad');
+    }
+}

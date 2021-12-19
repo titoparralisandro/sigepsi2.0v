@@ -1,0 +1,42 @@
+        Schema::create('parroquias', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_municipio')->nullable();
+            $table->string('parroquia');
+            $table->id('id_parroquia');
+
+            $table->foreign('id_municipio')
+                ->references('id_municipio')->on('municipios')
+                ->OnDelete('set null');
+
+        });
+
+                Schema::create('municipios', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_estado')->nullable();
+            $table->string('municipio');
+            $table->id('id_municipio');
+
+            $table->foreign('id_estado')
+                ->references('id_estado')->on('estados')
+                ->OnDelete('set null');
+        });
+
+
+ Schema::create('comunidades', function (Blueprint $table) {
+            $table->id();
+            $table->char('rif',10)->unique();
+            $table->string('nombre')->unique();
+            $table->unsignedBigInteger('id_tipo_comunidad')->nullable();
+            $table->integer('telefono_contacto')->unique();
+            $table->string('persona_contacto',50);
+            $table->string('email',60)->unique();
+            $table->unsignedBigInteger('id_parroquia')->nullable();
+            $table->string('direccion');
+
+            $table->foreign('id_tipo_comunidad')
+                ->references('id')->on('tipos_comunidades')
+                ->OnDelete('set null');
+            $table->foreign('id_parroquia')
+                ->references('id_parroquia')->on('parroquias')
+                ->OnDelete('set null');
+
+            $table->timestamps();
+        });
