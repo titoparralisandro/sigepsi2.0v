@@ -54,7 +54,9 @@ Route::post('parroquias', [App\Http\Controllers\ComunidadeController::class, 'pa
 Route::get('/showcomunid/{id}', [App\Http\Controllers\ComunidadeController::class, 'show']);
 Route::post('/editcomunid', [App\Http\Controllers\ComunidadeController::class, 'edit']);
 Route::post('/SaveEditcomunid', [App\Http\Controllers\ComunidadeController::class, 'Savedit']);
-
+Route::get('/ListUsers', [App\Http\Controllers\UserControllers::class, 'index']);
+Route::post('/SaveUser', [App\Http\Controllers\UserControllers::class, 'store']);
+Route::post('/getUser', [App\Http\Controllers\UserControllers::class, 'show']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

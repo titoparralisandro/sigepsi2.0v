@@ -362,6 +362,11 @@ return [
         ],
         ['header' => 'account_settings'],
         [
+            'text' => 'Users',
+            'url'  => '/ListUsers',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
             'text' => 'profile',
             'url'  => '/perfil',
             'icon' => 'fas fa-fw fa-user',
