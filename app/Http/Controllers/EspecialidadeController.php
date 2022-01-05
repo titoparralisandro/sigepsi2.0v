@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Especialidade;
+use App\Models\Carrera;
 use Illuminate\Http\Request;
 
 class EspecialidadeController extends Controller
 {
     public function index(){
-
         $especialidad = Especialidade::all();
         return view('especialidad.index')->with('especialidad',$especialidad);
     }
 
     public function create(){
-
-        return view('especialidad.create');
+        $carrera = Carrera::all();
+        return view('especialidad.create', compact('carrera'));
     }
 
     public function store(Request $request){
@@ -24,6 +24,7 @@ class EspecialidadeController extends Controller
 
         $especialidad->especialidad = $request->get('especialidad');
         $especialidad->descripcion = $request->get('descripcion');
+        $especialidad->id_carrera = $request->get('id_carrera');
         $especialidad->estatus= $request->get('estatus');
 
         $especialidad->save();
@@ -39,8 +40,10 @@ class EspecialidadeController extends Controller
 
     public function edit($id){
 
+        $carrera = Carrera::all();
         $especialidad = Especialidade::find($id);
-        return view('especialidad.edit')->with('especialidad',$especialidad);
+        return view('especialidad.edit', compact( 'carrera' ))->with('especialidad',$especialidad);
+
     }
 
     public function update(Request $request, $id){
@@ -49,6 +52,7 @@ class EspecialidadeController extends Controller
 
         $especialidad->especialidad = $request->get('especialidad');
         $especialidad->descripcion = $request->get('descripcion');
+        $especialidad->id_carrera = $request->get('id_carrera');
         $especialidad->estatus= $request->get('estatus');
 
         $especialidad->save();

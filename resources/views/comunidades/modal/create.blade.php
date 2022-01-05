@@ -11,7 +11,7 @@
 
             </div>
             <div class="modal-body">
-                <div class="card-body text-dark">
+                <div class="card-body text-dark">          
 
                 @csrf<div class="row">
                         <div class="form-group col-4">
@@ -51,7 +51,7 @@
                         <div class="form-group col">
 
                             <label class="form">Teléfono de contacto</label>
-                            <input id="telefono_contacto" class="form-control" type="tel" placeholder="(Código de operadora) número telefónico" name="telefono_contacto" maxlength="11"
+                            <input id="telefono_contacto" type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask name="telefono_contacto"
                             value="{{ isset($comunidad->telefono_contacto)?$comunidad->telefono_contacto:old('telefono_contacto') }}">
 
                         </div>
@@ -116,8 +116,11 @@
 
 
                     </form>
+
+
                 </div>
             </div>
+
             <div class="modal-footer">
 
                 <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>

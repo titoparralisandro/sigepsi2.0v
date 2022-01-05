@@ -27,32 +27,51 @@
 
         <form action="{{ route('especialidad.update', $especialidad->id ) }}" method="POST">
 
+            {{ method_field('patch') }}
             @csrf
-            {{ method_field('PATCH') }}
-
+            
             <div class="form-group">
 
-                <label class="form-label">Especialidad</label>
-                <input id="especialidad" class="form-control" type="text" name="especialidad"
-                value="{{ isset($especialidad->especialidad)?$especialidad->especialidad:old('especialidad') }}">
+              <div class="row">
+    
+                <div class="form-group col">
+
+                  <label class="form-label">Carrera</label>
+
+                  <select id="id_carrera" name="id_carrera" class="form-control">
+                  <option selected>Seleccionar carrera</option>
+                  @foreach ( $carrera as $carreras)
+                      <option value="{{$carreras->id}}">{{ $carreras->carrera }}</option>
+                  @endforeach
+                  </select>
+
+                </div>
+
+                <div class="form-group col">
+
+                    <label class="form-label">Especialidad</label>
+                    <input id="especialidad" class="form-control" type="text" name="especialidad"
+                    value="{{ isset($especialidad->especialidad)?$especialidad->especialidad:old('especialidad') }}">
+
+                </div>
+
+                <div class="form-group col col-2">
+
+                  <label class="form-label">Estatus</label>
+                  <select id="estatus" class="form-control"name="estatus">
+                      <option value="1">Activo</option>
+                      <option value="0">Inactivo</option>
+                  </select>
+
+                </div>
+              </div>
 
             </div>
 
             <div class="form-group">
 
                 <label class="form-label">Descripción</label>
-                <input id="descripcion" class="form-control" type="text" name="descripcion"
-                value="{{ isset($especialidad->descripcion)?$especialidad->descripcion:old('descripcion') }}">
-
-            </div>
-
-            <div class="form-group">
-
-                <label class="form-label">Estatus</label>
-                <select id="estatus" class="form-control"name="estatus">
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
-                </select>
+                <textarea id="descripcion" class="form-control" name="descripcion" cols="25" rows="2">{{ isset($especialidad->descripcion)?$especialidad->descripcion:old('descripcion') }}</textarea>
 
             </div>
 

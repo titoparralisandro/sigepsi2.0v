@@ -7,11 +7,6 @@
 </ul>
 </div>
 @endif
-<?php
-use App\Models\Carrera;
-
-$carrera =  Carrera::all();;
-?>
 
 {{-- Modal de Ver {{ route('lineas_investigacion.store') }} --}}
 

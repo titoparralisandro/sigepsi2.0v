@@ -22,7 +22,6 @@ class CreateLineasInvestigacionesTable extends Migration
                 ->constrained('carreras')
                 ->nullOnUpdate()
                 ->nullOnDelete();
-
             $table->timestamps();
         });
     }

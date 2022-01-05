@@ -9,6 +9,8 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
+<div><img src="{{ asset('images/cintillo.svg') }}" alt="cintillo"></div>
+<br>
 <div class="bg-primary color-palette"><h1 class="text-center"><strong>Pruebas</strong></h1></div>
 @stop
 

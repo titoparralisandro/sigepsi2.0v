@@ -25,8 +25,8 @@
                       <tr>
 
                         <th>N°</th>
+                        <th>Carrera</th>
                         <th>Especialidad</th>
-                        <th>Descripción</th>
                         <th>Estatus</th>
                         <th>Opciones</th>
 
@@ -37,8 +37,8 @@
                       <tr>
 
                         <td>{{ $especialidades->id }}</td>
+                        <td>{{ $especialidades->carrera->carrera }}</td>
                         <td>{{ $especialidades->especialidad }}</td>
-                        <td>{{ $especialidades->descripcion }}</td>
                         <td>{{ $especialidades->estatus==true ? ('Activo') : ('Inactivo') }} </td>
                         <td><a class="btn btn-primary" href="{{ route('especialidad.show', $especialidades->id ) }}">Ver</a> | <a class="btn btn-info" href="{{ route('especialidad.edit', $especialidades->id ) }}">Editar</a></td>
 
@@ -49,8 +49,6 @@
                   </table>
   </div>
 </div>
-
-
 
 @stop
 

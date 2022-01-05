@@ -26,12 +26,37 @@
   </div>
 </div>
 <!-- Modal view -->
+<div class="modal fade xl" id="modal-data" tabindex="-1">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <form action="/SaveEditUser" method="POST" id="formEdit">
+                <div class="modal-header card-header bg-primary">
+                    <div class="color-palette">
+                        <h1 class="text-center" id="tituloModal"><strong>Ver comunidad</strong></h1>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    @csrf
+                    <div class="card-body text-dark" id="data">
+
+                    </div>
+                </div>
+                <div class="modal-footer" id="modal_footer">
+                    <button type='submit' class='btn btn-primary' id="btnEdit">Editar</button>
+                    <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /Modal view -->
+<!-- Modal view -->
     <div class="modal fade xl" id="modal-create" tabindex="-1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content ">
                 <div class="modal-header card-header bg-primary">
                     <div class="color-palette">
-                        <h1 class="text-center"><strong>Viva chiabe</strong></h1>
+                        <h1 class="text-center"><strong>Formulario de registro de usuario</strong></h1>
                     </div>
                 </div>
                 <form action="/SaveUser" method="POST" enctype="multipart/form-data">
@@ -54,7 +79,7 @@
                             <input type="password" id="password_Cnf" name="password_Cnf" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="roles">Rol de contraseña</label>
+                            <label for="roles">Rol de usuario</label>
                             <select class="form-control" name="rol" id="rol" required>
                                 <option value="null">Seleccione una opcion</option>
                                 @foreach ($roles as $rol)
@@ -70,31 +95,6 @@
             </div>
         </div>
     </div>
-<!-- /Modal view -->
-<!-- Modal view -->
-<div class="modal fade xl" id="modal-data" tabindex="-1">
-    <div class="modal-dialog modal-lg" role="document">
-        <form action="#" method="POST" id="formEdit">
-            @csrf
-            <div class="modal-content ">
-                <div class="modal-header card-header bg-primary">
-                    <div class="color-palette">
-                        <h1 class="text-center"><strong>Ver comunidad</strong></h1>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body text-dark" id="data">
-
-                    </div>
-                </div>
-                <div class="modal-footer" id="modal_footer">
-                    <button type='submit' class='btn btn-primary'>Editar</button>
-                    <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 <!-- /Modal view -->
 <div class="card border-dark">
     <div class="card-body text-dark">
@@ -143,14 +143,16 @@
                 },
                 success: function(response){
                     $("#data").html(response);
-                    $('#modal-edit').modal('show');
+                    $("#tituloModal").html("<strong>Visualizacion de datos</strong>");
+                    $("#btnEdit").hide();
+                    $('#modal-data').modal('show');
                 }
             });
         }
         function editdata(id) {
             $.ajax({
                 type: "POST",
-                url: "/getUser",
+                url: "/editUser",
                 async: false,
                 cache: false,
                 data: {
@@ -159,6 +161,8 @@
                 },
                 success: function(response){
                     $("#data").html(response);
+                    $("#tituloModal").html("<strong>Edicion de datos</strong>");
+                    $("#btnEdit").show();
                     $('#modal-data').modal('show');
                 }
             });
@@ -212,17 +216,25 @@ $(document).ready(function() {
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "/SaveEditcomunid",
+                url: "/SaveEditUser",
                 async: false,
                 cache: false,
                 data: $("#formEdit").serialize(),
                 success: function(response){
-                    Swal.fire({
-                        title: 'Datos actualizados',
-                        text: "Proceso exitoso",
-                        icon: 'success',
-                    })
-                    location.reload();
+                    if(response.error){
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.message,
+                            icon: 'error',
+                        })
+                    }else{
+                        Swal.fire({
+                            title: 'Datos actualizados',
+                            text: "Proceso exitoso",
+                            icon: 'success',
+                        })
+                        location.reload();
+                    }
                 }
             });
         });

@@ -17,6 +17,10 @@ class CreateEspecialidadesTable extends Migration
             $table->id();
             $table->string('especialidad')->unique();
             $table->text('descripcion');
+            $table->foreignId('id_carrera')
+                ->nullable()
+                ->references('id')->on('carreras')
+                ->OnDelete('set null');
             $table->boolean('estatus');
             $table->timestamps();
         });

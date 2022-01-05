@@ -12,4 +12,8 @@ class Carrera extends Model
     public function lineas_investigaciones(){
         return $this->hasMany(Lineas_investigacione::class, 'id');
     }
+
+    public function especialidades(){
+        return $this->hasMany(Especialidade::class, 'id');
+    }
 }

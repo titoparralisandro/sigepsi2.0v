@@ -15,7 +15,7 @@ return [
     */
 
     'title' => '',
-    'title_prefix' => 'SIGEPSI | ',
+    'title_prefix' => 'SIGEPSI ',
     'title_postfix' => '',
 
     /*
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -64,8 +64,8 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-blue',
     'usermenu_image' => false,
     'usermenu_desc' => false,
     'usermenu_profile_url' => false,
@@ -82,12 +82,12 @@ return [
     |
     */
 
-    'layout_topnav' => null,
-    'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
-    'layout_dark_mode' => null,
+    'layout_topnav' => null,     /* esta es para el menu horizontal  */
+    'layout_boxed' => null, /* ancho de pagina no usar */
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
+    'layout_fixed_footer' => true,
+    'layout_dark_mode' => null,  /* pone tema oscuro */
 
     /*
     |--------------------------------------------------------------------------
@@ -120,15 +120,15 @@ return [
     |
     */
 
-    'classes_body' => '',
+    'classes_body' => true,
     'classes_brand' => '',
     'classes_brand_text' => '',
-    'classes_content_wrapper' => '',
+    'classes_content_wrapper' => 'text-sm',
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_sidebar_nav' => 'nav-flat nav-legacy',
+    'classes_topnav' => 'navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -152,7 +152,7 @@ return [
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
-    'sidebar_nav_animation_speed' => 300,
+    'sidebar_nav_animation_speed' => 350,
 
     /*
     |--------------------------------------------------------------------------
@@ -168,7 +168,7 @@ return [
 
     'right_sidebar' => false,
     'right_sidebar_icon' => 'fas fa-cogs',
-    'right_sidebar_theme' => 'dark',
+    'right_sidebar_theme' => '',
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
@@ -228,7 +228,7 @@ return [
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
-            'topnav_right' => true,
+            'topnav_right' => false,
         ],
         [
             'type'         => 'fullscreen-widget',
@@ -248,71 +248,88 @@ return [
         [
             'text' => 'Pruebas',
             'url'  => '/prueba',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fas fa-fw fa-list-ol',
         ],
         [
-            'text' => 'Estrcuturas de proyecto',
-            'icon'    => 'fas',
+            'text' => 'Gestión de proyectos',
+            'icon'    => 'fas fa-fw fa-handshake',
             'submenu' => [
                 [
-                    'text' => 'Estructuras',
-                    'icon'    => 'fas',
-                    'url'  => '#',
+                    'text' => 'Proyectos',
+                    'icon'    => 'fas fa-fw fa-book-reader',
+                    'url'  => '/proyecto',
                 ],
                 [
+                    'text' => 'Banco de situaciones',
+                    'icon'    => 'fas fa-fw fa-landmark',
+                    'url'  => '#',
+                ],
+        ],
+        ],
+        [
+            'text' => 'Estrcuturas evaluativas',
+            'icon'    => 'fas fa-fw fa-list-alt',
+            'submenu' => [
+                [
                     'text' => 'Productos',
-                    'icon' => 'fas',
+                    'icon' => 'fas fa-fw fa-tasks',
                     'url'  => '/producto',
                 ],
                 [
                     'text' => 'Items de estructuras',
-                    'icon' => 'fas',
+                    'icon' => 'fas fa-fw fa-list-ul',
                     'url'  => '/items_estructura',
+                ],
+                [
+                    'text' => 'Estructuras',
+                    'icon'    => 'fas fa-fw fa-clipboard-list',
+                    'url'  => '#',
                 ],
         ],
         ],
         [
             'text'    => 'Administrable',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon'    => 'fas fa-fw fa-cogs',
             'submenu' => [
 
                 [
                     'text'    => 'Académico',
+                    'icon'    => 'fas fa-fw fa-school',
                     'submenu' => [
                         [
                             'text' => 'Carreras',
-                            'icon' => 'fas',
+                            'icon' => 'fas fa-fw fa-graduation-cap',
                             'url'  => '/carrera',
                         ],
                         [
-                            'text' => 'Líneas de Investigación',
-                            'icon' => 'fas',
-                            'url'  => '/lineas_investigacion',
-                        ],
-                        [
-                            'text' => 'Turnos',
-                            'icon' => 'fas',
-                            'url'  => '/turno',
-                        ],
-                        [
                             'text' => 'Especialidades',
-                            'icon' => 'fas',
+                            'icon' => 'fas fa-fw fa-user-graduate',
                             'url'  => '/especialidad',
                         ],
                         [
+                            'text' => 'Líneas de Investigación',
+                            'icon' => 'fas fa-fw fa-code-branch',
+                            'url'  => '/lineas_investigacion',
+                        ],
+                        [
                             'text' => 'Tipos de Asesorias',
-                            'icon' => 'fas',
+                            'icon' => 'fas fa-fw fa-chalkboard-teacher',
                             'url'  => '/tipos_asesoria',
                         ],
                         [
                             'text' => 'Trayectos',
-                            'icon' => 'fas',
+                            'icon' => 'fas fa-fw fa-calendar-check',
                             'url'  => '/trayecto',
                         ],
                         [
                             'text' => 'Trimestres',
-                            'icon' => 'fas',
+                            'icon' => 'fas fa-fw fa-calendar-alt',
                             'url'  => '/trimestre',
+                        ],
+                        [
+                            'text' => 'Turnos',
+                            'icon' => 'fas fa-fw fa-clock',
+                            'url'  => '/turno',
                         ],
                         ],
                     ],
@@ -320,51 +337,57 @@ return [
         ],
         [
             'text' => 'Comunidades',
-            'icon'    => 'fas',
+            'icon'    => 'fas fa-fw fa-city',
             'submenu' => [
                 [
                     'text' => 'Comunidades',
-                    'icon'    => 'fas',
+                    'icon'    => 'fas fa-fw fa-hotel',
                     'url'  => '/comunidades',
                 ],
                 [
                     'text' => 'Tipos de Comunidades',
-                    'icon'    => 'fas',
+                    'icon'    => 'fas fa-fw fa-laptop-house',
                     'url'  => '/tipos_comunidad',
                 ],
         ],
         ],
         [
-            'text' => 'Estatus',
-            'icon'    => 'fas',
+            'text' => 'Situaciones',
+            'icon'    => 'fas fa-fw fa-handshake',
             'submenu' => [
                 [
-                    'text' => 'Estatus de progreso',
-                    'icon'    => 'fas',
-                    'url'  => '/estatus_progresos',
+                    'text' => 'Necesidades',
+                    'icon'    => 'fas fa-fw fa-book-reader',
+                    'url'  => '#',
                 ],
                 [
-                    'text' => 'Estatus de necesidades',
-                    'icon' => 'fas',
-                    'url'  => '/estatus_necesidades',
-                ],
-                [
-                    'text' => 'Estatus de situaciones',
-                    'icon' => 'fas',
-                    'url'  => '/estatus_situaciones',
-                ],
-                [
-                    'text' => 'Estatus de comunidades',
-                    'icon' => 'fas',
-                    'url'  => '/estatus_comunidades',
+                    'text' => 'Banco de situaciones',
+                    'icon'    => 'fas fa-fw fa-landmark',
+                    'url'  => '#',
                 ],
         ],
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'Users',
-            'url'  => '/ListUsers',
-            'icon' => 'fas fa-fw fa-users',
+            'text' => 'Usuarios',
+            'icon'    => 'fas fa-fw fa-users',
+            'submenu' => [
+                [
+                    'text' => 'Usuario',
+                    'icon'    => 'fas fa-fw fa-user',
+                    'url'  => '/ListUsers',
+                ],
+                [
+                    'text' => 'Roles',
+                    'icon'    => 'fas fa-fw fa-users-cog',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Permisos',
+                    'icon'    => 'fas fa-fw fa-user-lock',
+                    'url'  => '#',
+                ],
+        ],
         ],
         [
             'text' => 'profile',
@@ -373,8 +396,20 @@ return [
         ],
         [
             'text' => 'change_password',
-            'url'  => '/modal',
+            'url'  => '#',
             'icon' => 'fas fa-fw fa-lock',
+        ],
+    
+        ['header' => 'Reportes'],
+        [
+            'text' => 'Estadísticas',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-chart-bar',
+        ],
+        [
+            'text' => 'Reportes',
+            'url'  => '#',
+            'icon' => 'fas fa-fw fa-file-alt',
         ],
     ],
 
@@ -506,13 +541,23 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/select2/js/select2.full.min.js',
+                ],                
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/select2/select2-bootstrap4-theme/select2-bootstrap4-theme.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/select2/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+                    'asset' => true,
+                    'location' => 'vendor/select2/css/select2.min.css',
                 ],
             ],
         ],
@@ -567,6 +612,36 @@ return [
                 ],
             ],
         ],
+        'Inputmask' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/inputmask/inputmask.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/inputmask/jquery.inputmask.min.js',
+                ],
+            ],
+        ],
+        'Bs-stepper' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/bs-stepper/js/bs-stepper.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/bs-stepper/css/bs-stepper.min.css',
+                ],
+            ],
+        ],
     ],
 
     /*
@@ -584,8 +659,8 @@ return [
 
     'iframe' => [
         'default_tab' => [
-            'url' => null,
-            'title' => null,
+            'url' => true,
+            'title' => true,
         ],
         'buttons' => [
             'close' => true,
@@ -598,7 +673,8 @@ return [
         'options' => [
             'loading_screen' => 1000,
             'auto_show_new_tab' => true,
-            'use_navbar_items' => true,
+            'use_navbar_items' => true
+
         ],
     ],
 

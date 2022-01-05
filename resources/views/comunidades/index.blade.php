@@ -3,9 +3,8 @@
 @section('title', ' Comunidades')
 
 @section('plugins.Sweetalert2', true)
-
+@section('plugins.Inputmask', true)
 @section('plugins.Toastr', true)
-
 @section('plugins.Datatables', true)
 
 @if(count($errors)>0)
@@ -18,7 +17,6 @@
 </div>
 @endif
 @section('content_header')
-
 
 <div class="card-header bg-primary ">
   <div class="color-palette">
@@ -74,14 +72,7 @@
   <div class="card-body text-dark">
     <button href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-create">Añadir nueva comunidad</button>
     <hr>
-    <div>
-        <div class="btn-group" id="btn-search">
-            <button class="btn btn-primary" type="button" value="Todos">Todos</button>
-            <button class="btn btn-primary" type="button" value="Escuela">Escuela</button>
-            <button class="btn btn-primary" type="button" value="Centro de salud">Centro de salud</button>
-        </div>
 
-    </div>
         <table id="example" class="table table-striped table-bordered nowrap"  style="width:100%">
                 <thead>
                     <tr>
@@ -269,14 +260,9 @@ $(document).ready(function() {
                 }
             }
         });
-        $('#btn-search').on( 'click', 'button',(e)=> {
-            var valor = $(this)[0].activeElement.value;
-            if (valor=="Todos") {
-                table.search('').columns(3).search('').draw();
-            }else{
-                table.column(3).search(valor).draw();
-            }
-        });
+
     });
+    
+    $(function () {$('[data-mask]').inputmask()});
 </script>
 @stop

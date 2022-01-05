@@ -21,3 +21,261 @@
     }); 
 </script>
 @stop
+
+<div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-primary">
+                    <p style="text-align: center;"><strong>TRAZA</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">
+                <p class="alert alert-primary"><strong>Estatus</strong></p>
+            </div>
+            <div class="col-sm-3">
+                <p class="alert alert-primary"><strong>Motivo</strong></p>
+            </div>
+            <div class="col-sm-3">
+                <p class="alert alert-primary"><strong>Observaciones</strong></p>
+            </div>
+            <div class="col-sm-1">
+                <p class="alert alert-primary"><strong>Fecha</strong></p>
+            </div>
+            <div class="col-sm-1">
+                <p class="alert alert-primary"><strong>Hora</strong></p>
+            </div>
+            <div class="col-sm-2">
+                <p class="alert alert-primary"><strong>Usuario</strong></p>
+            </div>
+        </div>
+
+        <?php foreach ($traza as $traza): ?>
+            <?php
+            if($traza['estatus'] == "Culminado")
+            {
+                ?>
+                <div class="alert alert-success" style="background: #81F781;">
+                    <div class="row">
+                        <div class="col-sm-2"><?= $traza['estatus'] ?></div>
+                        <div class="col-sm-3">
+                            <?php
+                            if($traza['proyecto_motivo_correccion'] == "")
+                            {
+                                echo "N/A";
+                            }
+                            else
+                            {
+                                echo $traza['proyecto_motivo_correccion'];
+                            }
+                            ?>
+                        </div>
+                        <div class="col-sm-3"><?= $traza['observaciones'] ?></div>
+                        <div class="col-sm-1"><?= date("d/m/Y",strtotime($traza['fecha_hora'])) ?></div>
+                        <div class="col-sm-1"><?= date("h:i A",strtotime($traza['fecha_hora'])) ?></div>
+                        <div class="col-sm-2"><?= $traza['primer_nombre'] ?> <?= $traza['primer_apellido'] ?></div>
+                    </div>
+                </div>
+                <?php 
+            }
+            else if($traza['estatus'] == "En Desarrollo")
+            {
+                ?>
+                <div class="alert alert-info" style="background: #FFFFFF;">
+                    <div class="row">
+                        <div class="col-sm-2"><?= $traza['estatus'] ?></div>
+                        <div class="col-sm-3">
+                            <?php
+                            if($traza['proyecto_motivo_correccion'] == "")
+                            {
+                                echo "N/A";
+                            }
+                            else
+                            {
+                                echo $traza['proyecto_motivo_correccion'];
+                            }
+                            ?>
+                        </div>
+                        <div class="col-sm-3"><?= $traza['observaciones'] ?></div>
+                        <div class="col-sm-1"><?= date("d/m/Y",strtotime($traza['fecha_hora'])) ?></div>
+                        <div class="col-sm-1"><?= date("h:i A",strtotime($traza['fecha_hora'])) ?></div>
+                        <div class="col-sm-2"><?= $traza['primer_nombre'] ?> <?= $traza['primer_apellido'] ?></div>
+                    </div>
+                </div>
+                <?php 
+            }
+            else if($traza['estatus'] == "En Corrección")
+            {
+                ?>
+                <div class="alert alert-warning" style="background: #F3F781;">
+                    <div class="row">
+                        <div class="col-sm-2"><?= $traza['estatus'] ?></div>
+                        <div class="col-sm-3">
+                            <?php
+                            if($traza['proyecto_motivo_correccion'] == "")
+                            {
+                                echo "N/A";
+                            }
+                            else
+                            {
+                                echo $traza['proyecto_motivo_correccion'];
+                            }
+                            ?>
+                        </div>
+                        <div class="col-sm-3"><?= $traza['observaciones'] ?></div>
+                        <div class="col-sm-1"><?= date("d/m/Y",strtotime($traza['fecha_hora'])) ?></div>
+                        <div class="col-sm-1"><?= date("h:i A",strtotime($traza['fecha_hora'])) ?></div>
+                        <div class="col-sm-2"><?= $traza['primer_nombre'] ?> <?= $traza['primer_apellido'] ?></div>
+                    </div>
+                </div>
+                <?php 
+            }
+            else if($traza['estatus'] == "Rechazado")
+            {
+                ?>
+                <div class="alert alert-danger" style="background: #F5A9A9;">
+                    <div class="row">
+                        <div class="col-sm-2"><?= $traza['estatus'] ?></div>
+                        <div class="col-sm-3">
+                            <?php
+                            if($traza['proyecto_motivo_correccion'] == "")
+                            {
+                                echo "N/A";
+                            }
+                            else
+                            {
+                                echo $traza['proyecto_motivo_correccion'];
+                            }
+                            ?>
+                        </div>
+                        <div class="col-sm-3"><?= $traza['observaciones'] ?></div>
+                        <div class="col-sm-1"><?= date("d/m/Y",strtotime($traza['fecha_hora'])) ?></div>
+                        <div class="col-sm-1"><?= date("h:i A",strtotime($traza['fecha_hora'])) ?></div>
+                        <div class="col-sm-2"><?= $traza['primer_nombre'] ?> <?= $traza['primer_apellido'] ?></div>
+                    </div>
+                </div>
+                <?php 
+            }
+            else if($traza['estatus'] == "Cancelado")
+            {
+                ?>
+                <div class="alert alert-danger" style="background: #F5A9A9;">
+                    <div class="row">
+                        <div class="col-sm-1"><?= $traza['estatus'] ?></div>
+                        <div class="col-sm-3">
+                            <?php
+                            if($traza['proyecto_motivo_correccion'] == "")
+                            {
+                                echo "N/A";
+                            }
+                            else
+                            {
+                                echo $traza['proyecto_motivo_correccion'];
+                            }
+                            ?>
+                        </div>
+                        <div class="col-sm-3"><?= $traza['observaciones'] ?></div>
+                        <div class="col-sm-1"><?= date("d/m/Y",strtotime($traza['fecha_hora'])) ?></div>
+                        <div class="col-sm-1"><?= date("h:i A",strtotime($traza['fecha_hora'])) ?></div>
+                        <div class="col-sm-3"><?= $traza['primer_nombre'] ?> <?= $traza['primer_apellido'] ?></div>
+                    </div>
+                </div>
+                <?php  
+            }
+            else
+            {
+                ?>
+                <div class="alert alert-info" style="background: #FFF;">
+                    <div class="row">
+                        <div class="col-sm-2"><?= $traza['estatus'] ?></div>
+                        <div class="col-sm-3">
+                            <?php
+                            if($traza['proyecto_motivo_correccion'] == "")
+                            {
+                                echo "N/A";
+                            }
+                            else
+                            {
+                                echo $traza['proyecto_motivo_correccion'];
+                            }
+                            ?>
+                        </div>
+                        <div class="col-sm-3"><?= $traza['observaciones'] ?></div>
+                        <div class="col-sm-1"><?= date("d/m/Y",strtotime($traza['fecha_hora'])) ?></div>
+                        <div class="col-sm-1"><?= date("h:i A",strtotime($traza['fecha_hora'])) ?></div>
+                        <div class="col-sm-2"><?= $traza['primer_nombre'] ?> <?= $traza['primer_apellido'] ?></div>
+                    </div>
+                </div>
+                <?php  
+            }
+            ?>
+        <?php endforeach; ?>
+
+
+        <div class="alert-sigepsi">
+                    <p>
+                       Para ingresar la comunidad debe presionar el icono <i class="fas fa-search" ></i>  que se encuentra ubicado en la parte derecha del campo de texto. Debe ubicarla por estado, municipio y parroquia si la misma no se encuentra en el listado debe registrarla.
+                    </p>
+                </div>
+
+                
+                <?= $form->field($model, 'id_estatus')->textInput()->hiddenInput()->label(false) ?>
+
+                <div class="con">
+                     <?= $form->field($model, 'id_comunidad')->textInput() ?>
+                     <i data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="margin-left: 10px; cursor: pointer;" class="fas fa-search"></i>
+                </div>
+
+                <div style="display: none;" class="datos-comunidades">
+                      
+                </div>
+
+                <div class="collapse" id="collapseExample">
+                    <hr style="border-color: #ebccd1;">
+                    <div class="card card-body">
+                        <h3>Seleccionar o registrar comunidad</h3>
+                        <div style="background-color: #f2dede;border-color: #ebccd1;color: #a94442;" class="alert-sigepsi">
+                            <p>
+                             Antes de registrar una comunidad por favor verifique si ya existe en la base de datos, buscando por Estado, Municipio y Parroquia. Si la misma no existe presione el botón Registrar comunidad. <a class="btn btn-primary" href="<?= Url::toRoute("comunidades/create") ?>" target="_blank"><i class="fas fa-hotel"></i> Registrar comunidad</a>
+                            </p>
+                        </div>
+                        <div class="col-sm-3">
+                            <?= $form->field($model, "comunidad_id_estado")->dropDownList(
+                             ArrayHelper::map($Estados, 'id_estado', 'estado'),
+                             ['prompt' => 'Seleccione']);?>         
+                         </div>
+
+                         <div class="col-sm-3">
+                            <?= $form->field($model, "comunidad_id_municipio")->dropDownList(
+                             ArrayHelper::map($Municipios, 'id_municipio', 'municipio'),
+                             ['prompt' => 'Seleccione']);?>         
+                         </div>
+
+                         <div class="col-sm-3">
+                            <?= $form->field($model, "comunidad_id_parroquia")->dropDownList(
+                             ArrayHelper::map($Parroquias, 'id_parroquia', 'parroquia'),
+                             ['prompt' => 'Seleccione']);?>         
+                         </div>
+                         <p>
+                             <button id="button_buscar_comunidad" style="margin-top: 25px;" class="btn btn-primary" type="button"><i class="fas fa-search"></i> Buscar comunidad</button>
+                         </p>
+                         <div id="cont-table-comunidades" class="cont-table-comunidades">
+                             <table class="table-comunidades table table-bordered table-striped table-hover" id="table-comunidades" style="display: none;">
+                                 <tr id="encabezado-table-comunidades">
+                                     <th>Nombre</th>
+                                     <th>Dirección</th>
+                                     <th>Teléfono</th>
+                                     <th>Persona de contacto</th>
+                                     <th style="text-align: center;">Acciones</th>
+                                 </tr>
+                             </table>
+                         </div>  
+                     </div><br><hr style="border-color: #ebccd1;"><br><br>
+                </div>
+
+                php artisan migrate:refresh --seed
+
+                <div class="cintillo">
+	<?php echo Html::img('@web/imagenes/cintillo.svg'); ?>
+</div>

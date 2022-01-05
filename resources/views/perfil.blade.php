@@ -2,6 +2,8 @@
 
 @section('title', 'Perfil')
 
+@section('plugins.Select2', true)
+
 @section('content_header')
 
 <div class="container d-flex justify-content-center mt-1 ">
@@ -147,6 +149,16 @@
                         </div>
                     </div>
                 </form>
+
+                <select id='j' class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                    <option selected="selected">Alabama</option>
+                    <option>Alaska</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
             </div>
         </div>
     </div>
@@ -193,6 +205,8 @@ function removeItem(id) {
     }
 }
 
+$("#j").select2({});
+
 function calcular_punto(valor) {
     if(valor>0 && punto<=100 && valor<=punto){
         punto = punto-valor;
@@ -207,14 +221,17 @@ function calcular_punto(valor) {
         }
     }
 }
-
+// <div class="form-group">
+// <select class="form-control select2 select2-danger" data-dropdown-css-class='select2-danger'>
+// </select>
+// </div>
 function crear(obj) {
     if(punto>0){
         icremento++;
         var line = "";
         line +="<tr id='file_"+icremento+"'>";
-        line +="<td><select name='item"+icremento+"' id='item"+icremento+"' class='form-control'><option value='null'>Selecione una opcion</option></select></td>";
-        line +="<td><input type='text' id='point_estruct"+icremento+"' name='point_estruct"+icremento+"' onchange='calcular_punto(this.value)' class='form-control' max='3' min='1'></td>";
+        line +="<td><select data-dropdown-css-class='select2-danger' class='select2 select2-danger form-control' name='item"+icremento+"' id='item'><option value='null'>Selecione una opcion</option></select></td>";
+        line +="<td><input type='text' id='point_estruct"+icremento+"' name='point_estruct"+icremento+"' onchange='calcular_punto(this.value)' class='form-control' minlength='1' maxlength='2'></td>";
         line +="<td><button class='btn btn-primary' type='button' onclick='removeItem(file_"+icremento+")'><i class='fa fa-trash'></i></button></td>";
         line +="</tr>";
         $("#tableItem").append(line);
@@ -223,8 +240,6 @@ function crear(obj) {
     }
 
 }
-
-
 
 function borrar(obj) {
     field = document.getElementById('field');

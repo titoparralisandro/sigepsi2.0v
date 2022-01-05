@@ -19,6 +19,14 @@
 
             <div class="form-group">
 
+                <label class="form-label">Carrera</label>
+                <input id="carrera" disabled class="form-control" type="text" name="carrera"
+                value="{{ $especialidad->carrera->carrera }}">
+
+            </div>
+
+            <div class="form-group">
+
                 <label class="form-label">Especialidad</label>
                 <input id="especialidad" disabled class="form-control" type="text" name="especialidad"
                 value="{{ $especialidad->especialidad }}">
@@ -28,8 +36,7 @@
             <div class="form-group">
 
                 <label class="form-label">Descripción</label>
-                <input id="descripcion" disabled class="form-control" type="text" name="descripcion"
-                value="{{ $especialidad->descripcion }}">
+                <textarea id="descripcion" disabled class="form-control" name="descripcion" cols="25" rows="2">{{ $especialidad->descripcion }}</textarea>
 
             </div>
 

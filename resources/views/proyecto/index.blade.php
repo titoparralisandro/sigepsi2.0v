@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', ' Comunidades')
+@section('title', ' Proyectos')
 
 @section('plugins.Sweetalert2', true)
-
+@section('plugins.Bs-stepper', true)
 @section('plugins.Toastr', true)
-
+@section('plugins.Inputmask', true)
 @section('plugins.Datatables', true)
 
 @if(count($errors)>0)
@@ -19,92 +19,76 @@
 @endif
 @section('content_header')
 
+<div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="vendor/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+</div>
 
 <div class="card-header bg-primary ">
   <div class="color-palette">
-    <h1 class="text-center"><strong>Comunidades</strong></h1>
+    <h1 class="text-center"><strong>Proyectos</strong></h1>
   </div>
 </div>
-<!-- Modal view -->
-    <div class="modal fade xl" id="modal-show" tabindex="-1">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content ">
-                <div class="modal-header card-header bg-primary">
-                    <div class="color-palette">
-                        <h1 class="text-center"><strong>Ver comunidad</strong></h1>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body text-dark" id="getdata">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- /Modal view -->
-<!-- Modal view -->
-<div class="modal fade xl" id="modal-edit" tabindex="-1">
-    <div class="modal-dialog modal-lg" role="document">
-        <form action="#" method="POST" id="formEdit">
-            @csrf
-            <div class="modal-content ">
-                <div class="modal-header card-header bg-primary">
-                    <div class="color-palette">
-                        <h1 class="text-center"><strong>Ver comunidad</strong></h1>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body text-dark" id="data">
 
-                    </div>
-                </div>
-                <div class="modal-footer" id="modal_footer">
-                    <button type='submit' class='btn btn-primary'>Editar</button>
-                    <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<!-- /Modal view -->
 <div class="card border-dark">
   <div class="card-body text-dark">
-    <button href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-create">Añadir nueva comunidad</button>
+    <button href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-create">Añadir nuevo proyecto</button>
+    
     <hr>
-    <div>
-        <div class="btn-group" id="btn-search">
-            <button class="btn btn-primary" type="button" value="Todos">Todos</button>
-            <button class="btn btn-primary" type="button" value="Escuela">Escuela</button>
-            <button class="btn btn-primary" type="button" value="Centro de salud">Centro de salud</button>
-        </div>
-
+    
+    <div class="container">
+        <div class="row justify-content-center" id="btn-search">
+            <div class="col-1,5">
+                <button class="btn btn-block btn-info" type="button" value="Todos">Todos</button>
+            </div>
+            <div class="col-1,5">
+                <button class="btn btn-outline-primary btn-block" type="button" value="Por validar"><strong>Por validar</strong></button>
+            </div>
+            <div class="col-1,5">
+                <button class="btn btn-outline-success btn-block" type="button" value="En desarrollo"><strong>En desarrollo</strong></button>
+            </div>
+            <div class="col-1,5">
+                <button class="btn btn-outline-warning btn-block" type="button" value="En correccion"><strong>En corrección</strong></button>
+            </div>
+            <div class="col-1,5">
+                <button class="btn btn-outline-info btn-block" type="button" value="Socializado"><strong>Socializados</strong></button>
+            </div>
+            <div class="col-1,5">
+                <button class="btn btn-outline-danger btn-block" type="button" value="Rechazado"><strong>Rechazados</strong></button>
+            </div>
+            <div class="col-1,5">
+                <button class="btn btn-outline-success btn-block" type="button" value="Culminado"><strong>Culminados</strong></button>
+            </div>
+            <div class="col-1,5">
+                <button class="btn btn-outline-danger btn-block" type="button" value="Cancelado"><strong>Cancelados</strong></button>
+            </div>
+          </div>
+        
     </div>
-        <table id="example" class="table table-striped table-bordered nowrap"  style="width:100%">
+
+    <hr>
+    <table id="example" class="table table-striped table-bordered nowrap"  style="width:100%">
                 <thead>
                     <tr>
 
                         <th>N°</th>
-                        <th>Comunidad</th>
-                        <th>Contacto</th>
-                        <th>Estado</th>
-                        <th>Opciones</th>
+                        <th>Proyecto</th>
+                        <th>Carrera</th>
+                        <th>Estatus</th>
+                        <th>Acciones</th>
 
                     </tr>
                 </thead>
             <tbody>
-                @foreach ($comunidad as $comunidades)
+                @foreach ($proyecto as $proyectos)
                 <tr>
-                    <td>{{ $comunidades->id }}</td>
-                    <td>{{ $comunidades->nombre }}</td>
-                    <td>{{ $comunidades->persona_contacto }} | {{ $comunidades->telefono_contacto }}</td>
-                    <td>{{ $comunidades->tipos_comunidades->tipo_comunidad }} </td>
+                    <td>{{ $proyectos->id }}</td>
+                    <td>{{ $proyectos->titulo }}</td>
+                    <td>{{ $proyectos->carrera }}</td>
+                    <td>{{ $proyectos->estatus_proyecto }} </td>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-primary" type="button" onclick="getdata('{{ $comunidades->id }}')">Ver</button>
-                            <button class="btn btn-info" type="button" onclick="editdata('{{ $comunidades->id }}')">Editar</button>
+                            {{-- <button class="btn btn-primary" type="button" onclick="getdata('{{ $comunidades->id }}')">Ver</button>
+                            <button class="btn btn-info" type="button" onclick="editdata('{{ $comunidades->id }}')">Editar</button> --}}
                         </div>
                     </td>
                 </tr>
@@ -113,9 +97,65 @@
             </tbody>
         </table>
   </div>
+  {{-- Fomulario para crear proyectos yuju
+    <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">bs-stepper</h3>
+    </div>
+    <div class="card-body p-0">
+      <div class="bs-stepper">
+        <div class="bs-stepper-header" role="tablist">
+          <!-- your steps here -->
+          <div class="step" data-target="#logins-part">
+            <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
+              <span class="bs-stepper-circle">1</span>
+              <span class="bs-stepper-label">Logins</span>
+            </button>
+          </div>
+          <div class="line"></div>
+          <div class="step" data-target="#information-part">
+            <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
+              <span class="bs-stepper-circle">2</span>
+              <span class="bs-stepper-label">Various information</span>
+            </button>
+          </div>
+        </div>
+        <div class="bs-stepper-content">
+          <!-- your steps content here -->
+          <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+          </div>
+          <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+            <div class="form-group">
+              <label for="exampleInputFile">File input</label>
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="exampleInputFile">
+                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                </div>
+                <div class="input-group-append">
+                  <span class="input-group-text">Upload</span>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="stepper.previous()">Previous </button>
+            <button class="btn btn-primary" >Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div> --}} 
 </div>
 
-@include('comunidades.modal.create')
+@include('proyecto.modal.create')
 
 @stop
 
@@ -272,11 +312,21 @@ $(document).ready(function() {
         $('#btn-search').on( 'click', 'button',(e)=> {
             var valor = $(this)[0].activeElement.value;
             if (valor=="Todos") {
-                table.search('').columns(3).search('').draw();
+                table.search('').columns(8).search('').draw();
             }else{
-                table.column(3).search(valor).draw();
+                table.column(8).search(valor).draw();
             }
         });
     });
+
+      // BS-Stepper Init
+    document.addEventListener('DOMContentLoaded', function () {
+    window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+    });
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
 </script>
 @stop

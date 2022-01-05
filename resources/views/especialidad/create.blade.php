@@ -27,6 +27,25 @@
 
         <form action="{{ route('especialidad.store') }}" method="POST">
             @csrf
+
+            <div class="form-group">
+              <div class="row">
+                <div class="form-group col">  
+                  <label class="form-label">Carrera</label>
+
+                  <select id="id_carrera" name="id_carrera" class="form-control">
+                  <option selected>Seleccionar carrera</option>
+                  @foreach ( $carrera as $carreras)
+
+                      <option value="{{$carreras->id}}">{{ $carreras->carrera }}</option>
+
+                  @endforeach
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
             <div class="form-group">
 
               <label class="form-label">Especialidad</label>

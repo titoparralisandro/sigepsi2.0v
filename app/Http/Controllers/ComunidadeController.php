@@ -46,6 +46,7 @@ class ComunidadeController extends Controller
         $comunidad = new Comunidade();
 
         $comunidad->rif = $request->get('rif');
+
         $comunidad->nombre = $request->get('nombre');
         $comunidad->id_tipo_comunidad = $request->get('id_tipo_comunidad');
         $comunidad->telefono_contacto = $request->get('telefono_contacto');
