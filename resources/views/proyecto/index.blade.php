@@ -32,6 +32,7 @@
 <div class="card border-dark">
   <div class="card-body text-dark">
     <button href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-create">Añadir nuevo proyecto</button>
+    <a href="{{ route('proyecto.create') }}" class="btn btn-success">Añadir nuevo proyecto</a>
     
     <hr>
     

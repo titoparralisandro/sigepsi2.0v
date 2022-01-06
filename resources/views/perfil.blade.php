@@ -159,10 +159,17 @@
                     <option>Texas</option>
                     <option>Washington</option>
                   </select>
+
+                  <div class="form-group">
+                    <select id='g' class="form-control select2 select2-danger" data-dropdown-css-class='select2-danger'>
+                    </select>
+                    </div>
             </div>
         </div>
     </div>
 </div>
+
+
 @stop
 
 @section('js')
@@ -205,7 +212,7 @@ function removeItem(id) {
     }
 }
 
-$("#j").select2({});
+
 
 function calcular_punto(valor) {
     if(valor>0 && punto<=100 && valor<=punto){
@@ -221,12 +228,12 @@ function calcular_punto(valor) {
         }
     }
 }
-// <div class="form-group">
-// <select class="form-control select2 select2-danger" data-dropdown-css-class='select2-danger'>
-// </select>
-// </div>
+
 function crear(obj) {
     if(punto>0){
+        $("#item").select2({
+            
+        });
         icremento++;
         var line = "";
         line +="<tr id='file_"+icremento+"'>";

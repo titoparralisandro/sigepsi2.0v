@@ -43,6 +43,19 @@ class ProyectoController extends Controller
         }else { return response()->json(['success' => false]);  }
     }
 
+    public function create(){
+        $especialidad = Especialidade::all();
+        $lineas_investigacion = Lineas_investigacione::all();
+        $carrera = Carrera::all();
+        $trayecto = Trayecto::all();
+        $estados = Estado::all();
+        return view('proyecto.create',["lineas_investigacion"=>$lineas_investigacion,
+        "carrera"=>$carrera,
+        "estados"=>$estados, 
+        "especialidad"=>$especialidad,
+        "trayecto"=>$trayecto]);
+    }
+
     public function store(Request $request){
 
         // $comunidad = new Comunidade();

@@ -35,6 +35,7 @@ Route::get('perfil', function () {
 Auth::routes();
 Route::resource('prueba',App\Http\Controllers\PruebaController::class);
 
+Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('proyecto',App\Http\Controllers\ProyectoController::class);
 
 Route::resource('comunidades',App\Http\Controllers\ComunidadeController::class);

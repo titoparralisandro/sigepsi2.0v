@@ -20,7 +20,7 @@ class CreateProfesoresTable extends Migration
             $table->string('primer_apellido',15);
             $table->string('segundo_apellido',15);
             $table->integer('cedula')->unique();
-            $table->integer('telefono')->unique();
+            $table->text('telefono')->unique();
             $table->string('email',100)->unique()->nullable();
             $table->timestamps();
         });

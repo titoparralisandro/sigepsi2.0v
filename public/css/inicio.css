@@ -6,9 +6,9 @@
 .menu {
 	/* background: #fff; */
 	display: flex;
-	padding: 20px;
+	padding: 20px 20px 30px 20px;
 	color: #fff;
-	width: 90%;
+	/* width: 90%; */
 	margin: auto;
 }
 
@@ -42,11 +42,11 @@
 }
 
 .principal {
-	background: transparent;
-	width: 80%;
-	text-align: center;
-	color: #fff;
-	margin: auto;
+    background: transparent;
+    width: 95%;
+    text-align: center;
+    color: #fff;
+    margin: auto;
 }
 
 .blue {
@@ -63,12 +63,13 @@
 
 .fixed {
 	position: absolute;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    bottom: 0px;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	bottom: 0px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .info-footer {

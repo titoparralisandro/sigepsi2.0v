@@ -312,6 +312,11 @@ return [
                             'url'  => '/lineas_investigacion',
                         ],
                         [
+                            'text' => 'Asesores',
+                            'icon'    => 'fas fa-fw fa-user-plus',
+                            'url'  => '/asesor',
+                        ],
+                        [
                             'text' => 'Tipos de Asesorias',
                             'icon' => 'fas fa-fw fa-chalkboard-teacher',
                             'url'  => '/tipos_asesoria',
