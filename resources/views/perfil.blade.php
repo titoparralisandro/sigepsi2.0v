@@ -150,7 +150,7 @@
                     </div>
                 </form>
 
-                <select id='j' class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                <select id='item' class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                     <option selected="selected">Alabama</option>
                     <option>Alaska</option>
                     <option>California</option>
@@ -161,7 +161,7 @@
                   </select>
 
                   <div class="form-group">
-                    <select id='g' class="form-control select2 select2-danger" data-dropdown-css-class='select2-danger'>
+                    <select id='item' class="form-control select2 select2-danger" data-dropdown-css-class='select2-danger'>
                     </select>
                     </div>
             </div>
@@ -231,13 +231,11 @@ function calcular_punto(valor) {
 
 function crear(obj) {
     if(punto>0){
-        $("#item").select2({
-            
-        });
+        
         icremento++;
         var line = "";
         line +="<tr id='file_"+icremento+"'>";
-        line +="<td><select data-dropdown-css-class='select2-danger' class='select2 select2-danger form-control' name='item"+icremento+"' id='item'><option value='null'>Selecione una opcion</option></select></td>";
+        line +="<td><select name='item"+icremento+"' id='item"+icremento+"' class='form-control'><option value='null'>Selecione un item</option></select></td>";
         line +="<td><input type='text' id='point_estruct"+icremento+"' name='point_estruct"+icremento+"' onchange='calcular_punto(this.value)' class='form-control' minlength='1' maxlength='2'></td>";
         line +="<td><button class='btn btn-primary' type='button' onclick='removeItem(file_"+icremento+")'><i class='fa fa-trash'></i></button></td>";
         line +="</tr>";
@@ -247,7 +245,7 @@ function crear(obj) {
     }
 
 }
-
+$("#item").select2({});
 function borrar(obj) {
     field = document.getElementById('field');
     field.removeChild(document.getElementById(obj));

@@ -15,7 +15,7 @@
                                 <div class="banner-info-bg">
                                     <h5>Comunidad</h5>
                                     <p class="mt-4 pr-lg-4">Si eres una comunidad y necesitas una ayuda a encontrar una solución a un proceso en concreto podemos ayudarte</p>
-                                    <a class="btn btn-style btn-outline-secondary mt-sm-5 mt-4 mr-2" href="about.html"> ¿Deseas registrar tu situación o problemática?</a>
+                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="{{url('register')}}"> ¿Deseas registrar tu situación o problemática?</a>
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                             <div class="container">
                                 <div class="banner-info-bg">
                                     <h5>Biblioteca digital </h5>
-                                    <p class="mt-4 pr-lg-4">Desde sus incios como universidad hemos ayudado a diversas comunidades y organizaciones con sus diferentes procesos, aportando un granito de arena en apoyo al desarrollo del país en diversas áreas</p>
+                                    <p class="mt-4 pr-lg-4">Desde sus incios como universidad hemos ayudado a diversas comunidades y organizaciones como escuelas y entes gubernamentales con sus diferentes procesos, aportando un granito de arena en apoyo al desarrollo del país en diversas áreas</p>
                                     <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="about.html"> Ver portafolio </a>
                                 </div>
                             </div>
