@@ -14,4 +14,8 @@ class Parroquia extends Model
     public function municipios(){
         return $this->belongsTo(Municipio::class, 'id_municipio');
     }
+
+    public function proyectos(){
+        return $this->hasMany(Proyecto::class, 'id');
+    }
 }

@@ -14,24 +14,37 @@ class Proyecto extends Model
         return $this->belongsTo(Estatus_proyecto::class, 'id_estatus_proyecto');
     }
 
-    // // estatus proyecto forenkey
-    // public function estatus_proyectos(){
-    //     return $this->belongsTo(Estatus_proyecto::class, 'id_estatus_proyecto');
-    // }
+    // // especialidad forenkey
+     public function especialidad(){
+        return $this->belongsTo(Especialidad::class, 'id_especialidad');
+     }
 
-    // // estatus proyecto forenkey
-    // public function estatus_proyectos(){
-    //     return $this->belongsTo(Estatus_proyecto::class, 'id_estatus_proyecto');
-    // }
+    // // linea_investigacion forenkey
+     public function linea_investigacion(){
+         return $this->belongsTo(Lineas_investigacione::class, 'id_linea_investigacion');
+     }
 
-    // // estatus proyecto forenkey
-    // public function estatus_proyectos(){
-    //     return $this->belongsTo(Estatus_proyecto::class, 'id_estatus_proyecto');
-    // }
+    // // trayecto forenkey
+     public function trayecto(){
+        return $this->belongsTo(Trayecto::class, 'id_trayecto');
+     }
 
-    // // estatus proyecto forenkey
-    // public function estatus_proyectos(){
-    //     return $this->belongsTo(Estatus_proyecto::class, 'id_estatus_proyecto');
-    // }
+    // // comunidad forenkey
+     public function comunidad(){
+         return $this->belongsTo(Comunidade::class, 'id_comunidad');
+     }
+
+    // // estado forenkey
+    public function estado(){
+        return $this->belongsTo(Estado::class, 'id_estado');
+    }
+    // // municipio forenkey
+    public function municipio(){
+        return $this->belongsTo(Municipio::class, 'id_municipio');
+    }
+    // // parroquia forenkey
+    public function parroquia(){
+        return $this->belongsTo(Parroquia::class, 'id_parroquia');
+    }
 
 }

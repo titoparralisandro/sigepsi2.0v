@@ -66,8 +66,8 @@ return [
     'usermenu_enabled' => true,
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-blue',
-    'usermenu_image' => false,
-    'usermenu_desc' => false,
+    'usermenu_image' => true,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => false,
 
     /*

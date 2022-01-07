@@ -15,12 +15,10 @@ class CreateComunidadesTable extends Migration
     {
         Schema::create('comunidades', function (Blueprint $table) {
             $table->id();
-
-            $table->integer('id_user')->nullable();
-            $table->foreign('id_user')
+            $table->foreignId('id_user')
+                ->nullable()
                 ->references('id')->on('users')
                 ->OnDelete('set null');
-
             $table->char('rif',10)->unique();
             $table->string('nombre')->unique();
             $table->unsignedBigInteger('id_tipo_comunidad')->nullable();

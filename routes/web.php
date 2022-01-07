@@ -61,6 +61,8 @@ Route::resource('estatus_situaciones',App\Http\Controllers\Estatus_situacioneCon
 
 Route::post('municipios', [App\Http\Controllers\ComunidadeController::class, 'municipios']);
 Route::post('parroquias', [App\Http\Controllers\ComunidadeController::class, 'parroquias']);
+Route::post('municipios', [App\Http\Controllers\ProyectoController::class, 'municipios']);
+Route::post('parroquias', [App\Http\Controllers\ProyectoController::class, 'parroquias']);
 
 Route::get('/showcomunid/{id}', [App\Http\Controllers\ComunidadeController::class, 'show']);
 Route::post('/editcomunid', [App\Http\Controllers\ComunidadeController::class, 'edit']);

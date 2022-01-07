@@ -2,24 +2,15 @@
 
 @section('title', ' Proyectos')
 
-@if(count($errors)>0)
-<div class="alert alert-danger" role="alert">
-<ul>
-  @foreach($errors->all() as $error)
-    <li>{{ $error }}</li>
-  @endforeach
-</ul>
-</div>
-@endif
-
+@section('plugins.Toastr', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Bs-stepper', true)
-@section('plugins.Toastr', true)
 @section('plugins.Inputmask', true)
 
 @section('content_header')
-
-<div class="row">
+<form action="{{ route('proyecto.store') }}" method="POST">
+@csrf
+  <div class="row">
     <div class="col-md-12">
       <div class="card card-default">
         <div class="card-header">
@@ -53,6 +44,8 @@
             <div class="bs-stepper-content">
               <!-- your steps content here -->
 
+
+                
               <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
                 
                 {{-- cuerpo del primer formulario --}}
@@ -128,24 +121,62 @@
                 </div>
 
                 
-                <button class="btn btn-primary" onclick="stepper.next()">Siguiente</button>
+                <a class="btn btn-primary" onclick="stepper.next()">Siguiente</a>
               </div>
 
               <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
                 
                 {{-- segundo parte del form --}}
 
+                <div class="row">
+
+                  <div class="form-group col">
+
+                      <label class="form-label">Estado</label>
+
+                      <select name="id_estado" id="id_estado" class="form-control">
+                      <option selected>Seleccionar su estado</option>
+                          @foreach ($estados as $item)
+                          <option value="{{$item->id_estado}}">{{$item->estado}}</option>
+                          @endforeach
+                      </select>
+
+                  </div>
+
+                  <div class="form-group col">
+
+                      <label class="form-label">Municipio</label>
+                      <select name="id_municipio" id="id_municipio" class="form-control"></select>
+
+                  </div>
+
+                  <div class="form-group col">
+
+                      <label class="form-label">Parroquia</label>
+                      <select name="id_parroquia" id="id_parroquia" class="form-control" value={{ isset($proyecto->id_parroquia)?$proyecto->id_parroquia:old('id_parroquia') }}></select>
+
+                  </div>
+
+              </div>
+
+                    <div class="form-group">
+
+                      <label class="form-label">Dirección</label>
+                      <textarea id="direccion" class="form-control" name="direccion" cols="25" rows="2"
+                      value="{{ isset($proyecto->direccion)?$proyecto->direccion:old('direccion') }}" placeholder="Escribe la dirección de donde vas a ejecutar o implementar tu solución."></textarea>
+
+                  </div>
 
 
-                <button class="btn btn-primary" onclick="stepper.previous()">Anterior</button>
-                <button class="btn btn-primary" onclick="stepper.next()">Siguiente</button>
+                <a class="btn btn-primary" onclick="stepper.previous()">Anterior</a>
+                <a class="btn btn-primary" onclick="stepper.next()">Siguiente</a>
               </div>
 
               <div id="equipo-part" class="content" role="tabpanel" aria-labelledby="equipo-part-trigger">
 
                 {{-- tercer parte del form --}}
-
-                <button class="btn btn-primary" onclick="stepper.previous()">Anterior</button>
+</form>
+                <a class="btn btn-primary" onclick="stepper.previous()">Anterior</a>
                 <button type="submit" class="btn btn-success">Registrar</button>
               </div>
             </div>
@@ -155,6 +186,7 @@
     </div>
   </div>
 
+{{-- 
 <div class="card-header  ">
     <div class="color-palette">
       <h1 class="text-center"><strong>Añadir nueva carrera</strong></h1>
@@ -334,14 +366,98 @@
           </form>
     </div>
 
-  </div>
-
-
+  </div> --}}
 
 @stop
 
 @section('js')
     <script>
+
+function getMunicipio(e) {
+            $.ajax({
+                type: "POST",
+                url: "municipios",
+                async: false,
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "texto" : e.target.value
+                },
+                success: function(response){
+                    console.log(response)
+                    var opciones ="<option value='0'>Seleccione su municipio</option>";
+                    for (let i in response.lista) {
+                        opciones+= '<option value="'+response.lista[i].id_municipio+'">'+response.lista[i].municipio+'</option>';
+                    }
+                    $("#id_municipio").empty().append(opciones);
+                    $("#id_parroquia").empty();
+                }
+            });
+        }
+        function getParroquia(e) {
+            $.ajax({
+                type: "POST",
+                url: "parroquias",
+                async: false,
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "texto" : e.target.value
+                },
+                success: function(response){
+                    var opciones ="<option value='0'>Seleccione su parroquia</option>";
+                    for (let i in response.lista) {
+                        opciones+= '<option value="'+response.lista[i].id_parroquia+'">'+response.lista[i].parroquia+'</option>';
+                    }
+                    $("#id_parroquia").empty().append(opciones);
+                }
+            });
+        }
+const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
+    document.getElementById('id_estado').addEventListener('change',(e)=>{
+        fetch('municipios',{
+            method : 'POST',
+            body: JSON.stringify({texto : e.target.value}),
+            headers:{
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": csrfToken
+            }
+        }).then(response =>{
+            return response.json()
+        }).then( data =>{
+
+            var opciones ="<option value=''>Seleccione su municipio</option>";
+            for (let i in data.lista) {
+               opciones+= '<option value="'+data.lista[i].id_municipio+'">'+data.lista[i].municipio+'</option>';
+            }
+            document.getElementById("id_municipio").innerHTML = opciones;
+            document.getElementById("id_parroquia").innerHTML = '';
+        }).catch(error =>console.error(error));
+    })
+
+    document.getElementById('id_municipio').addEventListener('change',(e)=>{
+        fetch('parroquias',{
+            method : 'POST',
+            body: JSON.stringify({texto : e.target.value}),
+            headers:{
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": csrfToken
+            }
+        }).then(response =>{
+            return response.json()
+        }).then( data =>{
+            var opciones ="<option value=''>Seleccione su parroquia</option>";
+            for (let i in data.lista) {
+               opciones+= '<option value="'+data.lista[i].id_parroquia+'">'+data.lista[i].parroquia+'</option>';
+            }
+            document.getElementById("id_parroquia").innerHTML = opciones;
+        }).catch(error =>console.error(error));
+    
+    
+    })
+
+    
+
     // BS-Stepper Init
     document.addEventListener('DOMContentLoaded', function () {
     window.stepper = new Stepper(document.querySelector('.bs-stepper'))

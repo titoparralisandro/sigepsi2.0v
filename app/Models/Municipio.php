@@ -20,4 +20,7 @@ class Municipio extends Model
         return $this->hasMany(Parroquia::class, 'id_municipio');
     }
 
+    public function proyectos(){
+        return $this->hasMany(Proyecto::class, 'id');
+    }
 }

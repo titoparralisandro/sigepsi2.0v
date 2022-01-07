@@ -12,4 +12,8 @@ class Comunidade extends Model
     public function tipos_comunidades(){
         return $this->belongsTo(Tipos_comunidade::class, 'id_tipo_comunidad');
     }
+
+    public function proyectos(){
+        return $this->hasMany(Proyecto::class, 'id');
+    }
 }

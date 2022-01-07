@@ -162,35 +162,6 @@
 
 @section('js')
     <script>
-        function editdata(id) {
-            $.ajax({
-                type: "POST",
-                url: "/editcomunid",
-                async: false,
-                cache: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "id":id
-                },
-                success: function(response){
-                    $("#data").html(response);
-                    $('#modal-edit').modal('show');
-                }
-            });
-        }
-        function getdata(id) {
-            $.ajax({
-                type: "GET",
-                url: "/showcomunid/"+id,
-                async: false,
-                cache: false,
-                data: {"_token": "{{ csrf_token() }}"},
-                success: function(response){
-                    $("#getdata").html(response);
-                    $('#modal-show').modal('show');
-                }
-            });
-        }
         function getMunicipio(e) {
             $.ajax({
                 type: "POST",

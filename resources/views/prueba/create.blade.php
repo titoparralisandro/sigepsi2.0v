@@ -42,13 +42,3 @@
 <button type="submit" class="btn btn-primary">Enviar</button>
 
 </form>
-
-@stop
-
-@section('css')
-    
-@stop
-
-@section('js')
-
-@stop

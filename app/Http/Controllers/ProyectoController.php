@@ -29,6 +29,19 @@ class ProyectoController extends Controller
                                         "trayecto"=>$trayecto]);
     }
 
+    public function create(Request $request){
+        $especialidad = Especialidade::all();
+        $lineas_investigacion = Lineas_investigacione::all();
+        $carrera = Carrera::all();
+        $trayecto = Trayecto::all();
+        $estados = Estado::all();
+        return view('proyecto.create',["lineas_investigacion"=>$lineas_investigacion,
+                                        "carrera"=>$carrera,
+                                        "estados"=>$estados, 
+                                        "especialidad"=>$especialidad,
+                                        "trayecto"=>$trayecto]);
+    }
+
     public function municipios(Request $request){
         if(isset($request->texto)){
             $municipios = Municipio::whereid_estado($request->texto)->get();
@@ -42,8 +55,9 @@ class ProyectoController extends Controller
             return response()->json(['lista' => $parroquias,'success' => true]);
         }else { return response()->json(['success' => false]);  }
     }
+    
 
-    public function create(){
+    public function store(Request $request){
         $especialidad = Especialidade::all();
         $lineas_investigacion = Lineas_investigacione::all();
         $carrera = Carrera::all();
@@ -54,10 +68,6 @@ class ProyectoController extends Controller
         "estados"=>$estados, 
         "especialidad"=>$especialidad,
         "trayecto"=>$trayecto]);
-    }
-
-    public function store(Request $request){
-
         // $comunidad = new Comunidade();
 
         // $comunidad->rif = $request->get('rif');
