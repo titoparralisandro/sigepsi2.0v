@@ -32,6 +32,10 @@ Route::get('perfil', function () {
     return view('perfil');
 });
 
+Route::get('a_cerca_de', function () {
+    return view('a_cerca_de');
+});
+
 Auth::routes();
 Route::resource('prueba',App\Http\Controllers\PruebaController::class);
 
@@ -51,6 +55,7 @@ Route::resource('turno',App\Http\Controllers\TurnoController::class);
 
 Route::resource('producto',App\Http\Controllers\ProductoController::class);
 Route::resource('items_estructura',App\Http\Controllers\Items_estructuraController::class);
+Route::resource('estructura',App\Http\Controllers\EstructuraController::class);
 
 Route::resource('tipos_asesoria',App\Http\Controllers\Tipos_asesoriaController::class);
 

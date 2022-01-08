@@ -16,4 +16,8 @@ class Lineas_investigacione extends Model
     public function proyectos(){
         return $this->hasMany(Proyecto::class, 'id');
     }
+
+    public function estructuras(){
+        return $this->hasMany(Estructura::class, 'id');
+    }
 }

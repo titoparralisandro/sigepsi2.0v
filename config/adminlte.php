@@ -283,7 +283,7 @@ return [
                 [
                     'text' => 'Estructuras',
                     'icon'    => 'fas fa-fw fa-clipboard-list',
-                    'url'  => '#',
+                    'url'  => '/estructura',
                 ],
         ],
         ],
@@ -415,6 +415,13 @@ return [
             'text' => 'Reportes',
             'url'  => '#',
             'icon' => 'fas fa-fw fa-file-alt',
+        ],
+
+        ['header' => 'Información'],
+        [
+            'text' => 'A cerca de',
+            'url'  => '/a_cerca_de',
+            'icon' => 'fas fa-fw fa-info',
         ],
     ],
 

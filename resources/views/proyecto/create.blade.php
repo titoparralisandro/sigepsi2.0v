@@ -8,8 +8,8 @@
 @section('plugins.Inputmask', true)
 
 @section('content_header')
-<form action="{{ route('proyecto.store') }}" method="POST">
-@csrf
+<form action="{{ route('proyecto.store') }}" method="POST" enctype="multipart/form-data">
+<meta name="csrf-token" content="{{ csrf_token() }}">
   <div class="row">
     <div class="col-md-12">
       <div class="card card-default">
@@ -371,9 +371,8 @@
 @stop
 
 @section('js')
-    <script>
-
-function getMunicipio(e) {
+<script>
+    function getMunicipio(e) {
             $.ajax({
                 type: "POST",
                 url: "municipios",
@@ -413,6 +412,9 @@ function getMunicipio(e) {
                 }
             });
         }
+</script>
+
+    <script>
 const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
     document.getElementById('id_estado').addEventListener('change',(e)=>{
         fetch('municipios',{

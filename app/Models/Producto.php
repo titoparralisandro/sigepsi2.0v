@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     use HasFactory;
+
+    public function estructuras(){
+        return $this->hasMany(Estructura::class, 'id');
+    }
 }

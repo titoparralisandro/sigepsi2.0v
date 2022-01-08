@@ -16,4 +16,8 @@ class Carrera extends Model
     public function especialidades(){
         return $this->hasMany(Especialidade::class, 'id');
     }
+
+    public function estructuras(){
+        return $this->hasMany(Estructura::class, 'id');
+    }
 }
