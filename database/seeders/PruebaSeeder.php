@@ -9,7 +9,10 @@ use App\Models\Turno;
 use App\Models\Tipos_comunidade;
 use App\Models\Carrera;
 use App\Models\Trayecto;
-// use App\Models\Especialidade;
+use App\Models\Items_estructura;
+use App\Models\Producto;
+use App\Models\Lineas_investigacione;
+use App\Models\Especialidade;
 
 class PruebaSeeder extends Seeder
 {
@@ -59,14 +62,35 @@ class PruebaSeeder extends Seeder
         Carrera::create(array( 'id' => 3, 'carrera' => 'PNF en Mecánica', 'descripcion' => 'Está dirigido a la formación de un profesional con pertinencia social, consciente del colectivo, respetuoso y solidario, con actitud proactiva hacia el aprendizaje, el mejoramiento continuo y la innovación, comprometido con los planes de desarrollo económico y social de la nación, que conoce la disponibilidad de los recursos del país, con formación integral, socio-humanista, tecnológica y científica para identificar, abordar y resolver problemas relacionados con el análisis, diseño, construcción, montaje puesta en marcha, operación, mantenimiento, desincorporación y desecho de equipos e instalaciones industriales; donde se utilicen maquinarias para convertir, transportar y utilizar energía, igualmente en la transformación de materias primas en productos manufacturados, asumiendo una actitud responsable, ética honesta, sensibilizado a la conservación del ambiente así como también al uso eficiente del talento humano de los recursos materiales, financieros y energéticos.', 'estatus' => true));
         
         /* Especialidades */
-        // Especialidade::create(array( 'id' => 1, 'especialidad' => 'Administración', 'descripcion' => 'es un profesional encargado de planificar, organizar, coordinar, controlar y evaluar las actividades industriales, comerciales, financieras y de servicios de cualquier institución, industria o empresa.', 'estatus' => true));
-        // Especialidade::create(array( 'id' => 2, 'especialidad' => 'Informática', 'descripcion' => 'prepara a profesionistas que se encuentran capacitados para analizar, procesar y solucionar problemas que tengan relación con la administración, procesamiento y almacenamiento de la información digital.', 'estatus' => true));
+        Especialidade::create(array( 'id' => 1, 'id_carrera' => 1, 'especialidad' => 'Administración', 'descripcion' => 'es un profesional encargado de planificar, organizar, coordinar, controlar y evaluar las actividades industriales, comerciales, financieras y de servicios de cualquier institución, industria o empresa.', 'estatus' => true));
+        Especialidade::create(array( 'id' => 2, 'id_carrera' => 2, 'especialidad' => 'Informática', 'descripcion' => 'prepara a profesionistas que se encuentran capacitados para analizar, procesar y solucionar problemas que tengan relación con la administración, procesamiento y almacenamiento de la información digital.', 'estatus' => true));
         
         /* Trayecto */
         Trayecto::create(array( 'id' => 1, 'trayecto' => 'I', 'descripcion' => 'Primer trayecto', 'estatus' => true));
         Trayecto::create(array( 'id' => 2,'trayecto' => 'II', 'descripcion' => 'Segundo trayecto', 'estatus' => true));
         Trayecto::create(array( 'id' => 3, 'trayecto' => 'III', 'descripcion' => 'Tercer trayecto', 'estatus' => true));
         Trayecto::create(array( 'id' => 4, 'trayecto' => 'IV', 'descripcion' => 'Cuarto trayecto', 'estatus' => true));
+
+        /* Items */
+        Items_estructura::create(array( 'id' => 1, 'item' => 'Portada'));
+        Items_estructura::create(array( 'id' => 2, 'item' => 'Objetivo general'));
+        Items_estructura::create(array( 'id' => 3, 'item' => 'Objetivo especificos'));
+        Items_estructura::create(array( 'id' => 4, 'item' => 'Panteamiento del problema'));
+        Items_estructura::create(array( 'id' => 5, 'item' => 'Máxima'));
+        Items_estructura::create(array( 'id' => 6, 'item' => 'Titulo'));
+        Items_estructura::create(array( 'id' => 7, 'item' => 'Conclusiones'));
+        Items_estructura::create(array( 'id' => 8, 'item' => 'Recomendaciones'));
+
+        /* Productos */
+        Producto::create(array( 'id' => 1, 'producto' => 'Informe', 'descripcion' => 'Documento de tesis', 'estatus' => true));
+        Producto::create(array( 'id' => 2, 'producto' => 'Presentación', 'descripcion' => 'Dia positivas de proyecto de tesis', 'estatus' => true));
+        Producto::create(array( 'id' => 3, 'producto' => 'Manual', 'descripcion' => 'Documento de uso de herramienta', 'estatus' => true));
+    
+        /* Lineas de investigación */
+        Lineas_investigacione::create(array( 'id' => 1, 'id_carrera' => 2, 'linea_investigacion' => 'Mantenimiento preventivo y correctivo'));
+        Lineas_investigacione::create(array( 'id' => 2, 'id_carrera' => 2, 'linea_investigacion' => 'Desarrollo web (estructurado)'));
+        Lineas_investigacione::create(array( 'id' => 3, 'id_carrera' => 2, 'linea_investigacion' => 'Redes y telecomunicaciones'));
+        Lineas_investigacione::create(array( 'id' => 4, 'id_carrera' => 1, 'linea_investigacion' => 'Procesos y metodos'));
     }
     
     
