@@ -9,65 +9,79 @@ use App\Models\Lineas_investigacione;
 use App\Models\Trayecto;
 use App\Models\Producto;
 use App\Models\Items_estructura;
+use App\Models\Item_estructura;
+use Illuminate\Support\Facades\DB;
 
 class EstructuraController extends Controller
 {
     public function index(){
-        $estructura = Estructura::all();
-        $carrera = Carrera::all();
-        $lineas_investigacion = Lineas_investigacione::all();
-        $producto = Producto::all();
-        return view('estructura.index',["lineas_investigacion"=>$lineas_investigacion,
-                                        "carrera"=>$carrera,
-                                        "producto"=>$producto, 'estructura' => $estructura]);
+        $estructura = DB::table('estructuras')
+            ->join('carreras', 'carreras.id', '=', 'estructuras.id_carrera')
+            ->join('lineas_investigaciones', 'lineas_investigaciones.id', '=', 'estructuras.id_linea_investigacion')
+            ->join('productos', 'productos.id', '=', 'estructuras.id_producto')
+            ->select("estructuras.id","carreras.carrera","lineas_investigaciones.linea_investigacion","productos.producto")
+            ->get();
+        return view('estructura.index',['estructura' => $estructura]);
+    }
+    public function getdataItem()
+    {
+        $data = DB::table('items_estructuras')
+                ->select('id','item as text')
+                ->get();
+        return response()->json($data);
+    }
+    public function getdataInvest(Request $request)
+    {
+        $data = DB::table('lineas_investigaciones')
+                ->select('id','linea_investigacion as text')
+                ->where('id_carrera','=',$request->get('id'))
+                ->get();
+        return response()->json($data);
+    }
+    public function getData($Typedata){
+        $data = null;
+        switch ($Typedata) {
+            case 'carrera':
+                $data = DB::table('carreras')
+                ->select('id','carrera as text')
+                ->get();
+                break;
+            case 'trayecto':
+                $data = DB::table('trayectos')
+                ->select('id','descripcion as text')
+                ->get();
+                break;
+            case 'producto':
+                $data = DB::table('productos')
+                ->select('id','producto as text')
+                ->get();
+                break;
+            case 'Items_estructura':
+                $data = Items_estructura::all();
+                break;
+        }
+        return response()->json($data);
     }
 
     public function create(){
-        $carrera = Carrera::all();
-        $lineas_investigacion = Lineas_investigacione::all();
-        $trayecto = Trayecto::all();
-        $producto = Producto::all();
-        $item = Items_estructura::all();
-        return view('estructura.create',["lineas_investigacion"=>$lineas_investigacion,
-                                        "carrera"=>$carrera,
-                                        "producto"=>$producto, 
-                                        "item"=>$item,
-                                        "trayecto"=>$trayecto]);
+        return view('estructura.create');
     }
 
     public function store(Request $request){
-        $carrera = Carrera::all();
-        $lineas_investigacion = Lineas_investigacione::all();
-        $trayecto = Trayecto::all();
-        $producto = Producto::all();
-        $item = Items_estructura::all();
-        return view('estructura.index',["lineas_investigacion"=>$lineas_investigacion,
-                                        "carrera"=>$carrera,
-                                        "producto"=>$producto, 
-                                        "item"=>$item,
-                                        "trayecto"=>$trayecto]);
-
-        // $comunidad = new Comunidade();
-
-        // $comunidad->rif = $request->get('rif');
-        // if($comunidad->id_user == null){
-        //     $comunidad->id_user = null;
-        // }else{
-        //     $comunidad->id_user = $request->get('id_user');
-        // }
-        // $comunidad->nombre = $request->get('nombre');
-        // $comunidad->id_tipo_comunidad = $request->get('id_tipo_comunidad');
-        // $comunidad->telefono_contacto = $request->get('telefono_contacto');
-        // $comunidad->persona_contacto = $request->get('persona_contacto');
-        // $comunidad->email = $request->get('email');
-        // $comunidad->id_estado = $request->get('id_estado');
-        // $comunidad->id_municipio = $request->get('id_municipio');
-        // $comunidad->id_parroquia = $request->get('id_parroquia');
-        // $comunidad->direccion = $request->get('direccion');
-
-        // $comunidad->save();
-
-        // return redirect('/proyecto')->with('respuesta', 'creado');
-
+        $Estruct = new Estructura();
+        $Estruct->id_carrera = $request->get('data')['id_carrera'];
+        $Estruct->id_linea_investigacion = $request->get('data')['id_lineas_investigacion'];
+        $Estruct->id_trayecto = $request->get('data')['id_trayecto'];
+        $Estruct->id_producto = $request->get('data')['id_producto'];
+        $Estruct->save();
+        $items=$request->get('data')['items'];
+        for ($i=0; $i < count($items); $i++) {
+            $Item_estruc=new Item_estructura();
+            $Item_estruc->id_estructura = $Estruct->id;
+            $Item_estruc->id_items = $items[$i]['item'];
+            $Item_estruc->peso = $items[$i]['point'];
+            $Item_estruc->save();
+        }
+        return response()->json($request->get('data'));
     }
 }

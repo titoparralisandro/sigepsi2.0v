@@ -47,4 +47,8 @@ class Proyecto extends Model
         return $this->belongsTo(Parroquia::class, 'id_parroquia');
     }
 
+    // documentos forenkey
+    public function file(){
+        return $this->hasMany(File::class, 'id');
+    }
 }

@@ -6,10 +6,10 @@
 <section class="w3l-breadcrumb">
     <div class="breadcrumb-bg breadcrumb-bg-about py-5">
         <div class="container pt-lg-5 pt-3 p-lg-4 pb-3">
-            <h2 class="title mt-5 pt-lg-5 pt-sm-3">Ponte en contacto</h2>
+            <h2 class="title mt-5 pt-lg-5 pt-sm-3">Get in touch</h2>
             <ul class="breadcrumbs-custom-path pb-sm-5 pb-4 mt-2 text-center mb-md-5">
                 <li><a href="{{ url('/') }}">Inicio</a></li>
-                <li class="active"> / Contactanos </li>
+                <li class="active"> / Contact us </li>
             </ul>
         </div>
     </div>
@@ -27,16 +27,17 @@
         <div class="container">
             <div class="d-grid contact-view">
                 <div class="cont-details">
-                    <h3 class="title-big mb-4">Ponte en contacto</h3>
-                    <p class="mb-sm-5 mb-4">Comiense a trabajar con nosotros, le garatizamos resolver cualquier problemas en 24 horas</p>
+                    <h4 class="title-small">Get in touch</h4>
+                    <h3 class="title-big mb-4">Feel free to contact us</h3>
+                    <p class="mb-sm-5 mb-4">Start working with Us, We guarantee that you’ll be able to have any issue resolved within 24 hours.</p>
 
                     <div class="cont-top">
                         <div class="cont-left text-center">
                             <span class="fa fa-map-marker text-primary"></span>
                         </div>
                         <div class="cont-right">
-                            <h6>Nuestra dirección de la oficina principal</h6>
-                            <p class="pr-lg-5">Antiguo edificio La Fosforera, Av. Intercomunal de Antímano, Caracas 1000, Distrito Capital</p>
+                            <h6>Our head office address</h6>
+                            <p class="pr-lg-5">Address here, 208 Trainer Avenue street, Illinois, UK - 62617.</p>
                         </div>
                     </div>
                     <div class="cont-top margin-up">
@@ -44,8 +45,8 @@
                             <span class="fa fa-phone text-primary"></span>
                         </div>
                         <div class="cont-right">
-                            <h6>Si necesitas ayuda, llámanos</h6>
-                            <p><a href="tel:+(212) 5550000">+(212) 5550000</a></p>
+                            <h6>Call for help </h6>
+                            <p><a href="tel:+(21) 255 999 8888">+(21) 255 999 8888</a></p>
                         </div>
                     </div>
                     <div class="cont-top margin-up">
@@ -53,28 +54,28 @@
                             <span class="fa fa-envelope-o text-primary"></span>
                         </div>
                         <div class="cont-right">
-                            <h6>Contacta con nuestro soporte</h6>
-                            <p><a href="mailto:soporte.sigepsi@gmail.com" class="mail">soporte.sigepsi@gmail.com</a></p>
+                            <h6>Contact with our support</h6>
+                            <p><a href="mailto:coursing@mail.com" class="mail">coursing@mail.com</a></p>
                         </div>
                     </div>
                 </div>
                 <div class="map-content-9">
-                    <h5 class="mb-sm-4 mb-3">Escríbenos</h5>
+                    <h5 class="mb-sm-4 mb-3">Write to us</h5>
                     <form action="https://sendmail.w3layouts.com/submitForm" method="post">
                         <div class="twice-two">
-                            <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="Nombre"
+                            <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="Name"
                                 required="">
-                            <input type="email" class="form-control" name="w3lSender" id="w3lSender" placeholder="Correo"
+                            <input type="email" class="form-control" name="w3lSender" id="w3lSender" placeholder="Email"
                                 required="">
                         </div>
                         <div class="twice">
                             <input type="text" class="form-control" name="w3lSubject" id="w3lSubject"
-                                placeholder="Asunto" required="">
+                                placeholder="Subject" required="">
                         </div>
-                        <textarea name="w3lMessage" class="form-control" id="w3lMessage" placeholder="Mensaje"
+                        <textarea name="w3lMessage" class="form-control" id="w3lMessage" placeholder="Message"
                             required=""></textarea>
                         <div class="text-right">
-                            <button type="submit" class="btn btn-primary btn-style mt-4">Enviar mensaje</button>
+                            <button type="submit" class="btn btn-primary btn-style mt-4">Send Message</button>
                         </div>
                     </form>
                 </div>

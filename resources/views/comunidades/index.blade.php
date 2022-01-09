@@ -152,7 +152,6 @@
                     "texto" : e.target.value
                 },
                 success: function(response){
-                    console.log(response)
                     var opciones ="<option value='0'>Seleccione su municipio</option>";
                     for (let i in response.lista) {
                         opciones+= '<option value="'+response.lista[i].id_municipio+'">'+response.lista[i].municipio+'</option>';
@@ -262,7 +261,7 @@ $(document).ready(function() {
         });
 
     });
-    
+
     $(function () {$('[data-mask]').inputmask()});
 </script>
 @stop

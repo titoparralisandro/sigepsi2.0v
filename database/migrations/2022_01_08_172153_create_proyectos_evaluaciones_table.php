@@ -25,7 +25,7 @@ class CreateProyectosEvaluacionesTable extends Migration
                 ->nullable()
                 ->references('id')->on('estructuras')
                 ->OnDelete('set null');
-            
+
             $table->foreignId('id_estatus_progreso')
                 ->nullable()
                 ->references('id')->on('estatus_progresos')

@@ -18,7 +18,7 @@
 </div>
 @endif
 @section('content_header')
-
+@csrf
 <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="vendor/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
 </div>
@@ -33,9 +33,9 @@
   <div class="card-body text-dark">
     <button href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-create">Añadir nuevo proyecto</button>
     <a href="{{ route('proyecto.create') }}" class="btn btn-success">Añadir nuevo proyecto</a>
-    
+
     <hr>
-    
+
     <div class="container">
         <div class="row justify-content-center" id="btn-search">
             <div class="col-1,5">
@@ -63,7 +63,7 @@
                 <button class="btn btn-outline-danger btn-block" type="button" value="Cancelado"><strong>Cancelados</strong></button>
             </div>
           </div>
-        
+
     </div>
 
     <hr>
@@ -153,7 +153,7 @@
         </div>
       </div>
     </div>
-</div> --}} 
+</div> --}}
 </div>
 
 @include('proyecto.modal.create')

@@ -77,6 +77,10 @@ Route::post('/SaveUser', [App\Http\Controllers\UserControllers::class, 'store'])
 Route::post('/getUser', [App\Http\Controllers\UserControllers::class, 'show']);
 Route::post('/editUser', [App\Http\Controllers\UserControllers::class, 'edit']);
 Route::post('/SaveEditUser', [App\Http\Controllers\UserControllers::class, 'update']);
+Route::get('/getdataEstruc/{Typedata}', [App\Http\Controllers\EstructuraController::class, 'getdata']);
+Route::post('/getdataInvest', [App\Http\Controllers\EstructuraController::class, 'getdataInvest']);
+Route::get('/getdataItem', [App\Http\Controllers\EstructuraController::class, 'getdataItem']);
+Route::post('/SaveEstruc', [App\Http\Controllers\EstructuraController::class, 'store']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

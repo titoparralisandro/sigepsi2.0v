@@ -30,7 +30,7 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="form-group col">  
+                <div class="form-group col">
                   <label class="form-label">Carrera</label>
 
                   <select id="id_carrera" name="id_carrera" class="form-control">
@@ -76,5 +76,13 @@
     </div>
 
   </div>
+
+<footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/home')}}">Sistema de Gestión de Proyectos Socio Integradores</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 
 @stop

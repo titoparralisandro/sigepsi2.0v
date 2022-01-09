@@ -26,12 +26,12 @@ class Estructura extends Model
 
     // producto forenkey
     public function productos(){
-        return $this->belongsTo(Trayecto::class, 'id_producto');
-    }    
+        return $this->belongsTo(Producto::class, 'id_producto');
+    }
 
-    // items_estructuras forenkey
-    public function items(){
-        return $this->belongsTo(Trayecto::class, 'id_items');
-    }     
+    // item_estructuras forenkey
+    public function item_estructuras(){
+        return $this->hasMany(Item_estructura::class, 'id');
+    }
 
 }

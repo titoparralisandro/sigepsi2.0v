@@ -25,30 +25,23 @@ class CreateEstructurasTable extends Migration
                 ->nullable()
                 ->references('id')->on('lineas_investigaciones')
                 ->OnDelete('set null');
-            
+
             $table->foreignId('id_trayecto')
                 ->nullable()
                 ->references('id')->on('trayectos')
                 ->OnDelete('set null');
-            
+
             $table->foreignId('id_producto')
                 ->nullable()
                 ->references('id')->on('productos')
                 ->OnDelete('set null');
 
-            $table->foreignId('id_items')
-                ->nullable()
-                ->references('id')->on('items_estructuras')
-                ->OnDelete('set null');
-
-            $table->integer('peso');
             $table->timestamps();
-
         });
     }
 
     /**
-     * Reverse the migrations. carrera trayecto linea_investigacio producto item
+     * Reverse the migrations.
      *
      * @return void
      */

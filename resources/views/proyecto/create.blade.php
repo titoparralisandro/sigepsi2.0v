@@ -8,8 +8,7 @@
 @section('plugins.Inputmask', true)
 
 @section('content_header')
-<form action="{{ route('proyecto.store') }}" method="POST" enctype="multipart/form-data">
-<meta name="csrf-token" content="{{ csrf_token() }}">
+
   <div class="row">
     <div class="col-md-12">
       <div class="card card-default">
@@ -44,10 +43,12 @@
             <div class="bs-stepper-content">
               <!-- your steps content here -->
 
+            <form action="{{ route('proyecto.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <meta name="csrf-token" content="{{ csrf_token() }}">
 
-                
               <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
-                
+
                 {{-- cuerpo del primer formulario --}}
                 <input id="id_estatus_proyecto" class="form-control" type="hidden" name="estatus" value="1">
                 <div class="form-group">
@@ -55,59 +56,59 @@
                     <label class="form-label">Titulo</label>
                     <input id="titulo" class="form-control" type="text" name="titulo" placeholder="Escribe el titulo de tu proyecto."
                     value="{{ isset($proyecto->titulo)?$proyecto->titulo:old('titulo') }}">
-    
+
                 </div>
 
                 <div class="row">
 
                     <div class="form-group col col-3">
-  
+
                         <label class="form-label">Fecha inicio</label>
-                        <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio" 
+                        <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio"
                         value="{{ isset($proyecto->fecha_inicio)?$proyecto->fecha_inicio:old('fecha_inicio') }}">
-  
+
                     </div>
-  
+
                     <div class="form-group col col-3">
-  
+
                         <label class="form-label">Fecha fin</label>
-                        <input class="form-control" type="date" name="fecha_fin" id="fecha_fin" 
+                        <input class="form-control" type="date" name="fecha_fin" id="fecha_fin"
                         value="{{ isset($proyecto->fecha_fin)?$proyecto->fecha_fin:old('fecha_fin') }}">
-  
+
                     </div>
-  
+
                     <div class="form-group col col-6">
-  
+
                         <label class="form-label">Especialidad</label>
-  
+
                         <select name="id_especialidad" id="id_especialidad" class="form-control">
                         <option selected>Seleccionar su especialidad</option>
                             @foreach ($especialidad as $item)
                             <option value="{{$item->id_especialidad}}">{{$item->especialidad}}</option>
                             @endforeach
                         </select>
-  
+
                     </div>
-  
+
                 </div>
-  
+
                 <div class="row">
-  
+
                     <div class="form-group col col-4">
-  
+
                         <label class="form-label">trayecto</label>
-  
+
                         <select name="id_trayecto" id="id_trayecto" class="form-control">
                         <option selected>Seleccionar su trayecto</option>
                             @foreach ($trayecto as $item)
                             <option value="{{$item->id_trayecto}}">{{$item->trayecto}}</option>
                             @endforeach
                         </select>
-  
+
                     </div>
-  
+
                     <div class="form-group col">
-  
+
                         <label class="form-label">Linea de investigación</label>
                         <select name="id_linea_investigacion" id="id_linea_investigacion" class="form-control">
                             <option selected>Seleccionar su linea investigación</option>
@@ -115,17 +116,17 @@
                             <option value="{{$item->id_linea_investigacion}}">{{$item->linea_investigacion}}</option>
                             @endforeach
                         </select>
-  
+
                     </div>
-  
+
                 </div>
 
-                
+
                 <a class="btn btn-primary" onclick="stepper.next()">Siguiente</a>
               </div>
 
               <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
-                
+
                 {{-- segundo parte del form --}}
 
                 <div class="row">
@@ -175,7 +176,16 @@
               <div id="equipo-part" class="content" role="tabpanel" aria-labelledby="equipo-part-trigger">
 
                 {{-- tercer parte del form --}}
-</form>
+
+                <div class="form-group">
+
+                    <label class="form-label">Documento de proyecto</label>
+                    <input type="file" class="form-control" name="file" id="file">
+
+                </div>
+
+
+                </form>
                 <a class="btn btn-primary" onclick="stepper.previous()">Anterior</a>
                 <button type="submit" class="btn btn-success">Registrar</button>
               </div>
@@ -186,7 +196,7 @@
     </div>
   </div>
 
-{{-- 
+{{--
 <div class="card-header  ">
     <div class="color-palette">
       <h1 class="text-center"><strong>Añadir nueva carrera</strong></h1>
@@ -262,7 +272,7 @@
                   <div class="form-group col col-3">
 
                       <label class="form-label">Fecha inicio</label>
-                      <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio" 
+                      <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio"
                       value="{{ isset($proyecto->fecha_inicio)?$proyecto->fecha_inicio:old('fecha_inicio') }}">
 
                   </div>
@@ -270,7 +280,7 @@
                   <div class="form-group col col-3">
 
                       <label class="form-label">Fecha fin</label>
-                      <input class="form-control" type="date" name="fecha_fin" id="fecha_fin" 
+                      <input class="form-control" type="date" name="fecha_fin" id="fecha_fin"
                       value="{{ isset($proyecto->fecha_fin)?$proyecto->fecha_fin:old('fecha_fin') }}">
 
                   </div>
@@ -454,11 +464,11 @@ const csrfToken = document.head.querySelector("[name~=csrf-token][content]").con
             }
             document.getElementById("id_parroquia").innerHTML = opciones;
         }).catch(error =>console.error(error));
-    
-    
+
+
     })
 
-    
+
 
     // BS-Stepper Init
     document.addEventListener('DOMContentLoaded', function () {

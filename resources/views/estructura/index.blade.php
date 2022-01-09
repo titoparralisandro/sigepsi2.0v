@@ -23,34 +23,36 @@
                   <table id="example1" class="table table-head-fixed text-nowrap ">
                     <thead>
                       <tr>
-
                         <th>N°</th>
                         <th>Carrera</th>
                         <th>Linea de investigación</th>
                         <th>Producto</th>
                         <th>Opciones</th>
-
                     </tr>
                     </thead>
                     <tbody>
-
-
-                      {{-- @foreach ($especialidad as $especialidades)
-                      <tr>
-
-                        <td>{{ $especialidades->id }}</td>
-                        <td>{{ $especialidades->carrera->carrera }}</td>
-                        <td>{{ $especialidades->especialidad }}</td>
-                        <td>{{ $especialidades->estatus==true ? ('Activo') : ('Inactivo') }} </td>
-                        <td><a class="btn btn-primary" href="{{ route('especialidad.show', $especialidades->id ) }}">Ver</a> | <a class="btn btn-info" href="{{ route('especialidad.edit', $especialidades->id ) }}">Editar</a></td>
-
-                      </tr>
-                      @endforeach --}}
-
+                      @foreach ($estructura as $estruct)
+                        <tr>
+                            <td>{{ $estruct->id }}</td>
+                            <td>{{ $estruct->carrera }}</td>
+                            <td>{{ $estruct->linea_investigacion }}</td>
+                            <td>{{ $estruct->producto}} </td>
+                            <td>
+                                <a class="btn btn-primary" href="{{ route('estructura.show', $estruct->id ) }}">Ver</a> | <a class="btn btn-info" href="{{ route('estructura.edit', $estruct->id ) }}">Editar</a></td>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table>
   </div>
 </div>
+
+<footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/home')}}">Sistema de Gestión de Proyectos Socio Integradores</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 
 @stop
 

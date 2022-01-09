@@ -135,7 +135,8 @@ class UserControllers extends Controller
             $user->name     =   $request->get('name');
             $user->email    =   $request->get('email');
             $user->password =   Hash::make($request->get('password'));
-            $user->assignRole($request->get('rol'));
+            $user->roles()->sync([$request->get('rol')]);
+            //$user->assignRole($request->get('rol'));
             $user->save();
             return response()->json(['error' => false]);
         }else{

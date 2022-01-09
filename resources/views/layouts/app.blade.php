@@ -6,11 +6,11 @@
   <!-- google fonts -->
     <link href="//fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
+
     <!-- Template CSS -->
     <link href="{{ asset('css/style-starter.css') }}" rel="stylesheet">
-    
-    
+
+
     <!-- Template JavaScript -->
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 
@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>SIGEPSI 2.0v</title>
-    
+
   </head>
   <body>
 
@@ -41,7 +41,7 @@
           <span class="navbar-toggler-icon fa icon-close fa-times"></span>
           </span>
         </button>
-  
+
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mx-lg-auto">
             <li class="nav-item active">
@@ -57,7 +57,7 @@
               <a class="nav-link" href="{{ url('contact') }}">Contacto</a>
             </li>
           </ul>
-  
+
           <div class="top-quote mr-lg-2 text-center">
             <a href="{{ route('login') }}" class="btn login mr-2"><span class="fa fa-user"></span> Ingresar</a>
           </div>
@@ -100,8 +100,6 @@
           <h2 style="color:#fff;">Universidad Politécnica Territorial de Caracas "Mariscal Sucre"</h2>
           <p>Sistema de Gestión de Proyectos Socio Integradores / SIGEPSI 2.0v (2019/2022)</p>
         </div>
-
-      
       </div>
     </div>
   </div>
