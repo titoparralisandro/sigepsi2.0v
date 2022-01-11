@@ -31,25 +31,25 @@ class CreateProyectosTable extends Migration
 
             // $table->text('conclusiones');
             // $table->text('recomendaciones');
-            // $table->date('fecha_inicio');
-            // $table->date('fecha_fin');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
 
-            // $table->foreignId('id_especialidad')
-            //     ->nullable()
-            //     ->references('id')->on('especialidades')
-            //     ->OnDelete('set null');
+            $table->foreignId('id_especialidad')
+                ->nullable()
+                ->references('id')->on('especialidades')
+                ->OnDelete('set null');
 
-            // $table->foreignId('id_linea_investigacion')
-            //     ->nullable()
-            //     ->references('id')->on('lineas_investigaciones')
-            //     ->OnDelete('set null');
+            $table->foreignId('id_linea_investigacion')
+               ->nullable()
+                ->references('id')->on('lineas_investigaciones')
+               ->OnDelete('set null');
 
-            //  $table->foreignId('id_trayecto')
-            //     ->nullable()
-            //     ->references('id')->on('trayectos')
-            //     ->OnDelete('set null');
+              $table->foreignId('id_trayecto')
+                ->nullable()
+                ->references('id')->on('trayectos')
+                 ->OnDelete('set null');
 
-            // $table->foreignId('id_comunidad')
+            //$table->foreignId('id_comunidad')
             //     ->nullable()
             //     ->references('id')->on('comunidades')
             //     ->OnDelete('set null');

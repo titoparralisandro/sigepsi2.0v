@@ -15,35 +15,35 @@ class Proyecto extends Model
     }
 
     // // especialidad forenkey
-     public function especialidad(){
-        return $this->belongsTo(Especialidad::class, 'id_especialidad');
+     public function especialidades(){
+        return $this->belongsTo(Especialidade::class, 'id_especialidad');
      }
 
     // // linea_investigacion forenkey
-     public function linea_investigacion(){
+     public function linea_investigaciones(){
          return $this->belongsTo(Lineas_investigacione::class, 'id_linea_investigacion');
      }
 
     // // trayecto forenkey
-     public function trayecto(){
+     public function trayectos(){
         return $this->belongsTo(Trayecto::class, 'id_trayecto');
      }
 
     // // comunidad forenkey
-     public function comunidad(){
+     public function comunidades(){
          return $this->belongsTo(Comunidade::class, 'id_comunidad');
      }
 
     // // estado forenkey
-    public function estado(){
+    public function estados(){
         return $this->belongsTo(Estado::class, 'id_estado');
     }
     // // municipio forenkey
-    public function municipio(){
+    public function municipios(){
         return $this->belongsTo(Municipio::class, 'id_municipio');
     }
     // // parroquia forenkey
-    public function parroquia(){
+    public function parroquias(){
         return $this->belongsTo(Parroquia::class, 'id_parroquia');
     }
 

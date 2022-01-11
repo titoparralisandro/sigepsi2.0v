@@ -61,16 +61,20 @@ class ProyectoController extends Controller
 
 
     public function store(Request $request){
+        $proyectos = Proyecto::all();
+        $lineas_investigacion = Lineas_investigacione::all();
+        $trayecto = Trayecto::all();
 
         $proyecto = new Proyecto();
 
         $proyecto->titulo = $request->get('titulo');
-        //  $proyecto->fecha_inicio = $request->get('fecha_inicio');
-        //  $proyecto->fecha_fin = $request->get('fecha_fin');
-        //  $proyecto->id_especialidad = $request->get('id_especialidad');
-        //  $proyecto->id_linea_investigacion = $request->get('id_linea_investigacion');
-        //  $proyecto->id_trayecto = $request->get('id_trayecto');
-        //  $proyecto->direccion = $request->get('direccion');
+        $proyecto->fecha_inicio = $request->get('fecha_inicio');
+        $proyecto->fecha_fin = $request->get('fecha_fin');
+        $proyecto->id_especialidad = $request->get('especialidad');
+        $proyecto->id_linea_investigacion = $request->get('linea_investigacion');
+        $proyecto->id_trayecto = $request->get('trayecto');
+        //$proyecto->direccion = $request->get('direccion');
+        
         $proyecto->save();
 
         $documento = new Files();
@@ -81,7 +85,7 @@ class ProyectoController extends Controller
         $documento->save();
 
         copy($request->file('file'), public_path('upload/'.$proyecto->id.'/proyect_'.$proyecto->id.'.pdf'));
-        return "Subido";
+        return redirect('/proyecto')->with('respuesta', 'creado');
 
 
         //

@@ -81,10 +81,10 @@
 
                         <label class="form-label">Especialidad</label>
 
-                        <select name="id_especialidad" id="id_especialidad" class="form-control">
+                        <select name="especialidad" id="especialidad" class="form-control">
                         <option selected>Seleccionar su especialidad</option>
                             @foreach ($especialidad as $item)
-                            <option value="{{$item->id_especialidad}}">{{$item->especialidad}}</option>
+                            <option value="{{$item->id}}">{{$item->especialidad}}</option>
                             @endforeach
                         </select>
 
@@ -98,10 +98,10 @@
 
                         <label class="form-label">trayecto</label>
 
-                        <select name="id_trayecto" id="id_trayecto" class="form-control">
+                        <select name="trayecto" id="trayecto" class="form-control">
                         <option selected>Seleccionar su trayecto</option>
                             @foreach ($trayecto as $item)
-                            <option value="{{$item->id_trayecto}}">{{$item->trayecto}}</option>
+                            <option value="{{$item->id}}">{{$item->trayecto}}</option>
                             @endforeach
                         </select>
 
@@ -110,10 +110,10 @@
                     <div class="form-group col">
 
                         <label class="form-label">Linea de investigación</label>
-                        <select name="id_linea_investigacion" id="id_linea_investigacion" class="form-control">
+                        <select name="linea_investigacion" id="linea_investigacion" class="form-control">
                             <option selected>Seleccionar su linea investigación</option>
                             @foreach ($lineas_investigacion as $item)
-                            <option value="{{$item->id_linea_investigacion}}">{{$item->linea_investigacion}}</option>
+                            <option value="{{$item->id}}">{{$item->linea_investigacion}}</option>
                             @endforeach
                         </select>
 

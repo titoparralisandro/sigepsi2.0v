@@ -18,7 +18,7 @@
 </div>
 @endif
 @section('content_header')
-@csrf
+
 <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="vendor/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
 </div>
@@ -28,7 +28,7 @@
     <h1 class="text-center"><strong>Proyectos</strong></h1>
   </div>
 </div>
-
+@csrf
 <div class="card border-dark">
   <div class="card-body text-dark">
     <button href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-create">Añadir nuevo proyecto</button>
@@ -74,7 +74,8 @@
                         <th>N°</th>
                         <th>Proyecto</th>
                         <th>Carrera</th>
-                        <th>Estatus</th>
+                        <th>Trayecto</th>
+                        <th>Linea de investigación</th>
                         <th>Acciones</th>
 
                     </tr>
@@ -84,8 +85,9 @@
                 <tr>
                     <td>{{ $proyectos->id }}</td>
                     <td>{{ $proyectos->titulo }}</td>
-                    <td>{{ $proyectos->carrera }}</td>
-                    <td>{{ $proyectos->estatus_proyecto }} </td>
+                    <td>{{ $proyectos->especialidades->especialidad }}</td>
+                    <td>{{ $proyectos->trayectos->trayecto }}</td>
+                    <td>{{ $proyectos->linea_investigaciones->linea_investigacion }} </td>
                     <td>
                         <div class="btn-group">
                             {{-- <button class="btn btn-primary" type="button" onclick="getdata('{{ $comunidades->id }}')">Ver</button>
@@ -156,7 +158,7 @@
 </div> --}}
 </div>
 
-@include('proyecto.modal.create')
+{{-- @include('proyecto.modal.create') --}}
 
 @stop
 
