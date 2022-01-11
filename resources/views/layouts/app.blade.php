@@ -106,8 +106,7 @@
   <!-- copyright -->
   <section class="w3l-copyright text-center">
     <div class="container">
-      <p class="copy-footer-29">© <a></a> Study Course. Derechos reservados, template diseñador por <a href="https://w3layouts.com/">
-          W3Layouts</a></p>
+      <p class="copy-footer-29">© 2022 | SIGEPSI 2.0v | Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)</p>
     </div>
     <!-- move top -->
     <button onclick="topFunction()" id="movetop" title="Go to top">

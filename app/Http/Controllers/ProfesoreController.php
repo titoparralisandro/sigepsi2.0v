@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Profesore;
 use Illuminate\Http\Request;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 class ProfesoreController extends Controller
 {
     public function index(){
@@ -19,6 +22,17 @@ class ProfesoreController extends Controller
     }
 
     public function store(Request $request){
+        
+        // Registro de usuario de comunidades oculto
+
+        $user = new User();
+        $user->name = $request->get('primer_nombre').' '.$request->get('primer_apellido');
+        $user->email = $request->get('email');
+        $contraseña = rand(10000000, 99999999);
+        $user->password = Hash::make($contraseña);
+        $user->assignRole("Asesor");
+                
+        $user->save();
 
         $asesor = new Profesore();
 

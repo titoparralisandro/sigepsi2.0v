@@ -15,6 +15,10 @@ class CreateProfesoresTable extends Migration
     {
         Schema::create('profesores', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_user')
+                ->nullable()
+                ->references('id')->on('users')
+                ->OnDelete('set null');
             $table->string('primer_nombre',15);
             $table->string('segundo_nombre',15);
             $table->string('primer_apellido',15);

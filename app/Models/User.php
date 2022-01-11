@@ -52,4 +52,16 @@ class User extends Authenticatable
     {
         return 'Administrador';
     }
+
+    public function comunidad(){
+        return $this->hasMany(Comunidade::class, 'id');
+    }
+
+    public function profesor(){
+        return $this->hasMany(Profesore::class, 'id');
+    }
+
+    public function persona(){
+        return $this->hasMany(Profesore::class, 'id');
+    }
 }

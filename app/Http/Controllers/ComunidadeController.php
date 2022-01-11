@@ -10,6 +10,9 @@ use App\Models\Estado;
 use App\Models\Municipio;
 use App\Models\Parroquia;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 class ComunidadeController extends Controller
 {
     public function __construct()
@@ -43,10 +46,21 @@ class ComunidadeController extends Controller
 
     public function store(Request $request){
 
+        // Registro de usuario de comunidades oculto
+
+        $user = new User();
+        $user->name = $request->get('nombre');
+        $user->email = $request->get('email');
+        $contraseña = rand(10000000, 99999999);
+        $user->password = Hash::make($contraseña);
+        $user->assignRole("Comunidad");
+        
+        $user->save();
+
         $comunidad = new Comunidade();
 
         $comunidad->rif = $request->get('rif');
-
+        $comunidad->id_user = $user->id;
         $comunidad->nombre = $request->get('nombre');
         $comunidad->id_tipo_comunidad = $request->get('id_tipo_comunidad');
         $comunidad->telefono_contacto = $request->get('telefono_contacto');

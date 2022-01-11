@@ -12,7 +12,6 @@ use App\Models\Municipio;
 use App\Models\Parroquia;
 use App\Models\Files;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\File;
 
@@ -47,12 +46,10 @@ class ProyectoController extends Controller
     }
 
     public function municipios(Request $request){
-        // if(isset($request->texto)){
-        //     $municipios = Municipio::whereid_estado($request->texto)->get();
-        //     return response()->json(['lista' => $municipios,'success' => true]);
-        // }else { return response()->json(['success' => false]); }
-        $municipios = DB::select("SELECT * from municipios where id_estado = ? order by municipio", [$request->id]);
-        return $municipios;
+        if(isset($request->texto)){
+            $municipios = Municipio::whereid_estado($request->texto)->get();
+            return response()->json(['lista' => $municipios,'success' => true]);
+        }else { return response()->json(['success' => false]); }
     }
 
     public function parroquias(Request $request){

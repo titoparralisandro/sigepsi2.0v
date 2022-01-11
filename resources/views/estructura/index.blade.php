@@ -12,9 +12,6 @@
     <h1 class="text-center"><strong>Estructuras evaluativas</strong></h1>
   </div>
 </div>
-        {{-- $carrera = Carrera::all();
-        $lineas_investigacion = Lineas_investigacione::all();
-        $producto = Producto::all(); --}}
 <div class="card border-dark">
 
   <div class="card-body text-dark">
@@ -38,7 +35,11 @@
                             <td>{{ $estruct->linea_investigacion }}</td>
                             <td>{{ $estruct->producto}} </td>
                             <td>
-                                <a class="btn btn-primary" href="{{ route('estructura.show', $estruct->id ) }}">Ver</a> | <a class="btn btn-info" href="{{ route('estructura.edit', $estruct->id ) }}">Editar</a></td>
+                                <div class="btn-group">
+                                    <a class="btn btn-primary" href="{{ route('estructura.show', $estruct->id ) }}">Ver</a>
+                                    <a class="btn btn-info" href="{{ route('estructura.edit', $estruct->id ) }}">Editar</a>
+                                </div>
+                            </td>
                         </tr>
                       @endforeach
                     </tbody>

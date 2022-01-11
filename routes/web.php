@@ -37,9 +37,7 @@ Route::get('a_cerca_de', function () {
     return view('a_cerca_de');
 });
 
-Route::get('/catalogo',function () {
-    return view('catalogo.index');
-});
+Route::get('/catalogo', [App\Http\Controllers\ProyectoController::class, 'catalogo']);
 
 Auth::routes();
 Route::resource('prueba',App\Http\Controllers\PruebaController::class);
@@ -71,8 +69,7 @@ Route::resource('estatus_situaciones',App\Http\Controllers\Estatus_situacioneCon
 
 Route::post('municipios', [App\Http\Controllers\ComunidadeController::class, 'municipios']);
 Route::post('parroquias', [App\Http\Controllers\ComunidadeController::class, 'parroquias']);
-// Route::post('municipios', [App\Http\Controllers\ProyectoController::class, 'municipios']);
-Route::match(['get', 'post'], 'municipios',"ProyectoController@municipios");
+Route::post('municipios', [App\Http\Controllers\ProyectoController::class, 'municipios']);
 Route::post('parroquias', [App\Http\Controllers\ProyectoController::class, 'parroquias']);
 
 Route::get('/showcomunid/{id}', [App\Http\Controllers\ComunidadeController::class, 'show']);
@@ -87,9 +84,6 @@ Route::get('/getdataEstruc/{Typedata}', [App\Http\Controllers\EstructuraControll
 Route::post('/getdataInvest', [App\Http\Controllers\EstructuraController::class, 'getdataInvest']);
 Route::get('/getdataItem', [App\Http\Controllers\EstructuraController::class, 'getdataItem']);
 Route::post('/SaveEstruc', [App\Http\Controllers\EstructuraController::class, 'store']);
-
-
-
-// Auth::routes();
+Route::post('/EditEstruc', [App\Http\Controllers\EstructuraController::class, 'saveEdit']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

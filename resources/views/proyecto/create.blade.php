@@ -135,10 +135,10 @@
 
                       <label class="form-label">Estado</label>
 
-                      <select name="id_estado" id="id_estado" class="form-control" onchange="getMunicipio()">
+                      <select name="id_estado" id="id_estado" class="form-control">
                       <option selected>Seleccionar su estado</option>
                           @foreach ($estados as $item)
-                            <option value="{{$item->id_estado}}">{{$item->estado}}</option>
+                          <option value="{{$item->id_estado}}">{{$item->estado}}</option>
                           @endforeach
                       </select>
 
@@ -382,94 +382,70 @@
 
 @section('js')
 <script>
-    // function getMunicipio(e) {
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "municipios",
-    //             async: false,
-    //             cache: false,
-    //             data: {
-    //                 "_token": "{{ csrf_token() }}",
-    //                 "texto" : e.target.value
-    //             },
-    //             success: function(response){
-    //                 console.log(response)
-    //                 var opciones ="<option value='0'>Seleccione su municipio</option>";
-    //                 for (let i in response.lista) {
-    //                     opciones+= '<option value="'+response.lista[i].id_municipio+'">'+response.lista[i].municipio+'</option>';
-    //                 }
-    //                 $("#id_municipio").empty().append(opciones);
-    //                 $("#id_parroquia").empty();
-    //             }
-    //         });
-    //     }
-    //     function getParroquia(e) {
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "parroquias",
-    //             async: false,
-    //             cache: false,
-    //             data: {
-    //                 "_token": "{{ csrf_token() }}",
-    //                 "texto" : e.target.value
-    //             },
-    //             success: function(response){
-    //                 var opciones ="<option value='0'>Seleccione su parroquia</option>";
-    //                 for (let i in response.lista) {
-    //                     opciones+= '<option value="'+response.lista[i].id_parroquia+'">'+response.lista[i].parroquia+'</option>';
-    //                 }
-    //                 $("#id_parroquia").empty().append(opciones);
-    //             }
-    //         });
-    //     }
-</script>
-
-    <script>
-        function getMunicipio(e) {
-            id_estado = $("#estado").val();
+    function getMunicipio(e) {
             $.ajax({
                 type: "POST",
-                url: 'municipios',
+                url: "municipios",
                 async: false,
                 cache: false,
                 data: {
-                    "id": id_estado,
-                    "_token": $('#input[name=_token]').val()
+                    "_token": "{{ csrf_token() }}",
+                    "texto" : e.target.value
                 },
-                success: function (response) {
-                    alert("yolo");
-                    $("#id_municipio").empty();
-                    $("#id_municipio").append('<option value="" selected disabled>Seleccione</option>');
-                    $.each(result, function(id,value){
-                    $("#id_municipio").append('<option value="'+value.id_municipio+'">'+value.municipio+'</option>');
-                    });
+                success: function(response){
+                    console.log(response)
+                    var opciones ="<option value='0'>Seleccione su municipio</option>";
+                    for (let i in response.lista) {
+                        opciones+= '<option value="'+response.lista[i].id_municipio+'">'+response.lista[i].municipio+'</option>';
+                    }
+                    $("#id_municipio").empty().append(opciones);
+                    $("#id_parroquia").empty();
                 }
-
             });
         }
+        function getParroquia(e) {
+            $.ajax({
+                type: "POST",
+                url: "parroquias",
+                async: false,
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "texto" : e.target.value
+                },
+                success: function(response){
+                    var opciones ="<option value='0'>Seleccione su parroquia</option>";
+                    for (let i in response.lista) {
+                        opciones+= '<option value="'+response.lista[i].id_parroquia+'">'+response.lista[i].parroquia+'</option>';
+                    }
+                    $("#id_parroquia").empty().append(opciones);
+                }
+            });
+        }
+</script>
 
+    <script>
+const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
+    document.getElementById('id_estado').addEventListener('change',(e)=>{
+        fetch('municipios',{
+            method : 'POST',
+            body: JSON.stringify({texto : e.target.value}),
+            headers:{
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": csrfToken
+            }
+        }).then(response =>{
+            return response.json()
+        }).then( data =>{
 
-// const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
-    // document.getElementById('id_estado').addEventListener('change',(e)=>{
-    //     fetch('municipios',{
-    //         method : 'POST',
-    //         body: JSON.stringify({texto : e.target.value}),
-    //         headers:{
-    //             'Content-Type': 'application/json',
-    //             "X-CSRF-Token": csrfToken
-    //         }
-    //     }).then(response =>{
-    //         return response.json()
-    //     }).then( data =>{
-
-    //         var opciones ="<option value=''>Seleccione su municipio</option>";
-    //         for (let i in data.lista) {
-    //            opciones+= '<option value="'+data.lista[i].id_municipio+'">'+data.lista[i].municipio+'</option>';
-    //         }
-    //         document.getElementById("id_municipio").innerHTML = opciones;
-    //         document.getElementById("id_parroquia").innerHTML = '';
-    //     }).catch(error =>console.error(error));
-    // })
+            var opciones ="<option value=''>Seleccione su municipio</option>";
+            for (let i in data.lista) {
+               opciones+= '<option value="'+data.lista[i].id_municipio+'">'+data.lista[i].municipio+'</option>';
+            }
+            document.getElementById("id_municipio").innerHTML = opciones;
+            document.getElementById("id_parroquia").innerHTML = '';
+        }).catch(error =>console.error(error));
+    })
 
     document.getElementById('id_municipio').addEventListener('change',(e)=>{
         fetch('parroquias',{

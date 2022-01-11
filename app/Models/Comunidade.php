@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Comunidade extends Model
 {
     use HasFactory;
+    
+    public function user(){
+        return $this->belongsTo(User::class, 'id_user');
+    }
 
     public function tipos_comunidades(){
         return $this->belongsTo(Tipos_comunidade::class, 'id_tipo_comunidad');

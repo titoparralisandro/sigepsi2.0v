@@ -14,7 +14,6 @@
             <li class="nav-item"><a href="#configuracion-tab" class="nav-link" data-toggle="pill">Configuración</a></li>
             <li class="nav-item"><a href="#contacto-tab" class="nav-link" data-toggle="pill">Contacto</a></li>
             <li class="nav-item"><a href="#ayuda-tab" class="nav-link" data-toggle="pill">Ayuda</a></li>
-            <li class="nav-item"><a href="#prueba-tab" class="nav-link" data-toggle="pill">Prueba</a></li>
         </ul>
 
         <div class="tab-content">
@@ -115,55 +114,6 @@
                 <p>Boostrap v4.4 </p>
 
 
-            </div>
-
-            <div class="tab-pane fade p-5" id="prueba-tab">
-
-                <h4 class="text-center">Estructura</h4>
-                <form>
-                    <div class="contenerdor form-group" id="a">
-                        <input class="btn btn-success" type="button" id="btnADD" value="Añadir item a la estructura" onclick="crear(this)">
-                        <div class="col-3" style="float: right;">
-                            Puntos Disponibles:  <label id="puntos"></label>
-                        </div>
-                        <div class="contenerdor">
-                            <table class="table table-striper">
-                                <thead class="text-center">
-                                    <tr >
-                                        <th>Item</th>
-                                        <th>Peso</th>
-                                        <th>Accion</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tableItem" class="text-center">
-
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="3" class="text-center">
-                                            <button type="button" class="btn btn-success" id="sendData">Enviar</button>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </form>
-
-                <select id='item' class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
-                  </select>
-
-                  <div class="form-group">
-                    <select id='item' class="form-control select2 select2-danger" data-dropdown-css-class='select2-danger'>
-                    </select>
-                    </div>
             </div>
         </div>
     </div>
