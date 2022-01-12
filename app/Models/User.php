@@ -51,6 +51,15 @@ class User extends Authenticatable
     public function adminlte_desc()
     {
         return 'Administrador';
+
+
+        // auth()->user()->name
+        // auth()->user()->email
+        // $user = User::find($request->get('id'));
+        // $userRole = $user->roles->pluck('name')->all();
+
+        // return 'Administrador';
+        
     }
 
     public function comunidad(){

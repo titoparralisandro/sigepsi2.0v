@@ -143,7 +143,7 @@
                 },
                 success: function(response){
                     $("#data").html(response);
-                    $("#tituloModal").html("<strong>Visualizacion de datos</strong>");
+                    $("#tituloModal").html("<strong>Visualización de datos</strong>");
                     $("#btnEdit").hide();
                     $('#modal-data').modal('show');
                 }

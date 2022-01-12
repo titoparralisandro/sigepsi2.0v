@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Siace;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +41,11 @@ Route::get('a_cerca_de', function () {
 Route::get('/catalogo', [App\Http\Controllers\ProyectoController::class, 'catalogo']);
 
 Auth::routes();
+
+Route::get('/documento', function(){
+    dd(Siace::get());
+});
+
 Route::resource('prueba',App\Http\Controllers\PruebaController::class);
 
 Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);

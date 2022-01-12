@@ -23,7 +23,7 @@ class ProfesoreController extends Controller
 
     public function store(Request $request){
         
-        // Registro de usuario de comunidades oculto
+        // Registro de usuario de profesor oculto
 
         $user = new User();
         $user->name = $request->get('primer_nombre').' '.$request->get('primer_apellido');
@@ -36,6 +36,7 @@ class ProfesoreController extends Controller
 
         $asesor = new Profesore();
 
+        $asesor->id_user = $user->id;
         $asesor->primer_nombre = $request->get('primer_nombre');
         $asesor->segundo_nombre = $request->get('segundo_nombre');
         $asesor->primer_apellido = $request->get('primer_apellido');

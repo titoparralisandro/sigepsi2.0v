@@ -78,6 +78,24 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'siace' => [
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST_SIACE', '127.0.0.1'),
+            'port' => env('DB_PORT_SIACE', '5432'),
+            'database' => env('DB_DATABASE_SIACE', 'forge'),
+            'username' => env('DB_USERNAME_SIACE', 'forge'),
+            'password' => env('DB_PASSWORD_SIACE', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+            'options' => [ 
+                \PDO::ATTR_EMULATE_PREPARES => TRUE 
+            ]
+         ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),

@@ -399,11 +399,6 @@ return [
             'url'  => '/perfil',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
-            'text' => 'change_password',
-            'url'  => '#',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
     
         ['header' => 'Reportes'],
         [
