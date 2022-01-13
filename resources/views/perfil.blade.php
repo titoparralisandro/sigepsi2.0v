@@ -2,8 +2,8 @@
 
 @section('title', 'Perfil')
 
-@section('plugins.Select2', true)
-@section('plugins.Dropzone', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Toastr', true)
 
 @section('content_header')
 
@@ -76,20 +76,19 @@
 
                 <h4 class="text-center">Contacto</h4>
 
+                <form action="{{ route('comentario.store') }}" method="POST">
+                @csrf
+                
+                    <input type="hidden" name="name" id="name" value="{{auth()->user()->name}}">
+                    <input type="hidden" name="email" id="email" value="{{auth()->user()->email}}">
+
+
                 <div class="form-group ">
 
-                <form>
-
-                <label class="form-label">Estudiante:</label>
-                <input id="estudiante" class="form-control" type="text" disabled name="estudiante" value="Lisandro Parra">
-
-                </div>
-
-                <div class="form-group">
-
-                <label class="form-label">Email:</label>
-                <input id="email" class="form-control" type="text" disabled readonly name="email" value="titoparralisandro@gmail.com">
-
+                    <label class="form-label">Asunto:</label>
+                    <input id="asunto" class="form-control" type="text" name="asunto"
+                    placeholder="Coloca el asunto de tu correo como sugerencias o reporte de falla en el sistema">
+    
                 </div>
 
                 <div class="form-group ">
@@ -115,7 +114,6 @@
                 <h6>Framework adicionales utilizados:</h6>
                 <p>Boostrap v4.4 </p>
 
-
             </div>
         </div>
     </div>
@@ -132,7 +130,9 @@
 @stop
 
 @section('js')
-<script>
-
-</script>
+    @if(session('respuesta')=='creado')
+        <script>
+            toastr.success('El comentario, ha sido creado.')
+        </script>
+    @endif
 @stop

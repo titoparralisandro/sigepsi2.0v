@@ -55,7 +55,7 @@ class ComentarioController extends Controller
 
         $comentario->save();
 
-        return redirect('comentario')->with('respuesta', 'creado');
+        return redirect('/perfil')->with('respuesta', 'creado');
     }
 
     public function destroy($id)
