@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Siace;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'valor' => ['required', 'numeric'],
         ]);
     }
 
@@ -64,12 +66,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = new User();
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->password = Hash::make($data['password']);
-        $user->assignRole("Comunidad");
-        $user->save();
-        return $user;
+        if($data['valor']='Estudiante'){
+            $buscarSiace = Siace::whereCorreo($data['email'])->first();
+            dd($buscarSiace);
+            if(!is_null($buscarSiace)){
+                $user = new User();
+                $user->name = $data['name'];
+                $user->email = $data['email'];
+                $user->password = Hash::make($data['password']);
+                $user->assignRole("Estudiante");
+                $user->save();
+
+                return $user;
+            }else{
+                return "Error: En caso de ser estudiante.";
+            }
+        }else{
+            $user = new User();
+            $user->name = $data['name'];
+            $user->email = $data['email'];
+            $user->password = Hash::make($data['password']);
+            $user->assignRole("Comunidad");
+            $user->save();
+            return $user;
+        }
     }
 }
