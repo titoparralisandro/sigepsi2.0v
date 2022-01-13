@@ -35,10 +35,13 @@
                             <td>{{ $estruct->linea_investigacion }}</td>
                             <td>{{ $estruct->producto}} </td>
                             <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-primary" href="{{ route('estructura.show', $estruct->id ) }}">Ver</a>
-                                    <a class="btn btn-info" href="{{ route('estructura.edit', $estruct->id ) }}">Editar</a>
-                                </div>
+                                @if ($estruct->activa)
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="{{ route('estructura.show', $estruct->id ) }}">Ver</a>
+                                        <button class="btn btn-danger" onclick="deshabilitar({{$estruct->id}})">Deshabilitar</button>
+                                        <a class="btn btn-info" href="{{ route('estructura.edit', $estruct->id ) }}">Editar</a>
+                                    </div>
+                                @endif
                             </td>
                         </tr>
                       @endforeach
@@ -82,6 +85,26 @@ toastr.info('Prueba, se ha editado correctamente.')
 @endif
 
 <script>
+function deshabilitar(id) {
+    $.ajax({
+        type: "POST",
+        url: "/DeshEstruc",
+        async: false,
+        cache: false,
+        data: {
+            "_token": "{{ csrf_token() }}",
+            "id" : id
+        },
+        success: function(response){
+            Swal.fire({
+                title: 'Registro deshabilitado con exito',
+                text: "Proceso exitoso",
+                icon: 'success',
+            })
+            window.location.href = "/estructura";
+        }
+    });
+}
 
 $('.toastrDefaultSuccess').click(function() {
   toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
@@ -126,6 +149,7 @@ $(function () {
         "responsive": true,
         "language": { "url": "./Spanish.json"},
       });
+
     });
 </script>
 @stop

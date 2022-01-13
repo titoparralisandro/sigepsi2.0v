@@ -10,6 +10,7 @@ class Siace extends Model
 
     protected $table = 'public.estudiantes_iutoms';
 
+
     public static function getStudentByEmail($valor)
     {
         return static::whereCorreo($valor)->first();

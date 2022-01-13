@@ -42,9 +42,9 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-
     protected function register(RegisterStoreRequest $request)
     {
+
         if ($request->customRadio === 'Estudiante') {
 
             $student = Siace::getStudentByEmail($request->email);           
@@ -61,5 +61,6 @@ class RegisterController extends Controller
             $user->assignRole("Comunidad");
         }
         return redirect('/login');
+
     }
 }
