@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Siace;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Auth\RegisterStoreRequest;
 
 class RegisterController extends Controller
 {
@@ -41,35 +42,24 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data)
+    protected function register(RegisterStoreRequest $request)
     {
-        $user = new User();
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->password = Hash::make($data['password']);
-        $user->assignRole("Comunidad");
-        $user->save();
-        return $user;
+        if ($request->customRadio === 'Estudiante') {
+
+            $student = Siace::getStudentByEmail($request->email);           
+
+            if (is_null($student)) {
+                return redirect('/register')->with('error','El correo {{ $request->email }} No se Encuentra Registrado en SIACE.');
+            }
+            
+            $user =  User::create($request->except(['customRadio','password'])+ ['password' =>  Hash::make($request->password)]);  
+            $user->assignRole("Estudiante");
+           
+        }else{
+            $user =  User::create($request->except(['customRadio','password'])+ ['password' =>  Hash::make($request->password)]);
+            $user->assignRole("Comunidad");
+        }
+        return redirect('/login');
     }
 }
