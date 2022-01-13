@@ -91,7 +91,7 @@
             var form = $('#formEstruct')[0];
             var dataItems = new Array();
             var dataFinal = new Object();
-            var table = $("#table_item")[0].children;
+            var table = $("#tableItem")[0].children;
             for (let i = 0; i < table.length; i++) {
                 dataItems.push(new Object({'item':$("#item"+(i+1)).val(),'point':$("#point_estruct"+(i+1)).val()}));
             }

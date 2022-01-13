@@ -35,6 +35,7 @@ class CreateEstructurasTable extends Migration
                 ->nullable()
                 ->references('id')->on('productos')
                 ->OnDelete('set null');
+            $table->boolean('activa');
 
             $table->timestamps();
         });

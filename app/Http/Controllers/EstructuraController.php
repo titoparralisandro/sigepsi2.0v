@@ -19,7 +19,7 @@ class EstructuraController extends Controller
             ->join('carreras', 'carreras.id', '=', 'estructuras.id_carrera')
             ->join('lineas_investigaciones', 'lineas_investigaciones.id', '=', 'estructuras.id_linea_investigacion')
             ->join('productos', 'productos.id', '=', 'estructuras.id_producto')
-            ->select("estructuras.id","carreras.carrera","lineas_investigaciones.linea_investigacion","productos.producto")
+            ->select("estructuras.id","estructuras.activa","carreras.carrera","lineas_investigaciones.linea_investigacion","productos.producto")
             ->get();
         return view('estructura.index',['estructura' => $estructura]);
     }
@@ -72,12 +72,25 @@ class EstructuraController extends Controller
         return view('estructura.create');
     }
 
+    public function DeshEstruc(Request $request)
+    {
+        $Estruct = Estructura::find($request->get('id'));
+        if ($Estruct->activa) {
+            $Estruct->activa = false;
+        }else {
+            $Estruct->activa = true;
+        }
+        $Estruct->save();
+        return $this->index();
+    }
+
     public function store(Request $request){
         $Estruct = new Estructura();
         $Estruct->id_carrera = $request->get('data')['id_carrera'];
         $Estruct->id_linea_investigacion = $request->get('data')['id_lineas_investigacion'];
         $Estruct->id_trayecto = $request->get('data')['id_trayecto'];
         $Estruct->id_producto = $request->get('data')['id_producto'];
+        $Estruct->activa = true;
         $Estruct->save();
         $items=$request->get('data')['items'];
         for ($i=0; $i < count($items); $i++) {

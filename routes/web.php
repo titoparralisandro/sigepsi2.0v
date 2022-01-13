@@ -91,5 +91,6 @@ Route::post('/getdataInvest', [App\Http\Controllers\EstructuraController::class,
 Route::get('/getdataItem', [App\Http\Controllers\EstructuraController::class, 'getdataItem']);
 Route::post('/SaveEstruc', [App\Http\Controllers\EstructuraController::class, 'store']);
 Route::post('/EditEstruc', [App\Http\Controllers\EstructuraController::class, 'saveEdit']);
+Route::post('/DeshEstruc', [App\Http\Controllers\EstructuraController::class, 'DeshEstruc']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
