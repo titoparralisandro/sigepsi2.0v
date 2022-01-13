@@ -29,13 +29,7 @@ class CreatePersonasTable extends Migration
             $table->string('nombres')->nullable();
             $table->string('apellidos')->nullable();
 
-            $table->integer('sexo');
-            // $table->foreignId('sexo')
-            // ->nullable()
-            // ->references('id')->on('sexos');
-
             $table->string('fec_nac', 12);
-            $table->string('email',100)->unique()->nullable();
 
             $table->integer('edo_res');
             // $table->foreignId('edo_res')

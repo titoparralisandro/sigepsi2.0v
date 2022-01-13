@@ -15,14 +15,12 @@ class Persona extends Model
             'nombres',
             'apellidos',
             'fec_nac',
-            'email',
             'edo_res',
             'direccion',
             'cod_carrera',
             'trayecto',
             'trimestre',
             'seccion',
-            'turno',
-            'sexo'
+            'turno'
             ];
 }

@@ -55,7 +55,7 @@ class RegisterController extends Controller
                 return redirect('/register')->with('error','El correo {{ $request->email }} No se Encuentra Registrado en SIACE.');
             }
             
-            $user =  User::create($request->except(['customRadio','password','name'])+ ['password' =>  Hash::make($request->password),'name' => $student->name]);
+            $user =  User::create($request->except(['customRadio','password','name'])+ ['password' =>  Hash::make($request->password),'name' => $student->nombres.' '.$student->apellidos]);
             $user->assignRole("Estudiante");
 
             $person = $user->persona()->create($student->only([
@@ -64,15 +64,13 @@ class RegisterController extends Controller
                 'nombres',
                 'apellidos',
                 'fec_nac',
-                'email',
                 'edo_res',
                 'direccion',
                 'cod_carrera',
                 'trayecto',
                 'trimestre',
                 'seccion',
-                'turno',
-                'sexo']));
+                'turno']));
 
         }else{
             $user =  User::create($request->except(['customRadio','password'])+ ['password' =>  Hash::make($request->password)]);
