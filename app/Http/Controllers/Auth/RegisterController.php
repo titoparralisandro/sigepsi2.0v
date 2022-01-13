@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Siace;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Auth\RegisterStoreRequest;
 
 class RegisterController extends Controller
 {
@@ -42,53 +42,25 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    protected function register(RegisterStoreRequest $request)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'valor' => ['required', 'numeric'],
-        ]);
-    }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data)
-    {
-        if($data['valor']='Estudiante'){
-            $buscarSiace = Siace::whereCorreo($data['email'])->first();
-            dd($buscarSiace);
-            if(!is_null($buscarSiace)){
-                $user = new User();
-                $user->name = $data['name'];
-                $user->email = $data['email'];
-                $user->password = Hash::make($data['password']);
-                $user->assignRole("Estudiante");
-                $user->save();
+        if ($request->customRadio === 'Estudiante') {
 
-                return $user;
-            }else{
-                return "Error: En caso de ser estudiante.";
+            $student = Siace::getStudentByEmail($request->email);           
+
+            if (is_null($student)) {
+                return redirect('/register')->with('error','El correo {{ $request->email }} No se Encuentra Registrado en SIACE.');
             }
+            
+            $user =  User::create($request->except(['customRadio','password'])+ ['password' =>  Hash::make($request->password)]);  
+            $user->assignRole("Estudiante");
+           
         }else{
-            $user = new User();
-            $user->name = $data['name'];
-            $user->email = $data['email'];
-            $user->password = Hash::make($data['password']);
+            $user =  User::create($request->except(['customRadio','password'])+ ['password' =>  Hash::make($request->password)]);
             $user->assignRole("Comunidad");
-            $user->save();
-            return $user;
         }
+        return redirect('/login');
+
     }
 }
