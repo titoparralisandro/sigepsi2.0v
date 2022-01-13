@@ -15,6 +15,10 @@ class CreatePersonasTable extends Migration
     {
         Schema::create('personas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_user')
+                ->nullable()
+                ->references('id')->on('users');
+                
             $table->integer('cedula')->unique();
 
             $table->integer('nacionalidad');

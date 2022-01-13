@@ -9,6 +9,7 @@ use App\Models\Siace;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\RegisterStoreRequest;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -44,23 +45,40 @@ class RegisterController extends Controller
 
     protected function register(RegisterStoreRequest $request)
     {
+        return DB::transaction(function ($transaction) use ($request) {
 
         if ($request->customRadio === 'Estudiante') {
 
-            $student = Siace::getStudentByEmail($request->email);           
+            $student = Siace::getStudentByEmail($request->email);          
 
             if (is_null($student)) {
                 return redirect('/register')->with('error','El correo {{ $request->email }} No se Encuentra Registrado en SIACE.');
             }
             
-            $user =  User::create($request->except(['customRadio','password'])+ ['password' =>  Hash::make($request->password)]);  
+            $user =  User::create($request->except(['customRadio','password','name'])+ ['password' =>  Hash::make($request->password),'name' => $student->name]);
             $user->assignRole("Estudiante");
-           
+
+            $person = $user->persona()->create($student->only([
+                'cedula',
+                'nacionalidad',
+                'nombres',
+                'apellidos',
+                'fec_nac',
+                'email',
+                'edo_res',
+                'direccion',
+                'cod_carrera',
+                'trayecto',
+                'trimestre',
+                'seccion',
+                'turno',
+                'sexo']));
+
         }else{
             $user =  User::create($request->except(['customRadio','password'])+ ['password' =>  Hash::make($request->password)]);
             $user->assignRole("Comunidad");
         }
         return redirect('/login');
-
+        });
     }
 }
