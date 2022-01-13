@@ -42,10 +42,9 @@
         <div class="form-group container">
             <form >
                 <div class="contenerdor form-group container" id="a">
-                    <input class="btn btn-success" type="button" id="btnADD" value="Añadir item a la estructura" onclick="crear(this)">
-                        <div class="col-3" style="float: right;">
-                            Puntos Disponibles:  <label id="puntos"></label>
-                        </div>
+                   <div class="col-3" style="float: right;">
+                        Puntos Disponibles:  <label id="puntos"></label>
+                    </div>
                     <div class="contenerdor">
                         <table class="table table-striper" id="table_item">
                             <thead class="text-center">
@@ -117,16 +116,13 @@
     objetivo.innerHTML = punto;
 
     icremento =@php if (isset($increment)) {echo $increment;}else{ echo 0;} @endphp;
-    if(punto == 0){
-        $("#btnADD").attr("hidden",true);
-    }
 
     function sendata(form,e) {
         e.preventDefault();
         var form = form[0];
         var dataItems = new Array();
         var dataFinal = new Object();
-        var table = $("#table_item")[0].children;
+        var table = $("#tableItem")[0].children;
 
         for (var i = 0; i < table.length; i++) {
             dataItems.push(new Object({'item':$("#item"+(i+1)).val(),'point':$("#point_estruct"+(i+1)).val()}));
@@ -134,55 +130,56 @@
 
         dataFinal.items=dataItems;
         dataFinal.id_estructura=$("#id")[0].value;
-        $.ajax({
-            type: "POST",
-            url: "/EditEstruc",
-            async: false,
-            cache: false,
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "data" : dataFinal
-            },
-            success: function(response){
-                console.log(response);
-                Swal.fire({
-                    title: 'Datos registrado con exito',
-                    text: "Proceso exitoso",
-                    icon: 'success',
-                })
-                window.location.href = "/estructura";
-            }
-        });
-    }
+        var puntod=parseInt($("#puntos")[0].innerHTML);
+        if (puntod==0) {
+            $.ajax({
+                type: "POST",
+                url: "/EditEstruc",
+                async: false,
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "data" : dataFinal
+                },
+                success: function(response){
+                    Swal.fire({
+                        title: 'Datos registrado con exito',
+                        text: "Proceso exitoso",
+                        icon: 'success',
+                    })
+                    window.location.href = "/estructura";
+                }
+            });
+        } else {
+            Swal.fire({
+                title: 'faltan puntos por asignar',
+                text: "Todos los puntos deben estar asignados",
+                icon: 'error',
+            })
+        }
 
-    function removeItem(id) {
-        let data = id.id.split("_");
-        punto = punto + parseInt($("#point_estruct"+data[1]).val());
-        $("#puntos").html(punto);
-        id.remove();
-        var table = $("#table_item")[0].children;
-        if (table.length==0) {
-            icremento=0;
-        }else{
-            icremento-=1;
-        }
-        if ($("#btnADD").is(':hidden') && punto>0) {
-            $("#btnADD").attr("hidden",false);
-        }
     }
 
     function calcular_punto(valor) {
-        if(valor>0 && punto<=100 && valor<=punto){
-            punto = punto-valor;
+        var total = 0;
+        var dataFinal = new Object();
+        var table = $("#tableItem")[0].children;
+        if(valor>0){
+            for (var i = 0; i < table.length; i++) {
+                total += parseInt($("#point_estruct"+(i+1)).val());
+            }
+            if(total<100){
+                punto = 100-total;
+            }else{
+                punto= 0;
+            }
             $("#puntos").html(punto);
-            if (punto==0) {
-                $("#btnADD").attr("hidden",true);
-            }
         }else{
-            if(valor == "" && icremento==1){
-                punto = 100;
-                $("#puntos").html("100");
-            }
+            Swal.fire({
+                title: 'Datos errados',
+                text: "el peso del item debe ser mayor 0",
+                icon: 'error',
+            })
         }
     }
 
@@ -218,8 +215,6 @@
                             }
                         }
                     });
-                }else{
-                    $("#btnADD").attr("hidden",true);
                 }
             }else{
                 Swal.fire({
@@ -238,11 +233,5 @@
         }
 
     }
-
-    function borrar(obj) {
-        field = document.getElementById('field');
-        field.removeChild(document.getElementById(obj));
-    }
-
 </script>
 @stop

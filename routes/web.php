@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Siace;
+use App\Http\Controllers\ComentarioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +40,7 @@ Route::get('a_cerca_de', function () {
 });
 
 Route::get('/catalogo', [App\Http\Controllers\ProyectoController::class, 'catalogo']);
+Route::resource('/contact', App\Http\Controllers\ContactController::class);
 
 Auth::routes();
 
@@ -51,6 +53,7 @@ Route::resource('prueba',App\Http\Controllers\PruebaController::class);
 Route::resource('prueba',App\Http\Controllers\PruebaController::class);
 
 Route::resource('comentario',ComentarioController::class);
+
 /*
 Route::get('comentario',[ComentarioController::class,'index'])->name('comentario.index');
 Route::get('comentario/create',[ComentarioController::class,'create'])->name('comentario.create');
@@ -67,6 +70,7 @@ Route::get('comentario/store',[ComentarioController::class,'store'])->name('come
 
 Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('proyecto',App\Http\Controllers\ProyectoController::class);
+
 
 Route::resource('comunidades',App\Http\Controllers\ComunidadeController::class);
 Route::resource('tipos_comunidad',App\Http\Controllers\Tipos_comunidadeController::class);
@@ -108,5 +112,6 @@ Route::post('/getdataInvest', [App\Http\Controllers\EstructuraController::class,
 Route::get('/getdataItem', [App\Http\Controllers\EstructuraController::class, 'getdataItem']);
 Route::post('/SaveEstruc', [App\Http\Controllers\EstructuraController::class, 'store']);
 Route::post('/EditEstruc', [App\Http\Controllers\EstructuraController::class, 'saveEdit']);
+Route::post('/DeshEstruc', [App\Http\Controllers\EstructuraController::class, 'DeshEstruc']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

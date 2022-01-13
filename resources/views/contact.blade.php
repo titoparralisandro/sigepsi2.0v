@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+@section('plugins.Sweetalert2', true)
+@section('plugins.Toastr', true)
 @section('content')
 
 <!-- about breadcrumb -->
@@ -22,6 +23,7 @@
 <!-- //about breadcrumb -->
 <!-- contact block -->
 <!-- contact1 -->
+@csrf
 <section class="w3l-contact-1 pb-5" id="contact">
     <div class="contacts-9 py-lg-5 py-md-4">
         <div class="container">
@@ -60,19 +62,24 @@
                 </div>
                 <div class="map-content-9">
                     <h5 class="mb-sm-4 mb-3">Escríbenos</h5>
-                    <form action="https://sendmail.w3layouts.com/submitForm" method="post">
+                    
+                    <form action="{{ route('contact.store') }}" method="POST"> 
+                        @csrf
                         <div class="twice-two">
-                            <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="Nombre"
-                                required="">
-                            <input type="email" class="form-control" name="w3lSender" id="w3lSender" placeholder="Correo"
-                                required="">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre"
+                                required="" value="{{ isset($comentario->name)?$comentario->name:old('name') }}">
+                                
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Correo"
+                                required="" value="{{ isset($comentario->email)?$comentario->email:old('email') }}">
                         </div>
                         <div class="twice">
-                            <input type="text" class="form-control" name="w3lSubject" id="w3lSubject"
-                                placeholder="Asunto" required="">
+                            <input type="text" class="form-control" name="asunto" id="asunto"
+                                placeholder="Asunto" required="" value="{{ isset($comentario->asunto)?$comentario->asunto:old('asunto') }}">
                         </div>
-                        <textarea name="w3lMessage" class="form-control" id="w3lMessage" placeholder="Mensaje"
-                            required=""></textarea>
+                            
+                            <textarea nname="comentario" class="form-control" id="comentario" placeholder="Mensaje"
+                            required="" {{ isset($comentario->comentario)?$comentario->comentario:old('comentario') }}></textarea>
+                        
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary btn-style mt-4">Enviar mensaje</button>
                         </div>
@@ -91,3 +98,27 @@
 <!-- //contact block -->
 
 @endsection
+@section('js')
+
+    @if(session('respuesta')=='creado')
+    <script>
+    toastr.success('El comentario, ha sido creado.')
+    </script>
+    @endif
+
+    @if(session('respuesta')=='eliminado')
+    <script>
+    Swal.fire(
+    'Eliminado!',
+    'El comentario se ha eliminado con éxito.',
+    'success')
+    </script>
+    @endif
+
+    @if(session('respuesta')=='editado')
+    <script>
+    toastr.info('El comentario, se ha editado correctamente.')
+    </script>
+    @endif
+
+@stop
