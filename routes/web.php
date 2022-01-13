@@ -48,6 +48,23 @@ Route::get('/documento', function(){
 
 Route::resource('prueba',App\Http\Controllers\PruebaController::class);
 
+Route::resource('prueba',App\Http\Controllers\PruebaController::class);
+
+Route::resource('comentario',ComentarioController::class);
+/*
+Route::get('comentario',[ComentarioController::class,'index'])->name('comentario.index');
+Route::get('comentario/create',[ComentarioController::class,'create'])->name('comentario.create');
+Route::get('comentario/{comentario}',[ComentarioController::class,'show'])->name('comentario.show');
+Route::get('comentario/store',[ComentarioController::class,'store'])->name('comentario.store');
+*/
+//Route::resource('comentario',ComentarioController::class);
+//Con use (index)
+//Route::get('comentario',[ComentarioController::class,'index']);
+
+// Sin use se usa App\Http\Controllers\
+//Route::get('comentario',[App\Http\Controllers\ComentarioController::class,'index']);
+
+
 Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('proyecto',App\Http\Controllers\ProyectoController::class);
 
