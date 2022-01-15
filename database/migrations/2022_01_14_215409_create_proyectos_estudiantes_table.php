@@ -27,7 +27,7 @@ class CreateProyectosEstudiantesTable extends Migration
 
             $table->foreignId('id_estatus_estudiante')
                 ->nullable()
-                ->references('id')->on('estatus_estudiante')
+                ->references('id')->on('estatus_proyectos_estudiantes')
                 ->OnDelete('set null');
 
             $table->string('observacion');
