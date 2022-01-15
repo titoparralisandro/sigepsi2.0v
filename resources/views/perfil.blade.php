@@ -58,14 +58,21 @@
             <div class="tab-pane fade p-5" id="configuracion-tab">
 
                 <h4 class="text-center">Configuración</h4>
-
-                <h6>Name:</h6>
-                <p>{{ auth()->user()->name }} </p>
-                <h6>Email:</h6>
-                <p>{{ auth()->user()->email }} </p>
-                <h6>Contraseña:</h6>
-                <p>{{ auth()->user()->password }} </p>
-
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="form-label">Nombre:</label>
+                        <p>{{ auth()->user()->name }} </p>
+                    </div>
+                    <div class="form-group col">
+                        <label class="form-label">Email:</label>
+                        <p>{{ auth()->user()->email }} </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Contraseña:</label>
+                    <p>{{ auth()->user()->password }} </p>
+                </div>
+                
                 <label class="form-label">Imagen de perfil:</label>
                 <input type="file" name="avatar" class="form-control btn">
 
@@ -117,7 +124,7 @@
 </div>
 
 <footer class="main-footer" >
-    <strong> &copy; 2022 | <a href="{{ url('/home')}}">Sistema de Gestión de Proyectos Socio Integradores</a> | </strong>
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
     Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
     <div class="float-right d-none d-sm-inline-block">
       <b>Versión</b> 2.0
