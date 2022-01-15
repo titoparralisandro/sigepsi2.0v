@@ -32,7 +32,7 @@
             <form action="/SaveEditUser" method="POST" id="formEdit">
                 <div class="modal-header card-header bg-primary">
                     <div class="color-palette">
-                        <h1 class="text-center" id="tituloModal"><strong>Ver comunidad</strong></h1>
+                        <h1 class="text-center" id="tituloModal"><strong>Ver usuario</strong></h1>
                     </div>
                 </div>
                 <div class="modal-body">

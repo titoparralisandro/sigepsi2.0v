@@ -2,7 +2,7 @@
 
 @section('title', 'Perfil')
 
-@section('plugins.Select2', true)
+@section('plugins.Toastr', true)
 
 @section('content_header')
 
@@ -58,15 +58,23 @@
             <div class="tab-pane fade p-5" id="configuracion-tab">
 
                 <h4 class="text-center">Configuración</h4>
-
-                <h6>Name:</h6>
-                <p>the providers <a href="#" class="float-rigth">Edit/Change</a></p>
-                <h6>Email:</h6>
-                <p>titoparralisandro@gmail.com <a href="#" class="float-rigth">Edit/Change</a></p>
-                <h6>Contraseña:</h6>
-                <p>********* <a href="#" class="float-rigth">Edit/Change</a></p>
-                <h6>Teléfono:</h6>
-                <p>0426-410.92.26 <a href="#" class="float-rigth">Edit/Change</a></p>
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="form-label">Nombre:</label>
+                        <p>{{ auth()->user()->name }} </p>
+                    </div>
+                    <div class="form-group col">
+                        <label class="form-label">Email:</label>
+                        <p>{{ auth()->user()->email }} </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Contraseña:</label>
+                    <p>{{ auth()->user()->password }} </p>
+                </div>
+                
+                <label class="form-label">Imagen de perfil:</label>
+                <input type="file" name="avatar" class="form-control btn">
 
             </div>
 
@@ -74,20 +82,19 @@
 
                 <h4 class="text-center">Contacto</h4>
 
+                <form action="{{ route('comentario.store') }}" method="POST">
+                @csrf
+                
+                    <input type="hidden" name="name" id="name" value="{{auth()->user()->name}}">
+                    <input type="hidden" name="email" id="email" value="{{auth()->user()->email}}">
+
+
                 <div class="form-group ">
 
-                <form>
-
-                <label class="form-label">Estudiante:</label>
-                <input id="estudiante" class="form-control" type="text" disabled name="estudiante" value="Lisandro Parra">
-
-                </div>
-
-                <div class="form-group">
-
-                <label class="form-label">Email:</label>
-                <input id="email" class="form-control" type="text" disabled readonly name="email" value="titoparralisandro@gmail.com">
-
+                    <label class="form-label">Asunto:</label>
+                    <input id="asunto" class="form-control" type="text" name="asunto"
+                    placeholder="Coloca el asunto de tu correo como sugerencias o reporte de falla en el sistema">
+    
                 </div>
 
                 <div class="form-group ">
@@ -104,15 +111,12 @@
 
             <div class="tab-pane fade p-5" id="ayuda-tab">
 
-                <h4 class="text-center">Ayuda</h4>
+                <h4 class="text-center">Credenciales</h4>
 
-                <h6>Lenguaje utilizado para el desarrollo del sistema:</h6>
+                <h6>Contraseña:</h6>
                 <p>PHP v{{ PHP_VERSION }} </p>
                 <h6>Framework utilizado:</h6>
                 <p>Laravel v{{ Illuminate\Foundation\Application::VERSION }}</p>
-                <h6>Framework adicionales utilizados:</h6>
-                <p>Boostrap v4.4 </p>
-
 
             </div>
         </div>
@@ -120,7 +124,7 @@
 </div>
 
 <footer class="main-footer" >
-    <strong> &copy; 2022 | <a href="{{ url('/home')}}">Sistema de Gestión de Proyectos Socio Integradores</a> | </strong>
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
     Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
     <div class="float-right d-none d-sm-inline-block">
       <b>Versión</b> 2.0
@@ -130,83 +134,9 @@
 @stop
 
 @section('js')
-<script>
-$(function() {
-   $("#sendData").click(function(e) {
-        var dataFinal = new Array();
-        var table = $("#tableItem")[0].children;
-        for (let i = 0; i < table.length; i++) {
-            dataFinal.push(new Object({'item':$("#item"+(i+1)).val(),'point':$("#point_estruct"+(i+1)).val()}));
-        }
-        $.ajax({
-            type: "POST",
-            url: "items_estructura",
-            async: false,
-            cache: false,
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "data" : JSON.stringify(dataFinal)
-            },
-            success: function(response){
-
-            }
-        });
-   })
-});
-var punto = 100;
-var objetivo = document.getElementById('puntos');
-objetivo.innerHTML = punto;
-
-icremento =0;
-
-function removeItem(id) {
-    let data = id.id.split("_");
-    punto = punto + parseInt($("#point_estruct"+data[1]).val());
-    $("#puntos").html(punto);
-    id.remove();
-    if ($("#btnADD").is(':hidden') && punto>0) {
-        $("#btnADD").attr("hidden",false);
-    }
-}
-
-
-
-function calcular_punto(valor) {
-    if(valor>0 && punto<=100 && valor<=punto){
-        punto = punto-valor;
-        $("#puntos").html(punto);
-        if (punto==0) {
-            $("#btnADD").attr("hidden",true);
-        }
-    }else{
-        if(valor == "" && icremento==1){
-            punto = 100;
-            $("#puntos").html("100");
-        }
-    }
-}
-
-function crear(obj) {
-    if(punto>0){
-
-        icremento++;
-        var line = "";
-        line +="<tr id='file_"+icremento+"'>";
-        line +="<td><select name='item"+icremento+"' id='item"+icremento+"' class='form-control'><option value='null'>Selecione un item</option></select></td>";
-        line +="<td><input type='text' id='point_estruct"+icremento+"' name='point_estruct"+icremento+"' onchange='calcular_punto(this.value)' class='form-control' minlength='1' maxlength='2'></td>";
-        line +="<td><button class='btn btn-primary' type='button' onclick='removeItem(file_"+icremento+")'><i class='fa fa-trash'></i></button></td>";
-        line +="</tr>";
-        $("#tableItem").append(line);
-    }else{
-        $("#btnADD").attr("hidden",true);
-    }
-
-}
-$("#item").select2({});
-function borrar(obj) {
-    field = document.getElementById('field');
-    field.removeChild(document.getElementById(obj));
-}
-
-</script>
+    @if(session('respuesta')=='creado')
+        <script>
+            toastr.success('El comentario, ha sido creado.')
+        </script>
+    @endif
 @stop

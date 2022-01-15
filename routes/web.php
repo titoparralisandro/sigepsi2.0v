@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Siace;
+use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +15,12 @@ use App\Models\Siace;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
 
 Route::get('/',function () {
     return view('inicio');
 });
+Route::get('/send-email', [MailController::class, 'sendEmail']);
 
 Route::get('/contact',function () {
     return view('contact');
@@ -39,17 +43,33 @@ Route::get('a_cerca_de', function () {
 });
 
 Route::get('/catalogo', [App\Http\Controllers\ProyectoController::class, 'catalogo']);
+Route::resource('/contact', App\Http\Controllers\ContactController::class);
 
 Auth::routes();
 
-Route::get('/documento', function(){
-    dd(Siace::get());
-});
+Route::resource('prueba',App\Http\Controllers\PruebaController::class);
 
 Route::resource('prueba',App\Http\Controllers\PruebaController::class);
 
+Route::resource('comentario',ComentarioController::class);
+
+/*
+Route::get('comentario',[ComentarioController::class,'index'])->name('comentario.index');
+Route::get('comentario/create',[ComentarioController::class,'create'])->name('comentario.create');
+Route::get('comentario/{comentario}',[ComentarioController::class,'show'])->name('comentario.show');
+Route::get('comentario/store',[ComentarioController::class,'store'])->name('comentario.store');
+*/
+//Route::resource('comentario',ComentarioController::class);
+//Con use (index)
+//Route::get('comentario',[ComentarioController::class,'index']);
+
+// Sin use se usa App\Http\Controllers\
+//Route::get('comentario',[App\Http\Controllers\ComentarioController::class,'index']);
+
+
 Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('proyecto',App\Http\Controllers\ProyectoController::class);
+
 
 Route::resource('comunidades',App\Http\Controllers\ComunidadeController::class);
 Route::resource('tipos_comunidad',App\Http\Controllers\Tipos_comunidadeController::class);

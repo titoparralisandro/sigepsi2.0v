@@ -71,6 +71,6 @@ class User extends Authenticatable
     }
 
     public function persona(){
-        return $this->hasMany(Profesore::class, 'id');
+        return $this->hasOne(Persona::class, 'id_user');
     }
 }

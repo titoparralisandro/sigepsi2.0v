@@ -22,3 +22,19 @@ $Parroquias = \app\models\Parroquias::find()->all();
                          <p>
                              <button id="button_buscar_comunidad" style="margin-top: 25px;" class="btn btn-primary" type="button"><i class="fas fa-search"></i> Buscar comunidad</button>
                          </p>
+
+
+use App\Models\Persona;
+$persona = new Persona();
+$persona->id_user = $user->id;
+$persona->cedula = '';
+$persona->nacionalidad = '';
+$persona->nombres = '';
+$persona->apellidos = '';
+$persona->cedula = '';
+$persona->cedula = '';
+$persona->cedula = '';
+$persona->cedula = '';
+$persona->cedula = '';
+
+$persona->save();
