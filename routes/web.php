@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Siace;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,7 @@ Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'r
 Route::get('/',function () {
     return view('inicio');
 });
+Route::get('/send-email', [MailController::class, 'sendEmail']);
 
 Route::get('/contact',function () {
     return view('contact');
@@ -44,10 +46,6 @@ Route::get('/catalogo', [App\Http\Controllers\ProyectoController::class, 'catalo
 Route::resource('/contact', App\Http\Controllers\ContactController::class);
 
 Auth::routes();
-
-Route::get('/documento', function(){
-    dd(Siace::get());
-});
 
 Route::resource('prueba',App\Http\Controllers\PruebaController::class);
 

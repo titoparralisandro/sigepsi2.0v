@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
 
 class ProductoController extends Controller
 {
@@ -19,7 +21,7 @@ class ProductoController extends Controller
     }
 
     public function store(Request $request){
-
+        
         $producto = new Producto();
 
         $producto->producto = $request->get('producto');
@@ -27,6 +29,16 @@ class ProductoController extends Controller
         $producto->estatus= $request->get('estatus');
 
         $producto->save();
+        
+        // sendEmail($producto){
+        //     $details=[
+        //         'title' => 'Creación de nuevo Producto',
+        //         'body' => 'Se ha creado un nuevo producto llamado '. $producto->producto .' con la siguiente descripción '.$producto->descripcion.'.' 
+        //     ];
+            
+        //     Mail::to("titoparralisandro@gmail.com")->send(new TestMail($details));
+            
+        // }
 
         return redirect('/producto')->with('respuesta', 'creado');
     }
