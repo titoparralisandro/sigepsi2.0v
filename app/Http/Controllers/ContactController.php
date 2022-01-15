@@ -16,7 +16,7 @@ class ContactController extends Controller
         $campos = [
             'name' => 'required|string|max:50',
             'email' => 'required|string|max:50',
-            'asunto' => 'required',
+            'asunto' => 'required|string|max:50',
             'comentario' => 'required',
         ];
 
@@ -25,7 +25,7 @@ class ContactController extends Controller
             'email.required' => 'El email es requerido',
             'asunto.required' => 'El asunto es requerido',
             'required' => 'EL :attribute es requerido',
-            'comentario' => 'El comentario es requerido',
+            'comentario.required' => 'El comentario es requerido',
         ];
 
         $this->validate($request, $campos, $mensaje);
@@ -38,6 +38,6 @@ class ContactController extends Controller
 
         $comentario->save();
 
-        return redirect('/')->with('respuesta', 'creado');
+        return redirect('/contact')->with('respuesta', 'creado');
     }
 }

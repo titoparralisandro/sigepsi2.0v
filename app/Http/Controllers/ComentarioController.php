@@ -16,17 +16,10 @@ class ComentarioController extends Controller
     public function index(){
     $comentarios = Comment::all();
     return view('comentario.index')->with('comentarios',$comentarios);
-    //return $comentario;
-    }
-
-    public function create(){
-    //view('comment');
-    return view('comentario.create');
     }
 
     public function show($id){
     $comentario = Comment::findOrFail($id);
-    //return $comentario;
     return view('comentario.show', compact(['comentario', 'id']));
     }
 
@@ -35,14 +28,16 @@ class ComentarioController extends Controller
         $campos = [
             'name' => 'required|string|max:50',
             'email' => 'required|string|max:50',
+            'asunto' => 'required|string|max:50',
             'comentario' => 'required',
         ];
 
         $mensaje = [
             'name.required' => 'El nombre es requerido',
             'email.required' => 'El email es requerido',
+            'asunto.required' => 'El asunto es requerido',
             'required' => 'EL :attribute es requerido',
-            'comentario' => 'El comentario es requerido',
+            'comentario.required' => 'El comentario es requerido',
         ];
 
         $this->validate($request, $campos, $mensaje);
@@ -60,9 +55,7 @@ class ComentarioController extends Controller
 
     public function destroy($id)
     {
-        //
         $comentario = Comment::find($id);
-        //return $comentario;
         $comentario->delete();
         return redirect('/comentario')->with('respuesta','eliminado');
     }

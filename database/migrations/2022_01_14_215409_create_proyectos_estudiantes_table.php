@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProyectosEvaluacionesTable extends Migration
+class CreateProyectosEstudiantesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,24 @@ class CreateProyectosEvaluacionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('proyectos_evaluaciones', function (Blueprint $table) {
+        Schema::create('proyectos_estudiantes', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('id_proyecto')
                 ->nullable()
                 ->references('id')->on('proyectos')
                 ->OnDelete('set null');
 
-            $table->foreignId('id_estructura')
+            $table->foreignId('id_estudiante')
                 ->nullable()
-                ->references('id')->on('estructuras')
+                ->references('id')->on('personas')
                 ->OnDelete('set null');
 
-            $table->integer('progreso');
+            $table->foreignId('id_estatus_estudiante')
+                ->nullable()
+                ->references('id')->on('estatus_estudiante')
+                ->OnDelete('set null');
 
+            $table->string('observacion');
             $table->timestamps();
         });
     }
@@ -39,6 +42,6 @@ class CreateProyectosEvaluacionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proyectos_evaluaciones');
+        Schema::dropIfExists('proyectos_estudiantes');
     }
 }

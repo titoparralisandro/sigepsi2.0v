@@ -27,8 +27,7 @@
 </div>
 
 <hr>
-<a href="{{ route('comentario.create') }}" class="btn btn-info">Crear comentario (solo prueba)</a>
-<hr>
+
 <div class="card border-dark">
   <div class="card-body text-dark">
     <hr>

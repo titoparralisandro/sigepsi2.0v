@@ -2,7 +2,6 @@
 
 @section('title', 'Perfil')
 
-@section('plugins.Sweetalert2', true)
 @section('plugins.Toastr', true)
 
 @section('content_header')
@@ -59,7 +58,7 @@
             <div class="tab-pane fade p-5" id="configuracion-tab">
 
                 <h4 class="text-center">Configuración</h4>
-                <?php $user = auth()->user()->name; ?>
+
                 <h6>Name:</h6>
                 <p>{{ auth()->user()->name }} </p>
                 <h6>Email:</h6>
@@ -105,14 +104,12 @@
 
             <div class="tab-pane fade p-5" id="ayuda-tab">
 
-                <h4 class="text-center">Ayuda</h4>
+                <h4 class="text-center">Credenciales</h4>
 
-                <h6>Lenguaje utilizado para el desarrollo del sistema:</h6>
+                <h6>Contraseña:</h6>
                 <p>PHP v{{ PHP_VERSION }} </p>
                 <h6>Framework utilizado:</h6>
                 <p>Laravel v{{ Illuminate\Foundation\Application::VERSION }}</p>
-                <h6>Framework adicionales utilizados:</h6>
-                <p>Boostrap v4.4 </p>
 
             </div>
         </div>

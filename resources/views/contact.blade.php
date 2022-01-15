@@ -1,6 +1,5 @@
 @extends('layouts.app')
-@section('plugins.Sweetalert2', true)
-@section('plugins.Toastr', true)
+
 @section('content')
 
 <!-- about breadcrumb -->
@@ -67,18 +66,18 @@
                         @csrf
                         <div class="twice-two">
                             <input type="text" class="form-control" name="name" id="name" placeholder="Nombre"
-                                required="" value="{{ isset($comentario->name)?$comentario->name:old('name') }}">
+                                required value="{{ isset($comentario->name)?$comentario->name:old('name') }}">
                                 
                             <input type="email" class="form-control" name="email" id="email" placeholder="Correo"
-                                required="" value="{{ isset($comentario->email)?$comentario->email:old('email') }}">
+                                required value="{{ isset($comentario->email)?$comentario->email:old('email') }}">
                         </div>
                         <div class="twice">
                             <input type="text" class="form-control" name="asunto" id="asunto"
-                                placeholder="Asunto" required="" value="{{ isset($comentario->asunto)?$comentario->asunto:old('asunto') }}">
+                                placeholder="Asunto" required value="{{ isset($comentario->asunto)?$comentario->asunto:old('asunto') }}">
                         </div>
                             
-                            <textarea nname="comentario" class="form-control" id="comentario" placeholder="Mensaje"
-                            required="" {{ isset($comentario->comentario)?$comentario->comentario:old('comentario') }}></textarea>
+                            <textarea name="comentario" class="form-control" id="comentario" placeholder="Mensaje"
+                            required value="{{ isset($comentario->comentario)?$comentario->comentario:old('comentario') }}"></textarea>
                         
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary btn-style mt-4">Enviar mensaje</button>
@@ -98,27 +97,11 @@
 <!-- //contact block -->
 
 @endsection
+
 @section('js')
-
     @if(session('respuesta')=='creado')
-    <script>
-    toastr.success('El comentario, ha sido creado.')
-    </script>
+        <script>
+            toastr.success('El comentario, ha sido creado.')
+        </script>
     @endif
-
-    @if(session('respuesta')=='eliminado')
-    <script>
-    Swal.fire(
-    'Eliminado!',
-    'El comentario se ha eliminado con éxito.',
-    'success')
-    </script>
-    @endif
-
-    @if(session('respuesta')=='editado')
-    <script>
-    toastr.info('El comentario, se ha editado correctamente.')
-    </script>
-    @endif
-
 @stop
