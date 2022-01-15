@@ -74,7 +74,7 @@ class ProyectoController extends Controller
         $proyecto->id_linea_investigacion = $request->get('linea_investigacion');
         $proyecto->id_trayecto = $request->get('trayecto');
         //$proyecto->direccion = $request->get('direccion');
-        
+
         $proyecto->save();
 
         $documento = new Files();
@@ -91,11 +91,7 @@ class ProyectoController extends Controller
         //
         //OJOOOOOO OJOOOOOO ---> VER VER Editar ::
      //los permisos en linux 775 chmod para que guarde la ruta para que guarde los PDF
-
-        // return redirect('/proyecto')->with('respuesta', 'creado');
-
-
-
-
     }
+
+
 }

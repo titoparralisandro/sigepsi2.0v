@@ -69,7 +69,6 @@ Route::get('comentario/store',[ComentarioController::class,'store'])->name('come
 Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('proyecto',App\Http\Controllers\ProyectoController::class);
 
-
 Route::resource('comunidades',App\Http\Controllers\ComunidadeController::class);
 Route::resource('tipos_comunidad',App\Http\Controllers\Tipos_comunidadeController::class);
 

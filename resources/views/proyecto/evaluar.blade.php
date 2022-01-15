@@ -9,7 +9,7 @@
 
 <div class="card-header bg-primary ">
     <div class="color-palette">
-        <h1 class="text-center"><strong>{{$proyectos->name}}</strong></h1>
+        <h1 class="text-center"><strong>Nombre del proyecto</strong></h1>
     </div>
 </div>
 <div class="card border-dark">
@@ -47,10 +47,14 @@
                             </tr>
                         </thead>
                         <tbody id="tableItem" class="text-center" disabled>
-                            @foreach ($items as $item)
+                            {{-- @foreach ($items as $item) --}}
                                 <tr>
-                                    <td  disabled>{{$item->item}}</td>
-                                    <td  disabled>{{$item->peso}}</td>
+                                    <td  disabled>
+                                        {{-- {{$item->item}} --}}
+                                    </td>
+                                    <td  disabled>
+                                        {{-- {{$item->peso}} --}}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -90,7 +90,9 @@
                     <td>{{ $proyectos->linea_investigaciones->linea_investigacion }} </td>
                     <td>
                         <div class="btn-group">
-                          {{-- <button class="btn btn-info" type="button" href="{{ route('proyecto.evaluar', $proyectos->id ) }}">Evaluar</button> --}}
+                          <button class="btn btn-info" type="button" href="evaluar">Evaluar</button>
+                          {{-- href="{{ route('proyecto.evaluar', $proyectos->id ) }}" --}}
+
                             {{-- <button class="btn btn-primary" type="button" onclick="getdata('{{ $comunidades->id }}')">Ver</button>
                             <button class="btn btn-info" type="button" onclick="editdata('{{ $comunidades->id }}')">Editar</button> --}}
                         </div>
