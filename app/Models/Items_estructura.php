@@ -12,4 +12,7 @@ class Items_estructura extends Model
     public function item_estructura(){
         return $this->hasMany(Item_estructura::class, 'id');
     }
+    public function estructuras_evaluaciones(){
+        return $this->hasMany(Estructuras_evaluacione::class, 'id');
+    }
 }

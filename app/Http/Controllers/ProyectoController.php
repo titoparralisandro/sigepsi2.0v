@@ -1,15 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\Proyecto;
 use App\Models\Carrera;
 use App\Models\Trayecto;
 use App\Models\Especialidade;
 use App\Models\Lineas_investigacione;
 use App\Models\Estado;
-use App\Models\Municipio;
-use App\Models\Parroquia;
 use App\Models\Files;
 use Illuminate\Http\Request;
 
@@ -44,22 +42,25 @@ class ProyectoController extends Controller
                                         "especialidad"=>$especialidad,
                                         "trayecto"=>$trayecto]);
     }
-
-    public function municipios(Request $request){
-        if(isset($request->texto)){
-            $municipios = Municipio::whereid_estado($request->texto)->get();
-            return response()->json(['lista' => $municipios,'success' => true]);
-        }else { return response()->json(['success' => false]); }
+    public function getalumnos(Request $request)
+    {
+        $comunidades = DB::table('personas')
+            ->join("trayectos","trayectos.id","personas.trayecto")
+            ->whereRaw("cod_carrera = '".$request->get('carrera')."' AND (CAST(cedula AS VARCHAR(10)) LIKE '".$request->get('q')."%' OR nombres LIKE '".$request->get('q')."%' OR apellidos LIKE '".$request->get('q')."%')")
+            ->select("personas.id","personas.nombres","personas.apellidos","trayectos.trayecto","personas.cedula")
+            ->get();
+        $html="";
+        foreach ($comunidades as $comunidad) {
+            $html .="<tr>";
+            $html .="<td>".$comunidad->id."</td>";
+            $html .="<td>".$comunidad->cedula."</td>";
+            $html .="<td>".$comunidad->nombres." ".$comunidad->apellidos."</td>";
+            $html .="<td>".$comunidad->trayecto."</td>";
+            $html .="<td><button class='btn btn-success' type='button' onclick=\"selectAlumno(".$comunidad->id.",'".$comunidad->nombres." ".$comunidad->apellidos."','".$comunidad->trayecto."','".$comunidad->cedula."')\">Seleccionar</button></td>";
+            $html .="</tr>";
+        }
+        return $html;
     }
-
-    public function parroquias(Request $request){
-        if(isset($request->texto)){
-            $parroquias = Parroquia::whereid_municipio($request->texto)->get();
-            return response()->json(['lista' => $parroquias,'success' => true]);
-        }else { return response()->json(['success' => false]);  }
-    }
-
-
     public function store(Request $request){
         $proyectos = Proyecto::all();
         $lineas_investigacion = Lineas_investigacione::all();

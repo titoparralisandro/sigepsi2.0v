@@ -141,45 +141,6 @@
                 }
             });
         }
-        function getMunicipio(e) {
-            $.ajax({
-                type: "POST",
-                url: "municipios",
-                async: false,
-                cache: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "texto" : e.target.value
-                },
-                success: function(response){
-                    var opciones ="<option value='0'>Seleccione su municipio</option>";
-                    for (let i in response.lista) {
-                        opciones+= '<option value="'+response.lista[i].id_municipio+'">'+response.lista[i].municipio+'</option>';
-                    }
-                    $("#id_municipio").empty().append(opciones);
-                    $("#id_parroquia").empty();
-                }
-            });
-        }
-        function getParroquia(e) {
-            $.ajax({
-                type: "POST",
-                url: "parroquias",
-                async: false,
-                cache: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "texto" : e.target.value
-                },
-                success: function(response){
-                    var opciones ="<option value='0'>Seleccione su parroquia</option>";
-                    for (let i in response.lista) {
-                        opciones+= '<option value="'+response.lista[i].id_parroquia+'">'+response.lista[i].parroquia+'</option>';
-                    }
-                    $("#id_parroquia").empty().append(opciones);
-                }
-            });
-        }
     </script>
 
     @if(session('respuesta')=='creado')

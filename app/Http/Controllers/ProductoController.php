@@ -20,6 +20,16 @@ class ProductoController extends Controller
         return view('producto.create');
     }
 
+    // public function sendEmail(){
+    //     $details=[
+    //         'title' => $titulo,
+    //         'body' => $body
+    //     ];
+
+    //     Mail::to($correos)->send(new TestMail($details));
+
+    // }
+
     public function store(Request $request){
         
         $producto = new Producto();
@@ -32,11 +42,11 @@ class ProductoController extends Controller
         
         // sendEmail($producto){
         //     $details=[
-        //         'title' => 'Creación de nuevo Producto',
-        //         'body' => 'Se ha creado un nuevo producto llamado '. $producto->producto .' con la siguiente descripción '.$producto->descripcion.'.' 
+        //         $titulo => 'Creación de nuevo Producto'.' '.'N° '. $producto->id,
+        //         $body => 'Se ha creado un nuevo producto llamado '. $producto->producto .' con la siguiente descripción '.$producto->descripcion.'.' 
         //     ];
             
-        //     Mail::to("titoparralisandro@gmail.com")->send(new TestMail($details));
+        // Mail::to($correos=auth()->user()->email)->send(new TestMail($details));
             
         // }
 

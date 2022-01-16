@@ -26,6 +26,22 @@ class ComunidadeController extends Controller
         return view('comunidades.index',["comunidad"=>$comunidad,"tipo_comunidad"=>$tipo_comunidad,"estados"=>$estados]);
     }
 
+    public function getcomunidad(Request $request)
+    {
+        $comunidades = DB::table('comunidades')
+            ->whereRaw("id_estado = '".$request->get('estado')."' and id_municipio = '".$request->get('municipio')."' and id_parroquia = '".$request->get('parroquia')."'")
+            ->get();
+        $html="";
+        foreach ($comunidades as $comunidad) {
+            $html .="<tr>";
+            $html .="<td>".$comunidad->id."</td>";
+            $html .="<td>".$comunidad->nombre."</td>";
+            $html .="<td><button class='btn btn-secondary' type='button' onclick=\"selectComunid(".$comunidad->id.",'".$comunidad->nombre."')\">Seleccionar</button></td>";
+            $html .="</tr>";
+        }
+        return $html;
+    }
+
     public function create(){
         return view('comunidades.create');
     }
@@ -54,7 +70,7 @@ class ComunidadeController extends Controller
         $contraseña = rand(10000000, 99999999);
         $user->password = Hash::make($contraseña);
         $user->assignRole("Comunidad");
-        
+
         $user->save();
 
         $comunidad = new Comunidade();

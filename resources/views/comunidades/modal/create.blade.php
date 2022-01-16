@@ -11,7 +11,7 @@
 
             </div>
             <div class="modal-body">
-                <div class="card-body text-dark">          
+                <div class="card-body text-dark">
 
                 @csrf<div class="row">
                         <div class="form-group col-4">
@@ -134,7 +134,7 @@
 <script>
     const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
     document.getElementById('id_estado').addEventListener('change',(e)=>{
-        fetch('municipios',{
+        fetch('getmunicipios',{
             method : 'POST',
             body: JSON.stringify({texto : e.target.value}),
             headers:{
@@ -155,7 +155,7 @@
     })
 
     document.getElementById('id_municipio').addEventListener('change',(e)=>{
-        fetch('parroquias',{
+        fetch('getparroquias',{
             method : 'POST',
             body: JSON.stringify({texto : e.target.value}),
             headers:{

@@ -8,6 +8,7 @@
 @section('plugins.Inputmask', true)
 @section('plugins.Datatables', true)
 
+
 @if(count($errors)>0)
 <div class="alert alert-danger" role="alert">
 <ul>
@@ -31,7 +32,6 @@
 @csrf
 <div class="card border-dark">
   <div class="card-body text-dark">
-    <button href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-create">Añadir nuevo proyecto</button>
     <a href="{{ route('proyecto.create') }}" class="btn btn-success">Añadir nuevo proyecto</a>
 
     <hr>

@@ -91,10 +91,11 @@ Route::resource('estatus_progresos',App\Http\Controllers\Estatus_progresoControl
 Route::resource('estatus_necesidades',App\Http\Controllers\Estatus_necesidadeController::class);
 Route::resource('estatus_situaciones',App\Http\Controllers\Estatus_situacioneController::class);
 
-Route::post('municipios', [App\Http\Controllers\ComunidadeController::class, 'municipios']);
-Route::post('parroquias', [App\Http\Controllers\ComunidadeController::class, 'parroquias']);
-Route::post('municipios', [App\Http\Controllers\ProyectoController::class, 'municipios']);
-Route::post('parroquias', [App\Http\Controllers\ProyectoController::class, 'parroquias']);
+Route::post('/getmunicipios', [App\Http\Controllers\ComunidadeController::class, 'municipios']);
+Route::post('/getparroquias', [App\Http\Controllers\ComunidadeController::class, 'parroquias']);
+Route::post('/getcomunidad', [App\Http\Controllers\ComunidadeController::class, 'getcomunidad']);
+
+Route::post('/getalumnos', [App\Http\Controllers\ProyectoController::class, 'getalumnos']);
 
 Route::get('/showcomunid/{id}', [App\Http\Controllers\ComunidadeController::class, 'show']);
 Route::post('/editcomunid', [App\Http\Controllers\ComunidadeController::class, 'edit']);
