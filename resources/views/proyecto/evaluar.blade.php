@@ -34,7 +34,6 @@
                     <input type="text" class="form-control" name="id_producto" id="id_producto" readonly value="">
                 </div>
             </div>
-        @endforeach
         <hr>
         <div class="form-group container">
             <div class="contenerdor form-group container" id="a">
@@ -44,19 +43,14 @@
                             <tr>
                                 <th width="40%">Item</th>
                                 <th width="40%">Peso</th>
+                                <th width="40%">Estatud</th>
                             </tr>
                         </thead>
                         <tbody id="tableItem" class="text-center" disabled>
-                            {{-- @foreach ($items as $item) --}}
                                 <tr>
-                                    <td  disabled>
-                                        {{-- {{$item->item}} --}}
-                                    </td>
-                                    <td  disabled>
-                                        {{-- {{$item->peso}} --}}
-                                    </td>
+                                    <td  disabled></td>
+                                    <td  disabled></td>
                                 </tr>
-                            @endforeach
                         </tbody>
                     </table>
                 </div>

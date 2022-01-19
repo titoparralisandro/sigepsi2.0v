@@ -81,18 +81,18 @@
                     </tr>
                 </thead>
             <tbody>
+
                 @foreach ($proyecto as $proyectos)
                 <tr>
                     <td>{{ $proyectos->id }}</td>
                     <td>{{ $proyectos->titulo }}</td>
-                    <td>{{ $proyectos->especialidades->especialidad }}</td>
-                    <td>{{ $proyectos->trayectos->trayecto }}</td>
-                    <td>{{ $proyectos->linea_investigaciones->linea_investigacion }} </td>
+                    <td>{{ $proyectos->carrera }}</td>
+                    <td>{{ $proyectos->trayecto }}</td>
+                    <td>{{ $proyectos->linea_investigacion }} </td>
                     <td>
                         <div class="btn-group">
-                          <button class="btn btn-info" type="button" href="evaluar">Evaluar</button>
-                          {{-- href="{{ route('proyecto.evaluar', $proyectos->id ) }}" --}}
-
+                            <a href="/evaluar/{{ $proyectos->id }}"class="btn btn-info">Evaluar</a>
+                            {{-- href="{{ route('proyecto.evaluar', $proyectos->id ) }}" --}}
                             {{-- <button class="btn btn-primary" type="button" onclick="getdata('{{ $comunidades->id }}')">Ver</button>
                             <button class="btn btn-info" type="button" onclick="editdata('{{ $comunidades->id }}')">Editar</button> --}}
                         </div>
@@ -120,7 +120,6 @@
                     "texto" : e.target.value
                 },
                 success: function(response){
-                    console.log(response)
                     var opciones ="<option value='0'>Seleccione su municipio</option>";
                     for (let i in response.lista) {
                         opciones+= '<option value="'+response.lista[i].id_municipio+'">'+response.lista[i].municipio+'</option>';

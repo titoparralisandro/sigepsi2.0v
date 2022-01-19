@@ -16,18 +16,13 @@ use Illuminate\Http\File;
 class ProyectoController extends Controller
 {
     public function index(){
-        $proyecto = Proyecto::all();
-        $especialidad = Especialidade::all();
-        $lineas_investigacion = Lineas_investigacione::all();
-        $carrera = Carrera::all();
-        $trayecto = Trayecto::all();
-        $estados = Estado::all();
-        return view('proyecto.index',["lineas_investigacion"=>$lineas_investigacion,
-                                        "proyecto"=>$proyecto,
-                                        "carrera"=>$carrera,
-                                        "estados"=>$estados,
-                                        "especialidad"=>$especialidad,
-                                        "trayecto"=>$trayecto]);
+        $proyecto= DB::table('proyectos')
+            ->join("lineas_investigaciones","proyectos.id_linea_investigacion","lineas_investigaciones.id")
+            ->join("carreras","proyectos.id_especialidad","carreras.id")
+            ->join("trayectos","proyectos.id_trayecto","trayectos.id")
+            ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto")
+            ->get();
+        return view('proyecto.index',["proyecto"=>$proyecto]);
     }
 
     public function create(Request $request){
@@ -41,6 +36,10 @@ class ProyectoController extends Controller
                                         "estados"=>$estados,
                                         "especialidad"=>$especialidad,
                                         "trayecto"=>$trayecto]);
+    }
+    public function evaluar($id)
+    {
+        return view('proyecto.evaluar');
     }
     public function getalumnos(Request $request)
     {
@@ -61,11 +60,39 @@ class ProyectoController extends Controller
         }
         return $html;
     }
-    public function store(Request $request){
-        $proyectos = Proyecto::all();
-        $lineas_investigacion = Lineas_investigacione::all();
-        $trayecto = Trayecto::all();
 
+    public function getProducto(Request $request){
+        $comunidades = DB::table('estructuras')
+            ->join("productos","estructuras.id_producto","productos.id")
+            ->leftjoin("lineas_investigaciones","estructuras.id_linea_investigacion","lineas_investigaciones.id")
+            ->select("productos.producto","productos.id")
+            ->whereRaw("estructuras.id_linea_investigacion='".$request->get('lineas_investigacion')."' and estructuras.id_carrera='".$request->get('especialidad')."'")
+            ->get();
+        $nav="<ul class='nav nav-tabs'>";
+        foreach ($comunidades as $comunidad) {
+            $nav.="<li class='nav-item'><a class='nav-link' data-toggle='tab' href='#".$comunidad->producto.$comunidad->id."'>".$comunidad->producto."</a></li>";
+        }
+        $nav.="</ul>";
+        $content="<div class='tab-content'>";
+        foreach ($comunidades as $producto) {
+            if($producto->id == 1){
+                $content.="<div id='".$producto->producto.$producto->id."' class='tab-pane fade active show'>";
+            }else{
+                $content.="<div id='".$producto->producto.$producto->id."' class='tab-pane fade'>";
+            }
+            $content.="<div class='form-group p-4'>";
+            $content.="<label class='form-label'>Documento de ".$producto->producto."</label>";
+            $content.="<input type='file' class='form-control' name='file_".$producto->producto."' id='file_".$producto->producto."'>";
+            $content.="</div>";
+            $content.="</div>";
+        }
+        $content.="</div>";
+        $html = $nav;
+        $html .= $content;
+        return $html;
+    }
+
+    public function store(Request $request){
         $proyecto = new Proyecto();
 
         $proyecto->titulo = $request->get('titulo');
@@ -77,15 +104,24 @@ class ProyectoController extends Controller
         //$proyecto->direccion = $request->get('direccion');
 
         $proyecto->save();
-
-        $documento = new Files();
         mkdir(public_path('upload/'.$proyecto->id), 0777, true);
-        $max_size = (int)ini_get('upload_max_filesize') * 15360;
-        $documento->documento = 'upload/'.$proyecto->id.'/proyect_'.$proyecto->id.'.pdf';
-        $documento->id_proyecto = $proyecto->id;
-        $documento->save();
+        foreach ($request->files as $key => $value) {
+            $nombre_documento = explode("_",$key);
+            $documento = new Files();
+            $documento->documento = 'upload/'.$proyecto->id.'/proyect_'.$nombre_documento[1].'.pdf';
+            $documento->id_proyecto = $proyecto->id;
+            $documento->save();
+            copy($request->file($key), public_path('upload/'.$proyecto->id.'/proyect_'.$nombre_documento[1].'.pdf'));
+        }
 
-        copy($request->file('file'), public_path('upload/'.$proyecto->id.'/proyect_'.$proyecto->id.'.pdf'));
+
+
+        //$max_size = (int)ini_get('upload_max_filesize') * 15360;
+
+
+
+
+
         return redirect('/proyecto')->with('respuesta', 'creado');
 
 
