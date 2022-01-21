@@ -87,15 +87,10 @@ class ProyectoController extends Controller
         copy($request->file('file'), public_path('upload/'.$proyecto->id.'/proyect_'.$proyecto->id.'.pdf'));
         return redirect('/proyecto')->with('respuesta', 'creado');
 
-
-        //
         //OJOOOOOO OJOOOOOO ---> VER VER Editar ::
      //los permisos en linux 775 chmod para que guarde la ruta para que guarde los PDF
 
         // return redirect('/proyecto')->with('respuesta', 'creado');
-
-
-
 
     }
 }
