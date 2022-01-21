@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Siace;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\MailController;
 /*
@@ -70,7 +69,6 @@ Route::get('comentario/store',[ComentarioController::class,'store'])->name('come
 Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('proyecto',App\Http\Controllers\ProyectoController::class);
 
-
 Route::resource('comunidades',App\Http\Controllers\ComunidadeController::class);
 Route::resource('tipos_comunidad',App\Http\Controllers\Tipos_comunidadeController::class);
 
@@ -93,10 +91,14 @@ Route::resource('estatus_progresos',App\Http\Controllers\Estatus_progresoControl
 Route::resource('estatus_necesidades',App\Http\Controllers\Estatus_necesidadeController::class);
 Route::resource('estatus_situaciones',App\Http\Controllers\Estatus_situacioneController::class);
 
-Route::post('municipios', [App\Http\Controllers\ComunidadeController::class, 'municipios']);
-Route::post('parroquias', [App\Http\Controllers\ComunidadeController::class, 'parroquias']);
-Route::post('municipios', [App\Http\Controllers\ProyectoController::class, 'municipios']);
-Route::post('parroquias', [App\Http\Controllers\ProyectoController::class, 'parroquias']);
+Route::post('/getmunicipios', [App\Http\Controllers\ComunidadeController::class, 'municipios']);
+Route::post('/getparroquias', [App\Http\Controllers\ComunidadeController::class, 'parroquias']);
+Route::post('/getcomunidad', [App\Http\Controllers\ComunidadeController::class, 'getcomunidad']);
+
+Route::post('/getalumnos', [App\Http\Controllers\ProyectoController::class, 'getalumnos']);
+Route::post('/getProducto', [App\Http\Controllers\ProyectoController::class, 'getProducto']);
+Route::get('/evaluar/{id}', [App\Http\Controllers\ProyectoController::class, 'evaluar']);
+Route::post('/getProdestruc', [App\Http\Controllers\ProyectoController::class, 'getProdestruc']);
 
 Route::get('/showcomunid/{id}', [App\Http\Controllers\ComunidadeController::class, 'show']);
 Route::post('/editcomunid', [App\Http\Controllers\ComunidadeController::class, 'edit']);

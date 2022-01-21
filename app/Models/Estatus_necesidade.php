@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Estatus_necesidade extends Model
 {
     use HasFactory;
+
+    public function necesidades(){
+        return $this->hasMany(Necesidade::class);
+    }
 }

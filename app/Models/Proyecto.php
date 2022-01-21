@@ -51,4 +51,9 @@ class Proyecto extends Model
     public function file(){
         return $this->hasMany(File::class, 'id');
     }
+
+    // evaluaciones forenkey
+    public function evaluaciones(){
+        return $this->hasMany(Evaluacione::class, 'id');
+    }
 }

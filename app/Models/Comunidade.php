@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comunidade extends Model
 {
     use HasFactory;
-    
+
     public function user(){
         return $this->belongsTo(User::class, 'id_user');
     }
@@ -19,5 +19,9 @@ class Comunidade extends Model
 
     public function proyectos(){
         return $this->hasMany(Proyecto::class, 'id');
+    }
+
+    public function necesidades(){
+        return $this->hasMany(Necesidade::class, 'id');
     }
 }

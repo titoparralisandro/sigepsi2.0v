@@ -80,7 +80,7 @@ $carrera =  Carrera::all();
 
     @if(session('respuesta')=='creado')
     <script>
-    toastr.success('Prueba, ha sido creada.')
+    toastr.success('Registro creado con éxito.')
     </script>
     @endif
 
@@ -88,14 +88,14 @@ $carrera =  Carrera::all();
     <script>
     Swal.fire(
     'Eliminado!',
-    'El registro se ha eliminado con éxito.',
+    'Registro eliminado con éxito.',
     'success')
     </script>
     @endif
 
     @if(session('respuesta')=='editado')
     <script>
-    toastr.info('Prueba, se ha editado correctamente.')
+    toastr.info('Registro editado con éxito.')
     </script>
     @endif
     <script>
@@ -108,7 +108,7 @@ $(".eliminar").submit(function(e){
   e.preventDefault();
   Swal.fire({
     title: '¿Estás seguro?',
-    text: "¡Esta acción no tiene vuelta atrás!",
+    text: "¡Esta acción no se puede deshacer!",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',

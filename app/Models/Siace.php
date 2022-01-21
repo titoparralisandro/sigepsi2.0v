@@ -11,6 +11,10 @@ class Siace extends Model
 
     protected $table = 'public.estudiantes_iutoms';
 
+    // carrera forenkey
+    public function cod_carreras(){
+        return $this->belongsTo(Siace::class, 'cod_carrera');
+    }
 
     public static function getStudentByEmail($valor)
     {

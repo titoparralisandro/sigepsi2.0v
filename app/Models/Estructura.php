@@ -34,4 +34,11 @@ class Estructura extends Model
         return $this->hasMany(Item_estructura::class, 'id');
     }
 
+    // item_estructuras forenkey
+    public function evaluaciones(){
+        return $this->hasMany(Evaluacione::class, 'id');
+    }
+
+
+
 }

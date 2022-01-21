@@ -20,4 +20,8 @@ class Carrera extends Model
     public function estructuras(){
         return $this->hasMany(Estructura::class, 'id');
     }
+
+    public function siace(){
+        return $this->hasMany(Siace::class, 'id');
+    }
 }

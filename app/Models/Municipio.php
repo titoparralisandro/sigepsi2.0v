@@ -23,4 +23,8 @@ class Municipio extends Model
     public function proyectos(){
         return $this->hasMany(Proyecto::class, 'id');
     }
+
+    public function necesidades(){
+        return $this->hasMany(Necesidade::class, 'id');
+    }
 }

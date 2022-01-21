@@ -72,7 +72,7 @@
 
     @if(session('respuesta')=='creado')
     <script>
-    toastr.success('El comentario, ha sido creado.')
+    toastr.success('Se ha creado un comentario.')
     </script>
     @endif
 
@@ -80,7 +80,7 @@
     <script>
     Swal.fire(
     'Eliminado!',
-    'El comentario se ha eliminado con éxito.',
+    'Se elimino el comentario seleccionado.',
     'success')
     </script>
     @endif
@@ -96,7 +96,7 @@ $("#eliminar").submit(function(e){
   e.preventDefault();
   Swal.fire({
     title: '¿Estás seguro?',
-    text: "¡Esta acción no tiene vuelta atrás!",
+    text: "¡Esta acción no se puede deshacer.!",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
