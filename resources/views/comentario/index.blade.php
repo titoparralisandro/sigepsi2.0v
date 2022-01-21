@@ -1,7 +1,6 @@
 @extends('adminlte::page')
 @section('title', 'Comentarios')
 @section('plugins.Sweetalert2', true)
-@section('plugins.Toastr', true)
 @section('plugins.Datatables', true)
 
 @if(count($errors)>0)
@@ -66,24 +65,12 @@
 
 @section('js')
 
-    @if(session('respuesta')=='creado')
-    <script>
-    toastr.success('Se ha creado un comentario.')
-    </script>
-    @endif
-
     @if(session('respuesta')=='eliminado')
     <script>
     Swal.fire(
     'Eliminado!',
     'Se elimino el comentario seleccionado.',
     'success')
-    </script>
-    @endif
-
-    @if(session('respuesta')=='editado')
-    <script>
-    toastr.info('El comentario, se ha editado correctamente.')
     </script>
     @endif
 
