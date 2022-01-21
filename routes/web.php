@@ -46,10 +46,6 @@ Route::resource('/contact', App\Http\Controllers\ContactController::class);
 
 Auth::routes();
 
-Route::resource('prueba',App\Http\Controllers\PruebaController::class);
-
-Route::resource('prueba',App\Http\Controllers\PruebaController::class);
-
 Route::resource('comentario',ComentarioController::class);
 
 /*

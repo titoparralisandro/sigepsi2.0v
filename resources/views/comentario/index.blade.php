@@ -26,44 +26,40 @@
   </div>
 </div>
 
-<hr>
-
 <div class="card border-dark">
   <div class="card-body text-dark">
-    <hr>
-<table id="example1" class="table table-striped table-bordered nowrap"  style="width:100%">
-<thead>
-  <tr>
-    <th>N°</th>
-    <th>Nombre</th>
-    <th>Correo</th>
-    <th>Comentarios</th>
-    <th>Acciones</th>
-  </tr>
-</thead>
-<tbody>
-  @foreach ($comentarios as $comentario)
-  <tr>
-    <td>{{ $comentario->id }}</td>
-    <td>{{ $comentario->name }}</td>
-    <td>{{ $comentario->email }}</td>
-    <td>{{ $comentario->comentario }}</td>
-    <td>
-    <form id="eliminar" class="eliminar" action="{{ route('comentario.destroy', $comentario->id ) }}" method="POST">
-    @csrf
-    <!-- @ method('DELETE') -->
-    {{ method_field('DELETE') }}
-    
-    <a class="btn btn-primary" href="{{ route('comentario.show', $comentario->id ) }}">Mostrar</a> | <button type="submit" class="btn btn-danger" href="">Eliminar</button>
-    
-    </form>
-    </td>
-    
-  </tr>
-  @endforeach
-</tbody>
-</table>
-</div>
+    <table id="example1" class="table table-striped table-bordered nowrap"  style="width:100%">
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Comentarios</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ($comentarios as $comentario)
+        <tr>
+          <td>{{ $comentario->id }}</td>
+          <td>{{ $comentario->name }}</td>
+          <td>{{ $comentario->email }}</td>
+          <td>{{ $comentario->comentario }}</td>
+          <td>
+          <form id="eliminar" class="eliminar" action="{{ route('comentario.destroy', $comentario->id ) }}" method="POST">
+          @csrf
+          <!-- @ method('DELETE') -->
+          {{ method_field('DELETE') }}
+          
+          <a class="btn btn-primary" href="{{ route('comentario.show', $comentario->id ) }}">Mostrar</a> | <button type="submit" class="btn btn-danger" href="">Eliminar</button>
+          
+          </form>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
 
 </div>
 @stop

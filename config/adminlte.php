@@ -224,32 +224,7 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => false,
-        ],
-        [
-            'type'         => 'fullscreen-widget',
-            'topnav_right' => false,
-        ],
-
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text' => 'Pruebas',
-            'url'  => '/prueba',
-            'icon' => 'fas fa-fw fa-list-ol',
-        ],
         [
             'text' => 'Gestión de proyectos',
             'icon'    => 'fas fa-fw fa-handshake',
@@ -413,6 +388,11 @@ return [
         ],
 
         ['header' => 'Información'],
+        [
+            'text' => 'Comentarios',
+            'url'  => '/comentario',
+            'icon' => 'fas fa-fw fa-comment',
+        ],
         [
             'text' => 'A cerca de',
             'url'  => '/a_cerca_de',

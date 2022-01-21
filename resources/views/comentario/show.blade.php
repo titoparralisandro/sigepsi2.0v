@@ -3,29 +3,56 @@
 @section('title', 'Comentario')
 
 @section('content_header')
-<div class="bg-primary color-palette"><h1 class="text-center"><strong>Comentario</h1></strong></div>
+<div class="card-header bg-primary ">
+  <div class="color-palette">
+    <h1 class="text-center"><strong>Comentario</strong></h1>
+  </div>
+</div>
+
+<div class="card border-dark">
+
+  <div class="card-body text-dark">
+
+      <form>
+
+        <div class="row">
+          
+          <div class="form-group col col-6">
+
+            <label class="form-label">Usuario</label>
+            <input disabled class="form-control" type="text" value="{{ $comentario->name }}">
+
+          </div>
+
+          <div class="form-group col col-6">
+
+            <label class="form-label ">Correo</label>
+            <input disabled class="form-control" type="text" value="{{ $comentario->email }}">
+
+          </div>
+
+        </div>
+
+          <div class="form-group">
+
+            <label class="form-label">Asunto</label>
+            <input disabled class="form-control" type="text" value={{ $comentario->asunto }}>
+
+          </div>
+
+          <div class="form-group">
+
+              <label class="form-label">Comentario</label>
+              <textarea disabled class="form-control" cols="25" rows="4">{{ $comentario->comentario }}</textarea>
+
+          </div>
+
+          <a href="{{ route('comentario.index') }}" class="btn btn-primary">volver</a>
+
+      </form>
+
+  </div>
+
+</div>
+
 @stop
-
-@section('content')
-<hr>
-<div class="card">
-
- <div class="card-header bg-info text-dark">
- 	<h2 class="text-center">{{ $comentario->name }}</h2>
-</div>
-
-<div class="card-body">
-  <h3 class="text-center">{{ $comentario->email }}</h3>
-</div>
-
-<div class="card-body">
-  <h3 class="text-center">{{ $comentario->asunto }}</h3>
-</div>
-
-<div class="card-footer bg-info text-dark">
-  <h4 class="text-center">{{ $comentario->comentario }}</h4>
-</div>
-
-</div>
-<hr>
-<a href="{{ route('comentario.index') }}" class="btn btn-primary">volver</a>

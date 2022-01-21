@@ -51,10 +51,6 @@ class PruebaSeeder extends Seeder
         Tipos_comunidade::create(array( 'tipo_comunidad' => 'Pública'));
         Tipos_comunidade::create(array( 'tipo_comunidad' => 'Privada'));
         Tipos_comunidade::create(array( 'tipo_comunidad' => 'Mixta'));
-        Tipos_comunidade::create(array( 'tipo_comunidad' => 'Educativa'));
-        Tipos_comunidade::create(array( 'tipo_comunidad' => 'Financiera'));
-        Tipos_comunidade::create(array( 'tipo_comunidad' => 'De alimentación'));
-        Tipos_comunidade::create(array( 'tipo_comunidad' => 'Deportiva'));
 
         /* Carreras */
         Carrera::create(array( 'carrera' => 'PNF en Administración', 'descripcion' => 'Plantea la formación articulada con la realidad a través de la formación en comunidades de aprendizaje y de conocimiento, reconociendo los diferentes problemas y retos políticos, sociales, culturales, éticos, económicos y ambientales; disminuyendo la tensión entre la teoría y la práctica administrativa. Este Programa constituye un conjunto de actividades académicas, formativas, de creación intelectual y de vinculación social, conducente a la certificación de capacidades profesionales (Certificado de Asistente Administrativo) y al otorgamiento de títulos de Técnico Superior Universitario y de Licenciado en Administración.', 'estatus' => true));
