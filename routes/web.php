@@ -98,6 +98,7 @@ Route::post('/getcomunidad', [App\Http\Controllers\ComunidadeController::class, 
 Route::post('/getalumnos', [App\Http\Controllers\ProyectoController::class, 'getalumnos']);
 Route::post('/getProducto', [App\Http\Controllers\ProyectoController::class, 'getProducto']);
 Route::get('/evaluar/{id}', [App\Http\Controllers\ProyectoController::class, 'evaluar']);
+Route::post('/getProdestruc', [App\Http\Controllers\ProyectoController::class, 'getProdestruc']);
 
 Route::get('/showcomunid/{id}', [App\Http\Controllers\ComunidadeController::class, 'show']);
 Route::post('/editcomunid', [App\Http\Controllers\ComunidadeController::class, 'edit']);

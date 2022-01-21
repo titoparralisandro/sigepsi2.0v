@@ -39,7 +39,14 @@ class ProyectoController extends Controller
     }
     public function evaluar($id)
     {
-        return view('proyecto.evaluar');
+        $proyecto= DB::table('proyectos')
+        ->join("lineas_investigaciones","proyectos.id_linea_investigacion","lineas_investigaciones.id")
+        ->join("carreras","proyectos.id_especialidad","carreras.id")
+        ->join("trayectos","proyectos.id_trayecto","trayectos.id")
+        ->select("proyectos.*","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","trayectos.descripcion")
+        ->where("proyectos.id","=",$id)
+        ->get();
+        return view('proyecto.evaluar',['data'=>$proyecto[0]]);
     }
     public function getalumnos(Request $request)
     {
@@ -58,6 +65,67 @@ class ProyectoController extends Controller
             $html .="<td><button class='btn btn-success' type='button' onclick=\"selectAlumno(".$comunidad->id.",'".$comunidad->nombres." ".$comunidad->apellidos."','".$comunidad->trayecto."','".$comunidad->cedula."')\">Seleccionar</button></td>";
             $html .="</tr>";
         }
+        return $html;
+    }
+
+    public function getProdestruc(Request $request)
+    {
+        $comunidades = DB::table('estructuras')
+            ->join("productos","estructuras.id_producto","productos.id")
+            ->leftjoin("lineas_investigaciones","estructuras.id_linea_investigacion","lineas_investigaciones.id")
+            ->select("productos.producto","productos.id","estructuras.id as estrucId")
+            ->whereRaw("estructuras.id_linea_investigacion='".$request->get('lineas_investigacion')."' and estructuras.id_carrera='".$request->get('especialidad')."'")
+            ->get();
+        $nav="<ul class='nav nav-tabs'>";
+        foreach ($comunidades as $comunidad) {
+            $nav.="<li class='nav-item' id='prod_".$comunidad->id."'><a class='nav-link' data-toggle='tab' href='#".$comunidad->producto.$comunidad->id."'>".$comunidad->producto."</a></li>";
+        }
+        $nav.="</ul>";
+        $content="<div class='tab-content'>";
+        foreach ($comunidades as $producto) {
+            if($producto->id == 1){
+                $content.="<div id='".$producto->producto.$producto->id."' class='tab-pane fade active show'>";
+            }else{
+                $content.="<div id='".$producto->producto.$producto->id."' class='tab-pane fade'>";
+            }
+            $content.="<div class='form-group p-4'>";
+            $content.="<table class='table table-striper'>";
+            $content.="<thead class='text-center'>";
+            $content.="<tr>";
+            $content.="<th width='30%'>Item</th>";
+            $content.="<th width='20%'>Peso</th>";
+            $content.="<th width='50%'>Estatud</th>";
+            $content.="</tr>";
+            $content.="</thead>";
+            $content.="<tbody id='tableItem' class='text-center'>";
+            $item_estructura = DB::table('estructuras')
+            ->join("productos","estructuras.id_producto","productos.id")
+            ->join("item_estructuras","item_estructuras.id_estructura","estructuras.id")
+            ->join("items_estructuras","item_estructuras.id_items","items_estructuras.id")
+            ->select("item_estructuras.id","item_estructuras.peso","items_estructuras.item")
+            ->whereRaw("estructuras.id_linea_investigacion='".$request->get('lineas_investigacion')."' and estructuras.id_carrera='".$request->get('especialidad')."' and estructuras.activa=true and estructuras.id_producto='".$producto->id."'")
+            ->get();
+            foreach ($item_estructura as $item) {
+                $content.="<tr>";
+                $content.="<td>".$item->item."</td>";
+                $content.="<td>".$item->peso."</td>";
+                $content.="<td><select data-id='".$producto->id."' data-peso='".$item->peso."' name='estatud_".$item->id."' id='estatud_".$item->id."' class='form-control'><option value='NULL'>Seleccionar una opcion</option><option value='Pendiente'>Pendiente</option><option value='Culminado'>Culminado</option></select></td>";
+                $content.="</tr>";
+            }
+            $content.="</tbody>";
+            $content.="</table>";
+            $content.='<div class="progress" style="height:30px">';
+            $content.='<div id="bar_'.$producto->id.'" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" data-progress="0" style="width:0%;">';
+            $content.="<p style='margin-top:15px;font-size:20px'><span id='bar_progress_".$producto->id."'></span>/100</p>";
+            $content.="</div>";
+            $content.="</div>";
+            $content.="</div>";
+            $content.="</div>";
+
+        }
+        $content.="</div>";
+        $html = $nav;
+        $html .= $content;
         return $html;
     }
 
