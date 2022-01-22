@@ -36,7 +36,7 @@
             </div>
         </div>
         <hr>
-        
+
         <div class="form-group container">
             <form >
                 <div class="contenerdor form-group container" id="a">
@@ -45,7 +45,7 @@
                             Puntos Disponibles:  <label id="puntos"></label>
                         </div>
                     <div class="contenerdor">
-                        <table class="table table-striper" id="table_item">
+                        <table class="table table-striper">
                             <thead class="text-center">
                                 <tr >
                                     <th width="40%">Item</th>
@@ -91,7 +91,7 @@
             var form = $('#formEstruct')[0];
             var dataItems = new Array();
             var dataFinal = new Object();
-            var table = $("#table_item")[0].children;
+            var table = $("#tableItem")[0].children;
             for (let i = 0; i < table.length; i++) {
                 dataItems.push(new Object({'item':$("#item"+(i+1)).val(),'point':$("#point_estruct"+(i+1)).val()}));
             }
