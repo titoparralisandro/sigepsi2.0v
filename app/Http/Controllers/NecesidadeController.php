@@ -21,7 +21,8 @@ class NecesidadeController extends Controller
     }
     public function index(){
         $estados = Estado::all();
-        return view('necesidad.index',["estados"=>$estados]);
+        $necesidad = Necesidade::all();
+        return view('necesidad.index',["necesidad"=>$necesidad,"estados"=>$estados]);
     }
 
     public function create(){
@@ -46,10 +47,10 @@ class NecesidadeController extends Controller
 
         $user = auth()->user()->id;
 
-        $id = DB::table('comunidades')
-        ->select('id')
-        ->where('id_user','=',$user)
-        ->get();
+        // $id = DB::table('comunidades')
+        // ->select('id')
+        // ->where('id_user','=',$user)
+        // ->get();
         
         // $comunidad = DB::table('comunidades')
         //     ->join('users', 'comunidades.id_user', '=', 'user.id')
@@ -71,7 +72,8 @@ class NecesidadeController extends Controller
             // ->get();
 
         $necesidad = new Necesidade();
-        $necesidad->id_comunidad = $id;
+
+        $necesidad->id_comunidad = 1;
         $necesidad->necesidad = $request->get('necesidad');
         $necesidad->id_estatus_necesidad = 1;
         $necesidad->id_estado = $request->get('id_estado');

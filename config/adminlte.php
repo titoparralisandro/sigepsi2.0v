@@ -391,7 +391,7 @@ return [
         [
             'text' => 'Comentarios',
             'url'  => '/comentario',
-            'icon' => 'fas fa-fw fa-comment',
+            'icon' => 'fas fa-fw fa-comments',
         ],
         [
             'text' => 'A cerca de',

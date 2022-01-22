@@ -14,7 +14,7 @@ class Necesidade extends Model
     }
 
     public function estatus_necesidades(){
-        return $this->belongsTo(Estatus_necesidade::class);
+        return $this->belongsTo(Estatus_necesidade::class, 'id_estatus_necesidad');
     }
 
     // estado forenkey

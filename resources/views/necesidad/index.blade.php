@@ -35,35 +35,28 @@
           <th>N°</th>
           <th>Comunidad</th>
           <th>Contacto</th>
-          <th>Situación</th>
+          <th>Estatus</th>
           <th>Opciones</th>
         </tr>
       </thead>
       <tbody>
+        @foreach ($necesidad as $necesidades)
         <tr>
-          <td>1</td>
-          <td>2</td>
-          <td>3</td>
-          <td>4</td>
-          <td>5</td>
-        </tr>
-      </tbody>
-      {{-- <tbody>
-        @foreach ($comentarios as $comentario)
-        <tr>
-          <td>{{ $comentario->id }}</td>
-          <td>{{ $comentario->name }}</td>
-          <td>{{ $comentario->email }}</td>
-          <td>{{ $comentario->comentario }}</td>
-          <td> </td>
+          <td>{{ $necesidades->id }}</td>
+          <td>{{ $necesidades->comunidades->nombre }}</td>
+          <td>{{ $necesidades->comunidades->persona_contacto }} | {{ $necesidades->comunidades->telefono_contacto }}</td>
+          <td>{{ $necesidades->estatus_necesidades->estatus_necesidad }}</td>
+          <td><button class="btn btn-success btn-sm"><i class="fas fa-eye"></i></button></td>
         </tr>
         @endforeach
-      </tbody> --}}
+      </tbody>
     </table>
   </div>
 
 </div>
+
 @include('necesidad.modal.create')
+
 @stop
 
 @section('js')
