@@ -46,7 +46,7 @@ class NecesidadeController extends Controller
 
         $user = auth()->user()->id;
 
-        $comunidad = DB::table('comunidades')
+        $id = DB::table('comunidades')
         ->select('id')
         ->where('id_user','=',$user)
         ->get();
@@ -75,7 +75,7 @@ class NecesidadeController extends Controller
             // ->get();
 
         $necesidad = new Necesidade();
-        $necesidad->id_comunidad = $comunidad;
+        $necesidad->id_comunidad = $id;
         $necesidad->necesidad = $request->get('necesidad');
         $necesidad->id_estatus_necesidad = 1;
         $necesidad->id_estado = $request->get('id_estado');
