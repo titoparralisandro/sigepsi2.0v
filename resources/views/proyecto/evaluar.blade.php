@@ -4,6 +4,7 @@
 
 @section('plugins.Select2', true)
 @section('plugins.Dropzone', true)
+@section('plugins.Bs-stepper', true)
 
 @section('content_header')
 <div class="card-header bg-primary ">
@@ -29,8 +30,10 @@
             </div>
         <hr>
         <div class="form-group container">
-            <div id="divProducto">
-            </div>
+            <form action="#" id="FormEva" method="POST">
+                <div id="divProducto">
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -48,6 +51,7 @@
 @section('js')
 <script>
     $(document).ready(() =>{
+
         $.ajax({
             type: "POST",
             url: "/getProdestruc",
@@ -62,8 +66,26 @@
                 $("#divProducto").empty().append(response);
             }
         });
+        var stepper = new Stepper($('.bs-stepper')[0])
         var valor_barra=0;
+        var valor_actual0;
         var valores_barra = [];
+        $(".next").click((e)=>{
+            var key = "prod_"+(stepper._currentIndex+1);
+            if(key in valores_barra){
+                valores_barra[key] = valor_barra
+            }else{
+                valores_barra[key] = valor_barra;
+                valor_barra=0;
+            }
+
+            stepper.next();
+        });
+        $(".Prev").click(()=>{
+            valor_barra=valores_barra["prod_"+(stepper._currentIndex+1)];
+            valor_actual=valor_barra;
+            stepper.previous();
+        });
         $('select').change(function(e){
             var element = e.currentTarget;
             var id = element.dataset.id
@@ -71,19 +93,32 @@
             if (element.value == "Culminado") {
                 valor_barra += parseInt(peso);
             }else{
-                var valor_actual = $("#bar_progress_"+id)[0].textContent
+                valor_actual = $("#bar_progress_"+id)[0].textContent
                 valor_barra = parseInt(valor_actual)-parseInt(peso);
             }
             $("#bar_"+id).css("width",valor_barra+"%");
             $("#bar_progress_"+id).html(valor_barra);
         });
-        $('li').click(function(e){
-            var container = $(this).parent()[0].children;
-            var element = e.currentTarget;
-            var id=element.id.split("_");
-            valores_barra[id[0]+"_"+(id[1]-1)] = valor_barra;
-            valor_barra=0;
-        })
+
+        $("#FormEva").submit(function (e) {
+            e.preventDefault();
+            valores_barra["prod_"+(stepper._currentIndex+1)] = valor_barra;
+            $.ajax({
+            type: "POST",
+            url: "/getProdestruc",
+            async: false,
+            cache: false,
+            data: {
+                "_token" : "{{ csrf_token() }}",
+                "especialidad" : "{{ $data->id_especialidad }}",
+                "lineas_investigacion" : "{{ $data->id_linea_investigacion }}"
+            },
+            success: function(response){
+                $("#divProducto").empty().append(response);
+            }
+        });
+        });
+
     });
 
 </script>

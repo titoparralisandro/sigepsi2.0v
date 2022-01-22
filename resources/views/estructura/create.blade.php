@@ -207,7 +207,7 @@
     }
 
     function crear(obj) {
-        var rowCount = $('#table_item tbody tr').length;
+        var rowCount = $('#tableItem tr').length;
         var inputEmpty = 0;
         if(rowCount>0){
             for (let i = 0; i < rowCount; i++) {

@@ -16,6 +16,15 @@ class Comunidade extends Model
     public function tipos_comunidades(){
         return $this->belongsTo(Tipos_comunidade::class, 'id_tipo_comunidad');
     }
+    public function estados(){
+        return $this->belongsTo(Estado::class, 'id_estado');
+    }
+    public function municipios(){
+        return $this->belongsTo(Municipio::class, 'id_municipio');
+    }
+    public function parroquias(){
+        return $this->belongsTo(Parroquia::class, 'id_parroquia');
+    }
 
     public function proyectos(){
         return $this->hasMany(Proyecto::class, 'id');

@@ -76,18 +76,22 @@ class ProyectoController extends Controller
             ->select("productos.producto","productos.id","estructuras.id as estrucId")
             ->whereRaw("estructuras.id_linea_investigacion='".$request->get('lineas_investigacion')."' and estructuras.id_carrera='".$request->get('especialidad')."'")
             ->get();
-        $nav="<ul class='nav nav-tabs'>";
-        foreach ($comunidades as $comunidad) {
-            $nav.="<li class='nav-item' id='prod_".$comunidad->id."'><a class='nav-link' data-toggle='tab' href='#".$comunidad->producto.$comunidad->id."'>".$comunidad->producto."</a></li>";
-        }
-        $nav.="</ul>";
-        $content="<div class='tab-content'>";
-        foreach ($comunidades as $producto) {
-            if($producto->id == 1){
-                $content.="<div id='".$producto->producto.$producto->id."' class='tab-pane fade active show'>";
-            }else{
-                $content.="<div id='".$producto->producto.$producto->id."' class='tab-pane fade'>";
+        $nav="<div class='bs-stepper-header' role='tablist'>";
+        foreach ($comunidades as $index =>$comunidad) {
+            $nav.='<div class="step" data-target="#'.$comunidad->producto.'-part">';
+            $nav.='<button type="button" class="step-trigger" role="tab" aria-controls="'.$comunidad->producto.'-part" id="'.$comunidad->producto.'-part-trigger">';
+            $nav.='<span class="bs-stepper-circle">'.$comunidad->id.'</span>';
+            $nav.='<span class="bs-stepper-label">'.$comunidad->producto.'</span>';
+            $nav.='</button>';
+            $nav.='</div>';
+            if($index != count($comunidades) - 1) {
+                $nav.='<div class="line"></div>';
             }
+        }
+        $nav.="</div>";
+        $content="<div class='bs-stepper-content'>";
+        foreach ($comunidades as $index =>$producto) {
+            $content.='<div id="'.$producto->producto.'-part" class="content" role="tabpanel" aria-labelledby="'.$producto->producto.'-part-trigger">';
             $content.="<div class='form-group p-4'>";
             $content.="<table class='table table-striper'>";
             $content.="<thead class='text-center'>";
@@ -109,7 +113,7 @@ class ProyectoController extends Controller
                 $content.="<tr>";
                 $content.="<td>".$item->item."</td>";
                 $content.="<td>".$item->peso."</td>";
-                $content.="<td><select data-id='".$producto->id."' data-peso='".$item->peso."' name='estatud_".$item->id."' id='estatud_".$item->id."' class='form-control'><option value='NULL'>Seleccionar una opcion</option><option value='Pendiente'>Pendiente</option><option value='Culminado'>Culminado</option></select></td>";
+                $content.="<td><select data-id='".$producto->id."' data-peso='".$item->peso."' name='estatud_".$item->id."' id='estatud_".$item->id."' class='form-control'><option value='Pendiente'>Pendiente</option><option value='Culminado'>Culminado</option></select></td>";
                 $content.="</tr>";
             }
             $content.="</tbody>";
@@ -120,12 +124,22 @@ class ProyectoController extends Controller
             $content.="</div>";
             $content.="</div>";
             $content.="</div>";
+            if($index != count($comunidades) - 1) {
+                if($index>=1){
+                    $content.='<a class="btn btn-secondary Prev" id="btnPrev">Anterior</a>';
+                }
+                $content.='<a class="btn btn-primary next" id="btnNext">Siguiente</a>';
+            }else{
+                $content.='<a class="btn btn-secondary Prev" id="btnPrev">Anterior</a>';
+                $content.='<button type="submit" class="btn btn-success">Registrar</button>';
+            }
             $content.="</div>";
-
         }
         $content.="</div>";
-        $html = $nav;
+        $html  = '<div class="bs-stepper">';
+        $html .= $nav;
         $html .= $content;
+        $html .= "</div>";
         return $html;
     }
 

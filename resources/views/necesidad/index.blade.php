@@ -46,7 +46,7 @@
           <td>{{ $necesidades->comunidades->nombre }}</td>
           <td>{{ $necesidades->comunidades->persona_contacto }} | {{ $necesidades->comunidades->telefono_contacto }}</td>
           <td>{{ $necesidades->estatus_necesidades->estatus_necesidad }}</td>
-          <td><button class="btn btn-success btn-sm"><i class="fas fa-eye"></i></button></td>
+          <td><a class="btn btn-primary" href="{{ route('necesidad.show', $necesidades->id ) }}"><i class="fas fa-eye"></i></a></td>
         </tr>
         @endforeach
       </tbody>
