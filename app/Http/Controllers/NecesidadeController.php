@@ -47,33 +47,14 @@ class NecesidadeController extends Controller
 
         $user = auth()->user()->id;
 
-        // $id = DB::table('comunidades')
-        // ->select('id')
-        // ->where('id_user','=',$user)
-        // ->get();
-        
-        // $comunidad = DB::table('comunidades')
-        //     ->join('users', 'comunidades.id_user', '=', 'user.id')
-        //     ->where('id_user','=',$user)
-        //     ->select('comunidades.id')
-        //     ->get();
-        // $comunidad = Comunidade::join('users', 'user.id', '=', 'comunidades.id_user')
-        //     ->where('id_user','=',$usuario)
-        //     ->select('comunidades.id')
-        //     ->get();
-        //     // ->join('user', 'user.id', '=', 'comunidades.id_user')
-        //     ->where('id_user','=',$user)
-        //     ->get();
-        // $comunidad = Comunidade::join('comunidades', 'comunidades.id_user', '=', $user)
-        //     ->select('comunidades.id')
-        //     ->get();
-            // $comunidad = User::rightJoin('comunidades', 'comunidades.id_user', '=', $user)
-            // ->select('comunidades.id')
-            // ->get();
+        $id = DB::table('comunidades')
+        ->select('id')
+        ->where('id_user','=',$user)
+        ->first();
 
         $necesidad = new Necesidade();
-
-        $necesidad->id_comunidad = 1;
+        
+        $necesidad->id_comunidad = $id->id;
         $necesidad->necesidad = $request->get('necesidad');
         $necesidad->id_estatus_necesidad = 1;
         $necesidad->id_estado = $request->get('id_estado');
@@ -87,11 +68,12 @@ class NecesidadeController extends Controller
 
     }
 
-    public function edit(Request $request){
-
+    public function show(Necesidade $necesidades, $id){
+        $necesidad = Necesidade::findOrFail($id);
+        return view('necesidad.show', compact(['necesidad', 'id']));
     }
 
-    public function show($id){
+    public function edit(Request $request){
 
     }
 
