@@ -50,7 +50,6 @@ class NecesidadeController extends Controller
         ->select('id')
         ->where('id_user','=',$user)
         ->get();
-
         
         // $comunidad = DB::table('comunidades')
         //     ->join('users', 'comunidades.id_user', '=', 'user.id')
@@ -61,15 +60,12 @@ class NecesidadeController extends Controller
         //     ->where('id_user','=',$usuario)
         //     ->select('comunidades.id')
         //     ->get();
-
         //     // ->join('user', 'user.id', '=', 'comunidades.id_user')
         //     ->where('id_user','=',$user)
         //     ->get();
-
         // $comunidad = Comunidade::join('comunidades', 'comunidades.id_user', '=', $user)
         //     ->select('comunidades.id')
         //     ->get();
-        
             // $comunidad = User::rightJoin('comunidades', 'comunidades.id_user', '=', $user)
             // ->select('comunidades.id')
             // ->get();
