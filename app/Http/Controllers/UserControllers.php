@@ -109,7 +109,6 @@ class UserControllers extends Controller
         $html.="<div class='form-group'>";
         $html.="<label>Rol de usuario</label>";
         $html.="<select class='form-control' name='rol' id='rol' required>";
-        $html.="<option value='null'>Seleccione una opcion</option>";
             foreach($roles as $rol){
                 if($userRole[0] == $rol->name){
                     $html.="<option value='".$rol->id."' selected>".$rol->name."</option>";
@@ -137,7 +136,6 @@ class UserControllers extends Controller
             $user->email    =   $request->get('email');
             $user->password =   Hash::make($request->get('password'));
             $user->roles()->sync([$request->get('rol')]);
-            //$user->assignRole($request->get('rol'));
             $user->save();
             return response()->json(['error' => false]);
         }else{

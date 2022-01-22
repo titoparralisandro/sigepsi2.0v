@@ -338,12 +338,12 @@ return [
                 [
                     'text' => 'Necesidades',
                     'icon'    => 'fas fa-fw fa-book-reader',
-                    'url'  => '#',
+                    'url'  => '/necesidad',
                 ],
                 [
                     'text' => 'Banco de situaciones',
                     'icon'    => 'fas fa-fw fa-landmark',
-                    'url'  => '#',
+                    'url'  => '/situacion',
                 ],
         ],
         ],

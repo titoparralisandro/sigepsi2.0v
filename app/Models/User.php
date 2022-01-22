@@ -45,7 +45,8 @@ class User extends Authenticatable
 
     public function adminlte_image()
     {
-        return 'https://picsum.photos/300/300';//este url nos genera imágenes ramdom
+        $foto = 'vendor/adminlte/dist/img/avatar5.png';
+        return $foto;//este url nos genera imágenes ramdom
     }
 
     public function adminlte_desc()

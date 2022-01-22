@@ -10,7 +10,7 @@ class Necesidade extends Model
     use HasFactory;
 
     public function comunidades(){
-        return $this->belongsTo(Comunidade::class);
+        return $this->belongsTo(Comunidade::class, 'id_comunidad');
     }
 
     public function estatus_necesidades(){

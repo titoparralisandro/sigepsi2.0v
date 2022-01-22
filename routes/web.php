@@ -14,15 +14,10 @@ use App\Http\Controllers\MailController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
+
 
 Route::get('/',function () {
     return view('inicio');
-});
-Route::get('/send-email', [MailController::class, 'sendEmail']);
-
-Route::get('/contact',function () {
-    return view('contact');
 });
 
 Route::get('/about',function () {
@@ -33,40 +28,24 @@ Route::get('/courses',function () {
     return view('courses');
 });
 
-Route::get('perfil', function () {
-    return view('perfil');
-});
-
-Route::get('a_cerca_de', function () {
-    return view('a_cerca_de');
-});
-
 Route::get('/catalogo', [App\Http\Controllers\ProyectoController::class, 'catalogo']);
 Route::resource('/contact', App\Http\Controllers\ContactController::class);
 
+Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
+
 Auth::routes();
 
-Route::resource('comentario',ComentarioController::class);
+//prueba de enviar correo
+Route::get('/send-email', [MailController::class, 'sendEmail']);
+//prueba de enviar correo
 
-/*
-Route::get('comentario',[ComentarioController::class,'index'])->name('comentario.index');
-Route::get('comentario/create',[ComentarioController::class,'create'])->name('comentario.create');
-Route::get('comentario/{comentario}',[ComentarioController::class,'show'])->name('comentario.show');
-Route::get('comentario/store',[ComentarioController::class,'store'])->name('comentario.store');
-*/
-//Route::resource('comentario',ComentarioController::class);
-//Con use (index)
-//Route::get('comentario',[ComentarioController::class,'index']);
-
-// Sin use se usa App\Http\Controllers\
-//Route::get('comentario',[App\Http\Controllers\ComentarioController::class,'index']);
-
-
-Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('proyecto',App\Http\Controllers\ProyectoController::class);
 
 Route::resource('comunidades',App\Http\Controllers\ComunidadeController::class);
 Route::resource('tipos_comunidad',App\Http\Controllers\Tipos_comunidadeController::class);
+
+Route::resource('necesidad',App\Http\Controllers\NecesidadeController::class);
+Route::resource('situacion',App\Http\Controllers\SituacioneController::class);
 
 Route::resource('carrera',App\Http\Controllers\CarreraController::class);
 Route::resource('especialidad',App\Http\Controllers\EspecialidadeController::class);
@@ -80,6 +59,7 @@ Route::resource('producto',App\Http\Controllers\ProductoController::class);
 Route::resource('items_estructura',App\Http\Controllers\Items_estructuraController::class);
 Route::resource('estructura',App\Http\Controllers\EstructuraController::class);
 
+Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('tipos_asesoria',App\Http\Controllers\Tipos_asesoriaController::class);
 
 Route::resource('estatus_comunidades',App\Http\Controllers\Estatus_comunidadeController::class);
@@ -111,4 +91,9 @@ Route::post('/SaveEstruc', [App\Http\Controllers\EstructuraController::class, 's
 Route::post('/EditEstruc', [App\Http\Controllers\EstructuraController::class, 'saveEdit']);
 Route::post('/DeshEstruc', [App\Http\Controllers\EstructuraController::class, 'DeshEstruc']);
 
+Route::get('perfil', function () { return view('perfil'); });
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('a_cerca_de', function () { return view('a_cerca_de'); });
+
+Route::resource('comentario',ComentarioController::class);

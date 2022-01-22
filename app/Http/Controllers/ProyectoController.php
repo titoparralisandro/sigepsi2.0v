@@ -166,9 +166,9 @@ class ProyectoController extends Controller
         $proyecto->titulo = $request->get('titulo');
         $proyecto->fecha_inicio = $request->get('fecha_inicio');
         $proyecto->fecha_fin = $request->get('fecha_fin');
-        $proyecto->id_especialidad = $request->get('especialidad');
-        $proyecto->id_linea_investigacion = $request->get('linea_investigacion');
-        $proyecto->id_trayecto = $request->get('trayecto');
+        $proyecto->id_especialidad = $request->get('id_especialidad');
+        $proyecto->id_linea_investigacion = $request->get('id_lineas_investigacion');
+        $proyecto->id_trayecto = $request->get('id_trayecto');
         //$proyecto->direccion = $request->get('direccion');
 
         $proyecto->save();
