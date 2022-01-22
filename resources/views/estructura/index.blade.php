@@ -9,20 +9,20 @@
 @section('content_header')
 <div class="card-header bg-primary ">
   <div class="color-palette">
-    <h1 class="text-center"><strong>Estructuras evaluativas</strong></h1>
+    <h1 class="text-center"><strong>Estructuras Evaluativas</strong></h1>
   </div>
 </div>
 <div class="card border-dark">
 
   <div class="card-body text-dark">
-    <a class="btn btn-success" href="{{ route('estructura.create') }}">Añadir nueva estructura</a>
+    <a class="btn btn-success" href="{{ route('estructura.create') }}">Añadir Nueva Estructura</a>
     <hr>
                   <table id="example1" class="table table-head-fixed text-nowrap ">
                     <thead>
                       <tr>
                         <th>N°</th>
                         <th>Carrera</th>
-                        <th>Linea de investigación</th>
+                        <th>Linea de Investigación</th>
                         <th>Producto</th>
                         <th>Opciones</th>
                     </tr>
