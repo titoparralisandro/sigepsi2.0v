@@ -19,6 +19,10 @@ class CreateEstructurasEvaluacionesTable extends Migration
                 ->nullable()
                 ->references('id')->on('evaluaciones')
                 ->OnDelete('set null');
+            $table->foreignId('id_estructura')
+                ->nullable()
+                ->references('id')->on('estructuras')
+                ->OnDelete('set null');
             $table->foreignId('id_items_estructura')
                 ->nullable()
                 ->references('id')->on('items_estructuras')

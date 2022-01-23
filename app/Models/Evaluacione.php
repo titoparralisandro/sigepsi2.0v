@@ -18,10 +18,4 @@ class Evaluacione extends Model
     public function proyectos(){
         return $this->belongsTo(Proyecto::class, 'id_proyecto');
     }
-
-    // estrcutura forenkey
-    public function estructuras(){
-        return $this->belongsTo(Estructura::class, 'id_estructura');
-    }
-
 }

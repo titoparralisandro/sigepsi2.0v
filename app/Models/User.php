@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -51,15 +52,19 @@ class User extends Authenticatable
 
     public function adminlte_desc()
     {
-        return 'Administrador';
+        // $roles = Role::all();
+        // ['roles'=> $roles]
 
+        // $user = auth()->user();
+        // dd($user);
+        // return $user->roles->pluck('name')->all();
 
         // auth()->user()->name
         // auth()->user()->email
         // $user = User::find($request->get('id'));
         // $userRole = $user->roles->pluck('name')->all();
 
-        // return 'Administrador';
+        return 'Administrador';
         
     }
 

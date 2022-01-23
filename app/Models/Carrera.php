@@ -24,4 +24,7 @@ class Carrera extends Model
     public function siace(){
         return $this->hasMany(Siace::class, 'id');
     }
+    public function proyectos(){
+        return $this->hasMany(Proyecto::class, 'id');
+    }
 }

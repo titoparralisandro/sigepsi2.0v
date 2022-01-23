@@ -8,6 +8,8 @@ use App\Models\Trayecto;
 use App\Models\Especialidade;
 use App\Models\Lineas_investigacione;
 use App\Models\Estado;
+use App\Models\Evaluacione;
+use App\Models\Estructuras_evaluacione;
 use App\Models\Files;
 use Illuminate\Http\Request;
 
@@ -20,7 +22,8 @@ class ProyectoController extends Controller
             ->join("lineas_investigaciones","proyectos.id_linea_investigacion","lineas_investigaciones.id")
             ->join("carreras","proyectos.id_especialidad","carreras.id")
             ->join("trayectos","proyectos.id_trayecto","trayectos.id")
-            ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto")
+            ->join("evaluaciones","evaluaciones.id_proyecto","proyectos.id")
+            ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
             ->get();
         return view('proyecto.index',["proyecto"=>$proyecto]);
     }
@@ -48,6 +51,49 @@ class ProyectoController extends Controller
         ->get();
         return view('proyecto.evaluar',['data'=>$proyecto[0]]);
     }
+
+    public function SaveEvaluar(Request $request)
+    {
+
+        $progresos=0;
+        $progresosT=0;
+        $ArrayProgre = explode(",",$request->get("progresos"));
+        $ArrayItem = array();
+        $ArrayItemV = array();
+        $i=0;
+        foreach ($ArrayProgre as $value) {
+            $key = explode("_",$value);
+            if(count($key)>1){
+                $ArrayItem[$i]=$key[1];
+            }else{
+                $ArrayItemV[$i]=$value;
+                $progresos+=$value;
+            }
+            $i++;
+        }
+        $progresosT=round($progresos/count($ArrayItemV),0,PHP_ROUND_HALF_UP);
+        $evaluaciones = new Evaluacione();
+        $evaluaciones->id_proyecto = $request->get("proyecto");
+        $evaluaciones->progreso =$progresosT;
+        $evaluaciones->save();
+
+        $data =json_decode($request->get("items"));
+        foreach ($data as $key => $value) {
+           $dataDetalle =json_decode($value,true);
+           $estru_eval = new Estructuras_evaluacione();
+           $estru_eval->id_evaluacion = $evaluaciones->id;
+           $estru_eval->id_items_estructura = $dataDetalle["items"];
+           $estru_eval->id_estructura = $dataDetalle["estructura"];
+           if($dataDetalle["value"] == "Pendiente"){
+                $estru_eval->id_estatus_progreso = 1;
+           }else{
+                $estru_eval->id_estatus_progreso = 2;
+           }
+           $estru_eval->save();
+        }
+        return response()->json(["exito"=>true]);
+    }
+
     public function getalumnos(Request $request)
     {
         $comunidades = DB::table('personas')
@@ -196,13 +242,7 @@ class ProyectoController extends Controller
             copy($request->file($key), public_path('upload/'.$proyecto->id.'/proyect_'.$nombre_documento[1].'.pdf'));
         }
 
-
-
         //$max_size = (int)ini_get('upload_max_filesize') * 15360;
-
-
-
-
 
         return redirect('/proyecto')->with('respuesta', 'creado');
 
@@ -210,5 +250,11 @@ class ProyectoController extends Controller
      //los permisos en linux 775 chmod para que guarde la ruta para que guarde los PDF
     }
 
+    public function show(Proyecto $proyectos, $id){
+
+        $proyecto = Proyecto::findOrFail($id);
+        return view('proyecto.show', compact(['proyecto', 'id']));
+        
+    }
 
 }

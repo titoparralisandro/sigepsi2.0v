@@ -38,6 +38,14 @@ class EstructuraController extends Controller
                 ->get();
         return response()->json($data);
     }
+    public function getdataEspe(Request $request)
+    {
+        $data = DB::table('especialidades')
+                ->select('id','especialidad as text')
+                ->where('id_carrera','=',$request->get('id'))
+                ->get();
+        return response()->json($data);
+    }
     public function getData($Typedata){
         $data = null;
         switch ($Typedata) {
