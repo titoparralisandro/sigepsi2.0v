@@ -4,50 +4,61 @@
 
 @section('content_header')
 
-<div class="card-header bg-primary ">
-    <div class="color-palette">
-      <h1 class="text-center"><strong>Ver necesidad</strong></h1>
-    </div>
-</div>
-{{-- Ya imprime los datos de la comunidad correspodniente
-  <label class="form-label">Datos de la Comunidad</label>
-  {!!$html!!} 
---}}
-  <div class="card border-dark">
-    <div class="card-body text-dark">
-        <form>
-          <div class="row">
-            <div class="form-group col col-12">
+<div class="container d-flex justify-content-center mt-1 ">
+    <div class="col-md-12 vorder rounded shadow bg-white">
 
-              <label class="form-label">Necesidad</label>
-              <textarea class="form-control" cols="25" rows="5" disabled>{{$necesidad->necesidad}}</textarea>
+        <ul class="nav nav-pills nav-justified">
+            <li class="nav-item"><a href="#necesidad-tab" class="nav-link active" data-toggle="pill"><strong>Necesidad</strong></a></li>
+            <li class="nav-item"><a href="#comunidad-tab" class="nav-link" data-toggle="pill"><strong>Datos de la comunidad</strong></a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane show fade active p-5" id="necesidad-tab">
+
+                <form>
+                  <div class="row">
+                    <div class="form-group col col-12">
+        
+                      <label class="form-label">Necesidad</label>
+                      <textarea class="form-control" cols="25" rows="5" disabled>{{$necesidad->necesidad}}</textarea>
+        
+                    </div>
+                  </div>
+        
+                  <div class="row">
+                    {!!$a!!}
+                  </div>
+        
+                  <div class="form-group">
+        
+                    <label class="form-label">Dirección</label>
+                    <textarea class="form-control" cols="25" rows="3" disabled>{{$necesidad->direccion}}</textarea>
+        
+                  </div>
+        
+                    <a href="{{ route('necesidad.index') }}" class="btn btn-danger">Volver</a>
+        
+                    <a class="btn btn-success" href="">Estudiar</a>
+        
+                </form>
 
             </div>
-          </div>
 
-          <div class="row">
-            {!!$a!!}
-          </div>
+            <div class="tab-pane fade p-5" id="comunidad-tab">
 
-          <div class="form-group">
+                {!!$html!!}
 
-            <label class="form-label">Dirección</label>
-            <textarea class="form-control" cols="25" rows="3" disabled>{{$necesidad->direccion}}</textarea>
-
-          </div>
-
-            <a href="{{ route('necesidad.index') }}" class="btn btn-danger">Volver</a>
-
-            <a class="btn btn-success" href="">Estudiar</a>
-
-        </form>
-
+            </div>
+        </div>
     </div>
-  </div>
+</div>
 
-@stop
+<footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 
-
-@section('js')
-{{-- Valor compuesto {{$necesidad->comunidades->tipos_comunidades->tipo_comunidad}} --}}
 @stop

@@ -58,7 +58,7 @@
             <div class="tab-pane fade p-5" id="configuracion-tab">
 
                 <h4 class="text-center">Configuración</h4>
-                <div class="row">
+                <div class="row center">
                     <div class="form-group col">
                         <label class="form-label">Nombre:</label>
                         <p>{{ auth()->user()->name }} </p>
@@ -67,10 +67,6 @@
                         <label class="form-label">Email:</label>
                         <p>{{ auth()->user()->email }} </p>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Contraseña:</label>
-                    <p>{{ auth()->user()->password }} </p>
                 </div>
                 
                 <label class="form-label">Imagen de perfil:</label>

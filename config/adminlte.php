@@ -227,17 +227,12 @@ return [
         // Sidebar items:
         [
             'text' => 'Gestión de proyectos',
-            'icon'    => 'fas fa-fw fa-handshake',
+            'icon'    => 'fas fa-fw fa-chalkboard-teacher',
             'submenu' => [
                 [
                     'text' => 'Proyectos',
-                    'icon'    => 'fas fa-fw fa-book-reader',
+                    'icon'    => 'fas fa-fw fa-paste',
                     'url'  => '/proyecto',
-                ],
-                [
-                    'text' => 'Banco de situaciones',
-                    'icon'    => 'fas fa-fw fa-landmark',
-                    'url'  => '#',
                 ],
         ],
         ],

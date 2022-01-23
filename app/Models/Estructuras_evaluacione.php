@@ -23,4 +23,11 @@ class Estructuras_evaluacione extends Model
     public function estatus_pogresos(){
         return $this->belongsTo(Estatus_progreso::class, 'id_estatus_progreso');
     }
+
+    // estrcutura forenkey
+    public function estructuras(){
+        return $this->belongsTo(Estructura::class, 'id_estructura');
+    }
 }
+
+

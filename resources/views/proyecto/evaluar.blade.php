@@ -5,6 +5,7 @@
 @section('plugins.Select2', true)
 @section('plugins.Dropzone', true)
 @section('plugins.Bs-stepper', true)
+@section('plugins.Sweetalert2', true)
 
 @section('content_header')
 <div class="card-header bg-primary ">
@@ -69,13 +70,13 @@
         var stepper = new Stepper($('.bs-stepper')[0])
         var valor_barra=0;
         var valor_actual0;
-        var valores_barra = [];
+        var valores_barra = new Array();
         $(".next").click((e)=>{
             var key = "prod_"+(stepper._currentIndex+1);
-            if(key in valores_barra){
-                valores_barra[key] = valor_barra
+            if($.inArray(key,valores_barra)>0){
+                valores_barra[key]=valor_barra;
             }else{
-                valores_barra[key] = valor_barra;
+                valores_barra.push(key,valor_barra)
                 valor_barra=0;
             }
 
@@ -102,21 +103,54 @@
 
         $("#FormEva").submit(function (e) {
             e.preventDefault();
-            valores_barra["prod_"+(stepper._currentIndex+1)] = valor_barra;
-            $.ajax({
-            type: "POST",
-            url: "/getProdestruc",
-            async: false,
-            cache: false,
-            data: {
-                "_token" : "{{ csrf_token() }}",
-                "especialidad" : "{{ $data->id_especialidad }}",
-                "lineas_investigacion" : "{{ $data->id_linea_investigacion }}"
-            },
-            success: function(response){
-                $("#divProducto").empty().append(response);
+            var form = e.target;
+            var item = {};
+            var j = 0;
+            for (let i = 0; i < form.length; i++) {
+                var element = form[i];
+                if(element.nodeName == "SELECT"){
+                    var idItems= element.id.split("_")
+                    item[j] =JSON.stringify({
+                        "estructura": element.dataset.id,
+                        "items": idItems[1],
+                        "value": element.value
+                    });
+                    j++;
+                }
             }
-        });
+            var key = "prod_"+(stepper._currentIndex+1);
+            if($.inArray(key,valores_barra)>0){
+                valores_barra[key]=valor_barra;
+            }else{
+                valores_barra.push(key,valor_barra)
+            }
+            var formData = new FormData();
+            formData.append('progresos',valores_barra);
+            formData.append('_token',"{{ csrf_token() }}");
+            formData.append('proyecto',"{{ $data->id }}");
+            formData.append('especialidad',"{{ $data->id_especialidad }}");
+            formData.append('lineas_investigacion',"{{ $data->id_linea_investigacion }}");
+            formData.append('items',JSON.stringify(item));
+            $.ajax({
+                type: "POST",
+                url: "/SaveEvaluar",
+                processData: false,
+                contentType: false,
+                async: false,
+                cache: false,
+                data: formData,
+                success: function(response){
+                    if (response.exito) {
+                        Swal.fire({
+                            title: 'Datos registrado con exito',
+                            text: "Proceso exitoso",
+                            icon: 'success'
+                        })
+                        window.location.href = "/evaluar";
+                    }
+
+                }
+            });
         });
 
     });

@@ -34,17 +34,20 @@ class CreateProyectosTable extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
 
-            $table->foreignId('id_especialidad')
+            // $table->foreignId('id_especialidad')
+            //     ->nullable()
+            //     ->references('id')->on('especialidades')
+            //     ->OnDelete('set null');
+            $table->foreignId('id_carrera')
                 ->nullable()
-                ->references('id')->on('especialidades')
+                ->references('id')->on('carreras')
                 ->OnDelete('set null');
-
             $table->foreignId('id_linea_investigacion')
                ->nullable()
                 ->references('id')->on('lineas_investigaciones')
                ->OnDelete('set null');
 
-              $table->foreignId('id_trayecto')
+            $table->foreignId('id_trayecto')
                 ->nullable()
                 ->references('id')->on('trayectos')
                  ->OnDelete('set null');

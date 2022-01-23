@@ -75,6 +75,7 @@ Route::post('/getalumnos', [App\Http\Controllers\ProyectoController::class, 'get
 Route::post('/getProducto', [App\Http\Controllers\ProyectoController::class, 'getProducto']);
 Route::get('/evaluar/{id}', [App\Http\Controllers\ProyectoController::class, 'evaluar']);
 Route::post('/getProdestruc', [App\Http\Controllers\ProyectoController::class, 'getProdestruc']);
+Route::post('/SaveEvaluar', [App\Http\Controllers\ProyectoController::class, 'SaveEvaluar']);
 
 Route::get('/showcomunid/{id}', [App\Http\Controllers\ComunidadeController::class, 'show']);
 Route::post('/editcomunid', [App\Http\Controllers\ComunidadeController::class, 'edit']);
@@ -86,6 +87,8 @@ Route::post('/editUser', [App\Http\Controllers\UserControllers::class, 'edit']);
 Route::post('/SaveEditUser', [App\Http\Controllers\UserControllers::class, 'update']);
 Route::get('/getdataEstruc/{Typedata}', [App\Http\Controllers\EstructuraController::class, 'getdata']);
 Route::post('/getdataInvest', [App\Http\Controllers\EstructuraController::class, 'getdataInvest']);
+Route::post('/getdataEspe', [App\Http\Controllers\EstructuraController::class, 'getdataEspe']);
+
 Route::get('/getdataItem', [App\Http\Controllers\EstructuraController::class, 'getdataItem']);
 Route::post('/SaveEstruc', [App\Http\Controllers\EstructuraController::class, 'store']);
 Route::post('/EditEstruc', [App\Http\Controllers\EstructuraController::class, 'saveEdit']);

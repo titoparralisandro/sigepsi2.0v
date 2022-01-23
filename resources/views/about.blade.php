@@ -6,10 +6,10 @@
 <section class="w3l-breadcrumb">
     <div class="breadcrumb-bg breadcrumb-bg-about py-5">
         <div class="container pt-lg-5 pt-3 p-lg-4 pb-3">
-            <h2 class="title mt-5 pt-lg-5 pt-sm-3">About Company</h2>
+            <h2 class="title mt-5 pt-lg-5 pt-sm-3">Nuestra Universidad</h2>
             <ul class="breadcrumbs-custom-path pb-sm-5 pb-4 mt-2 text-center mb-5">
                 <li><a href="{{ url('/') }}">Inicio</a></li>
-                <li class="active"> / About us </li>
+                <li class="active"> / Nosotros </li>
             </ul>
         </div>
     </div>
@@ -30,12 +30,11 @@
                             <span class="fa fa-graduation-cap"></span>
                         </div>
                         <div class="info">
-                            <p>Our</p>
-                            <h4><a href="#url">Mission</a></h4>
+                            <p>Nuestra</p>
+                            <h4><a href="#url">Misión</a></h4>
                         </div>
                     </div>
-                    <p class="mt-4">If you are looking for
-                        high-quality and reliable online courses.</p>
+                    <p class="mt-4">Ser la casa de estudio vanguardia en aportes para nuestro país.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12 mt-md-0 mt-4">
@@ -45,8 +44,8 @@
                             <span class="fa fa-book"></span>
                         </div>
                         <div class="info">
-                            <p>Our</p>
-                            <h4><a href="#url">Vision</a></h4>
+                            <p>Nuestra</p>
+                            <h4><a href="#url">Visión</a></h4>
                         </div>
                     </div>
                     <p class="mt-4">If you are looking for
@@ -60,8 +59,8 @@
                             <span class="fa fa-trophy"></span>
                         </div>
                         <div class="info">
-                            <p>Our</p>
-                            <h4><a href="#url">Goal</a></h4>
+                            <p>Nuestra</p>
+                            <h4><a href="#url">Meta</a></h4>
                         </div>
                     </div>
                     <p class="mt-4">If you are looking for
@@ -71,7 +70,7 @@
         </div>
     </div>
 </section>
-<section class="w3l-aboutblock1 py-5" id="about">
+{{-- <section class="w3l-aboutblock1 py-5" id="about">
     <div class="container py-lg-5 py-md-4 py-2">
         <div class="row">
             <div class="col-lg-6 align-self">
@@ -88,8 +87,8 @@
             </div>
         </div>
     </div>
-</section>
-<section class="w3l-servicesblock w3l-servicesblock1 py-5" id="progress">
+</section> --}}
+{{-- <section class="w3l-servicesblock w3l-servicesblock1 py-5" id="progress">
     <div class="container py-lg-5 py-md-4 py-2">
         <div class="row">
             <div class="col-lg-6 align-self pr-lg-4">
@@ -146,16 +145,14 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <section class="w3l-block py-5" id="">
     <div class="container py-lg-5 py-md-3">
         <div class="row">
             <div class="col-lg-6 about-right-faq align-self">
                 <span class="title-small mb-2">Start online course</span>
                 <h3 class="title-big mx-0"> Enhance your skills with best online courses</h3>
-                <p class="mt-lg-4 mt-3 mb-lg-5 mb-4">Lorem ipsum viverra feugiat. Pellen tesque libero ut justo,
-                    ultrices in ligula. Semper at tempufddfel. Lorem ipsum dolor sit amet elit. Non quae, fugiat 
-                    libero ut justo, ultrices in ligula amet dolor sit</p>
+                <p class="mt-lg-4 mt-3 mb-lg-5 mb-4">Se propone como estrategia de aprendizaje que permite la construcción del conocimiento a partir del aprender haciendo, donde se propicia el reconocimiento en principio por el propio participante de sus conocimientos, habilidades y destrezas, que luego debe desarrollar a partir del desarrollo de <b>Proyectos Socio Integradores</b> convirtiéndose en crecimiento personal y confianza en el participante de su proceso formativo y del rol profesional a desempeñar. </p>
                 <div class="two-grids mt-md-0 mt-md-5 mt-4">
                     <div class="grids_info">
                         <h4>Global Certificate</h4>
@@ -181,28 +178,28 @@
 <!-- stats -->
 <section class="w3l-stats py-5" id="stats">
     <div class="gallery-inner container py-lg-5 py-md-4">
-        <span class="title-small text-center mb-1">Our Achievements</span>
-        <h3 class="title-big text-center mb-5">Our progress never Ends</h3>
+        <span class="title-small text-center mb-1"></span>
+        <h3 class="title-big text-center mb-5">Progresos</h3>
         <div class="row stats-con">
             <div class="col-md-3 col-6 stats_info counter_grid">
-                <p class="counter">500 </p>
+                <p class="counter">30 </p>
                 <span class="plus">+</span><br>
-                <h3>Students Enrolled</h3>
+                <h3>Comunidades Registradas</h3>
             </div>
             <div class="col-md-3 col-6 stats_info counter_grid1">
                 <p class="counter">56</p>
                 <span class="plus">+</span><br>
-                <h3>Courses Uploaded</h3>
+                <h3>Proyectos realizados</h3>
             </div>
             <div class="col-md-3 col-6 stats_info counter_grid mt-md-0 mt-4">
-                <p class="counter">130</p>
-                <span class="plus">k</span><br>
-                <h3>Certified students</h3>
+                <p class="counter">70</p>
+                <span class="plus">+</span><br>
+                <h3></h3>
             </div>
             <div class="col-md-3 col-6 stats_info counter_grid2 mt-md-0 mt-4">
                 <p class="counter">243 </p>
                 <span class="plus">+</span><br>
-                <h3>Global Teachers </h3>
+                <h3>Profesionales en diferentes áreas </h3>
             </div>
         </div>
     </div>

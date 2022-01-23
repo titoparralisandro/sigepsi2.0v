@@ -70,6 +70,10 @@
                                 <label class="form-label">trayecto</label>
                                 <select name="id_trayecto" id="id_trayecto" style="width: 100%"></select>
                             </div>
+                            <div class="form-group col col-4">
+                                <label class="form-label">Carrera</label>
+                                <select name="id_carrera" id="id_carrera" style="width: 100%"></select>
+                            </div>
                             <div class="form-group col col-4" >
                                 <label class="form-label">Especialidad</label>
                                 <select name="id_especialidad" id="id_especialidad" style="width: 100%"></select>
@@ -323,7 +327,7 @@
                 }
             }
         });
-        $("#id_especialidad").select2({
+        $("#id_carrera").select2({
             ajax: {
                 url: '/getdataEstruc/carrera',
                 dataType: 'json',
@@ -334,8 +338,19 @@
                 }
             }
         });
+        // $("#id_especialidad").select2({
+        //     ajax: {
+        //         url: '/getdataEstruc/carrera',
+        //         dataType: 'json',
+        //         processResults: function (data) {
+        //             return {
+        //                 results: data
+        //             };
+        //         }
+        //     }
+        // });
         $("#id_lineas_investigacion").select2();
-        $("#id_especialidad").change((e)=> {
+        $("#id_carrera").change((e)=> {
             var valor =e.target.value;
             $.ajax({
                 type: "POST",
@@ -347,11 +362,32 @@
                     "id":valor
                 },
                 success: function(response){
-                    var opciones ="<option value='0'>Seleccione una opcion</option>";
+                    var opciones ="<option value='0'>Seleccione una opción</option>";
                     for (let i in response) {
                         opciones+= '<option value="'+response[i].id+'">'+response[i].text+'</option>';
                     }
                     $("#id_lineas_investigacion").empty().append(opciones);
+                }
+            });
+        });
+        $("#id_especialidad").select2();
+        $("#id_carrera").change((e)=> {
+            var valor =e.target.value;
+            $.ajax({
+                type: "POST",
+                url: '/getdataEspe',
+                async: false,
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id":valor
+                },
+                success: function(response){
+                    var opciones ="<option value='0'>Seleccione una opción</option>";
+                    for (let i in response) {
+                        opciones+= '<option value="'+response[i].id+'">'+response[i].text+'</option>';
+                    }
+                    $("#id_especialidad").empty().append(opciones);
                 }
             });
         });
@@ -471,7 +507,7 @@
 
     stepperElement.addEventListener('shown.bs-stepper', function (event) {
         if (event.detail.indexStep == 2) {
-            var especialidad = $("#id_especialidad")[0].value;
+            var especialidad = $("#id_carrera")[0].value;
             var lineas_investigacion = $("#id_lineas_investigacion")[0].value;
             $.ajax({
                 type: "POST",
@@ -489,6 +525,7 @@
             });
         }
     })
+
 
 
     //Datemask dd/mm/yyyy

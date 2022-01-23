@@ -98,25 +98,37 @@ class UserControllers extends Controller
         $html.="<label>Correo de usuario</label>";
         $html.="<input type='email' id='email' name='email' class='form-control' required value='".$user->email."'>";
         $html.="</div>";
-        $html.="<div class='form-group'>";
-        $html.="<label>Contraseña</label>";
-        $html.="<input type='password' id='password' name='password' class='form-control' required>";
-        $html.="</div>";
-        $html.="<div class='form-group'>";
-        $html.="<label>Confirmacion de contraseña</label>";
-        $html.="<input type='password' id='password_Cnf' name='password_Cnf' class='form-control' required>";
-        $html.="</div>";
+        // $html.="<div class='form-group'>";
+        // $html.="<label>Contraseña</label>";
+        // $html.="<input type='password' id='password' name='password' class='form-control' required>";
+        // $html.="</div>";
+        // $html.="<div class='form-group'>";
+        // $html.="<label>Confirmacion de contraseña</label>";
+        // $html.="<input type='password' id='password_Cnf' name='password_Cnf' class='form-control' required>";
+        // $html.="</div>";
         $html.="<div class='form-group'>";
         $html.="<label>Rol de usuario</label>";
-        $html.="<select class='form-control' name='rol' id='rol' required>";
-            foreach($roles as $rol){
-                if($userRole[0] == $rol->name){
-                    $html.="<option value='".$rol->id."' selected>".$rol->name."</option>";
+        // $html.="<select class='form-control' name='rol' id='rol' required>";
+        //     foreach($roles as $rol){
+        //         if($userRole[0] == $rol->name){
+        //             $html.="<option value='".$rol->id."' selected>".$rol->name."</option>";
+        //         }else{
+        //             $html.="<option value='".$rol->id."'>".$rol->name."</option>";
+        //         }
+        //     }
+        $html.="<div class=row>";
+        foreach($roles as $rol){
+            if($userRole[0] == $rol->name){
+                $html.="<div class=col-3>";
+                    $html.="<input type='checkbox' checked id='rol' name='rol' value='".$rol->id."'>".'  <strong>'. $rol->name .'</strong>';
+                $html.="</div>";
                 }else{
-                    $html.="<option value='".$rol->id."'>".$rol->name."</option>";
+                    $html.="<div class=col-3>";
+                    $html.="<input type='checkbox' id='rol' name='rol' value='".$rol->id."'>".'  <strong>'. $rol->name  .'</strong>';
+                $html.="</div>";
                 }
             }
-        $html.="</select>";
+        $html.="</div";
         $html.="</div>";
         return $html;
     }
@@ -134,7 +146,7 @@ class UserControllers extends Controller
             $user = User::find($request->get('id'));
             $user->name     =   $request->get('name');
             $user->email    =   $request->get('email');
-            $user->password =   Hash::make($request->get('password'));
+            // $user->password =   Hash::make($request->get('password'));
             $user->roles()->sync([$request->get('rol')]);
             $user->save();
             return response()->json(['error' => false]);

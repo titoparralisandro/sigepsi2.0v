@@ -29,7 +29,7 @@
             <div class="d-grid contact-view">
                 <div class="cont-details">
                     <h3 class="title-big mb-4">Ponte en contacto</h3>
-                    <p class="mb-sm-5 mb-4">Comiense a trabajar con nosotros, le garatizamos resolver cualquier problemas en 24 horas</p>
+                    <p class="mb-sm-5 mb-4">Si quieres desarrollar alguna aplicación web y necesitas ayuda ponte en contacto con nosotros.</p>
 
                     <div class="cont-top">
                         <div class="cont-left text-center">
@@ -61,13 +61,13 @@
                 </div>
                 <div class="map-content-9">
                     <h5 class="mb-sm-4 mb-3">Escríbenos</h5>
-                    
-                    <form action="{{ route('contact.store') }}" method="POST"> 
+
+                    <form action="{{ route('contact.store') }}" method="POST">
                         @csrf
                         <div class="twice-two">
                             <input type="text" class="form-control" name="name" id="name" placeholder="Nombre"
                                 required value="{{ isset($comentario->name)?$comentario->name:old('name') }}">
-                                
+
                             <input type="email" class="form-control" name="email" id="email" placeholder="Correo"
                                 required value="{{ isset($comentario->email)?$comentario->email:old('email') }}">
                         </div>
@@ -75,10 +75,10 @@
                             <input type="text" class="form-control" name="asunto" id="asunto"
                                 placeholder="Asunto" required value="{{ isset($comentario->asunto)?$comentario->asunto:old('asunto') }}">
                         </div>
-                            
+
                             <textarea name="comentario" class="form-control" id="comentario" placeholder="Mensaje"
                             required value="{{ isset($comentario->comentario)?$comentario->comentario:old('comentario') }}"></textarea>
-                        
+
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary btn-style mt-4">Enviar mensaje</button>
                         </div>
