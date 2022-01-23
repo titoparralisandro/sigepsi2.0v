@@ -101,7 +101,7 @@
                                 <a href="/evaluar/{{ $proyectos->id }}"class="btn btn-info">Evaluar</a>
                             @endif
                             {{-- href="{{ route('proyecto.evaluar', $proyectos->id ) }}" --}}
-                            <button class="btn btn-primary" href="{{ route('proyecto.show', $proyectos->id ) }}">Ver</button>
+                            <a class="btn btn-primary" href="{{ route('proyecto.show', $proyectos->id ) }}">Ver</a>
                             {{-- <button class="btn btn-info" type="button" onclick="editdata('{{ $comunidades->id }}')">Editar</button> --}}
                         </div>
                     </td>
