@@ -22,4 +22,7 @@ class Estado extends Model
     public function necesidades(){
         return $this->hasMany(Necesidade::class, 'id');
     }
+    public function comunidades(){
+        return $this->hasMany(Comunidade::class, 'id_estado');
+    }
 }
