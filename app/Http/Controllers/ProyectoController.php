@@ -22,7 +22,8 @@ class ProyectoController extends Controller
             ->join("lineas_investigaciones","proyectos.id_linea_investigacion","lineas_investigaciones.id")
             ->join("carreras","carreras.id", "proyectos.id_carrera")
             ->join("trayectos","trayectos.id","proyectos.id_trayecto")
-            ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto")
+            ->join("evaluaciones","evaluaciones.id_proyecto","proyectos.id")
+            ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
             ->get();
     
         return view('proyecto.index',["proyecto"=>$proyecto]);

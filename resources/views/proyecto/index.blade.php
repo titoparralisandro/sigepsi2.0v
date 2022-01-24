@@ -75,7 +75,7 @@
                         <th>Proyecto</th>
                         <th>Carrera</th>
                         <th>Linea de investigación</th>
-                        {{-- <th>Progreso</th> --}}
+                        <th>Progreso</th>
                         <th>Acciones</th>
 
                     </tr>
@@ -88,13 +88,13 @@
                     <td>{{ $proyectos->titulo }}</td>
                     <td>{{ $proyectos->carrera }}</td>
                     <td>{{ $proyectos->linea_investigacion }} </td>
-                    {{-- <td>
+                    <td>
                         <div class="progress" style="height:15px">
                             <div id="bar_'.$producto->id.'" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" data-progress="0" style="width:{{ $proyectos->progreso }}%;">
                                 <p style='margin-top:15px;font-size:12px'><span>{{ $proyectos->progreso }}</span>/100</p>
                             </div>
                         </div>
-                    </td> --}}
+                    </td>
                     <td class="text-center">
                         <div class="btn-group">
                             {{-- @if ($proyectos->progreso != 100) --}}
@@ -163,11 +163,11 @@
     </script>
     @endif
 
-    @if(session('respuesta')=='eliminado')
+    @if(session('respuesta')=='evaluado')
     <script>
     Swal.fire(
-    'Eliminado!',
-    'El registro se ha eliminado con éxito.',
+    'Evaluado',
+    'El proyecto se ha evaluado con éxito.',
     'success')
     </script>
     @endif
