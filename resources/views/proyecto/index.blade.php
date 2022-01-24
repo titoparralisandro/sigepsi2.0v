@@ -74,8 +74,8 @@
                         <th>N°</th>
                         <th>Proyecto</th>
                         <th>Carrera</th>
-                        <th>Progreso</th>
                         <th>Linea de investigación</th>
+                        {{-- <th>Progreso</th> --}}
                         <th>Acciones</th>
 
                     </tr>
@@ -87,22 +87,21 @@
                     <td>{{ $proyectos->id }}</td>
                     <td>{{ $proyectos->titulo }}</td>
                     <td>{{ $proyectos->carrera }}</td>
-                    <td>
+                    <td>{{ $proyectos->linea_investigacion }} </td>
+                    {{-- <td>
                         <div class="progress" style="height:15px">
                             <div id="bar_'.$producto->id.'" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" data-progress="0" style="width:{{ $proyectos->progreso }}%;">
                                 <p style='margin-top:15px;font-size:12px'><span>{{ $proyectos->progreso }}</span>/100</p>
                             </div>
                         </div>
-                    </td>
-                    <td>{{ $proyectos->linea_investigacion }} </td>
+                    </td> --}}
                     <td class="text-center">
                         <div class="btn-group">
-                            @if ($proyectos->progreso != 100)
+                            {{-- @if ($proyectos->progreso != 100) --}}
                                 <a href="/evaluar/{{ $proyectos->id }}"class="btn btn-info">Evaluar</a>
-                            @endif
+                            {{-- @endif --}}
                             {{-- href="{{ route('proyecto.evaluar', $proyectos->id ) }}" --}}
-                            <a class="btn btn-primary" href="{{ route('proyecto.show', $proyectos->id ) }}">Ver</a>
-                            {{-- <button class="btn btn-info" type="button" onclick="editdata('{{ $comunidades->id }}')">Editar</button> --}}
+                            <a class="btn btn-primary" href="{{ route('proyecto.show', $proyectos->id ) }}">Ver<a>
                         </div>
                     </td>
                 </tr>
