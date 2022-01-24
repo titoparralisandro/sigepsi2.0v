@@ -160,7 +160,7 @@
 
     @if(session('respuesta')=='creado')
     <script>
-    toastr.success('Prueba, ha sido creada.')
+    toastr.success('Registro editado con éxito.')
     </script>
     @endif
 
@@ -168,14 +168,14 @@
     <script>
     Swal.fire(
     'Eliminado!',
-    'El registro se ha eliminado con éxito.',
+    'Registro eliminado con éxito..',
     'success')
     </script>
     @endif
 
     @if(session('respuesta')=='editado')
     <script>
-    toastr.info('Prueba, se ha editado correctamente.')
+    toastr.info('Registro creado con éxito.')
     </script>
     @endif
     <script>

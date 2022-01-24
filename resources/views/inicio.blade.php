@@ -43,8 +43,8 @@
                         <div class="banner-info">
                             <div class="container">
                                 <div class="banner-info-bg">
-                                    <h5>Be More Productive to Be More Successful</h5>
-                                    <p class="mt-4 pr-lg-4">  Bienvenidos jajajaj</p>
+                                    <h5>Ferias Tecnológicas</h5>
+                                    <p class="mt-4 pr-lg-4"> </p>
                                     <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="about.html"> Ready to
                                         get started?</a>
                                 </div>
@@ -141,18 +141,13 @@
         <div class="container">
             <div class="row main-cont-wthree-2">
                 <div class="col-lg-5 feature-grid-left">
-                    <h5 class="title-small mb-1">Experienced professionals</h5>
-                    <h3 class="title-big mb-4">Meet our teachers</h3>
-                    <p class="text-para">Curabitur id gravida risus. Fusce eget ex fermentum, ultricies nisi ac sed,
-                        lacinia est.
-                        Quisque ut lectus consequat, venenatis eros et, commodo risus. Nullam sit amet laoreet elit.
-                        Suspendisse non magna a velit efficitur. </p>
-                    <p class="mt-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas ab qui impedit,
-                        libero illo
-                        quia sequi quibusdam iure. Error minus quod reprehenderit quae dolor velit soluta animi
-                        voluptate dicta enim? Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, provident!
-                    </p>
-                    <a href="#url" class="btn btn-primary btn-style mt-md-5 mt-4">Discover More</a>
+                    <h5 class="title-small mb-1">Experiecia Profesional</h5>
+                    <h3 class="title-big mb-4">Conoce a Nuestros Profesores</h3>
+                    <p class="text-para">Nuestros tutores, maestros y profesores, son profesionales que reúnen
+                        la experiencia en su área de trabajo y la capacidad y cualificación para
+                         impartir conocimientos acertadamente y conducir a nuestros estudiantes
+                          por satisfactorios procesos de aprendizaje, tanto teórico como práctico. </p>
+
                 </div>
                 <div class="col-lg-7 feature-grid-right mt-lg-0 mt-5">
                     <div class="row">
@@ -160,8 +155,8 @@
                             <div class="box16">
                                 <a href="#url"><img src="{{ asset('images/team1.jpg') }}" alt="" class="img-fluid radius-image" /></a>
                                 <div class="box-content">
-                                    <h3 class="title"><a href="#url">James</a></h3>
-                                    <span class="post">Director</span>
+                                    <h3 class="title"><a href="#url">Mora Ruperto</a></h3>
+                                    <span class="post"> Ing. en Informática </span>
                                     <ul class="social">
                                         <li>
                                             <a href="#" class="facebook">
@@ -181,8 +176,8 @@
                             <div class="box16">
                                 <a href="#url"><img src="{{ asset('images/team2.jpg') }}" alt="" class="img-fluid radius-image" /></a>
                                 <div class="box-content">
-                                    <h3 class="title"><a href="#url">Victoria</a></h3>
-                                    <span class="post">Managing Director</span>
+                                    <h3 class="title"><a href="#url">Ortiz Isabel</a></h3>
+                                    <span class="post">Ing. en Sistemas</span>
                                     <ul class="social">
                                         <li>
                                             <a href="#" class="facebook">
@@ -202,8 +197,8 @@
                             <div class="box16">
                                 <a href="#url"><img src="{{ asset('images/team3.jpg') }}" alt="" class="img-fluid radius-image" /></a>
                                 <div class="box-content">
-                                    <h3 class="title"><a href="#url">Isabella</a></h3>
-                                    <span class="post">Teacher</a></span>
+                                    <h3 class="title"><a href="#url">Isabella Gonzalez</a></h3>
+                                    <span class="post">Lcda. Administración</a></span>
                                     <ul class="social">
                                         <li>
                                             <a href="#" class="facebook">
@@ -223,8 +218,8 @@
                             <div class="box16">
                                 <a href="#url"><img src="{{ asset('images/team4.jpg') }}" alt="" class="img-fluid radius-image" /></a>
                                 <div class="box-content">
-                                    <h3 class="title"><a href="#url">Elizabeth</a></h3>
-                                    <span class="post">Teacher</a></span>
+                                    <h3 class="title"><a href="#url">Elizabeth Ramirez</a></h3>
+                                    <span class="post">Lcda. Recursos Humanos</a></span>
                                     <ul class="social">
                                         <li>
                                             <a href="#" class="facebook">
@@ -251,27 +246,29 @@
     <div class="cusrtomer-layout py-5">
         <div class="container py-lg-4 py-md-3 pb-lg-0">
 
-            <h5 class="title-small text-center mb-1">Testimonials</h5>
-            <h3 class="title-big text-center mb-sm-5 mb-4">Happy Clients & Feedbacks</h3>
+            <h5 class="title-small text-center mb-1">Testimonios</h5>
+            <h3 class="title-big text-center mb-sm-5 mb-4">Retroalimentación</h3>
             <!-- /grids -->
             <div class="testimonial-width">
                 <div id="owl-demo1" class="owl-two owl-carousel owl-theme">
                     <div class="item">
                         <div class="testimonial-content">
                             <div class="testimonial">
-                                <blockquote>
-                                    <q>Lorem ipsum dolor sit amet elit. Velit beatae
-                                        laudantium
-                                        voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
-                                        Dolores molestias adipisci dolo amet!.</q>
+                                <blockquote class="center">
+                                    <q>Después de casi dos años de pelear con mi sistema web
+                                        donde ofrecemos cursos en una escuela online , me sentía perdido y con
+                                        una gran frustración al no controlar muchos conceptos. Afortunadamente
+                                         encontré a la <b>UPTECMS</b> y me aportó
+                                         algo que considero fundamental para cualquier profesional no experto
+                                         en informática: tranquilidad y seguridad. </q>
                                 </blockquote>
                                 <div class="testi-des">
                                     <div class="test-img"><img src="{{ asset('images/team1.jpg') }}" class="img-fluid"
                                             alt="client-img">
                                     </div>
                                     <div class="peopl align-self">
-                                        <h3>John wilson</h3>
-                                        <p class="indentity">Student</p>
+                                        <h3>Roberto Sánchez Cánovas</h3>
+                                        <p class="indentity">Director Comuna Venceremos </p>
                                     </div>
                                 </div>
                             </div>
@@ -281,18 +278,20 @@
                         <div class="testimonial-content">
                             <div class="testimonial">
                                 <blockquote>
-                                    <q>Lorem ipsum dolor sit amet elit. Velit beatae
-                                        laudantium
-                                        voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
-                                        Dolores molestias adipisci dolo amet!.</q>
+                                    <q>La presente es para señalar un gran agradecimiento inicialmente a la
+                                          universidad por  brindarnos la oportunidad de ser formados como profesionales utiles
+                                        al desarrollo de nuestra patria, a nuestros Tutor y profesores de
+                                        las distintas asignaturas,de igual manera a la comunidad que nos
+                                        abrió las puertas para el desarrollo de este proyecto
+                                         socio integrador.</q>
                                 </blockquote>
                                 <div class="testi-des">
                                     <div class="test-img"><img src="{{ asset('images/team2.jpg') }}" class="img-fluid"
                                             alt="client-img">
                                     </div>
                                     <div class="peopl align-self">
-                                        <h3>Julia sakura</h3>
-                                        <p class="indentity">Student</p>
+                                        <h3>Alexandra Chacón</h3>
+                                        <p class="indentity">Estudiante</p>
                                     </div>
                                 </div>
                             </div>

@@ -350,7 +350,7 @@ return [
                 [
                     'text' => 'Usuario',
                     'icon'    => 'fas fa-fw fa-user',
-                    'url'  => '/ListUsers',
+                    'url'  => '/usuarios',
                 ],
                 [
                     'text' => 'Roles',
