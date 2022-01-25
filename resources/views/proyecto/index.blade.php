@@ -74,8 +74,8 @@
                         <th>N°</th>
                         <th>Proyecto</th>
                         <th>Carrera</th>
-                        <th>Progreso</th>
                         <th>Linea de investigación</th>
+                        <th>Progreso</th>
                         <th>Acciones</th>
 
                     </tr>
@@ -87,6 +87,7 @@
                     <td>{{ $proyectos->id }}</td>
                     <td>{{ $proyectos->titulo }}</td>
                     <td>{{ $proyectos->carrera }}</td>
+                    <td>{{ $proyectos->linea_investigacion }} </td>
                     <td>
                         <div class="progress" style="height:15px">
                             <div id="bar_'.$producto->id.'" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" data-progress="0" style="width:{{ $proyectos->progreso }}%;">
@@ -94,15 +95,13 @@
                             </div>
                         </div>
                     </td>
-                    <td>{{ $proyectos->linea_investigacion }} </td>
                     <td class="text-center">
                         <div class="btn-group">
-                            @if ($proyectos->progreso != 100)
+                            {{-- @if ($proyectos->progreso != 100) --}}
                                 <a href="/evaluar/{{ $proyectos->id }}"class="btn btn-info">Evaluar</a>
-                            @endif
+                            {{-- @endif --}}
                             {{-- href="{{ route('proyecto.evaluar', $proyectos->id ) }}" --}}
-                            <a class="btn btn-primary" href="{{ route('proyecto.show', $proyectos->id ) }}">Ver</a>
-                            {{-- <button class="btn btn-info" type="button" onclick="editdata('{{ $comunidades->id }}')">Editar</button> --}}
+                            <a class="btn btn-primary" href="{{ route('proyecto.show', $proyectos->id ) }}">Ver<a>
                         </div>
                     </td>
                 </tr>
@@ -160,22 +159,22 @@
 
     @if(session('respuesta')=='creado')
     <script>
-    toastr.success('Registro editado con éxito.')
+    toastr.success('Prueba, ha sido creada.')
     </script>
     @endif
 
-    @if(session('respuesta')=='eliminado')
+    @if(session('respuesta')=='evaluado')
     <script>
     Swal.fire(
-    'Eliminado!',
-    'Registro eliminado con éxito..',
+    'Evaluado',
+    'El proyecto se ha evaluado con éxito.',
     'success')
     </script>
     @endif
 
     @if(session('respuesta')=='editado')
     <script>
-    toastr.info('Registro creado con éxito.')
+    toastr.info('Prueba, se ha editado correctamente.')
     </script>
     @endif
     <script>

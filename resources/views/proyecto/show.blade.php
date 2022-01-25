@@ -6,7 +6,7 @@
 
 @section('content_header')
 
-{{-- @php 
+{{-- @php
 use App\Models\Files;
 $documento = DB::table('files')
             ->select('file')
@@ -26,79 +26,92 @@ $documento = DB::table('files')
         </ul>
 
         <div class="tab-content">
-            <div class="tab-pane show fade active p-5" id="datos-tab">
+            <div class="tab-pane show fade active p-4" id="datos-tab">
 
                 <div class="form-group">
-        
+
                     <label class="form-label">Título</label>
                     <input class="form-control" type="text" disabled value="{{$proyecto->titulo}}">
-    
+
                 </div>
                 <div class="row">
                     <div class="form-group col col-2">
-            
+
                         <label class="form-label">Fecha inicio</label>
                         <input class="form-control" type="date" disabled value="{{$proyecto->fecha_inicio}}">
-        
+
                     </div>
                     <div class="form-group col col-2">
-            
+
                         <label class="form-label">Fecha fin</label>
                         <input class="form-control" type="date" disabled value="{{$proyecto->fecha_fin}}">
-        
+
                     </div>
                     <div class="form-group col col-3">
-            
+
                         <label class="form-label">Trayecto</label>
                         <input class="form-control" type="text" disabled value="{{$proyecto->trayectos->trayecto}} ({{$proyecto->trayectos->descripcion}})">
-        
+
                     </div>
                     <div class="form-group col col-5">
-            
-                        <label class="form-label">Especialidad</label>
-                        <input class="form-control" type="text" disabled value="{{$proyecto->especialidades->especialidad}}">
-        
+
+                        <label class="form-label">Carrera</label>
+                        <input class="form-control" type="text" disabled value="{{$proyecto->carreras->carrera}}">
+
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col col-5">
-            
-                        <label class="form-label">Carrera</label>
+
+                        <label class="form-label">Especialidad</label>
                         <input class="form-control" type="text" disabled value="{{$proyecto->especialidades->especialidad}}">
-        
+
                     </div>
                     <div class="form-group col col-7">
-            
+
                         <label class="form-label">Linea de investigación</label>
                         <input class="form-control" type="text" disabled value="{{$proyecto->linea_investigaciones->linea_investigacion}}">
-        
+
                     </div>
+                </div>
+
+                <div class="row">
+                    {!!$a!!}
+                </div>
+                <div class="form-group">
+
+                    <label class="form-label">Dirección</label>
+                    <textarea class="form-control" cols="25" rows="3" disabled>{{$proyecto->direccion}}{{$proyecto->direccion}}</textarea>
+
                 </div>
             </div>
 
-            <div class="tab-pane fade p-5" id="equipo-tab">
+            <div class="tab-pane fade p-4" id="equipo-tab">
 
                 <h4 class="text-center">Asesores</h4>
 
+                <hr>
+
                 <h4 class="text-center">Estudiantes</h4>
+                <div class="row">
+                {!!$estud!!}
+                </div>
 
             </div>
 
-            <div class="tab-pane fade p-5" id="comunidad-tab">
+            <div class="tab-pane fade p-4" id="comunidad-tab">
 
-                <h4 class="text-center">Comunidad</h4>
+                <h4 class="text-center">Datos de la comunidad</h4>
+                <div>
+                     {!!$html!!}
+                </div>
+
 
             </div>
 
-            <div class="tab-pane fade p-5" id="documento-tab">
+            <div class="tab-pane fade p-4" id="documento-tab">
 
                 <h4 class="text-center">Documentos</h4>
-
-                {{-- @foreach ($documento as $item)
-
-                {{$item}}
-                    
-                @endforeach --}}
 
             </div>
         </div>

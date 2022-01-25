@@ -23,8 +23,12 @@ class Persona extends Model
             'seccion',
             'turno'
             ];
-    
+
     public function user(){
         return $this->belongsTo(User::class, 'id_user');
+    }
+    // estudiante forenkey
+    public function proyectos_estudiantes(){
+        return $this->hasMany(Proyectos_estudiante::class, 'id');
     }
 }

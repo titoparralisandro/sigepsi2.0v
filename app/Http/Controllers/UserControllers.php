@@ -67,7 +67,7 @@ class UserControllers extends Controller
     {
         //
         $roles = Role::all();
-        
+
         //return $user;
         //$usuarios = User::all();
         //return $roles;
@@ -100,7 +100,7 @@ class UserControllers extends Controller
         $request->roles = $request->get('role');
         //$roles = $data->pluck('id_role', 'nombre');
         $request->roles = $request->roles + 1;
-        //return $request->roles; 
+        //return $request->roles;
         $user->roles()->sync($request->roles);
         return redirect()->route('usuarios.edit', $user->id)->with('respuesta','creado');
     }

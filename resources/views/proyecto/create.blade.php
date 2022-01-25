@@ -70,15 +70,15 @@
                                 <label class="form-label">trayecto</label>
                                 <select name="id_trayecto" id="id_trayecto" style="width: 100%"></select>
                             </div>
-                            <div class="form-group col col-4">
+                            <div class="form-group col col-8">
                                 <label class="form-label">Carrera</label>
                                 <select name="id_carrera" id="id_carrera" style="width: 100%"></select>
                             </div>
-                            <div class="form-group col col-4" >
+                            <div class="form-group col col-6" >
                                 <label class="form-label">Especialidad</label>
                                 <select name="id_especialidad" id="id_especialidad" style="width: 100%"></select>
                             </div>
-                            <div class="form-group col-4">
+                            <div class="form-group col col-6">
                                 <label class="form-label">Linea de investigación</label>
                                 <select name="id_lineas_investigacion" id="id_lineas_investigacion" style="width: 100%"></select>
                             </div>
@@ -88,16 +88,22 @@
                     <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
 
                         {{-- segundo parte del form --}}
-
-
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addComunidad">Agregar comunidad</button>
+                        <div class="row">
+                            <div class="form-group col-2" style="  display: flex; align-items: center; justify-content: center;">
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addComunidad">Seleccionar comunidad</button>
+                            </div>
+                            <div class="form-group col-10">
+                                <input type="text" id="id_comunidad" name="id_comunidad" hidden>
+                                <input type="text" class="form-control" id="comunidad" name="comunidad" disabled>
+                            </div>
+                        </div>
 
                         <!-- Modal -->
                         <div class="modal fade" id="addComunidad" tabindex="-1" role="dialog" aria-labelledby="addComunidad" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="addComunidadLabel">Agregar comunidad</h5>
+                                        <h5 class="modal-title" id="addComunidadLabel">Filtro de comunidades</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -126,7 +132,7 @@
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>#</th>
+                                                            <th>N°</th>
                                                             <th>Comunidad</th>
                                                             <th>Accion</th>
                                                         </tr>
@@ -138,8 +144,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Listo</button>
                                     </div>
                                 </div>
                             </div>
@@ -163,12 +168,6 @@
                                 <label class="form-label">Parroquia</label>
                                 <select name="id_parroquiaP" id="id_parroquiaP" class="form-control"></select>
                             </div>
-
-                            <div class="col-12">
-                                <input type="text" id="id_comunidad" name="id_comunidad" hidden>
-                                <input type="text" class="form-control" id="comunidad" name="comunidad" disabled>
-                            </div>
-
                         </div>
 
                         <div class="form-group">
@@ -260,12 +259,12 @@
         var incre = 0;
         function selectAlumno(id,name,trayecto,cedula) {
             var html = "";
-            if (incre>=1 && incre<=5) {
+            if (incre>=1 && incre<5) {
                 html +="<tr id='Alumno_"+id+"'>";
-                html +="<td>"+id+"</td>";
-                html +="<td>"+cedula+"</td>";
-                html +="<td>"+name+"</td>";
-                html +="<td>"+trayecto+"</td>";
+                html +="<td><input type='text' id='AlumnosId[]' name='AlumnosId[]' class='form-control' readonly value='"+id+"'></td>";
+                html +="<td><input type='text' id='AlumnosCedula[]' name='AlumnosCedula[]' class='form-control' readonly value='"+cedula+"'></td>";
+                html +="<td><input type='text' id='AlumnosNombres[]' name='AlumnosNombres[]' class='form-control' readonly value='"+name+"'></td>";
+                html +="<td><input type='text' id='AlumnosTrayecto[]' name='AlumnosTrayecto[]' class='form-control' readonly value='"+trayecto+"'></td>";
                 html +="<td><button class='btn btn-primary' type='button' onclick='removeItem(Alumno_"+id+")'><i class='fa fa-trash'></i></button></td>";
                 html +="</tr>";
                 incre++;
@@ -273,10 +272,10 @@
             }else{
                 if (incre==0) {
                     html +="<tr id='Alumno_"+id+"'>";
-                    html +="<td>"+id+"</td>";
-                    html +="<td>"+cedula+"</td>";
-                    html +="<td>"+name+"</td>";
-                    html +="<td>"+trayecto+"</td>";
+                    html +="<td><input type='text' id='AlumnosId[]' name='AlumnosId[]' class='form-control' readonly value='"+id+"'></td>";
+                    html +="<td><input type='text' id='AlumnosCedula[]' name='AlumnosCedula[]' class='form-control' readonly value='"+cedula+"'></td>";
+                    html +="<td><input type='text' id='AlumnosNombres[]' name='AlumnosNombres[]' class='form-control' readonly value='"+name+"'></td>";
+                    html +="<td><input type='text' id='AlumnosTrayecto[]' name='AlumnosTrayecto[]' class='form-control' readonly value='"+trayecto+"'></td>";
                     html +="<td><button class='btn btn-primary' type='button' onclick='removeItem(Alumno_"+id+")'><i class='fa fa-trash'></i></button></td>";
                     html +="</tr>";
                     incre++;

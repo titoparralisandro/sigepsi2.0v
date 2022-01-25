@@ -46,7 +46,7 @@ Route::resource('comunidades',App\Http\Controllers\ComunidadeController::class);
 Route::resource('tipos_comunidad',App\Http\Controllers\Tipos_comunidadeController::class);
 
 Route::resource('necesidad',App\Http\Controllers\NecesidadeController::class);
-Route::resource('situacion',App\Http\Controllers\SituacioneController::class);
+//Route::resource('situacion',App\Http\Controllers\SituacioneController::class);
 
 Route::resource('carrera',App\Http\Controllers\CarreraController::class);
 Route::resource('especialidad',App\Http\Controllers\EspecialidadeController::class);
@@ -63,10 +63,10 @@ Route::resource('estructura',App\Http\Controllers\EstructuraController::class);
 Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('tipos_asesoria',App\Http\Controllers\Tipos_asesoriaController::class);
 
-//Route::resource('estatus_comunidades',App\Http\Controllers\Estatus_comunidadeController::class);
-//Route::resource('estatus_progresos',App\Http\Controllers\Estatus_progresoController::class);
-//Route::resource('estatus_necesidades',App\Http\Controllers\Estatus_necesidadeController::class);
-//Route::resource('estatus_situaciones',App\Http\Controllers\Estatus_situacioneController::class);
+// Route::resource('estatus_comunidades',App\Http\Controllers\Estatus_comunidadeController::class);
+// Route::resource('estatus_progresos',App\Http\Controllers\Estatus_progresoController::class);
+// Route::resource('estatus_necesidades',App\Http\Controllers\Estatus_necesidadeController::class);
+// Route::resource('estatus_situaciones',App\Http\Controllers\Estatus_situacioneController::class);
 
 Route::post('/getmunicipios', [App\Http\Controllers\ComunidadeController::class, 'municipios']);
 Route::post('/getparroquias', [App\Http\Controllers\ComunidadeController::class, 'parroquias']);
@@ -83,13 +83,17 @@ Route::post('/editcomunid', [App\Http\Controllers\ComunidadeController::class, '
 Route::post('/SaveEditcomunid', [App\Http\Controllers\ComunidadeController::class, 'Savedit']);
 
 // Usuarios
-Route::get('usuarios', [UserControllers::class,'index'])->name('usuarios.index');
-Route::get('usuarios/create', [UserControllers::class,'create'])->name('usuarios.create');
-Route::post('usuarios', [UserControllers::class,'store'])->name('usuarios.store');
-Route::get('usuarios/{user}', [UserControllers::class,'show'])->name('usuarios.show');
-Route::get('usuarios/{user}/edit', [UserControllers::class,'edit'])->name('usuarios.edit');
-Route::put('usuarios/{user}', [UserControllers::class,'update'])->name('usuarios.update');
-Route::delete('usuarios/{user}', [UserControllers::class,'destroy'])->name('usuarios.destroy');
+
+Route::get('usuarios', [UserControllers::class,'index'])->middleware('can:usuarios.index')->name('usuarios.index');
+Route::get('usuarios/create', [UserControllers::class,'create'])->middleware('can:usuarios.create')->name('usuarios.create');
+Route::post('usuarios', [UserControllers::class,'store'])->middleware('can:usuarios.store')->name('usuarios.store');
+Route::get('usuarios/{user}', [UserControllers::class,'show'])->middleware('can:usuarios.show')->name('usuarios.show');
+Route::get('usuarios/{user}/edit', [UserControllers::class,'edit'])->middleware('can:usuarios.edit')->name('usuarios.edit');
+Route::put('usuarios/{user}', [UserControllers::class,'update'])->middleware('can:usuarios.update')->name('usuarios.update');
+Route::delete('usuarios/{user}', [UserControllers::class,'destroy'])->middleware('can:usuarios.destroy')->name('usuarios.destroy');
+
+//Route::resource('usuarios',UserControllers::class);
+
 
 Route::get('/getdataEstruc/{Typedata}', [App\Http\Controllers\EstructuraController::class, 'getdata']);
 Route::post('/getdataInvest', [App\Http\Controllers\EstructuraController::class, 'getdataInvest']);
