@@ -226,6 +226,7 @@ return [
     'menu' => [
         // Sidebar items:
         [
+            'can' => 'proyecto.index',
             'text' => 'Gestión de proyectos',
             'icon'    => 'fas fa-fw fa-chalkboard-teacher',
             'submenu' => [
@@ -237,6 +238,7 @@ return [
         ],
         ],
         [
+            'can' => 'usuarios.index',
             'text' => 'Estrcuturas evaluativas',
             'icon'    => 'fas fa-fw fa-list-alt',
             'submenu' => [
@@ -257,7 +259,7 @@ return [
                 ],
         ],
         ],
-        [
+        [ 'can' => 'especialidad.index',
             'text'    => 'Administrable',
             'icon'    => 'fas fa-fw fa-cogs',
             'submenu' => [
@@ -275,6 +277,7 @@ return [
                             'text' => 'Especialidades',
                             'icon' => 'fas fa-fw fa-user-graduate',
                             'url'  => '/especialidad',
+
                         ],
                         [
                             'text' => 'Líneas de Investigación',
@@ -311,6 +314,7 @@ return [
             ],
         ],
         [
+            'can' => 'usuarios.index',
             'text' => 'Comunidades',
             'icon'    => 'fas fa-fw fa-city',
             'submenu' => [
@@ -327,6 +331,7 @@ return [
         ],
         ],
         [
+            'can' => 'usuarios.index',
             'text' => 'Situaciones',
             'icon'    => 'fas fa-fw fa-handshake',
             'submenu' => [
@@ -343,14 +348,15 @@ return [
         ],
         ],
         ['header' => 'account_settings'],
-        [
+        [   'can' => 'usuarios.index',
             'text' => 'Usuarios',
             'icon'    => 'fas fa-fw fa-users',
             'submenu' => [
                 [
                     'text' => 'Usuario',
                     'icon'    => 'fas fa-fw fa-user',
-                    'url'  => '/ListUsers',
+                    'url'  => '/usuarios',
+                    'can' => 'usuarios.index',
                 ],
                 [
                     'text' => 'Roles',
@@ -365,30 +371,41 @@ return [
         ],
         ],
         [
+            'can' => 'usuarios.index',
             'text' => 'profile',
             'url'  => '/perfil',
             'icon' => 'fas fa-fw fa-user',
         ],
-    
-        ['header' => 'Reportes'],
+
         [
+            'header' => 'Reportes',
+            'can' => 'usuarios.index',
+        ],
+        [
+            'can' => 'usuarios.index',
             'text' => 'Estadísticas',
             'url'  => '#',
             'icon' => 'fas fa-fw fa-chart-bar',
         ],
         [
+            'can' => 'usuarios.index',
             'text' => 'Reportes',
             'url'  => '#',
             'icon' => 'fas fa-fw fa-file-alt',
         ],
 
-        ['header' => 'Información'],
         [
+            'header' => 'Información',
+            'can' => 'usuarios.index',
+        ],
+        [
+            'can' => 'usuarios.index',
             'text' => 'Comentarios',
             'url'  => '/comentario',
             'icon' => 'fas fa-fw fa-comments',
         ],
         [
+            'can' => 'usuarios.index',
             'text' => 'A cerca de',
             'url'  => '/a_cerca_de',
             'icon' => 'fas fa-fw fa-info',
@@ -525,7 +542,7 @@ return [
                     'type' => 'js',
                     'asset' => true,
                     'location' => 'vendor/select2/js/select2.full.min.js',
-                ],                
+                ],
                 [
                     'type' => 'css',
                     'asset' => true,

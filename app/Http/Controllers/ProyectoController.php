@@ -10,6 +10,7 @@ use App\Models\Lineas_investigacione;
 use App\Models\Estado;
 use App\Models\Evaluacione;
 use App\Models\Estructuras_evaluacione;
+use App\Models\Proyectos_estudiante;
 use App\Models\Files;
 use Illuminate\Http\Request;
 
@@ -73,25 +74,46 @@ class ProyectoController extends Controller
             $i++;
         }
         $progresosT=round($progresos/count($ArrayItemV),0,PHP_ROUND_HALF_UP);
-        $evaluaciones = new Evaluacione();
-        $evaluaciones->id_proyecto = $request->get("proyecto");
-        $evaluaciones->progreso =$progresosT;
-        $evaluaciones->save();
+        $validarEvaluaciones = Evaluacione::where('id_proyecto','=',$request->get("proyecto"))->count();
+        if($validarEvaluaciones>0){
+            $evaluaciones = Evaluacione::where('id_proyecto',"=", $request->get("proyecto"))->first();
+            $evaluaciones->progreso =$progresosT;
+            $evaluaciones->save();
+            $data =json_decode($request->get("items"));
+            foreach ($data as $key => $value) {
+                $dataDetalle =json_decode($value,true);
+                $estru_eval = Estructuras_evaluacione::where('id_evaluacion',"=", $evaluaciones->id)->get();
+                foreach ($estru_eval as $value) {
+                    if($dataDetalle["value"] == "Pendiente"){
+                        $value->id_estatus_progreso = 1;
+                    }else{
+                        $value->id_estatus_progreso = 2;
+                    }
+                    $value->save();
+                }
+            }
+        }else{
+            $evaluaciones = new Evaluacione();
+            $evaluaciones->id_proyecto = $request->get("proyecto");
+            $evaluaciones->progreso =$progresosT;
+            $evaluaciones->save();
 
-        $data =json_decode($request->get("items"));
-        foreach ($data as $key => $value) {
-           $dataDetalle =json_decode($value,true);
-           $estru_eval = new Estructuras_evaluacione();
-           $estru_eval->id_evaluacion = $evaluaciones->id;
-           $estru_eval->id_items_estructura = $dataDetalle["items"];
-           $estru_eval->id_estructura = $dataDetalle["estructura"];
-           if($dataDetalle["value"] == "Pendiente"){
-                $estru_eval->id_estatus_progreso = 1;
-           }else{
-                $estru_eval->id_estatus_progreso = 2;
-           }
-           $estru_eval->save();
+            $data =json_decode($request->get("items"));
+            foreach ($data as $key => $value) {
+                $dataDetalle =json_decode($value,true);
+                $estru_eval = new Estructuras_evaluacione();
+                $estru_eval->id_evaluacion = $evaluaciones->id;
+                $estru_eval->id_items_estructura = $dataDetalle["items"];
+                $estru_eval->id_estructura = $dataDetalle["estructura"];
+                if($dataDetalle["value"] == "Pendiente"){
+                        $estru_eval->id_estatus_progreso = 1;
+                }else{
+                        $estru_eval->id_estatus_progreso = 2;
+                }
+                $estru_eval->save();
+            }
         }
+
         return response()->json(["exito"=>true]);
     }
 
@@ -104,6 +126,7 @@ class ProyectoController extends Controller
             ->get();
         $html="";
         foreach ($comunidades as $comunidad) {
+
             $html .="<tr>";
             $html .="<td>".$comunidad->id."</td>";
             $html .="<td>".$comunidad->cedula."</td>";
@@ -231,7 +254,11 @@ class ProyectoController extends Controller
         $proyecto->id_especialidad = $request->get('id_especialidad');
         $proyecto->id_linea_investigacion = $request->get('id_lineas_investigacion');
         $proyecto->id_trayecto = $request->get('id_trayecto');
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
         $proyecto->id_comunidad = $request->get('id_comunidad');
         $proyecto->id_estado = $request->get('id_estadoP');
         $proyecto->id_municipio = $request->get('id_municipioP');
@@ -240,6 +267,25 @@ class ProyectoController extends Controller
 
         $proyecto->save();
 
+<<<<<<< HEAD
+=======
+        $evaluaciones = new Evaluacione();
+        $evaluaciones->id_proyecto =  $proyecto->id;
+        $evaluaciones->progreso =0;
+        $evaluaciones->save();
+
+
+        $AlumnosId = $request->get('AlumnosId');
+        foreach ($AlumnosId as $value) {
+            $estudiantes_proyecto = new Proyectos_estudiante();
+            $estudiantes_proyecto->id_proyecto = $proyecto->id;
+            $estudiantes_proyecto->id_estudiante = $value;
+            $estudiantes_proyecto->id_estatus_estudiante = 1;
+            $estudiantes_proyecto->observacion = '';
+            $estudiantes_proyecto->save();
+        }
+
+>>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
         mkdir(public_path('upload/'.$proyecto->id), 0777, true);
         foreach ($request->files as $key => $value) {
             $nombre_documento = explode("_",$key);
@@ -301,7 +347,11 @@ class ProyectoController extends Controller
             ->leftJoin('estados', 'estados.id_estado', '=', 'municipios.id_estado')
             ->select("comunidades.*","parroquias.parroquia","municipios.municipio","estados.estado","tipos_comunidades.tipo_comunidad")
             ->where([ ['comunidades.id', '=', $proyecto->id_comunidad] ])
+<<<<<<< HEAD
             ->get(); 
+=======
+            ->get();
+>>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
 
             foreach ($comunidades as $comunidad) {
                 $html = "<div class='row'>";
@@ -351,9 +401,27 @@ class ProyectoController extends Controller
                 $html.="<textarea class='form-control' disabled cols='25' rows='4' >".$comunidad->direccion."</textarea>";
                 $html.="</div>";
             }
+<<<<<<< HEAD
             
         return view('proyecto.show',["html"=>$html, "a"=>$a, "proyecto"=>$proyecto, "estados"=>$estados, "municipios"=>$municipios , "parroquias"=>$parroquias]);
         
+=======
+            $estudiantes = DB::table('personas')
+            ->select('personas.*' )
+            ->join('proyectos_estudiantes', 'proyectos_estudiantes.id_estudiante', '=', 'personas.id')
+            ->whereRaw("proyectos_estudiantes.id_proyecto ='".$proyecto->id."' and personas.id=proyectos_estudiantes.id_estudiante")
+            ->get();
+            $estud="";
+            foreach ($estudiantes as $estudiante) {
+                $estud.="<div class='form-group col col-4'>";
+                $estud.="<label class='form-label'>Estudiante</label>";
+                $estud.="<input disabled class='form-control' type='text' value='".$estudiante->nombres."'.' '.'".$estudiante->apellidos."'>";
+                $estud.="</div>";
+            }
+
+        return view('proyecto.show',["html"=>$html, "estud"=>$estud, "a"=>$a, "proyecto"=>$proyecto, "estados"=>$estados, "municipios"=>$municipios , "parroquias"=>$parroquias]);
+
+>>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
     }
 
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\UserControllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,7 +46,7 @@ Route::resource('comunidades',App\Http\Controllers\ComunidadeController::class);
 Route::resource('tipos_comunidad',App\Http\Controllers\Tipos_comunidadeController::class);
 
 Route::resource('necesidad',App\Http\Controllers\NecesidadeController::class);
-Route::resource('situacion',App\Http\Controllers\SituacioneController::class);
+//Route::resource('situacion',App\Http\Controllers\SituacioneController::class);
 
 Route::resource('carrera',App\Http\Controllers\CarreraController::class);
 Route::resource('especialidad',App\Http\Controllers\EspecialidadeController::class);
@@ -62,10 +63,10 @@ Route::resource('estructura',App\Http\Controllers\EstructuraController::class);
 Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('tipos_asesoria',App\Http\Controllers\Tipos_asesoriaController::class);
 
-Route::resource('estatus_comunidades',App\Http\Controllers\Estatus_comunidadeController::class);
-Route::resource('estatus_progresos',App\Http\Controllers\Estatus_progresoController::class);
-Route::resource('estatus_necesidades',App\Http\Controllers\Estatus_necesidadeController::class);
-Route::resource('estatus_situaciones',App\Http\Controllers\Estatus_situacioneController::class);
+// Route::resource('estatus_comunidades',App\Http\Controllers\Estatus_comunidadeController::class);
+// Route::resource('estatus_progresos',App\Http\Controllers\Estatus_progresoController::class);
+// Route::resource('estatus_necesidades',App\Http\Controllers\Estatus_necesidadeController::class);
+// Route::resource('estatus_situaciones',App\Http\Controllers\Estatus_situacioneController::class);
 
 Route::post('/getmunicipios', [App\Http\Controllers\ComunidadeController::class, 'municipios']);
 Route::post('/getparroquias', [App\Http\Controllers\ComunidadeController::class, 'parroquias']);
@@ -80,11 +81,20 @@ Route::post('/SaveEvaluar', [App\Http\Controllers\ProyectoController::class, 'Sa
 Route::get('/showcomunid/{id}', [App\Http\Controllers\ComunidadeController::class, 'show']);
 Route::post('/editcomunid', [App\Http\Controllers\ComunidadeController::class, 'edit']);
 Route::post('/SaveEditcomunid', [App\Http\Controllers\ComunidadeController::class, 'Savedit']);
-Route::get('/ListUsers', [App\Http\Controllers\UserControllers::class, 'index']);
-Route::post('/SaveUser', [App\Http\Controllers\UserControllers::class, 'store']);
-Route::post('/getUser', [App\Http\Controllers\UserControllers::class, 'show']);
-Route::post('/editUser', [App\Http\Controllers\UserControllers::class, 'edit']);
-Route::post('/SaveEditUser', [App\Http\Controllers\UserControllers::class, 'update']);
+
+// Usuarios
+
+Route::get('usuarios', [UserControllers::class,'index'])->middleware('can:usuarios.index')->name('usuarios.index');
+Route::get('usuarios/create', [UserControllers::class,'create'])->middleware('can:usuarios.create')->name('usuarios.create');
+Route::post('usuarios', [UserControllers::class,'store'])->middleware('can:usuarios.store')->name('usuarios.store');
+Route::get('usuarios/{user}', [UserControllers::class,'show'])->middleware('can:usuarios.show')->name('usuarios.show');
+Route::get('usuarios/{user}/edit', [UserControllers::class,'edit'])->middleware('can:usuarios.edit')->name('usuarios.edit');
+Route::put('usuarios/{user}', [UserControllers::class,'update'])->middleware('can:usuarios.update')->name('usuarios.update');
+Route::delete('usuarios/{user}', [UserControllers::class,'destroy'])->middleware('can:usuarios.destroy')->name('usuarios.destroy');
+
+//Route::resource('usuarios',UserControllers::class);
+
+
 Route::get('/getdataEstruc/{Typedata}', [App\Http\Controllers\EstructuraController::class, 'getdata']);
 Route::post('/getdataInvest', [App\Http\Controllers\EstructuraController::class, 'getdataInvest']);
 Route::post('/getdataEspe', [App\Http\Controllers\EstructuraController::class, 'getdataEspe']);

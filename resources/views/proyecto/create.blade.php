@@ -91,13 +91,21 @@
                         <div class="row">
                             <div class="form-group col-2" style="  display: flex; align-items: center; justify-content: center;">
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addComunidad">Seleccionar comunidad</button>
+<<<<<<< HEAD
                             </div> 
+=======
+                            </div>
+>>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
                             <div class="form-group col-10">
                                 <input type="text" id="id_comunidad" name="id_comunidad" hidden>
                                 <input type="text" class="form-control" id="comunidad" name="comunidad" disabled>
                             </div>
                         </div>
+<<<<<<< HEAD
                         
+=======
+
+>>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
                         <!-- Modal -->
                         <div class="modal fade" id="addComunidad" tabindex="-1" role="dialog" aria-labelledby="addComunidad" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -259,12 +267,12 @@
         var incre = 0;
         function selectAlumno(id,name,trayecto,cedula) {
             var html = "";
-            if (incre>=1 && incre<=5) {
+            if (incre>=1 && incre<5) {
                 html +="<tr id='Alumno_"+id+"'>";
-                html +="<td>"+id+"</td>";
-                html +="<td>"+cedula+"</td>";
-                html +="<td>"+name+"</td>";
-                html +="<td>"+trayecto+"</td>";
+                html +="<td><input type='text' id='AlumnosId[]' name='AlumnosId[]' class='form-control' readonly value='"+id+"'></td>";
+                html +="<td><input type='text' id='AlumnosCedula[]' name='AlumnosCedula[]' class='form-control' readonly value='"+cedula+"'></td>";
+                html +="<td><input type='text' id='AlumnosNombres[]' name='AlumnosNombres[]' class='form-control' readonly value='"+name+"'></td>";
+                html +="<td><input type='text' id='AlumnosTrayecto[]' name='AlumnosTrayecto[]' class='form-control' readonly value='"+trayecto+"'></td>";
                 html +="<td><button class='btn btn-primary' type='button' onclick='removeItem(Alumno_"+id+")'><i class='fa fa-trash'></i></button></td>";
                 html +="</tr>";
                 incre++;
@@ -272,10 +280,10 @@
             }else{
                 if (incre==0) {
                     html +="<tr id='Alumno_"+id+"'>";
-                    html +="<td>"+id+"</td>";
-                    html +="<td>"+cedula+"</td>";
-                    html +="<td>"+name+"</td>";
-                    html +="<td>"+trayecto+"</td>";
+                    html +="<td><input type='text' id='AlumnosId[]' name='AlumnosId[]' class='form-control' readonly value='"+id+"'></td>";
+                    html +="<td><input type='text' id='AlumnosCedula[]' name='AlumnosCedula[]' class='form-control' readonly value='"+cedula+"'></td>";
+                    html +="<td><input type='text' id='AlumnosNombres[]' name='AlumnosNombres[]' class='form-control' readonly value='"+name+"'></td>";
+                    html +="<td><input type='text' id='AlumnosTrayecto[]' name='AlumnosTrayecto[]' class='form-control' readonly value='"+trayecto+"'></td>";
                     html +="<td><button class='btn btn-primary' type='button' onclick='removeItem(Alumno_"+id+")'><i class='fa fa-trash'></i></button></td>";
                     html +="</tr>";
                     incre++;

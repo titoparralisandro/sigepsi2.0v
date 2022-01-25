@@ -150,19 +150,40 @@
     <div class="container py-lg-5 py-md-3">
         <div class="row">
             <div class="col-lg-6 about-right-faq align-self">
-                <span class="title-small mb-2">Start online course</span>
-                <h3 class="title-big mx-0"> Enhance your skills with best online courses</h3>
-                <p class="mt-lg-4 mt-3 mb-lg-5 mb-4">Se propone como estrategia de aprendizaje que permite la construcción del conocimiento a partir del aprender haciendo, donde se propicia el reconocimiento en principio por el propio participante de sus conocimientos, habilidades y destrezas, que luego debe desarrollar a partir del desarrollo de <b>Proyectos Socio Integradores</b> convirtiéndose en crecimiento personal y confianza en el participante de su proceso formativo y del rol profesional a desempeñar. </p>
+                <span class="title-small text-center mb-2">Historia</span>
+
+                <h3 class="title-big mx-0 text-center" > La Universidad</h3>
+                <p class="mt-lg-4 mt-3 mb-lg-5 mb-4 text-center">
+                    El IUTOMS fue fundada en 1990, especializándose en la formación de los líderes que nuestro país
+                    necesita, para tener un próspero mañana. Hoy en día, las aplicaciones y
+                    resultados del modelo de educación por competencias, los sitúa entre las instituciones más
+                     prestigiosas del país.
+                    Su propósito es formar líderes útiles para nuestra sociedad. Forman parte de la Red de Instituciones
+                    TECNOLOGICAS Nacionales, y gozan de la certificación de calidad en educación.
+
                 <div class="two-grids mt-md-0 mt-md-5 mt-4">
                     <div class="grids_info">
-                        <h4>Global Certificate</h4>
-                        <p class="">Pellen tesque libero ut justo,
-                            ultrices in ligula elit sed.</p>
+                        <h4>Formando los Profesionales del Mañana</h4>
+                        <p class="center">Se propone como estrategia de aprendizaje que
+                            permite la construcción del conocimiento a partir del aprender haciendo, donde se
+                             propicia el reconocimiento en principio por el propio participante de sus conocimientos,
+                              habilidades y destrezas, que luego debe desarrollar a partir del desarrollo
+                              de <b>Proyectos Socio Integradores</b> convirtiéndose en crecimiento personal y
+                              confianza en el participante de su proceso formativo y del rol profesional a
+                               desempeñar. </p></p>
                     </div>
                     <div class="grids_info">
-                        <h4>Books and library</h4>
-                        <p class="">Pellen tesque libero ut justo,
-                            ultrices in ligula elit sed.</p>
+                        <h4><b>Nuestros Estudiantes</b></h4>
+                        <p class="center">
+
+                            Nuestros estudiantes son alumnos en edad escolar, que buscan desarrollar
+                             las habilidades y competencias ofrecidas específicamente en nuestros currículos
+                             académicos formales.
+
+                             <div class="grids_info ">
+                                <h4><b></b></h4>
+                                <p class="">
+
                     </div>
                 </div>
             </div>

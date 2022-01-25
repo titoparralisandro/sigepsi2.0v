@@ -6,7 +6,7 @@
 
 @section('content_header')
 
-{{-- @php 
+{{-- @php
 use App\Models\Files;
 $documento = DB::table('files')
             ->select('file')
@@ -29,49 +29,60 @@ $documento = DB::table('files')
             <div class="tab-pane show fade active p-4" id="datos-tab">
 
                 <div class="form-group">
-        
+
                     <label class="form-label">Título</label>
                     <input class="form-control" type="text" disabled value="{{$proyecto->titulo}}">
-    
+
                 </div>
                 <div class="row">
                     <div class="form-group col col-2">
-            
+
                         <label class="form-label">Fecha inicio</label>
                         <input class="form-control" type="date" disabled value="{{$proyecto->fecha_inicio}}">
-        
+
                     </div>
                     <div class="form-group col col-2">
-            
+
                         <label class="form-label">Fecha fin</label>
                         <input class="form-control" type="date" disabled value="{{$proyecto->fecha_fin}}">
-        
+
                     </div>
                     <div class="form-group col col-3">
-            
+
                         <label class="form-label">Trayecto</label>
                         <input class="form-control" type="text" disabled value="{{$proyecto->trayectos->trayecto}} ({{$proyecto->trayectos->descripcion}})">
-        
+
                     </div>
                     <div class="form-group col col-5">
+<<<<<<< HEAD
             
                         <label class="form-label">Carrera</label>
                         <input class="form-control" type="text" disabled value="{{$proyecto->carreras->carrera}}">
         
+=======
+
+                        <label class="form-label">Carrera</label>
+                        <input class="form-control" type="text" disabled value="{{$proyecto->carreras->carrera}}">
+
+>>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col col-5">
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
                         <label class="form-label">Especialidad</label>
                         <input class="form-control" type="text" disabled value="{{$proyecto->especialidades->especialidad}}">
-        
+
                     </div>
                     <div class="form-group col col-7">
-            
+
                         <label class="form-label">Linea de investigación</label>
                         <input class="form-control" type="text" disabled value="{{$proyecto->linea_investigaciones->linea_investigacion}}">
-        
+
                     </div>
                 </div>
 
@@ -79,10 +90,17 @@ $documento = DB::table('files')
                     {!!$a!!}
                 </div>
                 <div class="form-group">
+<<<<<<< HEAD
             
                     <label class="form-label">Dirección</label>
                     <textarea class="form-control" cols="25" rows="3" disabled>{{$proyecto->direccion}}{{$proyecto->direccion}}</textarea>
     
+=======
+
+                    <label class="form-label">Dirección</label>
+                    <textarea class="form-control" cols="25" rows="3" disabled>{{$proyecto->direccion}}{{$proyecto->direccion}}</textarea>
+
+>>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
                 </div>
             </div>
 
@@ -90,17 +108,31 @@ $documento = DB::table('files')
 
                 <h4 class="text-center">Asesores</h4>
 
+                <hr>
+
                 <h4 class="text-center">Estudiantes</h4>
+                <div class="row">
+                {!!$estud!!}
+                </div>
 
             </div>
 
             <div class="tab-pane fade p-4" id="comunidad-tab">
+<<<<<<< HEAD
 
                 <h4 class="text-center">Datos de la comunidad</h4>
                 <div>
                      {!!$html!!}
                 </div>
                
+=======
+
+                <h4 class="text-center">Datos de la comunidad</h4>
+                <div>
+                     {!!$html!!}
+                </div>
+
+>>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
 
             </div>
 

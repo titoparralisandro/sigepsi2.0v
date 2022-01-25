@@ -68,7 +68,7 @@
                         <p>{{ auth()->user()->email }} </p>
                     </div>
                 </div>
-                
+
                 <label class="form-label">Imagen de perfil:</label>
                 <input type="file" name="avatar" class="form-control btn">
 
@@ -80,7 +80,7 @@
 
                 <form action="{{ route('comentario.store') }}" method="POST">
                 @csrf
-                
+
                     <input type="hidden" name="name" id="name" value="{{auth()->user()->name}}">
                     <input type="hidden" name="email" id="email" value="{{auth()->user()->email}}">
 
@@ -90,7 +90,7 @@
                     <label class="form-label">Asunto:</label>
                     <input id="asunto" class="form-control" type="text" name="asunto"
                     placeholder="Coloca el asunto de tu correo como sugerencias o reporte de falla en el sistema">
-    
+
                 </div>
 
                 <div class="form-group ">
@@ -113,6 +113,9 @@
                 <p>PHP v{{ PHP_VERSION }} </p>
                 <h6>Framework utilizado:</h6>
                 <p>Laravel v{{ Illuminate\Foundation\Application::VERSION }}</p>
+                <h6>Puedes escribirnos a:</h6>
+                <p>admin@sigepsi.com</p>
+
 
             </div>
         </div>
@@ -132,7 +135,7 @@
 @section('js')
     @if(session('respuesta')=='creado')
         <script>
-            toastr.success('El comentario, ha sido creado.')
+            toastr.success('Su Comentario se creo exitosamente.')
         </script>
     @endif
 @stop

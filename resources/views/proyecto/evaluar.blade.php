@@ -146,7 +146,7 @@
                             text: "Proceso exitoso",
                             icon: 'success'
                         })
-                        window.location.href = "/evaluar";
+                        window.location.href = "/proyecto";
                     }
 
                 }
