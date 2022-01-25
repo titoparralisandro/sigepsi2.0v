@@ -63,11 +63,6 @@ Route::resource('estructura',App\Http\Controllers\EstructuraController::class);
 Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('tipos_asesoria',App\Http\Controllers\Tipos_asesoriaController::class);
 
-// Route::resource('estatus_comunidades',App\Http\Controllers\Estatus_comunidadeController::class);
-// Route::resource('estatus_progresos',App\Http\Controllers\Estatus_progresoController::class);
-// Route::resource('estatus_necesidades',App\Http\Controllers\Estatus_necesidadeController::class);
-// Route::resource('estatus_situaciones',App\Http\Controllers\Estatus_situacioneController::class);
-
 Route::post('/getmunicipios', [App\Http\Controllers\ComunidadeController::class, 'municipios']);
 Route::post('/getparroquias', [App\Http\Controllers\ComunidadeController::class, 'parroquias']);
 Route::post('/getcomunidad', [App\Http\Controllers\ComunidadeController::class, 'getcomunidad']);

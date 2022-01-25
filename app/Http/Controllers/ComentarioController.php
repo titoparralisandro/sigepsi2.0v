@@ -7,11 +7,6 @@ use App\Models\Comment;
 
 class ComentarioController extends Controller
 {
-    // Solo si se usa una ruta
-    //public function __invoke(){
-    //view('comment');
-    //return 'comentarios';
-    //}
 
     public function index(){
     $comentarios = Comment::all();

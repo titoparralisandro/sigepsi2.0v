@@ -97,10 +97,10 @@
                     </td>
                     <td class="text-center">
                         <div class="btn-group">
-                            {{-- @if ($proyectos->progreso != 100) --}}
+                            @if ($proyectos->progreso != 100)
                                 <a href="/evaluar/{{ $proyectos->id }}"class="btn btn-info">Evaluar</a>
-                            {{-- @endif --}}
-                            {{-- href="{{ route('proyecto.evaluar', $proyectos->id ) }}" --}}
+                            @endif
+                            
                             <a class="btn btn-primary" href="{{ route('proyecto.show', $proyectos->id ) }}">Ver<a>
                         </div>
                     </td>

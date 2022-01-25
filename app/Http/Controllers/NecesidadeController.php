@@ -70,9 +70,6 @@ class NecesidadeController extends Controller
 
     public function show(Necesidade $necesidades, $id){
         $necesidad = Necesidade::findOrFail($id);
-<<<<<<< HEAD
-        return view('necesidad.show', compact(['necesidad', 'id']));
-=======
 
         $estados        = DB::table('estados')
                         ->select('estado')
@@ -165,7 +162,7 @@ class NecesidadeController extends Controller
             }
 
         return view('necesidad.show',['html'=>$html, 'a'=>$a, "necesidad"=>$necesidad, "estados"=>$estados, "municipios"=>$municipios , "parroquias"=>$parroquias]);
->>>>>>> 074e84dc8eb7ce2c095c4ac978404f9e28ff23e3
+
     }
 
     public function edit(Request $request){

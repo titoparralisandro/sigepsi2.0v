@@ -254,11 +254,7 @@ class ProyectoController extends Controller
         $proyecto->id_especialidad = $request->get('id_especialidad');
         $proyecto->id_linea_investigacion = $request->get('id_lineas_investigacion');
         $proyecto->id_trayecto = $request->get('id_trayecto');
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
         $proyecto->id_comunidad = $request->get('id_comunidad');
         $proyecto->id_estado = $request->get('id_estadoP');
         $proyecto->id_municipio = $request->get('id_municipioP');
@@ -267,8 +263,6 @@ class ProyectoController extends Controller
 
         $proyecto->save();
 
-<<<<<<< HEAD
-=======
         $evaluaciones = new Evaluacione();
         $evaluaciones->id_proyecto =  $proyecto->id;
         $evaluaciones->progreso =0;
@@ -285,7 +279,6 @@ class ProyectoController extends Controller
             $estudiantes_proyecto->save();
         }
 
->>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
         mkdir(public_path('upload/'.$proyecto->id), 0777, true);
         foreach ($request->files as $key => $value) {
             $nombre_documento = explode("_",$key);
@@ -347,11 +340,7 @@ class ProyectoController extends Controller
             ->leftJoin('estados', 'estados.id_estado', '=', 'municipios.id_estado')
             ->select("comunidades.*","parroquias.parroquia","municipios.municipio","estados.estado","tipos_comunidades.tipo_comunidad")
             ->where([ ['comunidades.id', '=', $proyecto->id_comunidad] ])
-<<<<<<< HEAD
             ->get(); 
-=======
-            ->get();
->>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
 
             foreach ($comunidades as $comunidad) {
                 $html = "<div class='row'>";
@@ -401,11 +390,11 @@ class ProyectoController extends Controller
                 $html.="<textarea class='form-control' disabled cols='25' rows='4' >".$comunidad->direccion."</textarea>";
                 $html.="</div>";
             }
-<<<<<<< HEAD
+
             
         return view('proyecto.show',["html"=>$html, "a"=>$a, "proyecto"=>$proyecto, "estados"=>$estados, "municipios"=>$municipios , "parroquias"=>$parroquias]);
         
-=======
+
             $estudiantes = DB::table('personas')
             ->select('personas.*' )
             ->join('proyectos_estudiantes', 'proyectos_estudiantes.id_estudiante', '=', 'personas.id')
@@ -421,7 +410,6 @@ class ProyectoController extends Controller
 
         return view('proyecto.show',["html"=>$html, "estud"=>$estud, "a"=>$a, "proyecto"=>$proyecto, "estados"=>$estados, "municipios"=>$municipios , "parroquias"=>$parroquias]);
 
->>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
     }
 
 }

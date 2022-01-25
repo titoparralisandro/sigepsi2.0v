@@ -91,21 +91,14 @@
                         <div class="row">
                             <div class="form-group col-2" style="  display: flex; align-items: center; justify-content: center;">
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addComunidad">Seleccionar comunidad</button>
-<<<<<<< HEAD
                             </div> 
-=======
-                            </div>
->>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
+
                             <div class="form-group col-10">
                                 <input type="text" id="id_comunidad" name="id_comunidad" hidden>
                                 <input type="text" class="form-control" id="comunidad" name="comunidad" disabled>
                             </div>
                         </div>
-<<<<<<< HEAD
-                        
-=======
 
->>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
                         <!-- Modal -->
                         <div class="modal fade" id="addComunidad" tabindex="-1" role="dialog" aria-labelledby="addComunidad" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -227,7 +220,6 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Listo</button>
-                                                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -345,17 +337,6 @@
                 }
             }
         });
-        // $("#id_especialidad").select2({
-        //     ajax: {
-        //         url: '/getdataEstruc/carrera',
-        //         dataType: 'json',
-        //         processResults: function (data) {
-        //             return {
-        //                 results: data
-        //             };
-        //         }
-        //     }
-        // });
         $("#id_lineas_investigacion").select2();
         $("#id_carrera").change((e)=> {
             var valor =e.target.value;

@@ -6,15 +6,6 @@
 
 @section('content_header')
 
-{{-- @php
-use App\Models\Files;
-$documento = DB::table('files')
-            ->select('file')
-            ->join('proyectos', 'proyectos.id', '=', 'files.id_proyecto')
-            ->where('files.id_proyecto', '=', $proyecto->id)
-            ->first();
-@endphp --}}
-
 <div class="container d-flex justify-content-center mt-1 ">
     <div class="col-md-12 vorder rounded shadow bg-white">
 
@@ -54,26 +45,16 @@ $documento = DB::table('files')
 
                     </div>
                     <div class="form-group col col-5">
-<<<<<<< HEAD
+
             
                         <label class="form-label">Carrera</label>
                         <input class="form-control" type="text" disabled value="{{$proyecto->carreras->carrera}}">
-        
-=======
 
-                        <label class="form-label">Carrera</label>
-                        <input class="form-control" type="text" disabled value="{{$proyecto->carreras->carrera}}">
-
->>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col col-5">
-<<<<<<< HEAD
-            
-=======
 
->>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
                         <label class="form-label">Especialidad</label>
                         <input class="form-control" type="text" disabled value="{{$proyecto->especialidades->especialidad}}">
 
@@ -90,17 +71,10 @@ $documento = DB::table('files')
                     {!!$a!!}
                 </div>
                 <div class="form-group">
-<<<<<<< HEAD
             
                     <label class="form-label">Dirección</label>
                     <textarea class="form-control" cols="25" rows="3" disabled>{{$proyecto->direccion}}{{$proyecto->direccion}}</textarea>
-    
-=======
 
-                    <label class="form-label">Dirección</label>
-                    <textarea class="form-control" cols="25" rows="3" disabled>{{$proyecto->direccion}}{{$proyecto->direccion}}</textarea>
-
->>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
                 </div>
             </div>
 
@@ -118,21 +92,11 @@ $documento = DB::table('files')
             </div>
 
             <div class="tab-pane fade p-4" id="comunidad-tab">
-<<<<<<< HEAD
 
                 <h4 class="text-center">Datos de la comunidad</h4>
                 <div>
                      {!!$html!!}
                 </div>
-               
-=======
-
-                <h4 class="text-center">Datos de la comunidad</h4>
-                <div>
-                     {!!$html!!}
-                </div>
-
->>>>>>> 71ee1f662094a057e7bc6d5d45e47037781690a1
 
             </div>
 
