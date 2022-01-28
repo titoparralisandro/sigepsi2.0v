@@ -15,6 +15,22 @@ class CreateBancaSituacionesTable extends Migration
     {
         Schema::create('banca_situaciones', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_necesidad')
+                ->references('id')->on('necesidades')
+                ->OnDelete('set null');
+            $table->text('situacion');
+            $table->foreignId('id_carrera')
+                ->references('id')->on('carreras')
+                ->OnDelete('set null');
+            $table->foreignId('id_especialidad')
+                ->references('id')->on('especialidades')
+                ->OnDelete('set null');
+            $table->foreignId('id_linea_investigacion')
+                ->references('id')->on('lineas_investigaciones')
+                ->OnDelete('set null');
+            $table->foreignId('id_estatus_situacion')
+                ->references('id')->on('estatus_necesidades')
+                ->OnDelete('set null');
             $table->timestamps();
         });
     }

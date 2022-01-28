@@ -14,7 +14,7 @@
                             <div class="container">
                                 <div class="banner-info-bg">
                                     <h5>Comunidad</h5>
-                                    <p class="mt-4 pr-lg-4">Si eres una comunidad y necesitas una ayuda a encontrar una solución a un proceso en concreto podemos ayudarte</p>
+                                    <p class="mt-4 pr-lg-4">Si eres una comunidad y necesitas ayuda a encontrar una solución a un proceso en concreto podemos ayudarte</p>
                                     <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="{{url('register')}}"> ¿Deseas registrar tu situación o problemática?</a>
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                                 <div class="banner-info-bg">
                                     <h5>Biblioteca digital </h5>
                                     <p class="mt-4 pr-lg-4">Desde sus incios como universidad hemos ayudado a diversas comunidades y organizaciones como escuelas y entes gubernamentales con sus diferentes procesos, aportando un granito de arena en apoyo al desarrollo del país en diversas áreas</p>
-                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="about.html"> Ver portafolio </a>
+                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="{{url('/catalogo')}}"> Ver portafolio </a>
                                 </div>
                             </div>
                         </div>
@@ -43,10 +43,9 @@
                         <div class="banner-info">
                             <div class="container">
                                 <div class="banner-info-bg">
-                                    <h5>Ferias Tecnológicas</h5>
-                                    <p class="mt-4 pr-lg-4"> </p>
-                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="about.html"> Ready to
-                                        get started?</a>
+                                    <h5>Información del sistema</h5>
+                                    <p class="mt-4 pr-lg-4"> Acá podras informarte de que trata este sistema y porque se implementó </p>
+                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="{{url('about')}}"> ¿Deseas saber más del sistema de gestión de proyectos? </a>
                                 </div>
                             </div>
                         </div>
@@ -59,10 +58,9 @@
                         <div class="banner-info">
                             <div class="container">
                                 <div class="banner-info-bg">
-                                    <h5>Enhance your skills with best online courses</h5>
-                                    <p class="mt-4 pr-lg-4">Take the first step to your journey to success with us</p>
-                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="about.html"> Ready to
-                                        get started?</a>
+                                    <h5>Comunicate con nosotros</h5>
+                                    <p class="mt-4 pr-lg-4">Si quieres </p>
+                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="{{url('contact')}}"> Contacto </a>
                                 </div>
                             </div>
                         </div>
@@ -396,6 +394,111 @@
                                     </div>
                                     <div class="peopl align-self">
                                         <h3>Laura gill</h3>
+                                        <p class="indentity">Student</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimonial-content">
+                            <div class="testimonial">
+                                <blockquote>
+                                    <q>Lorem ipsum dolor sit amet elit. Velit beatae
+                                        laudantium
+                                        voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
+                                        Dolores molestias adipisci dolo amet!.</q>
+                                </blockquote>
+                                <div class="testi-des">
+                                    <div class="test-img"><img src="{{ asset('images/team3.jpg') }}" class="img-fluid"
+                                            alt="client-img">
+                                    </div>
+                                    <div class="peopl align-self">
+                                        <h3>Smith Johnson</h3>
+                                        <p class="indentity">Student</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimonial-content">
+                            <div class="testimonial">
+                                <blockquote>
+                                    <q>Lorem ipsum dolor sit amet elit. Velit beatae
+                                        laudantium
+                                        voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
+                                        Dolores molestias adipisci dolo amet!.</q>
+                                </blockquote>
+                                <div class="testi-des">
+                                    <div class="test-img"><img src="{{ asset('images/team3.jpg') }}" class="img-fluid"
+                                            alt="client-img">
+                                    </div>
+                                    <div class="peopl align-self">
+                                        <h3>Smith Johnson</h3>
+                                        <p class="indentity">Student</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimonial-content">
+                            <div class="testimonial">
+                                <blockquote>
+                                    <q>Lorem ipsum dolor sit amet elit. Velit beatae
+                                        laudantium
+                                        voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
+                                        Dolores molestias adipisci dolo amet!.</q>
+                                </blockquote>
+                                <div class="testi-des">
+                                    <div class="test-img"><img src="{{ asset('images/team3.jpg') }}" class="img-fluid"
+                                            alt="client-img">
+                                    </div>
+                                    <div class="peopl align-self">
+                                        <h3>Smith Johnson</h3>
+                                        <p class="indentity">Student</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimonial-content">
+                            <div class="testimonial">
+                                <blockquote>
+                                    <q>Lorem ipsum dolor sit amet elit. Velit beatae
+                                        laudantium
+                                        voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
+                                        Dolores molestias adipisci dolo amet!.</q>
+                                </blockquote>
+                                <div class="testi-des">
+                                    <div class="test-img"><img src="{{ asset('images/team3.jpg') }}" class="img-fluid"
+                                            alt="client-img">
+                                    </div>
+                                    <div class="peopl align-self">
+                                        <h3>Smith Johnson</h3>
+                                        <p class="indentity">Student</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimonial-content">
+                            <div class="testimonial">
+                                <blockquote>
+                                    <q>Lorem ipsum dolor sit amet elit. Velit beatae
+                                        laudantium
+                                        voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
+                                        Dolores molestias adipisci dolo amet!.</q>
+                                </blockquote>
+                                <div class="testi-des">
+                                    <div class="test-img"><img src="{{ asset('images/team3.jpg') }}" class="img-fluid"
+                                            alt="client-img">
+                                    </div>
+                                    <div class="peopl align-self">
+                                        <h3>Smith Johnson</h3>
                                         <p class="indentity">Student</p>
                                     </div>
                                 </div>

@@ -54,6 +54,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <a href="{{ route('estructura.index') }}" class="btn btn-primary">volver</a>
                 </div>
             </div>
         </div>

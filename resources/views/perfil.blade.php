@@ -58,6 +58,7 @@
             <div class="tab-pane fade p-5" id="configuracion-tab">
 
                 <h4 class="text-center">Configuración</h4>
+                <form action="/perfil.php">
                 <div class="row center">
                     <div class="form-group col">
                         <label class="form-label">Nombre:</label>
@@ -72,6 +73,9 @@
                 <label class="form-label">Imagen de perfil:</label>
                 <input type="file" name="avatar" class="form-control btn">
 
+                <input type="submit" value="Submit">
+                </form>
+                
             </div>
 
             <div class="tab-pane fade p-5" id="contacto-tab">

@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 
 <!-- about breadcrumb -->
@@ -101,7 +100,7 @@
 @section('js')
     @if(session('respuesta')=='creado')
         <script>
-            toastr.success('El comentario, ha sido creado.')
+            alert('su mensdaje ha sido enviado');
         </script>
     @endif
 @stop

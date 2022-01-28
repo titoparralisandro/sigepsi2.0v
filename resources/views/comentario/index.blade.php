@@ -33,7 +33,7 @@
           <th>N°</th>
           <th>Nombre</th>
           <th>Correo</th>
-          <th>Comentarios</th>
+          <th>Asunto</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -43,7 +43,7 @@
           <td>{{ $comentario->id }}</td>
           <td>{{ $comentario->name }}</td>
           <td>{{ $comentario->email }}</td>
-          <td>{{ $comentario->comentario }}</td>
+          <td>{{ $comentario->asunto }}</td>
           <td>
           <form id="eliminar" class="eliminar" action="{{ route('comentario.destroy', $comentario->id ) }}" method="POST">
           @csrf
