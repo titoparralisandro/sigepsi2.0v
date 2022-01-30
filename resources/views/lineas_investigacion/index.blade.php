@@ -26,6 +26,12 @@ $carrera =  Carrera::all();
 
 @section('content_header')
 
+<div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="vendor/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <h3 style="color: #007bce;font-weight: normal;font-size: 20px;font-family: Arial;text-transform: uppercase;">
+    <strong>SISTEMA DE GESTIÓN DE PROYECTOS SOCIO INTEGRADORES (SIGEPSI) 2.0v</strong>
+    </h3>
+</div>
 
 <div class="card-header bg-primary ">
   <div class="color-palette">
@@ -73,7 +79,13 @@ $carrera =  Carrera::all();
 </div>
 
 @include('lineas_investigacion.modal.create')
-
+<footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 @stop
 
 @section('js')

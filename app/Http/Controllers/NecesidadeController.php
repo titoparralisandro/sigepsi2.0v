@@ -8,6 +8,10 @@ use App\Models\Comunidade;
 use App\Models\Estado;
 use App\Models\Municipio;
 use App\Models\Parroquia;
+use App\Models\Banca_situaciones;
+use App\Models\Carrera;
+use Illuminate\Support\Facades\Crypt;
+
 use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
@@ -51,9 +55,8 @@ class NecesidadeController extends Controller
         ->select('id')
         ->where('id_user','=',$user)
         ->first();
-
         $necesidad = new Necesidade();
-        
+
         $necesidad->id_comunidad = $id->id;
         $necesidad->necesidad = $request->get('necesidad');
         $necesidad->id_estatus_necesidad = 1;
@@ -101,6 +104,7 @@ class NecesidadeController extends Controller
                             $a.="<input disabled class='form-control' type='text' value='".$parroquiass->parroquia."'>";
                             $a.="</div>";
                         }
+
         $comunidades = DB::table('comunidades')
             ->join('necesidades', 'necesidades.id_comunidad', '=', 'comunidades.id')
             ->join('tipos_comunidades', 'tipos_comunidades.id', '=', 'comunidades.id_tipo_comunidad')
@@ -108,11 +112,11 @@ class NecesidadeController extends Controller
             ->leftJoin('municipios', 'municipios.id_municipio', '=', 'parroquias.id_municipio')
             ->leftJoin('estados', 'estados.id_estado', '=', 'municipios.id_estado')
             ->select("comunidades.*","parroquias.parroquia","municipios.municipio","estados.estado","tipos_comunidades.tipo_comunidad")
-            ->where([ ['necesidades.id_comunidad', '=', $necesidad->id] ])
-            ->get(); 
-            
+            ->where([ ['necesidades.id_comunidad', '=', $necesidad->id_comunidad] ])
+            ->get();
+
             foreach ($comunidades as $comunidad) {
-                $html = "<div class='row'>";
+                $html= "<div class='row'>";
                 $html.="<div class='form-group col-4'>";
                 $html.="<label class='form-label'>RIF</label>";
                 $html.="<input disabled class='form-control' type='text'maxlength='10' value='".$comunidad->rif."'>";
@@ -162,9 +166,50 @@ class NecesidadeController extends Controller
             }
 
         return view('necesidad.show',['html'=>$html, 'a'=>$a, "necesidad"=>$necesidad, "estados"=>$estados, "municipios"=>$municipios , "parroquias"=>$parroquias]);
+
     }
 
     public function edit(Request $request){
+
+    }
+
+    public function evaluate ($id){
+
+        $id = Crypt::decryptString($id);
+        $necesidad = Necesidade::findOrFail($id);
+        $carreras = Carrera::all();
+        return view('necesidad.banco', ["necesidad"=>$necesidad, "carreras"=>$carreras]);
+
+    }
+
+    public function banca_create (Request $request){
+
+        $banca = new Banca_situaciones;
+
+        $banca->id_necesidad  = $request->get('id_necesidad');
+        $banca->necesidad    = $request->get('necesidad_messege');
+        $banca->Carrera    = $request->get('id_carrera');
+        $banca->id_especialidad  = $request->get('id_especialidad');
+        $banca->id_lineas_investigacion    = $request->get('id_lineas_investigacion');
+        $banca->Situacion  = $request->get('situacion');
+
+        $banca->save();
+
+        // $necesidad = Necesidade::find($request->get('id_necesidad'));
+        // $necesidad->id_estatus_necesidad= 2;
+        // $necesidad->save();
+
+        $banca = Banca_situaciones::all();
+
+        return view('necesidad.banca',["banca"=>$banca]);
+
+    }
+
+    public function banca_list(){
+
+        $banca = Banca_situaciones::all();
+
+        return view('necesidad.banca',["banca"=>$banca]);
 
     }
 

@@ -73,20 +73,14 @@
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
-<footer class="main-footer">
-  <div class="float-right d-none d-sm-block">
-    <b>Version</b> 3.2.0-rc
-  </div>
-  <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-</footer>
-    </section>
-    <!-- /.content -->
+      <footer class="main-footer" >
+        <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+        Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Versión</b> 2.0
+        </div>
+    </footer>
 
-
-@stop
-
-@section('css')
-    <!--<link rel="stylesheet" href="/css/admin_custom.css">-->
 @stop
 
 @section('js')
@@ -137,7 +131,7 @@
 
 @if(session('respuesta')=='eliminado')
   <script>
-  Swal.fire('Eliminado!','El registro se ha eliminado con éxito.','success') 
+  Swal.fire('Eliminado!','El registro se ha eliminado con éxito.','success')
   </script>
 @endif
 

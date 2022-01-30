@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Comentario')
+@section('title', '| Comentarios')
 
 @section('content_header')
 <div class="card-header bg-primary ">
@@ -16,7 +16,7 @@
       <form>
 
         <div class="row">
-          
+
           <div class="form-group col col-6">
 
             <label class="form-label">Usuario</label>
@@ -54,5 +54,11 @@
   </div>
 
 </div>
-
+<footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 @stop

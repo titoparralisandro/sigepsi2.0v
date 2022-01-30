@@ -7,7 +7,7 @@
             <div class="modal-header card-header bg-primary">
 
                     <div class="color-palette">
-                      <h1 class="text-center"><strong>Añadir nueva linea de investigación</strong></h1>
+                      <h1 class="text-center"><strong>Añadir nueva línea de investigación</strong></h1>
                     </div>
 
             </div>

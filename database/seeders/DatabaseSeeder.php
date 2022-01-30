@@ -39,12 +39,12 @@ class DatabaseSeeder extends Seeder
         // $user3->assignRole('Comunidad');
         // $user3->save();
 
-        // $user4 = new User();
-        // $user4->name =  "Director";
-        // $user4->email = "director@director.com";
-        // $user4->password = Hash::make('admin123');
-        // $user4->assignRole('Director');
-        // $user4->save();
+        $user4 = new User();
+        $user4->name =  "Director Universitario";
+        $user4->email = "director@sigepsi.com";
+        $user4->password = Hash::make('admin123');
+        $user4->assignRole('Director');
+        $user4->save();
 
 
     }

@@ -1,19 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', ' | Proyecto')
+@section('title', '| Proyecto')
 
 @section('plugins.Toastr', true)
 
 @section('content_header')
-
-{{-- @php
-use App\Models\Files;
-$documento = DB::table('files')
-            ->select('file')
-            ->join('proyectos', 'proyectos.id', '=', 'files.id_proyecto')
-            ->where('files.id_proyecto', '=', $proyecto->id)
-            ->first();
-@endphp --}}
 
 <div class="container d-flex justify-content-center mt-1 ">
     <div class="col-md-12 vorder rounded shadow bg-white">
@@ -84,13 +75,11 @@ $documento = DB::table('files')
                     <textarea class="form-control" cols="25" rows="3" disabled>{{$proyecto->direccion}}{{$proyecto->direccion}}</textarea>
 
                 </div>
+                <a href="{{ route('proyecto.index') }}" class="btn btn-primary">Volver</a>
             </div>
 
             <div class="tab-pane fade p-4" id="equipo-tab">
-
-                <h4 class="text-center">Asesores</h4>
-
-                <hr>
+                {{-- <h4 class="text-center">Asesores</h4> <hr> --}}
 
                 <h4 class="text-center">Estudiantes</h4>
                 <div class="row">
@@ -111,10 +100,15 @@ $documento = DB::table('files')
 
             <div class="tab-pane fade p-4" id="documento-tab">
 
-                <h4 class="text-center">Documentos</h4>
-
+                <h4 class="text-center">Documentación del proyecto</h4>
+                <a href="{{ route('proyecto.carta_compromiso', $proyecto->id ) }}" class="btn btn-info">Carta de compromiso</a>
+                <hr>
+                <h4 class="text-center">Documentos del proyecto</h4>
+                
             </div>
+            
         </div>
+        
     </div>
 </div>
 

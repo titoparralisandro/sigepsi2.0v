@@ -51,41 +51,11 @@ class RolesSeeder extends Seeder
         Permission::create(['name'=>'comunidades.edit'])->syncRoles([$admin,$estudiante,$comunidad,$director]);
         Permission::create(['name'=>'comunidades.destroy'])->syncRoles($admin,);
 
-        // Contacto
-        //Permission::create(['name'=>'contact.index'])->syncRoles([$admin,$director,$estudiante,$comunidad]);
-        //Permission::create(['name'=>'contact.create'])->syncRoles([$admin,$director,$estudiante,$comunidad]);
-        //Permission::create(['name'=>'contact.edit'])->syncRoles([$admin,$director,$estudiante,$comunidad]);
-        //Permission::create(['name'=>'contact.destroy'])->syncRoles([$admin,$director,$estudiante,$comunidad]);
-
         // Especialidad
         Permission::create(['name'=>'especialidad.index'])->syncRoles([$admin,$diepp]);
         Permission::create(['name'=>'especialidad.create'])->syncRoles([$admin,$diepp]);
         Permission::create(['name'=>'especialidad.edit'])->syncRoles([$admin,$diepp]);
         Permission::create(['name'=>'especialidad.destroy'])->syncRoles([$admin]);
-
-        // estatus_comunidades
-        //Permission::create(['name'=>'estatus_comunidades.index'])->syncRoles([$admin,$director,$estudiante,$comunidad]);
-        //Permission::create(['name'=>'estatus_comunidades.create'])->syncRoles([$admin,$director,$estudiante, $asesor]);
-        //Permission::create(['name'=>'estatus_comunidades.edit'])->syncRoles([$admin,$director,$estudiante,$comite]);
-        //Permission::create(['name'=>'estatus_comunidades.destroy'])->syncRoles([$admin,$director,$estudiante,$coordinador,$diepp]);
-
-        //estatus_necesidades
-        //Permission::create(['name'=>'estatus_necesidades.index'])->syncRoles([$admin,$director,$estudiante,$comunidad]);
-        //Permission::create(['name'=>'estatus_necesidades.create'])->syncRoles([$admin,$director,$estudiante, $asesor]);
-        //Permission::create(['name'=>'estatus_necesidades.edit'])->syncRoles([$admin,$director,$estudiante,$comite]);
-        //Permission::create(['name'=>'estatus_necesidades.destroy'])->syncRoles([$admin,$director,$estudiante,$coordinador,$diepp]);
-
-        //estatus_progresos
-        //Permission::create(['name'=>'estatus_progresos.index'])->syncRoles([$admin,$director,$estudiante,$comunidad]);
-        //Permission::create(['name'=>'estatus_progresos.create'])->syncRoles([$admin,$director,$estudiante, $asesor]);
-        //Permission::create(['name'=>'estatus_progresos.edit'])->syncRoles([$admin,$director,$estudiante,$comite]);
-        //Permission::create(['name'=>'estatus_progresos.destroy'])->syncRoles([$admin,$director,$estudiante,$coordinador,$diepp]);
-
-        //estatus_situaciones
-        //Permission::create(['name'=>'estatus_situaciones.index'])->syncRoles([$admin,$director,$estudiante,$comunidad]);
-        //Permission::create(['name'=>'estatus_situaciones.create'])->syncRoles([$admin,$director,$estudiante, $asesor]);
-        //Permission::create(['name'=>'estatus_situaciones.edit'])->syncRoles([$admin,$director,$estudiante,$comite]);
-        //Permission::create(['name'=>'estatus_situaciones.destroy'])->syncRoles([$admin,$director,$estudiante,$coordinador,$diepp]);
 
         //estructura
         Permission::create(['name'=>'estructura.index'])->syncRoles([$admin,$director,$coordinador,$diepp]);
@@ -119,7 +89,7 @@ class RolesSeeder extends Seeder
 
         // Proyecto
         Permission::create(['name'=>'proyecto.index'])->syncRoles([$admin,$director,$estudiante]);
-        Permission::create(['name'=>'proyecto.create'])->syncRoles([$admin,$director,$estudiante]);
+        Permission::create(['name'=>'proyecto.create'])->syncRoles([$admin,$estudiante]);
         Permission::create(['name'=>'proyecto.edit'])->syncRoles([$admin,$director,$estudiante]);
         Permission::create(['name'=>'proyecto.destroy'])->syncRoles([$admin,$director,$estudiante]);
 
@@ -157,6 +127,7 @@ class RolesSeeder extends Seeder
         Permission::create(['name'=>'usuarios.index'])->syncRoles($admin);
         Permission::create(['name'=>'usuarios.create'])->syncRoles($admin);
         Permission::create(['name'=>'usuarios.edit'])->syncRoles($admin);
+        Permission::create(['name'=>'usuarios.update'])->syncRoles($admin);
         Permission::create(['name'=>'usuarios.destroy'])->syncRoles($admin);
 
     }

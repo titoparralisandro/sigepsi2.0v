@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', ' Proyectos')
+@section('title', '| Proyecto')
 
 @section('plugins.Select2', true)
 @section('plugins.Toastr', true)
@@ -100,14 +100,19 @@
 
                         <!-- Modal -->
                         <div class="modal fade" id="addComunidad" tabindex="-1" role="dialog" aria-labelledby="addComunidad" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+                            <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="addComunidadLabel">Filtro de comunidades</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+
+                                        <div class="modal-header card-header bg-primary">
+
+                                            <div class="color-palette">
+                                              <h1 class="text-center" id="addComunidadLabel"><strong>Filtro de comunidades</strong></h1>
+                                            </div>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="form-group col">
@@ -134,7 +139,7 @@
                                                         <tr>
                                                             <th>N°</th>
                                                             <th>Comunidad</th>
-                                                            <th>Accion</th>
+                                                            <th>Acción</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="body_table">
@@ -144,7 +149,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Listo</button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Listo</button>
                                     </div>
                                 </div>
                             </div>
@@ -186,10 +191,13 @@
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addAlumno">Agregar alumno</button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="addAlumno" tabindex="-1" role="dialog" aria-labelledby="addAlumno" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-dialog  modal-lg" role="document">
                                         <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="addAlumnoLabel">Agregar alumno</h5>
+                                            <div class="modal-header card-header bg-primary">
+
+                                                <div class="color-palette">
+                                                  <h1 class="text-center" id="addAlumnoLabel"><strong>Seleccionar integrantes de equipo</strong></h1>
+                                                </div>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -205,10 +213,10 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>N°</th>
-                                                                    <th>Cedula</th>
+                                                                    <th>Cédula</th>
                                                                     <th>Alumno</th>
                                                                     <th>Trayecto</th>
-                                                                    <th>Accion</th>
+                                                                    <th>Opción</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="table_Alumno_Tmp">
@@ -219,7 +227,6 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Listo</button>
-                                                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -228,10 +235,10 @@
                                     <thead>
                                         <tr>
                                             <th>N°</th>
-                                            <th>Cedula</th>
+                                            <th>Cédula</th>
                                             <th>Alumno</th>
                                             <th>Trayecto</th>
-                                            <th>Accion</th>
+                                            <th>Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody id="table_Alumno">
@@ -252,6 +259,13 @@
       </div>
     </div>
   </div>
+  <footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 @stop
 
 @section('js')

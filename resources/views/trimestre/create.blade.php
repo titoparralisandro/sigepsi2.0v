@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear')
+@section('title', '| Trimestre')
 
 @if(count($errors)>0)
 <div class="alert alert-danger" role="alert">
@@ -27,26 +27,28 @@
 
         <form action="{{ route('trimestre.store') }}" method="POST">
             @csrf
-            <div class="form-group">
+            <div class="row">
+                <div class="form-group col col-6">
 
-              <label class="form-label">Trimestre</label>
-              <input id="trimestre" class="form-control" type="text" name="trimestre"
-              value="{{ isset($trimestre->trimestre)?$trimestre->trimestre:old('trimestre') }}">
+                <label class="form-label">Trimestre</label>
+                <input id="trimestre" class="form-control" type="text" name="trimestre"
+                value="{{ isset($trimestre->trimestre)?$trimestre->trimestre:old('trimestre') }}">
 
-            </div>
+                </div>
 
-            <div class="form-group">
+                <div class="form-group  col col-6">
 
-              <label class="form-label">Descripción</label>
-              <input id="descripcion" class="form-control" type="text" name="descripcion"
-              value="{{ isset($trimestre->descripcion)?$trimestre->descripcion:old('descripcion') }}">
+                <label class="form-label">Descripción</label>
+                <input id="descripcion" class="form-control" type="text" name="descripcion"
+                value="{{ isset($trimestre->descripcion)?$trimestre->descripcion:old('descripcion') }}">
 
-            </div>
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
 
-              <input id="estatus" class="form-control" type="hidden" name="estatus" value="1">
+                <input id="estatus" class="form-control" type="hidden" name="estatus" value="1">
 
+                </div>
             </div>
 
           <a href="{{ route('trimestre.index') }}" class="btn btn-danger">Cancelar</a>
@@ -57,5 +59,11 @@
     </div>
 
   </div>
-
+  <footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 @stop

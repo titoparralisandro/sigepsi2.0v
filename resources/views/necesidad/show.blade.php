@@ -18,28 +18,28 @@
                 <form>
                   <div class="row">
                     <div class="form-group col col-12">
-        
+
                       <label class="form-label">Necesidad</label>
                       <textarea class="form-control" cols="25" rows="5" disabled>{{$necesidad->necesidad}}</textarea>
-        
+
                     </div>
                   </div>
-        
+
                   <div class="row">
                     {!!$a!!}
                   </div>
-        
+
                   <div class="form-group">
-        
+
                     <label class="form-label">Dirección</label>
                     <textarea class="form-control" cols="25" rows="3" disabled>{{$necesidad->direccion}}</textarea>
-        
+
                   </div>
-        
+
                     <a href="{{ route('necesidad.index') }}" class="btn btn-danger">Volver</a>
-        
+
                     <a class="btn btn-success" href="">Estudiar</a>
-        
+
                 </form>
 
             </div>

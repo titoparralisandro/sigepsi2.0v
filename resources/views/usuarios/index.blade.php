@@ -37,6 +37,7 @@
                     <th>N°</th>
                     <th>Nombre</th>
                     <th>Correo</th>
+                    <th>Role</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -46,6 +47,7 @@
                 <td>{{ $usuario->id }}</td>
                 <td>{{ $usuario->name }}</td>
                 <td>{{ $usuario->email }}</td>
+                <td>{{ $usuario->roles()->pluck('name')->implode(' ') }}  </td>
                 <td>
                 <a class="btn btn-warning" href="{{route('usuarios.edit', $usuario)}}">Asignar rol</a>
                 </td>
@@ -55,6 +57,14 @@
         </table>
     </div>
 </div>
+
+<footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 @stop
 
 

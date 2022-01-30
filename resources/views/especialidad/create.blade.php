@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Especialidad')
+@section('title', '| Especialidad')
 
 @if(count($errors)>0)
 <div class="alert alert-danger" role="alert">
@@ -77,12 +77,11 @@
 
   </div>
 
-<footer class="main-footer" >
-    <strong> &copy; 2022 | <a href="{{ url('/home')}}">Sistema de Gestión de Proyectos Socio Integradores</a> | </strong>
+  <footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
     Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
     <div class="float-right d-none d-sm-inline-block">
       <b>Versión</b> 2.0
     </div>
 </footer>
-
 @stop

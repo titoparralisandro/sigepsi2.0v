@@ -20,16 +20,13 @@ use App\Http\Controllers\UserControllers;
 Route::get('/',function () {
     return view('inicio');
 });
+Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 
-Route::get('/about',function () {
-    return view('about');
-});
+// Route::get('/courses',function () {
+//     return view('courses');
+// });
 
-Route::get('/courses',function () {
-    return view('courses');
-});
-
-Route::get('/catalogo', [App\Http\Controllers\ProyectoController::class, 'catalogo']);
+// Route::get('/catalogo', [App\Http\Controllers\ProyectoController::class, 'catalogo']);
 Route::resource('/contact', App\Http\Controllers\ContactController::class);
 
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
@@ -37,16 +34,20 @@ Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'r
 Auth::routes();
 
 //prueba de enviar correo
-Route::get('/send-email', [MailController::class, 'sendEmail']);
+// Route::get('/send-email', [MailController::class, 'sendEmail']);
 //prueba de enviar correo
 
 Route::resource('proyecto',App\Http\Controllers\ProyectoController::class);
+Route::get('proyecto/carta_compromiso/{id}', [ProyectoController::class,'pdf_carta_compromiso'])->name('proyecto.carta_compromiso');
 
 Route::resource('comunidades',App\Http\Controllers\ComunidadeController::class);
 Route::resource('tipos_comunidad',App\Http\Controllers\Tipos_comunidadeController::class);
 
 Route::resource('necesidad',App\Http\Controllers\NecesidadeController::class);
-//Route::resource('situacion',App\Http\Controllers\SituacioneController::class);
+Route::get('necesidad/evaluate/{id}',[App\Http\Controllers\NecesidadeController::class, 'evaluate'])->name('evaluate');
+Route::post('banco',[App\Http\Controllers\NecesidadeController::class, 'banca_create'])->name('banco');
+Route::get('situacion',[App\Http\Controllers\NecesidadeController::class, 'banca_list']);
+Route::resource('testimonio',App\Http\Controllers\TestimonioController::class);
 
 Route::resource('carrera',App\Http\Controllers\CarreraController::class);
 Route::resource('especialidad',App\Http\Controllers\EspecialidadeController::class);
@@ -62,11 +63,6 @@ Route::resource('estructura',App\Http\Controllers\EstructuraController::class);
 
 Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('tipos_asesoria',App\Http\Controllers\Tipos_asesoriaController::class);
-
-// Route::resource('estatus_comunidades',App\Http\Controllers\Estatus_comunidadeController::class);
-// Route::resource('estatus_progresos',App\Http\Controllers\Estatus_progresoController::class);
-// Route::resource('estatus_necesidades',App\Http\Controllers\Estatus_necesidadeController::class);
-// Route::resource('estatus_situaciones',App\Http\Controllers\Estatus_situacioneController::class);
 
 Route::post('/getmunicipios', [App\Http\Controllers\ComunidadeController::class, 'municipios']);
 Route::post('/getparroquias', [App\Http\Controllers\ComunidadeController::class, 'parroquias']);
@@ -84,12 +80,12 @@ Route::post('/SaveEditcomunid', [App\Http\Controllers\ComunidadeController::clas
 
 // Usuarios
 
-Route::get('usuarios', [UserControllers::class,'index'])->middleware('can:usuarios.index')->name('usuarios.index');
-Route::get('usuarios/create', [UserControllers::class,'create'])->middleware('can:usuarios.create')->name('usuarios.create');
-Route::post('usuarios', [UserControllers::class,'store'])->middleware('can:usuarios.store')->name('usuarios.store');
+Route::get('usuarios', [UserControllers::class,'index'])->middleware('can:usuarios.index')->name('usuarios.index');//
+Route::get('usuarios/create', [UserControllers::class,'create'])->middleware('can:usuarios.create')->name('usuarios.create');//
+Route::post('usuarios', [UserControllers::class,'store'])->middleware('can:usuarios.store')->name('usuarios.store');//
 Route::get('usuarios/{user}', [UserControllers::class,'show'])->middleware('can:usuarios.show')->name('usuarios.show');
-Route::get('usuarios/{user}/edit', [UserControllers::class,'edit'])->middleware('can:usuarios.edit')->name('usuarios.edit');
-Route::put('usuarios/{user}', [UserControllers::class,'update'])->middleware('can:usuarios.update')->name('usuarios.update');
+Route::get('usuarios/{user}/edit', [UserControllers::class,'edit'])->middleware('can:usuarios.edit')->name('usuarios.edit');//
+Route::put('usuarios/{user}', [UserControllers::class,'update'])->middleware('can:usuarios.update')->name('usuarios.update');//
 Route::delete('usuarios/{user}', [UserControllers::class,'destroy'])->middleware('can:usuarios.destroy')->name('usuarios.destroy');
 
 //Route::resource('usuarios',UserControllers::class);

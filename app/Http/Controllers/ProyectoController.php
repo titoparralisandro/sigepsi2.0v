@@ -28,7 +28,20 @@ class ProyectoController extends Controller
             ->get();
         return view('proyecto.index',["proyecto"=>$proyecto]);
     }
+    public function pdf_carta_compromiso($id){
 
+
+        // return view('proyecto.carta_compromiso');
+        return 'proyecto.carta_compromiso';
+    }
+    // public function pdf_carta_culminacion(){
+
+    //     return view('proyecto.index');
+    // }
+    // public function pdf_certificado(){
+
+    //     return view('proyecto.index');
+    // }
     public function create(Request $request){
         $especialidad = Especialidade::all();
         $lineas_investigacion = Lineas_investigacione::all();

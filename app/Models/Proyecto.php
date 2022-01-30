@@ -19,10 +19,10 @@ class Proyecto extends Model
         return $this->belongsTo(Especialidade::class, 'id_especialidad');
      }
 
-        // // especialidad forenkey
-        public function carreras(){
-            return $this->belongsTo(Carrera::class, 'id_carrera');
-         }
+    // // especialidad forenkey
+    public function carreras(){
+        return $this->belongsTo(Carrera::class, 'id_carrera');
+    }
 
     // // linea_investigacion forenkey
      public function linea_investigaciones(){
@@ -65,5 +65,9 @@ class Proyecto extends Model
     // evaluaciones forenkey
     public function evaluaciones(){
         return $this->hasMany(Evaluacione::class, 'id');
+    }
+
+    public function testimonios(){
+        return $this->hasOne(Testimonio::class, 'id');
     }
 }

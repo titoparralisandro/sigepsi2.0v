@@ -37,9 +37,9 @@
             <div class="form-group container">
                 <div class="contenerdor form-group container" id="a">
                     <div class="contenerdor">
-                        <table class="table table-striper" id="table_item">
+                        <table class="table table-striper table-bordered" id="table_item">
                             <thead class="text-center">
-                                <tr>
+                                <tr class="bg-primary">
                                     <th width="40%">Item</th>
                                     <th width="40%">Peso</th>
                                 </tr>
@@ -56,6 +56,14 @@
                     </div>
                 </div>
             </div>
+            <a href="{{ route('estructura.index') }}" class="btn btn-primary">Volver</a>
         </div>
     </div>
+    <footer class="main-footer" >
+        <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+        Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Versión</b> 2.0
+        </div>
+    </footer>
 @stop

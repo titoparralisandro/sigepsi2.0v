@@ -88,17 +88,19 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        <a href="{{ route('estructura.index') }}" class="btn btn-primary">Volver</a>
                     </div>
                 </div>
             </form>
         </div>
         </div>
     </form>
+    
   </div>
 </div>
 
 <footer class="main-footer" >
-    <strong> &copy; 2022 | <a href="{{ url('/home')}}">Sistema de Gestión de Proyectos Socio Integradores</a> | </strong>
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
     Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
     <div class="float-right d-none d-sm-inline-block">
       <b>Versión</b> 2.0
@@ -152,9 +154,9 @@
             });
         } else {
             Swal.fire({
-                title: 'faltan puntos por asignar',
+                title: 'Faltan asignar puntos',
                 text: "Todos los puntos deben estar asignados",
-                icon: 'error',
+                icon: 'Error',
             })
         }
 
@@ -177,8 +179,8 @@
         }else{
             Swal.fire({
                 title: 'Datos errados',
-                text: "el peso del item debe ser mayor 0",
-                icon: 'error',
+                text: "El peso del pauta debe ser mayor a 0",
+                icon: 'Error',
             })
         }
     }
@@ -200,7 +202,7 @@
                     var line = "";
                     line +="<tr id='file_"+icremento+"'>";
                     line +="<td><select name='item"+icremento+"' id='item"+icremento+"' class='form-control'></select></td>";
-                    line +="<td><input type='text' id='point_estruct"+icremento+"' name='point_estruct"+icremento+"' onchange='calcular_punto(this.value)' class='form-control' minlength='1' maxlength='2'></td>";
+                    line +="<td><input type='text' id='point_estruct"+icremento+"' name='point_estruct"+icremento+"' onchange='calcular_punto(this.value)' class='form-control' minlength='1' maxlength='2' ></td>";
                     line +="<td><button class='btn btn-primary' type='button' onclick='removeItem(file_"+icremento+")'><i class='fa fa-trash'></i></button></td>";
                     line +="</tr>";
                     $("#tableItem").append(line);
@@ -226,7 +228,7 @@
 
         }else{
             Swal.fire({
-                title: 'Informacón Incompleta',
+                title: 'Información Incompleta',
                 text: "Debe completar el Formulario",
                 icon: 'error',
             })

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Estructuras')
+@section('title', '| Estructuras')
 
 @if(count($errors)>0)
 <div class="alert alert-danger" role="alert">
@@ -43,5 +43,11 @@
     </div>
 
   </div>
-
+  <footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 @stop

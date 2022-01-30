@@ -16,10 +16,11 @@ class UserControllers extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( )
     {
         $roles = Role::all();
         $usuarios = User::all();
+        //return  $usuarios->roles()->pluck('name');
         return view('usuarios.index',['usuarios'=>$usuarios,'roles'=>$roles]);
     }
 

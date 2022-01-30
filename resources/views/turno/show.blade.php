@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Turnos')
+@section('title', '| Turnos')
 
 @section('content_header')
 
@@ -17,19 +17,21 @@
 
         <form>
 
-            <div class="form-group">
+            <div class="row">
+                <div class="form-group col col-6">
 
-                <label class="form-label">Turno</label>
-                <input id="turno" disabled class="form-control" type="text" name="turno"
-                value="{{ $turno->turno }}">
+                    <label class="form-label">Turno</label>
+                    <input id="turno" disabled class="form-control" type="text" name="turno"
+                    value="{{ $turno->turno }}">
 
-            </div>
+                </div>
 
-            <div class="form-group">
+                <div class="form-group col col-6">
 
-                <label class="form-label">Estatus</label>
-                <input id="estatus" disabled class="form-control" type="text" name="estatus" value={{ $turno->estatus==true ? ('Activo') : ('Inactivo') }}>
+                    <label class="form-label">Estatus</label>
+                    <input id="estatus" disabled class="form-control" type="text" name="estatus" value={{ $turno->estatus==true ? ('Activo') : ('Inactivo') }}>
 
+                </div>
             </div>
 
             <a href="{{ route('turno.index') }}" class="btn btn-danger">Volver</a>
@@ -41,5 +43,11 @@
     </div>
 
   </div>
-
+  <footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 @stop
