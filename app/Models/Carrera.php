@@ -27,4 +27,7 @@ class Carrera extends Model
     public function proyectos(){
         return $this->hasMany(Proyecto::class, 'id');
     }
+    public function bancos(){
+        return $this->hasMany(Banca_situaciones::class, 'id');
+    }
 }

@@ -46,26 +46,16 @@ class User extends Authenticatable
 
     public function adminlte_image()
     {
-        $foto = 'vendor/adminlte/dist/img/avatar5.png';
-        return $foto;//este url nos genera imágenes ramdom
+        // $foto = 'vendor/adminlte/dist/img/avatar5.png';
+        // return $foto;//este url nos genera imágenes ramdom
+        $foto = "http://127.0.0.1:8000/vendor/adminlte/dist/img/avatar.png";
+        return   $foto ;
     }
 
     public function adminlte_desc()
     {
-        // $roles = Role::all();
-        // ['roles'=> $roles]
-
-        // $user = auth()->user();
-        // dd($user);
-        // return $user->roles->pluck('name')->all();
-
-        // auth()->user()->name
-        // auth()->user()->email
-        // $user = User::find($request->get('id'));
-        // $userRole = $user->roles->pluck('name')->all();
-
-        return 'Administrador';
-        
+        $user = auth()->user();
+        return $user->roles->pluck('name')->implode(' ');
     }
 
     public function comunidad(){

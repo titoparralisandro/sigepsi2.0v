@@ -11,7 +11,7 @@
 		<h1 style="text-align: center; color: rgba(0,0,0,.7); font-size: 30px;">
 		<strong>A cerca del Sistema de Gestión de Proyectos Socio Integradores </strong><span class="badge bg-success">v2.0</span>
 		</h1>
-		
+
 		<p style="font-size: 16px; text-align: justify; color: rgba(0,0,0,.8); font-size:18px; text-indent: 5%; width: 93%; margin: auto; padding-top: 15px; padding-bottom: 15px;">
 			Para la implementación del Sistema SIGEPSI 2.0v se debe contar con un servidor, que debe poseer como mínimo con las siguientes características en cuanto a hardware: procesador de 2.4GHz para tiempo de respuesta en ciclos de reloj, disco duro de 80gb de capacidad para alojar todos los paquetes e implementar los softwares necesarios y 2gb de memoria RAM, para un tiempo de respuesta optimo entre Servidor/Cliente. En cuanto al Software debe acondicionarse con sistema operativo Linux preferiblemente distribución Debían o Ubuntu, servidor web (apache2, Nginx, Cherokee o Lighthttp) instalado con PHP 7.3v o mayor y servidor de bases de datos PostgreSQL 13 o superior. Debido a que el sistema estará compuesto y desarrollado en lenguaje de programación PHP utilizando el Framework Laravel 8 para estructurarlo, debe contar con los requerimientos antes mencionados.
 		</p>
@@ -47,12 +47,12 @@
 	</div>
 </div>
 
-	<footer class="main-footer" >
-		<strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
-		Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
-		<div class="float-right d-none d-sm-inline-block">
-		<b>Versión</b> 2.0
-		</div>
-	</footer>
+<footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 
 @stop

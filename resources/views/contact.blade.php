@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 
 <!-- about breadcrumb -->
@@ -19,7 +20,6 @@
     </div>
 </section>
 <!-- //about breadcrumb -->
-<!-- contact block -->
 <!-- contact1 -->
 @csrf
 <section class="w3l-contact-1 pb-5" id="contact">
@@ -28,14 +28,14 @@
             <div class="d-grid contact-view">
                 <div class="cont-details">
                     <h3 class="title-big mb-4">Ponte en contacto</h3>
-                    <p class="mb-sm-5 mb-4">Si quieres desarrollar alguna aplicación web y necesitas ayuda ponte en contacto con nosotros.</p>
+                    <p class="mb-sm-5 mb-4">Si deseas adquirir este software en tu institución comunicate con nosotros, por las diferentes vías de contacto que tenemos disponible.</p>
 
                     <div class="cont-top">
                         <div class="cont-left text-center">
                             <span class="fa fa-map-marker text-primary"></span>
                         </div>
                         <div class="cont-right">
-                            <h6>Nuestra dirección de la oficina principal</h6>
+                            <h6>Nuestra dirección de la sede principal</h6>
                             <p class="pr-lg-5">Antiguo edificio La Fosforera, Av. Intercomunal de Antímano, Caracas 1000, Distrito Capital</p>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         </div>
                         <div class="cont-right">
                             <h6>Si necesitas ayuda, llámanos</h6>
-                            <p><a href="tel:+(212) 5550000">+(212) 5550000</a></p>
+                            <p><a href="tel:+(212) 5550000">(212)-555.00.00</a></p>
                         </div>
                     </div>
                     <div class="cont-top margin-up">
@@ -54,7 +54,7 @@
                         </div>
                         <div class="cont-right">
                             <h6>Contacta con nuestro soporte</h6>
-                            <p><a href="mailto:soporte.sigepsi@gmail.com" class="mail">soporte.sigepsi@gmail.com</a></p>
+                            <p><a href="#" class="mail">uptcms.sigepsi.v2@gmail.com</a></p>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
 @section('js')
     @if(session('respuesta')=='creado')
         <script>
-            alert('su mensdaje ha sido enviado');
+            toastr.success('El comentario, ha sido creado.')
         </script>
     @endif
 @stop

@@ -67,7 +67,8 @@ class ComunidadeController extends Controller
         $user = new User();
         $user->name = $request->get('nombre');
         $user->email = $request->get('email');
-        $contraseña = rand(10000000, 99999999);
+        $contraseña = 'admin123';
+        // $contraseña = rand(10000000, 99999999);
         $user->password = Hash::make($contraseña);
         $user->assignRole("Comunidad");
 

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', ' | Proyecto')
+@section('title', '| Proyecto')
 
 @section('plugins.Toastr', true)
 
@@ -13,7 +13,7 @@
             <li class="nav-item"><a href="#datos-tab" class="nav-link active" data-toggle="pill"><strong>Datos del proyecto </strong></a></li>
             <li class="nav-item"><a href="#equipo-tab" class="nav-link" data-toggle="pill"><strong>Equipo de proyecto</strong></a></li>
             <li class="nav-item"><a href="#comunidad-tab" class="nav-link" data-toggle="pill"><strong>Comunidad</strong></a></li>
-            <li class="nav-item"><a href="#documento-tab" class="nav-link" data-toggle="pill"><strong>Documentos</strong></a></li>
+            {{-- <li class="nav-item"><a href="#documento-tab" class="nav-link" data-toggle="pill"><strong>Documentos</strong></a></li> --}}
         </ul>
 
         <div class="tab-content">
@@ -46,7 +46,6 @@
                     </div>
                     <div class="form-group col col-5">
 
-            
                         <label class="form-label">Carrera</label>
                         <input class="form-control" type="text" disabled value="{{$proyecto->carreras->carrera}}">
 
@@ -71,20 +70,18 @@
                     {!!$a!!}
                 </div>
                 <div class="form-group">
-            
+
                     <label class="form-label">Dirección</label>
                     <textarea class="form-control" cols="25" rows="3" disabled>{{$proyecto->direccion}}{{$proyecto->direccion}}</textarea>
 
                 </div>
+                <a href="{{ route('proyecto.index') }}" class="btn btn-primary">Volver</a>
             </div>
 
             <div class="tab-pane fade p-4" id="equipo-tab">
+                {{-- <h4 class="text-center">Asesores</h4> <hr> --}}
 
-                <h4 class="text-center">Asesores</h4>
-
-                <hr>
-
-                <h4 class="text-center">Estudiantes</h4>
+                <h4 class="text-center">Equipo</h4>
                 <div class="row">
                 {!!$estud!!}
                 </div>
@@ -98,14 +95,23 @@
                      {!!$html!!}
                 </div>
 
-            </div>
-
-            <div class="tab-pane fade p-4" id="documento-tab">
-
-                <h4 class="text-center">Documentos</h4>
 
             </div>
+
+            {{-- <div class="tab-pane fade p-4" id="documento-tab">
+
+                <h4 class="text-center">Documentación del proyecto</h4>
+                <a href="{{ route('proyecto.carta_compromiso', $proyecto->id ) }}" class="btn btn-info">Carta de compromiso</a>
+                {{-- <hr>
+                <h4 class="text-center">Documentos del proyecto</h4>
+                @foreach ($file as $files) {
+                    <a href="{{ public_path('upload/11/proyect_Informe.pdf') }}" class="btn btn-info">proyect documento</a>
+                }
+                @endforeach 
+            </div> --}}
+            
         </div>
+        
     </div>
 </div>
 

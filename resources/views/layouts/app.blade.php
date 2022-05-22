@@ -2,7 +2,7 @@
 <html lang="en">
 
   <link rel="icon" type="image/png" sizes="16x16" href="vendor/adminlte/dist/img/AdminLTELogo.png">
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <!-- google fonts -->
     <link href="//fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -47,9 +47,9 @@
             <li class="nav-item active">
               <a class="nav-link" href="{{ url('/') }}">Inicio<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item @@courses__active">
+            {{-- <li class="nav-item @@courses__active">
               <a class="nav-link" href="{{ url('courses') }}">Biblioteca digital</a>
-            </li>
+            </li> --}}
             <li class="nav-item @@about__active">
               <a class="nav-link" href="{{ url('about') }}">Acerca de</a>
             </li>
@@ -94,7 +94,7 @@
         <div class="col-lg-5 col-md-6 col-sm-7 footer-list-29 footer-1 pr-lg-5">
           <h6 class="footer-title-29">Información de Contacto</h6>
           <p>Dirección : Antiguo edificio La Fosforera, Av. Intercomunal de Antímano, Caracas 1000, Distrito Capital.</p>
-          <p>Correo : <a href="mailto:info@example.com">soporte.sigepsi@gmail.com</a></p>
+          <p>Correo : <a>soporte.sigepsi@gmail.com</a></p>
         </div>
         <div class="col-lg-7 col-md-6 col-sm-5 col-6 footer-list-29 footer-2 mt-sm-0 mt-5 ">
           <h2 style="color:#fff;">Universidad Politécnica Territorial de Caracas "Mariscal Sucre"</h2>

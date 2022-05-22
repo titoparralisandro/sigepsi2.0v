@@ -18,14 +18,4 @@ class CreateEstadosTable extends Migration
             $table->id('id_estado');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('estados');
-    }
 }

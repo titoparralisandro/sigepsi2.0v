@@ -33,4 +33,8 @@ class Comunidade extends Model
     public function necesidades(){
         return $this->hasMany(Necesidade::class, 'id');
     }
+
+    public function testimonios(){
+        return $this->hasOne(Testimonio::class, 'id');
+    }
 }

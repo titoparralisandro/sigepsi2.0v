@@ -11,14 +11,15 @@
 
         <ul class="nav nav-pills nav-justified">
             <li class="nav-item"><a href="#perfil-tab" class="nav-link active" data-toggle="pill">Perfil</a></li>
-            <li class="nav-item"><a href="#configuracion-tab" class="nav-link" data-toggle="pill">Configuración</a></li>
             <li class="nav-item"><a href="#contacto-tab" class="nav-link" data-toggle="pill">Contacto</a></li>
-            <li class="nav-item"><a href="#ayuda-tab" class="nav-link" data-toggle="pill">Ayuda</a></li>
+            {{--<li class="nav-item"><a href="#configuracion-tab" class="nav-link" data-toggle="pill">Contacto</a></li>
+            {{-- <li class="nav-item"><a href="#contacto-tab" class="nav-link" data-toggle="pill">Contacto</a></li>
+            <li class="nav-item"><a href="#ayuda-tab" class="nav-link" data-toggle="pill">Ayuda</a></li> --}}
         </ul>
 
         <div class="tab-content">
-            <div class="tab-pane show fade active justify-content-center px-5" id="perfil-tab">
-
+            <div class="tab-pane show fade active justify-content-center p-5" id="perfil-tab">
+{{-- 
                 <img src="vendor/adminlte/dist/img/avatar5.png" width="150px" height="150px" class="rounded-circle border border-primary mx-auto d-flex my-2">
                 <h2 class="text-center my-3">Perfil</h2>
 
@@ -51,14 +52,29 @@
                     <h6><i class="fas fa-home"></i> Vives en:</h6>
                     <p>Caracas, Distrito Capital. Caricuao.</p>
 
+                </div> --}}
+
+                <img src="vendor/adminlte/dist/img/avatar.png" width="150px" height="150px" class="rounded-circle border border-primary mx-auto d-flex my-2">
+                <h2 class="text-center my-3">Perfil</h2>
+<center>
+                <div class="row center">
+                    <div class="form-group col">
+                        <label class="form-label">Nombre:</label>
+                        <p>{{ auth()->user()->name }} </p>
+                    </div>
+                    <div class="form-group col">
+                        <label class="form-label">Email:</label>
+                        <p>{{ auth()->user()->email }} </p>
+                    </div>
                 </div>
 
+                {{-- <label class="form-label">Imagen de perfil:</label>
+                <input type="file" name="avatar" class="form-control btn"> --}}
             </div>
-
-            <div class="tab-pane fade p-5" id="configuracion-tab">
+        </center>
+            {{-- <div class="tab-pane fade p-5" id="configuracion-tab">
 
                 <h4 class="text-center">Configuración</h4>
-                <form action="/perfil.php">
                 <div class="row center">
                     <div class="form-group col">
                         <label class="form-label">Nombre:</label>
@@ -73,10 +89,7 @@
                 <label class="form-label">Imagen de perfil:</label>
                 <input type="file" name="avatar" class="form-control btn">
 
-                <input type="submit" value="Submit">
-                </form>
-                
-            </div>
+            </div> --}}
 
             <div class="tab-pane fade p-5" id="contacto-tab">
 

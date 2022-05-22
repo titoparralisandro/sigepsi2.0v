@@ -1,13 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', ' Proyectos')
+@section('title', '| Proyectos')
 
 @section('plugins.Sweetalert2', true)
 @section('plugins.Bs-stepper', true)
 @section('plugins.Toastr', true)
 @section('plugins.Inputmask', true)
 @section('plugins.Datatables', true)
-
 
 @if(count($errors)>0)
 <div class="alert alert-danger" role="alert">
@@ -22,6 +21,9 @@
 
 <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="vendor/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <h3 style="color: #007bce;font-weight: normal;font-size: 20px;font-family: Arial;text-transform: uppercase;">
+    <strong>SISTEMA DE GESTIÓN DE PROYECTOS SOCIO INTEGRADORES (SIGEPSI) 2.0v</strong>
+    </h3>
 </div>
 
 <div class="card-header bg-primary ">
@@ -32,9 +34,10 @@
 @csrf
 <div class="card border-dark">
   <div class="card-body text-dark">
+    @can('proyecto.create')
     <a href="{{ route('proyecto.create') }}" class="btn btn-success">Añadir nuevo proyecto</a>
-
     <hr>
+    @endcan
 
     <div class="container">
         <div class="row justify-content-center" id="btn-search">
@@ -63,7 +66,6 @@
                 <button class="btn btn-outline-danger btn-block" type="button" value="Cancelado"><strong>Cancelados</strong></button>
             </div>
           </div>
-
     </div>
 
     <hr>
@@ -75,7 +77,7 @@
                         <th>Proyecto</th>
                         <th>Carrera</th>
                         <th>Linea de investigación</th>
-                        <th>Progreso</th>
+                        <th>Progreso %</th>
                         <th>Acciones</th>
 
                     </tr>
@@ -91,15 +93,20 @@
                     <td>
                         <div class="progress" style="height:15px">
                             <div id="bar_'.$producto->id.'" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" data-progress="0" style="width:{{ $proyectos->progreso }}%;">
-                                <p style='margin-top:15px;font-size:12px'><span>{{ $proyectos->progreso }}</span>/100</p>
+                                <p style='margin-top:15px;font-size:12px'><span>{{ $proyectos->progreso }}</span></p>
                             </div>
                         </div>
                     </td>
                     <td class="text-center">
                         <div class="btn-group">
-                            @if ($proyectos->progreso != 100)
-                                <a href="/evaluar/{{ $proyectos->id }}"class="btn btn-info">Evaluar</a>
-                            @endif
+                            
+                            {{-- <a class="btn btn-info" href="{{ route('proyecto.edit', $proyectos->id ) }}">Actualizar<a> --}}
+                            {{-- <a class="btn btn-info" href="{{ route('proyecto.index', $proyectos->id ) }}">Corregir<a> --}}
+
+                                    @if ($proyectos->progreso != 100)
+                                        <a href="/evaluar/{{ $proyectos->id }}"class="btn btn-info">Evaluar</a>
+                                    @endif
+
                             
                             <a class="btn btn-primary" href="{{ route('proyecto.show', $proyectos->id ) }}">Ver<a>
                         </div>
@@ -111,7 +118,13 @@
         </table>
   </div>
 </div>
-
+<footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 @stop
 
 @section('js')
@@ -159,7 +172,10 @@
 
     @if(session('respuesta')=='creado')
     <script>
-    toastr.success('Prueba, ha sido creada.')
+    Swal.fire(
+    'Creado',
+    'El proyecto se ha registrado satisfactoriamente.',
+    'success')
     </script>
     @endif
 

@@ -17,6 +17,9 @@
 
 <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="vendor/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <h3 style="color: #007bce;font-weight: normal;font-size: 20px;font-family: Arial;text-transform: uppercase;">
+    <strong>SISTEMA DE GESTIÓN DE PROYECTOS SOCIO INTEGRADORES (SIGEPSI) 2.0v</strong>
+    </h3>
 </div>
 
 <div class="card-header bg-primary ">
@@ -27,8 +30,12 @@
 
 <div class="card border-dark">
   <div class="card-body text-dark">
+    @can('necesidad.create')
     <button href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-create">Añadir nueva necesidad</button>
     <hr>
+    @endcan
+    
+    
     <table id="example1" class="table table-striped table-bordered nowrap"  style="width:100%">
       <thead>
         <tr>
@@ -46,17 +53,29 @@
           <td>{{ $necesidades->comunidades->nombre }}</td>
           <td>{{ $necesidades->comunidades->persona_contacto }} | {{ $necesidades->comunidades->telefono_contacto }}</td>
           <td>{{ $necesidades->estatus_necesidades->estatus_necesidad }}</td>
-          <td><a class="btn btn-primary" href="{{ route('necesidad.show', $necesidades->id ) }}"><i class="fas fa-eye"></i></a></td>
+          <td>
+            <a class="btn btn-primary" href="{{ route('necesidad.show', $necesidades->id ) }}"><i class="fas fa-eye"></i></a>
+            @can('necesidad.evaluate')
+            <a class="btn btn-info" href="{{ route('necesidad.edit', $necesidades->id ) }}"><i class="fas fa-edit"></i></a>
+            <a class="btn btn-primary" href="{{ route('evaluate', \Crypt::encryptString($necesidades->id) ) }}">Estudiar</a>
+            @endcan
+            
+          </td>
         </tr>
         @endforeach
       </tbody>
     </table>
   </div>
-
 </div>
 
 @include('necesidad.modal.create')
-
+<footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 @stop
 
 @section('js')
@@ -70,11 +89,11 @@
     </script>
     @endif
 
-    @if(session('respuesta')=='eliminado')
+    @if(session('respuesta')=='editado')
     <script>
     Swal.fire(
-    'Eliminado!',
-    'Se elimino el comentario seleccionado.',
+    'Editado!',
+    'Se ha editado la necesidad seleccionada.',
     'success')
     </script>
     @endif

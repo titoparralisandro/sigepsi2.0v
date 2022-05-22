@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar')
+@section('title', '| trayecto')
 
 @if(count($errors)>0)
 <div class="alert alert-danger" role="alert">
@@ -29,33 +29,33 @@
 
             @csrf
             {{ method_field('PATCH') }}
+            <div class="row">
+                <div class="form-group col col-5">
 
-            <div class="form-group">
+                    <label class="form-label">Trayecto</label>
+                    <input id="trayecto" class="form-control" type="text" name="trayecto"
+                    value="{{ isset($trayecto->trayecto)?$trayecto->trayecto:old('trayecto') }}">
 
-                <label class="form-label">Trayecto</label>
-                <input id="trayecto" class="form-control" type="text" name="trayecto"
-                value="{{ isset($trayecto->trayecto)?$trayecto->trayecto:old('trayecto') }}">
+                </div>
 
+                <div class="form-group  col col-5">
+
+                    <label class="form-label">Descripción</label>
+                    <input id="descripcion" class="form-control" type="text" name="descripcion"
+                    value="{{ isset($trayecto->descripcion)?$trayecto->descripcion:old('descripcion') }}">
+
+                </div>
+
+                <div class="form-group col col-2">
+
+                    <label class="form-label">Estatus</label>
+                    <select id="estatus" class="form-control"name="estatus">
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+
+                </div>
             </div>
-
-            <div class="form-group">
-
-                <label class="form-label">Descripción</label>
-                <input id="descripcion" class="form-control" type="text" name="descripcion"
-                value="{{ isset($trayecto->descripcion)?$trayecto->descripcion:old('descripcion') }}">
-
-            </div>
-
-            <div class="form-group">
-
-                <label class="form-label">Estatus</label>
-                <select id="estatus" class="form-control"name="estatus">
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
-                </select>
-
-            </div>
-
             <a href="{{ route('trayecto.index') }}" class="btn btn-danger">Cancelar</a>
 
             <button type="submit" class="btn btn-success">Actualizar</button>
@@ -65,6 +65,12 @@
     </div>
 
   </div>
-
+  <footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 @stop
 

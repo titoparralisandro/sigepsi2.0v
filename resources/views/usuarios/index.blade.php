@@ -1,11 +1,7 @@
 @extends('adminlte::page')
-
 @section('title', 'Usuarios')
-
 @section('plugins.Sweetalert2', true)
-
 @section('plugins.Toastr', true)
-
 @section('plugins.Datatables', true)
 
 @if(count($errors)>0)
@@ -28,15 +24,17 @@
 
 <div class="card border-dark">
     <div class="card-body text-dark">
-        <button href="#" class="btn btn-success" >Añadir nuevo Usuario</button>
+    <a class="btn btn-info" href="{{route('usuarios.pdf')}}">PDF Usuarios</a> 
+        <a class="btn btn-success" href="{{ route('usuarios.create') }}">Añadir nuevo Usuario</a>
         <hr>
         <!-- table table-striped table-bordered nowrap -->
-        <table id="example" class="table table-bordered table-hove"  style="width:100%">
+        <table id="example1" class="table table-bordered table-hove"  style="width:100%">
             <thead>
                 <tr>
                     <th>N°</th>
                     <th>Nombre</th>
                     <th>Correo</th>
+                    <th>Role</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -47,7 +45,22 @@
                 <td>{{ $usuario->name }}</td>
                 <td>{{ $usuario->email }}</td>
                 <td>
-                <a class="btn btn-warning" href="{{route('usuarios.edit', $usuario)}}">Asignar rol</a>
+                  @foreach($usuario->roles as $role)
+                  <!-- dd($usuario) -->
+                  <span>{{ $role->name }}</span>
+                  @endforeach
+                </td>
+                <td>
+<form  class="eliminar" action="{{ route('usuarios.destroy', $usuario ) }}" method="POST">
+@csrf
+<!-- @ method('DELETE') -->
+{{ method_field('DELETE') }}
+<a class="btn btn-warning" href="{{route('usuarios.edit', $usuario)}}">Editar</a>
+<!--<a class="btn btn-success" href="{{route('usuarios.pdfusuario', $usuario)}}">PDF</a>-->
+@can('usuarios.destroy')
+<!--<button id="eliminar" type="submit" class="btn btn-danger">Borrar</button>-->
+@endcan
+</form>
                 </td>
                 </tr>
                 @endforeach
@@ -62,7 +75,13 @@
 
 @if(session('respuesta')=='creado')
 <script>
-toastr.success('Registro creado con éxito.')
+toastr.success('Usuario creado con éxito.')
+</script>
+@endif
+
+@if(session('respuesta')=='editar')
+<script>
+toastr.success('Editado con éxito.')
 </script>
 @endif
 
@@ -70,8 +89,7 @@ toastr.success('Registro creado con éxito.')
 <script>
   Swal.fire(
   'Eliminado!',
-  '
-Registro eliminado con éxito.',
+  'Usuario eliminado con éxito.',
   'success'
   )
 </script>
@@ -103,8 +121,24 @@ toastr.info('Registro editado con éxito.')
             this.submit();
             }
         })
-
     });
+
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "pdf", "print", "colvis"]
+      //"copy", "csv", "excel", "pdf", "print", "colvis"
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
 
 </script>
 @stop

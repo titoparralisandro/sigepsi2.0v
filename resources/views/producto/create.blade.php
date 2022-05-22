@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Producto')
+@section('title', '| Producto')
 
 @if(count($errors)>0)
 <div class="alert alert-danger" role="alert">
@@ -17,7 +17,7 @@
 <div class="card-header bg-primary ">
 
     <div class="color-palette">
-      <h1 class="text-center"><strong>Crear Nuevo Productos</strong></h1>
+      <h1 class="text-center"><strong>Crear nuevo producto</strong></h1>
     </div>
 </div>
 
@@ -57,5 +57,11 @@
     </div>
 
   </div>
-
+  <footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 @stop

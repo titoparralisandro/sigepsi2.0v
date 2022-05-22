@@ -68,13 +68,14 @@
                 </div>
             </form>
         </div>
+        <a href="{{ route('estructura.index') }}" class="btn btn-primary">Volver</a>
         </div>
     </form>
   </div>
 </div>
 
 <footer class="main-footer" >
-    <strong> &copy; 2022 | <a href="{{ url('/home')}}">Sistema de Gestión de Proyectos Socio Integradores</a> | </strong>
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
     Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
     <div class="float-right d-none d-sm-inline-block">
       <b>Versión</b> 2.0
@@ -100,24 +101,33 @@
             dataFinal.id_producto=$("#id_producto")[0].value;
             dataFinal.id_lineas_investigacion=$("#id_lineas_investigacion")[0].value;
             dataFinal.id_trayecto=$("#id_trayecto")[0].value;
-            $.ajax({
-                type: "POST",
-                url: "/SaveEstruc",
-                async: false,
-                cache: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "data" : dataFinal
-                },
-                success: function(response){
-                    Swal.fire({
-                        title: 'Datos registrado con exito',
-                        text: "Proceso exitoso",
-                        icon: 'success',
-                    })
-                    window.location.href = "/estructura";
-                }
-            });
+            if (punto==0) {
+                $.ajax({
+                    type: "POST",
+                    url: "/SaveEstruc",
+                    async: false,
+                    cache: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "data" : dataFinal
+                    },
+                    success: function(response){
+                        Swal.fire({
+                            title: 'Datos registrado con exito',
+                            text: "Proceso exitoso",
+                            icon: 'success',
+                        })
+                        window.location.href = "/estructura";
+                    }
+                });
+            }else{
+                Swal.fire({
+                            title: 'Error en el proceso',
+                            text: "la cantidad de punto no es igual a 100",
+                            icon: 'error',
+                        })
+            }
+
         })
         $("#id_producto").select2({
             ajax: {

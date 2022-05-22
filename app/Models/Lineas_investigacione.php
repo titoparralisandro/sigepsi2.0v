@@ -20,4 +20,7 @@ class Lineas_investigacione extends Model
     public function estructuras(){
         return $this->hasMany(Estructura::class, 'id');
     }
+    public function bancos(){
+        return $this->hasMany(Banca_situaciones::class, 'id');
+    }
 }

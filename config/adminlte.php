@@ -238,7 +238,7 @@ return [
         ],
         ],
         [
-            'can' => 'usuarios.index',
+            'can' => 'estructura.index',
             'text' => 'Estrcuturas evaluativas',
             'icon'    => 'fas fa-fw fa-list-alt',
             'submenu' => [
@@ -259,7 +259,8 @@ return [
                 ],
         ],
         ],
-        [ 'can' => 'especialidad.index',
+        [
+            'can' => 'especialidad.index',
             'text'    => 'Administrable',
             'icon'    => 'fas fa-fw fa-cogs',
             'submenu' => [
@@ -314,7 +315,8 @@ return [
             ],
         ],
         [
-            'can' => 'usuarios.index',
+            // 'can' => 'usuarios.index',
+            'can' => 'comunidades.index',
             'text' => 'Comunidades',
             'icon'    => 'fas fa-fw fa-city',
             'submenu' => [
@@ -324,6 +326,7 @@ return [
                     'url'  => '/comunidades',
                 ],
                 [
+                    'can' => 'tipos_asesoria.index',
                     'text' => 'Tipos de Comunidades',
                     'icon'    => 'fas fa-fw fa-laptop-house',
                     'url'  => '/tipos_comunidad',
@@ -331,16 +334,19 @@ return [
         ],
         ],
         [
-            'can' => 'usuarios.index',
+            // 'can' => 'usuarios.index',
+
             'text' => 'Situaciones',
             'icon'    => 'fas fa-fw fa-handshake',
             'submenu' => [
                 [
+                    'can' => 'necesidad.index',
                     'text' => 'Necesidades',
                     'icon'    => 'fas fa-fw fa-book-reader',
                     'url'  => '/necesidad',
                 ],
                 [
+                    'can' => 'banca_list',
                     'text' => 'Banco de situaciones',
                     'icon'    => 'fas fa-fw fa-landmark',
                     'url'  => '/situacion',
@@ -348,7 +354,9 @@ return [
         ],
         ],
         ['header' => 'account_settings'],
-        [   'can' => 'usuarios.index',
+        [
+            // 'can' => 'usuarios.edit',
+            'can' => 'usuarios.index',
             'text' => 'Usuarios',
             'icon'    => 'fas fa-fw fa-users',
             'submenu' => [
@@ -356,7 +364,7 @@ return [
                     'text' => 'Usuario',
                     'icon'    => 'fas fa-fw fa-user',
                     'url'  => '/usuarios',
-                    'can' => 'usuarios.index',
+                    // 'can' => 'usuarios.index',
                 ],
                 [
                     'text' => 'Roles',
@@ -371,42 +379,44 @@ return [
         ],
         ],
         [
-            'can' => 'usuarios.index',
+            // 'can' => 'usuarios.index',
             'text' => 'profile',
             'url'  => '/perfil',
             'icon' => 'fas fa-fw fa-user',
         ],
 
-        [
+        ['can' => 'reporte',
             'header' => 'Reportes',
-            'can' => 'usuarios.index',
+            // // 'can' => 'usuarios.index',
         ],
+        // [
+        //     // // 'can' => 'usuarios.index',
+        //     'text' => 'Estadísticas',
+        //     'url'  => '#',
+        //     'icon' => 'fas fa-fw fa-chart-bar',
+        // ],
         [
-            'can' => 'usuarios.index',
-            'text' => 'Estadísticas',
-            'url'  => '#',
-            'icon' => 'fas fa-fw fa-chart-bar',
-        ],
-        [
-            'can' => 'usuarios.index',
+            // 'can' => 'usuarios.index',
+            'can' => 'reporte',
             'text' => 'Reportes',
-            'url'  => '#',
+            'url'  => 'reporte',
             'icon' => 'fas fa-fw fa-file-alt',
         ],
 
         [
             'header' => 'Información',
-            'can' => 'usuarios.index',
+            // 'can' => '',
         ],
         [
-            'can' => 'usuarios.index',
+            // // 'can' => 'comentario.index',
+            'can' => 'comentario',
             'text' => 'Comentarios',
             'url'  => '/comentario',
             'icon' => 'fas fa-fw fa-comments',
         ],
         [
-            'can' => 'usuarios.index',
-            'text' => 'A cerca de',
+            // 'can' => '',
+            'text' => 'Acerca de',
             'url'  => '/a_cerca_de',
             'icon' => 'fas fa-fw fa-info',
         ],

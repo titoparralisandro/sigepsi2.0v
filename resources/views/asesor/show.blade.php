@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Carreras')
+@section('title', '| Asesores')
 
 @section('content_header')
 
@@ -34,7 +34,7 @@
       </div>
 
         <div class="form-group col">
-          
+
             <label class="form-label">Primer apellido</label>
             <input id="primer_apellido" class="form-control" type="text" name="primer_apellido" disabled
             value="{{ $asesor->primer_apellido }}">
@@ -89,5 +89,11 @@
     </div>
 
   </div>
-
+  <footer class="main-footer" >
+    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
+    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Versión</b> 2.0
+    </div>
+</footer>
 @stop

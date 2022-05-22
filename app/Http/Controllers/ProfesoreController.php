@@ -22,16 +22,17 @@ class ProfesoreController extends Controller
     }
 
     public function store(Request $request){
-        
+
         // Registro de usuario de profesor oculto
 
         $user = new User();
         $user->name = $request->get('primer_nombre').' '.$request->get('primer_apellido');
         $user->email = $request->get('email');
-        $contraseña = rand(10000000, 99999999);
+        $contraseña = 'admin123';
+        // $contraseña = rand(10000000, 99999999);
         $user->password = Hash::make($contraseña);
         $user->assignRole("Asesor");
-                
+
         $user->save();
 
         $asesor = new Profesore();
@@ -44,7 +45,7 @@ class ProfesoreController extends Controller
         $asesor->telefono = $request->get('telefono');
         $asesor->email = $request->get('email');
         $asesor->cedula = $request->get('cedula');
-        
+
         $asesor->save();
 
         return redirect('/asesor')->with('respuesta', 'creado');

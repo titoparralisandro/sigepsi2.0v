@@ -27,16 +27,17 @@ class ContactController extends Controller
             'required' => 'EL :attribute es requerido',
             'comentario.required' => 'El comentario es requerido',
         ];
-        
+
         $this->validate($request, $campos, $mensaje);
-        
+
         $comentario = new Comment();
         $comentario->name = $request->get('name');
         $comentario->email = $request->get('email');
         $comentario->asunto = $request->get('asunto');
         $comentario->comentario = $request->get('comentario');
-        
+
         $comentario->save();
-        return redirect('/contact');
+
+        return redirect('/contact')->with('respuesta', 'creado');
     }
 }

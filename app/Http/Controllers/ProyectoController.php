@@ -26,10 +26,22 @@ class ProyectoController extends Controller
             ->join("evaluaciones","evaluaciones.id_proyecto","proyectos.id")
             ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
             ->get();
-    
         return view('proyecto.index',["proyecto"=>$proyecto]);
     }
+    public function pdf_carta_compromiso($id){
 
+
+        // return view('proyecto.carta_compromiso');
+        return 'proyecto.carta_compromiso';
+    }
+    // public function pdf_carta_culminacion(){
+
+    //     return view('proyecto.index');
+    // }
+    // public function pdf_certificado(){
+
+    //     return view('proyecto.index');
+    // }
     public function create(Request $request){
         $especialidad = Especialidade::all();
         $lineas_investigacion = Lineas_investigacione::all();
@@ -340,7 +352,7 @@ class ProyectoController extends Controller
             ->leftJoin('estados', 'estados.id_estado', '=', 'municipios.id_estado')
             ->select("comunidades.*","parroquias.parroquia","municipios.municipio","estados.estado","tipos_comunidades.tipo_comunidad")
             ->where([ ['comunidades.id', '=', $proyecto->id_comunidad] ])
-            ->get(); 
+            ->get();
 
             foreach ($comunidades as $comunidad) {
                 $html = "<div class='row'>";
@@ -390,25 +402,31 @@ class ProyectoController extends Controller
                 $html.="<textarea class='form-control' disabled cols='25' rows='4' >".$comunidad->direccion."</textarea>";
                 $html.="</div>";
             }
-
-            
-        return view('proyecto.show',["html"=>$html, "a"=>$a, "proyecto"=>$proyecto, "estados"=>$estados, "municipios"=>$municipios , "parroquias"=>$parroquias]);
-        
-
             $estudiantes = DB::table('personas')
-            ->select('personas.*' )
-            ->join('proyectos_estudiantes', 'proyectos_estudiantes.id_estudiante', '=', 'personas.id')
-            ->whereRaw("proyectos_estudiantes.id_proyecto ='".$proyecto->id."' and personas.id=proyectos_estudiantes.id_estudiante")
-            ->get();
+                ->select('personas.*' )
+                ->join('proyectos_estudiantes', 'proyectos_estudiantes.id_estudiante', '=', 'personas.id')
+                ->whereRaw("proyectos_estudiantes.id_proyecto ='".$proyecto->id."' and personas.id=proyectos_estudiantes.id_estudiante")
+                ->get();
+            // dd($estudiantes);
             $estud="";
             foreach ($estudiantes as $estudiante) {
-                $estud.="<div class='form-group col col-4'>";
+                $estud.="<div class='form-group col col-6'>";
                 $estud.="<label class='form-label'>Estudiante</label>";
-                $estud.="<input disabled class='form-control' type='text' value='".$estudiante->nombres."'.' '.'".$estudiante->apellidos."'>";
+                $estud.="<input disabled class='form-control' type='text' value='".$estudiante->nombres . " " . $estudiante->apellidos."'>";
+                $estud.="</div>";
+                $estud.="<div class='form-group col col-3'>";
+                $estud.="<label class='form-label'>Cédula</label>";
+                $estud.="<input disabled class='form-control' type='text' value='".$estudiante->cedula."'>";
+                $estud.="</div>";
+                $estud.="<div class='form-group col col-3'>";
+                $estud.="<label class='form-label'>Trayecto</label>";
+                $estud.="<input disabled class='form-control' type='text' value='".$estudiante->trayecto."'>";
                 $estud.="</div>";
             }
-
-        return view('proyecto.show',["html"=>$html, "estud"=>$estud, "a"=>$a, "proyecto"=>$proyecto, "estados"=>$estados, "municipios"=>$municipios , "parroquias"=>$parroquias]);
+            // $file=Files::find($id);
+            $file=Files::find($id);
+            // dd($file);
+        return view('proyecto.show',["html"=>$html,"file"=>$file, "estud"=>$estud, "a"=>$a, "proyecto"=>$proyecto, "estados"=>$estados, "municipios"=>$municipios , "parroquias"=>$parroquias]);
 
     }
 

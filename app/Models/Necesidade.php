@@ -29,4 +29,7 @@ class Necesidade extends Model
     public function parroquias(){
         return $this->belongsTo(Parroquia::class, 'id_parroquia');
     }
+    public function bancos(){
+        return $this->hasMany(Banca_situaciones::class, 'id');
+    }
 }

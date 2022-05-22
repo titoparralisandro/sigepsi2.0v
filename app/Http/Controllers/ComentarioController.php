@@ -4,14 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
-use Illuminate\Support\Facades\DB;
 
 class ComentarioController extends Controller
 {
+    // Solo si se usa una ruta
+    //public function __invoke(){
+    //view('comment');
+    //return 'comentarios';
+    //}
 
     public function index(){
     $comentarios = Comment::all();
     return view('comentario.index')->with('comentarios',$comentarios);
+    }
+
+    public function show($id){
+    $comentario = Comment::findOrFail($id);
+    return view('comentario.show', compact(['comentario', 'id']));
     }
 
     public function store(Request $request){
@@ -42,36 +51,6 @@ class ComentarioController extends Controller
         $comentario->save();
 
         return redirect('/perfil')->with('respuesta', 'creado');
-    }
-
-    public function show($id){
-        $comentario = Comment::findOrFail($id);
-        $comments = DB::table('comments')
-                        ->select('comments.*')
-                        ->where('comments.id', '=',$comentario->id)
-                        ->get();
-        // dd($comments);
-        foreach ($comments as $comentarios) {
-        $html="    <div class='row'>";
-        $html.="    <div class='form-group col col-6'>";
-        $html.="      <label class='form-label'>Usuario</label>";
-        $html.="      <input disabled class='form-control' type='text' value='$comentarios->name'>";
-        $html.="    </div>";
-        $html.="    <div class='form-group col col-6'>";
-        $html.="      <label class='form-label '>Correo</label>";
-        $html.="      <input disabled class='form-control' type='text' value='$comentarios->email'>";
-        $html.="    </div>";
-        $html.="  </div>";
-        $html.="    <div class='form-group'>";
-        $html.="      <label class='form-label '>Asunto</label>";
-        $html.="      <input disabled class='form-control' type='text' value='$comentarios->asunto'>";
-        $html.="    </div>";
-        $html.="    <div class='form-group'>";
-        $html.="        <label class='form-label'>Comentario</label>";
-        $html.="        <textarea disabled class='form-control' cols='25' rows='4'>$comentarios->comentario</textarea>";
-        $html .="    </div>";
-                        }
-        return view('comentario.show', ['html'=>$html, 'id']);
     }
 
     public function destroy($id)
