@@ -10,10 +10,10 @@ use App\Models\Municipio;
 use App\Models\Parroquia;
 use App\Models\Banca_situaciones;
 use App\Models\Carrera;
+
 use Illuminate\Support\Facades\Crypt;
 
 use Illuminate\Support\Facades\DB;
-
 use App\Models\User;
 use JeroenNoten\LaravelAdminLte\Components\Form\Select;
 
@@ -26,7 +26,33 @@ class NecesidadeController extends Controller
     public function index(){
         $estados = Estado::all();
         $necesidad = Necesidade::all();
-        return view('necesidad.index',["necesidad"=>$necesidad,"estados"=>$estados]);
+        
+        $user = auth()->user();
+        $a= $user->roles->pluck('id')->implode(' ');
+
+        if ($a == 8){
+
+            $id_usuario = auth()->id();
+            $comunidad = DB::table('comunidades')
+            ->select('necesidades.*', 'comunidades.*', 'estatus_necesidades.*')
+            ->where([['comunidades.id_user', '=', $id_usuario]])
+            ->join('necesidades', 'necesidades.id_comunidad', '=', 'comunidades.id')
+            ->join('estatus_necesidades', 'estatus_necesidades.id', '=', 'necesidades.id_estatus_necesidad')
+            ->get();
+    
+            return view('necesidad.index',["comunidad"=>$comunidad, "estados"=>$estados]);
+        
+        }else{
+            $comunidad = DB::table('comunidades')
+            ->select('necesidades.*', 'comunidades.*', 'estatus_necesidades.*')
+            ->join('necesidades', 'necesidades.id_comunidad', '=', 'comunidades.id')
+            ->join('estatus_necesidades', 'estatus_necesidades.id', '=', 'necesidades.id_estatus_necesidad')
+            ->get();
+    
+            return view('necesidad.index',["comunidad"=>$comunidad, "estados"=>$estados, "a",$a ]);
+        }
+        
+        
     }
 
     public function create(){
@@ -296,7 +322,7 @@ class NecesidadeController extends Controller
         $banca->id_carrera = $request->get('id_carrera');
         $banca->id_especialidad = $request->get('id_especialidad');
         $banca->id_linea_investigacion = $request->get('id_lineas_investigacion');
-        // $banca->id_estatus_situacion = 1;
+        $banca->id_estatus_situacion = 1;
         $banca->situacion = $request->get('situacion');
 
         $banca->save();

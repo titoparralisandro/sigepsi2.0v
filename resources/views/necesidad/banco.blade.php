@@ -25,7 +25,7 @@
                             
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Carrera</label>
-                        <select class="form-control" name="id_carrera" id="id_carrera" require>
+                        <select class="form-control" name="id_carrera" id="id_carrera" required>
                         <option selected value="">Seleccionar carrera</option>
                             @foreach($carreras as $carrera)
                                 <option value="{{ $carrera->id}}">{{ $carrera->carrera}}</option>
@@ -35,25 +35,25 @@
                 <div class="row">
                     <div class="form-group col col-5 mb-3">
                             <label for="exampleInputPassword1" class="form-label">Especialidad</label>
-                                <select class="form-control" name="id_especialidad" id="id_especialidad" require>
-                                    <option value="">Selecciona una carrera</option>
+                                <select class="form-control" name="id_especialidad" id="id_especialidad" required>
+                                    <option value=""></option>
                         
                                 </select>
                         </div>
                         <div class="form-group col col-7 mb-3">
                             <label for="exampleInputEmail1" class="form-label">Linea de investigación</label>
-                            <select class="form-control" name="id_lineas_investigacion" id="id_lineas_investigacion" require>
-                                <option value="">Selecciona una carrera</option>
+                            <select class="form-control" name="id_lineas_investigacion" id="id_lineas_investigacion" required>
+                                <option value=""></option>
                             </select>
                         </div>
                 </div>
                         <div class="mb-3">
                             <label class="form-label">Estatus Situación</label>
                             <textarea id="situacion" class="form-control" name="situacion" cols="25" rows="4"
-                            placeholder="Escriba su dirección de forma detallada." require></textarea>
-
+                            placeholder="Escriba su dirección de forma detallada." required></textarea>
                         </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>
         </div>
   </div>

@@ -23,4 +23,7 @@ class Banca_situaciones extends Model
     public function necesidades(){
         return $this->belongsTo(Necesidade::class, 'id_necesidad');
     }
+    public function estatus_situaciones(){
+        return $this->belongsTo(Estatus_situacione::class, 'id_estatus_situacion');
+    }
 }

@@ -38,7 +38,7 @@
 
                     <a href="{{ route('necesidad.index') }}" class="btn btn-danger">Volver</a>
                     @can('necesidad.evaluate')
-                    <a class="btn btn-primary" href="{{ route('evaluate', \Crypt::encryptString($necesidades->id) ) }}">Estudiar</a>
+                    <a class="btn btn-primary" href="{{ route('evaluate', \Crypt::encryptString($necesidad->id) ) }}">Estudiar</a>
                     @endcan
 
                 </form>

@@ -47,21 +47,26 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($necesidad as $necesidades)
+        @php $i=1; @endphp
+        @foreach ($comunidad as $necesidades)
         <tr>
-          <td>{{ $necesidades->id }}</td>
-          <td>{{ $necesidades->comunidades->nombre }}</td>
-          <td>{{ $necesidades->comunidades->persona_contacto }} | {{ $necesidades->comunidades->telefono_contacto }}</td>
-          <td>{{ $necesidades->estatus_necesidades->estatus_necesidad }}</td>
+          <td>{{ $i }}</td>
+          <td>{{ $necesidades->nombre }}</td>
+          <td>{{ $necesidades->persona_contacto }} | {{ $necesidades->telefono_contacto }}</td>
+          <td>{{ $necesidades->estatus_necesidad }}</td>
           <td>
             <a class="btn btn-primary" href="{{ route('necesidad.show', $necesidades->id ) }}"><i class="fas fa-eye"></i></a>
             @can('necesidad.evaluate')
-            <a class="btn btn-info" href="{{ route('necesidad.edit', $necesidades->id ) }}"><i class="fas fa-edit"></i></a>
-            <a class="btn btn-primary" href="{{ route('evaluate', \Crypt::encryptString($necesidades->id) ) }}">Estudiar</a>
+              <a class="btn btn-info" href="{{ route('necesidad.edit', $necesidades->id ) }}"><i class="fas fa-edit"></i></a>
+              
+                @if (($necesidades->id_estatus_necesidad != 4 and $necesidades->id_estatus_necesidad != 2) || @$a==5)
+                  <a class="btn btn-primary" href="{{ route('evaluate', \Crypt::encryptString($necesidades->id) ) }}">Estudiar</a>
+                @endif
             @endcan
             
           </td>
         </tr>
+        @php $i++; @endphp
         @endforeach
       </tbody>
     </table>

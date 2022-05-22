@@ -36,7 +36,7 @@
           <td>{{ $situacion->id_necesidad }}</td>
           <td>{{ $situacion->carreras->carrera }}</td>
           <td>{{ $situacion->lineas_investigaciones->linea_investigacion }}</td>
-          <td>No atendida</td>
+          <td>{{ $situacion->estatus_situaciones->estatus_situacion }}</td>
         </tr>
         @endforeach
       </tbody>
