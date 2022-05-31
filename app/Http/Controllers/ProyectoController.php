@@ -19,14 +19,82 @@ use Illuminate\Http\File;
 class ProyectoController extends Controller
 {
     public function index(){
-        $proyecto= DB::table('proyectos')
-            ->join("lineas_investigaciones","proyectos.id_linea_investigacion","lineas_investigaciones.id")
-            ->join("carreras","carreras.id", "proyectos.id_carrera")
-            ->join("trayectos","trayectos.id","proyectos.id_trayecto")
-            ->join("evaluaciones","evaluaciones.id_proyecto","proyectos.id")
-            ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
-            ->get();
-        return view('proyecto.index',["proyecto"=>$proyecto]);
+        $user = auth()->user();
+        $a= $user->roles->pluck('name')->implode(' ');
+        $user_id = auth()->id();
+        $result = array();
+        // return $a;
+        switch ($a) {
+            case 'Administrador':
+                $proyecto= DB::table('proyectos')
+                    ->join("lineas_investigaciones","proyectos.id_linea_investigacion","lineas_investigaciones.id")
+                    ->join("carreras","carreras.id", "proyectos.id_carrera")
+                    ->join("trayectos","trayectos.id","proyectos.id_trayecto")
+                    ->join("evaluaciones","evaluaciones.id_proyecto","proyectos.id")
+                    ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
+                    ->get();
+                    return view('proyecto.index',["proyecto"=>$proyecto]);
+                break;
+            case 'Estudiante':
+                $id_persona = DB::table('personas')
+                    ->where("id_user", $user_id)->value("id");
+                $id_proyectos = DB::table('proyectos_estudiantes')
+                    ->select("id_proyecto")
+                    ->where("id_estudiante", $id_persona)->get();
+                foreach ($id_proyectos as $key => $value) {
+                    $proyectos = DB::table('proyectos')
+                        ->join("lineas_investigaciones","proyectos.id_linea_investigacion","lineas_investigaciones.id")
+                        ->join("carreras","carreras.id", "proyectos.id_carrera")
+                        ->join("trayectos","trayectos.id","proyectos.id_trayecto")
+                        ->join("evaluaciones","evaluaciones.id_proyecto","proyectos.id")
+                        ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
+                        ->where("proyectos.id", $id_proyectos[$key]->id_proyecto)
+                        ->get();
+                    foreach ($proyectos as $key => $value) {
+                        $result[] = $value;
+                    } 
+                }
+                return view('proyecto.index',["proyecto"=>$result]);
+                break;
+            case 'Asesor':
+                $id_profesor = DB::table('profesores')
+                    ->where("id_user", $user_id)->value("id");
+                $id_proyecto_asesores = DB::table('proyecto_asesores')
+                    ->select("id_proyecto")
+                    ->where("id_asesor", $id_profesor)->get();
+                foreach ($id_proyecto_asesores as $key => $value) {
+                    $proyectos = DB::table('proyectos')
+                        ->join("lineas_investigaciones","proyectos.id_linea_investigacion","lineas_investigaciones.id")
+                        ->join("carreras","carreras.id", "proyectos.id_carrera")
+                        ->join("trayectos","trayectos.id","proyectos.id_trayecto")
+                        ->join("evaluaciones","evaluaciones.id_proyecto","proyectos.id")
+                        ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
+                        ->where("proyectos.id", $id_proyecto_asesores[$key]->id_proyecto)
+                        ->get();
+                        foreach ($proyectos as $key => $value) {
+                            $result[] = $value;
+                        } 
+                }
+                return view('proyecto.index',["proyecto"=>$result]);
+                break;
+            case 'Comunidad':
+                $id_comunidad = DB::table('comunidades')
+                    ->where("id_user", $user_id)->value("id");
+                $proyecto= DB::table('proyectos')
+                    ->join("lineas_investigaciones","proyectos.id_linea_investigacion","lineas_investigaciones.id")
+                    ->join("carreras","carreras.id", "proyectos.id_carrera")
+                    ->join("trayectos","trayectos.id","proyectos.id_trayecto")
+                    ->join("evaluaciones","evaluaciones.id_proyecto","proyectos.id")
+                    ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
+                    ->where("proyectos.id_comunidad", $id_comunidad)
+                    ->get();
+                    return view('proyecto.index',["proyecto"=>$proyecto]);
+                break;
+            default:
+                # code...
+                break;
+        }
+
     }
     public function pdf_carta_compromiso($id){
 
