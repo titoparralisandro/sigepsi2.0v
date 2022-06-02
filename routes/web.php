@@ -6,6 +6,7 @@ use App\Http\Controllers\ComentarioController;
 // use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserControllers;
 use App\Http\Controllers\ReporteController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +17,6 @@ use App\Http\Controllers\ReporteController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 Route::get('/',function () {
     return view('inicio');

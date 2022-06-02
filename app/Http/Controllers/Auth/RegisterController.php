@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
+
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -10,6 +14,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\RegisterStoreRequest;
 use Illuminate\Support\Facades\DB;
+
+
 
 class RegisterController extends Controller
 {
@@ -76,6 +82,16 @@ class RegisterController extends Controller
             $user =  User::create($request->except(['customRadio','password'])+ ['password' =>  Hash::make($request->password)]);
             $user->assignRole("Comunidad");
         }
+
+        
+        $details = [
+            "title"=>"Registro siace",
+            "body"=>"Un nuevo usuario se ha registrado"
+           
+        ];
+        Mail::to($request->email, "Admin")->send(new TestMail($details));
+
+
         return redirect('/login');
         });
     }
