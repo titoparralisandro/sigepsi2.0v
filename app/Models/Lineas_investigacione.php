@@ -12,11 +12,9 @@ class Lineas_investigacione extends Model
     public function carreras(){
         return $this->belongsTo(Carrera::class, 'id_carrera');
     }
-
     public function proyectos(){
         return $this->hasMany(Proyecto::class, 'id');
     }
-
     public function estructuras(){
         return $this->hasMany(Estructura::class, 'id');
     }

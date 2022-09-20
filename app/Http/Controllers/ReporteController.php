@@ -35,6 +35,24 @@ class ReporteController extends Controller
         return view('reporte.index',["proyecto"=>$proyecto]);
     }
 
+    public function banca()
+    {
+        $proyecto= DB::table('banca_situaciones')
+        ->join("lineas_investigaciones","banca_situaciones.id_linea_investigacion","lineas_investigaciones.id")
+        ->join("carreras","carreras.id", "banca_situaciones.id_carrera")
+        ->join("necesidades","necesidades.id","banca_situaciones.id_necesidad")
+        ->join("especialidades","especialidades.id","banca_situaciones.id_especialidad")
+        ->join("estatus_situaciones","estatus_situaciones.id","banca_situaciones.id_estatus_situacion")
+        ->select("banca_situaciones.id",
+                "banca_situaciones.situacion",
+                "lineas_investigaciones.linea_investigacion",
+                "carreras.carrera",
+                "especialidades.especialidad",
+                "estatus_situaciones.estatus_situacion")
+        ->get();
+        return view('reporte.banca',["proyecto"=>$proyecto]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -121,6 +139,42 @@ class ReporteController extends Controller
         
     
     $pdf = PDF::loadView('reporte.pdf',["proyecto"=>$proyecto])->setPaper('a4', 'landscape');
+    return $pdf->stream(); 
+    }
+    public function bancareporte()
+    {
+
+        $proyecto= DB::table('banca_situaciones')
+/*
+            ->join("lineas_investigaciones","banca_situaciones.id_linea_investigacion","lineas_investigaciones.id")
+            ->join("carreras","carreras.id", "banca_situaciones.id_carrera")
+            ->join("necesidades","necesidades.id","banca_situaciones.id_trayecto")
+            ->join("especialidades","especialidades.id","banca_situaciones.id_trayecto")
+            ->join("estatus_situaciones","estatus_situaciones.id","banca_situaciones.id_estatus_situacion")
+            ->select("banca_situaciones.id",
+                    "banca_situaciones.situacion",
+                    "lineas_investigaciones.linea_investigacion",
+                    "carreras.carrera",
+                    "especialidades.especialidad",
+                    "estatus_situaciones.estatus_situacion")
+            ->get();
+*/
+        ->join("lineas_investigaciones","banca_situaciones.id_linea_investigacion","lineas_investigaciones.id")
+        ->join("carreras","carreras.id", "banca_situaciones.id_carrera")
+        ->join("necesidades","necesidades.id","banca_situaciones.id_necesidad")
+        ->join("especialidades","especialidades.id","banca_situaciones.id_especialidad")
+        ->join("estatus_situaciones","estatus_situaciones.id","banca_situaciones.id_estatus_situacion")
+        ->select("banca_situaciones.id",
+                "banca_situaciones.situacion",
+                "lineas_investigaciones.linea_investigacion",
+                "carreras.carrera",
+                "especialidades.especialidad",
+                "estatus_situaciones.estatus_situacion")
+        ->get();
+        //return view('reporte.index',["proyecto"=>$proyecto]);
+        
+    
+    $pdf = PDF::loadView('reporte.bancareporte',["proyecto"=>$proyecto])->setPaper('a4', 'landscape');
     return $pdf->stream(); 
     }
 

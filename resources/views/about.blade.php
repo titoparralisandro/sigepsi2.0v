@@ -75,7 +75,7 @@
                 <span class="title-small text-center mb-2">Historia</span>
                 <h3 class="title-big mx-0 text-center" >del Sistema</h3>
                 <p class="mt-lg-4 mt-3 mb-lg-5 mb-4 text-center">
-                    SIGEPSI 2.0v surge a partir de una fase de diagnóstico donde se encontró que en la en la universidad pionera <strong>UPTECMS</strong> el desarrollo y seguimiento de los proyectos socio integradores se están realizando de forma manual, por ende se carece de un aval donde los estudiantes y los docentes sean respaldados por las actividades que se desarrollen en el mismo, y el aval estadístico que dé respuesta a ¿Cuáles son los avances de los proyectos que se están desarrollando?¿Hasta dónde están llegando los proyectos? ¿Cuáles son los resultados que se les ofrece a las comunidades?.</p>
+                    SIGEPSI 2.0v surge a partir de una fase de diagnóstico donde se encontró que en la universidad pionera <strong>UPTECMS</strong>, el desarrollo y seguimiento de los proyectos socio integradores se están realizando de forma manual, por ende se carece de un aval donde los estudiantes y los docentes sean respaldados por las actividades que se desarrollen en el mismo, y el aval estadístico que dé respuesta a ¿Cuáles son los avances de los proyectos que se están desarrollando? ¿Hasta dónde están llegando los proyectos? ¿Cuáles son los resultados que se les ofrece a las comunidades?.</p>
                 <div class="two-grids mt-md-0 mt-md-5 mt-4">
                     <div class="grids_info">
                         <h4>Problemática</h4>

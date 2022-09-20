@@ -13,9 +13,7 @@ use App\Models\Estructuras_evaluacione;
 use App\Models\Proyectos_estudiante;
 use App\Models\Files;
 use Illuminate\Http\Request;
-
-use Illuminate\Http\File;
-
+use Illuminate\Support\Facades\Storage;
 class ProyectoController extends Controller
 {
     public function index(){
@@ -91,8 +89,20 @@ class ProyectoController extends Controller
                     return view('proyecto.index',["proyecto"=>$proyecto]);
                 break;
             default:
-                # code...
-                break;
+            case 'Coordinador':
+                $carrera = DB::table('coordinadors')
+                    ->select('coordinadors.id_carrera')
+                    ->where("id_user", $user_id)->value("id");
+                $proyecto= DB::table('proyectos')
+                    ->join("lineas_investigaciones","proyectos.id_linea_investigacion","lineas_investigaciones.id")
+                    ->join("carreras","carreras.id", "proyectos.id_carrera")
+                    ->join("trayectos","trayectos.id","proyectos.id_trayecto")
+                    ->join("evaluaciones","evaluaciones.id_proyecto","proyectos.id")
+                    ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
+                    ->where("proyectos.id_carrera", $carrera)
+                    ->get();
+                    return view('proyecto.index',["proyecto"=>$proyecto]);
+            break;
         }
 
     }
@@ -328,6 +338,7 @@ class ProyectoController extends Controller
         $proyecto = new Proyecto();
 
         $proyecto->titulo = $request->get('titulo');
+        $proyecto->sinopsis = $request->get('sinopsis');
         $proyecto->fecha_inicio = $request->get('fecha_inicio');
         $proyecto->fecha_fin = $request->get('fecha_fin');
         $proyecto->id_carrera = $request->get('id_carrera');
@@ -359,17 +370,16 @@ class ProyectoController extends Controller
             $estudiantes_proyecto->save();
         }
 
-        mkdir(public_path('upload/'.$proyecto->id), 0777, true);
+        mkdir(public_path('storage/'.$proyecto->id), 0777, true);
         foreach ($request->files as $key => $value) {
             $nombre_documento = explode("_",$key);
             $documento = new Files();
-            $documento->documento = 'upload/'.$proyecto->id.'/proyect_'.$nombre_documento[1].'.pdf';
+            $documento->documento = 'proyect_'.$nombre_documento[1].'.pdf';
             $documento->id_proyecto = $proyecto->id;
+            $documento->nombre = $nombre_documento[1];
             $documento->save();
-            copy($request->file($key), public_path('upload/'.$proyecto->id.'/proyect_'.$nombre_documento[1].'.pdf'));
+            copy($request->file($key), public_path('storage/'.$proyecto->id.'/proyect_'.$nombre_documento[1].'.pdf'));
         }
-
-        //$max_size = (int)ini_get('upload_max_filesize') * 15360;
 
         return redirect('/proyecto')->with('respuesta', 'creado');
 
@@ -475,7 +485,7 @@ class ProyectoController extends Controller
                 ->join('proyectos_estudiantes', 'proyectos_estudiantes.id_estudiante', '=', 'personas.id')
                 ->whereRaw("proyectos_estudiantes.id_proyecto ='".$proyecto->id."' and personas.id=proyectos_estudiantes.id_estudiante")
                 ->get();
-            // dd($estudiantes);
+
             $estud="";
             foreach ($estudiantes as $estudiante) {
                 $estud.="<div class='form-group col col-6'>";
@@ -491,9 +501,12 @@ class ProyectoController extends Controller
                 $estud.="<input disabled class='form-control' type='text' value='".$estudiante->trayecto."'>";
                 $estud.="</div>";
             }
-            // $file=Files::find($id);
-            $file=Files::find($id);
-            // dd($file);
+
+            $file=DB::table('files')
+            ->select('files.*' )
+            ->whereRaw("files.id_proyecto =".$proyecto->id)
+            ->get();
+
         return view('proyecto.show',["html"=>$html,"file"=>$file, "estud"=>$estud, "a"=>$a, "proyecto"=>$proyecto, "estados"=>$estados, "municipios"=>$municipios , "parroquias"=>$parroquias]);
 
     }

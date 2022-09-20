@@ -286,6 +286,11 @@ return [
                             'url'  => '/lineas_investigacion',
                         ],
                         [
+                            'text' => 'Coordinadores',
+                            'icon' => 'fas fa-fw fa-users',
+                            'url'  => '/coordinador',
+                        ],
+                        [
                             'text' => 'Asesores',
                             'icon'    => 'fas fa-fw fa-user-plus',
                             'url'  => '/asesor',
@@ -400,6 +405,13 @@ return [
             'can' => 'reporte',
             'text' => 'Reportes',
             'url'  => 'reporte',
+            'icon' => 'fas fa-fw fa-file-alt',
+        ],
+        [
+            // 'can' => 'usuarios.index',
+            //'can' => 'reporte banca',
+            'text' => 'Reportes Banca Situaciones',
+            'url'  => 'reporte/banca',
             'icon' => 'fas fa-fw fa-file-alt',
         ],
 

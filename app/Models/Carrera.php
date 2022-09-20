@@ -20,7 +20,6 @@ class Carrera extends Model
     public function estructuras(){
         return $this->hasMany(Estructura::class, 'id');
     }
-
     public function siace(){
         return $this->hasMany(Siace::class, 'id');
     }
@@ -29,5 +28,12 @@ class Carrera extends Model
     }
     public function bancos(){
         return $this->hasMany(Banca_situaciones::class, 'id');
+    }
+    public function asesores(){
+        return $this->hasMany(Profesore::class, 'id');
+    }
+
+    public function coordinadors(){
+        return $this->hasMany(Coordinador::class, 'id');
     }
 }

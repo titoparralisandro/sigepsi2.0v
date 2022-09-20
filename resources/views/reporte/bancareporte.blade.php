@@ -65,20 +65,19 @@
 @php date_default_timezone_set("America/Caracas"); @endphp
 <h3>Fecha de reportes: {{date("d/m/Y")}}</h3> 
 <h3>Hora de reportes:  {{date("G:i:s")}}</h3>  
-<br><br>
-<h1>Listado de proyectos pentenecientes al periodo  {{date("Y")}}</h1>
+<br>
+<h1>Listado de situaciones SIGEPSI</h1>
 
     <table style="width:100%">
                 <thead>
                     <tr>
 
                         <th>N°</th>
-                        <th>Proyecto</th>
+                        <th>Situación</th>
                         <th>Carrera</th>
+                        <th>Especialidad</th>
                         <th>Linea de investigación</th>
-                        <th>Trayecto</th>
-                        <th>Progreso</th>
- 
+                        <th>Estatus</th>
 
                     </tr>
                 </thead>
@@ -87,11 +86,11 @@
                 @foreach ($proyecto as $proyectos)
                 <tr>
                     <td>{{ $proyectos->id }}</td>
-                    <td>{{ $proyectos->titulo }}</td>
+                    <td>{{ $proyectos->situacion }}</td>
                     <td>{{ $proyectos->carrera }}</td>
+                    <td>{{ $proyectos->especialidad }} </td>
                     <td>{{ $proyectos->linea_investigacion }} </td>
-                    <td>{{ $proyectos->trayecto }}</td>
-                    <td> {{ $proyectos->progreso }}% </td>
+                    <td>{{ $proyectos->estatus_situacion }} </td>
                 </tr>
                 @endforeach
 
@@ -158,10 +157,3 @@ color:#FFF;
     page-break-after: always;
 }
 </style>
-
-
-<!--
-<h1>Página 1</h1>
-<div class="page-break"></div>
-<h1>Página 2</h1>
--->

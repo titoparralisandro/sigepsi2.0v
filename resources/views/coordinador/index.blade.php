@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', '| Comunidades')
+@section('title', '| Coordinador')
 
 @section('plugins.Sweetalert2', true)
 @section('plugins.Inputmask', true)
@@ -16,92 +16,50 @@
 </ul>
 </div>
 @endif
+
 @section('content_header')
+
 <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="vendor/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
     <h3 style="color: #007bce;font-weight: normal;font-size: 20px;font-family: Arial;text-transform: uppercase;">
     <strong>SISTEMA DE GESTIÓN DE PROYECTOS SOCIO INTEGRADORES (SIGEPSI) 2.0v</strong>
     </h3>
 </div>
+
 <div class="card-header bg-primary ">
   <div class="color-palette">
-    <h1 class="text-center"><strong>Comunidades</strong></h1>
+    <h1 class="text-center"><strong>Coordinadores / Departamentos</strong></h1>
   </div>
 </div>
-<!-- Modal view -->
-    <div class="modal fade xl" id="modal-show" tabindex="-1">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content ">
-                <div class="modal-header card-header bg-primary">
-                    <div class="color-palette">
-                        <h1 class="text-center"><strong>Ver comunidad</strong></h1>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body text-dark" id="getdata">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- /Modal view -->
-<!-- Modal view -->
-<div class="modal fade xl" id="modal-edit" tabindex="-1">
-    <div class="modal-dialog modal-lg" role="document">
-        <form action="#" method="POST" id="formEdit">
-            @csrf
-            <div class="modal-content ">
-                <div class="modal-header card-header bg-primary">
-                    <div class="color-palette">
-                        <h1 class="text-center"><strong>Editar comunidad</strong></h1>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body text-dark" id="data">
 
-                    </div>
-                </div>
-                <div class="modal-footer" id="modal_footer">
-                    <button type='submit' class='btn btn-primary'>Editar</button>
-                    <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<!-- /Modal view -->
 <div class="card border-dark">
-  <div class="card-body text-dark">
-    <button href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-create">Añadir nueva comunidad</button>
-    <hr>
 
+  <div class="card-body text-dark">
+
+            <button href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-create">Añadir nuevo coordinador</button>
+
+    <hr>
         <table id="example" class="table table-striped table-bordered nowrap"  style="width:100%">
                 <thead>
                     <tr>
 
                         <th>N°</th>
-                        <th>Comunidad</th>
-                        <th>Contacto</th>
-                        <th>Estado</th>
+                        <th>Coordinador</th>
+                        <th>Carrera</th>
                         <th>Opciones</th>
 
                     </tr>
                 </thead>
             <tbody>
-                @foreach ($comunidad as $comunidades)
+                @foreach ($coordinador as $coordinadores)
                 <tr>
-                    <td>{{ $comunidades->id }}</td>
-                    <td>{{ $comunidades->nombre }}</td>
-                    <td>{{ $comunidades->persona_contacto }} | {{ $comunidades->telefono_contacto }}</td>
-                    <td>{{ $comunidades->tipos_comunidades->tipo_comunidad }} </td>
+
+                    <td>{{ $coordinadores->id }}</td>
+                    <td>{{ $coordinadores->nombre }}</td>
+                    <td>{{ $coordinadores->carreras->carrera }} </td>
                     <td>
-                        <div class="btn-group">
-                            <button class="btn btn-primary" type="button" onclick="getdata('{{ $comunidades->id }}')">Ver</button>
-                            <button class="btn btn-info" type="button" onclick="editdata('{{ $comunidades->id }}')">Editar</button>
-                        </div>
+                        <a class="btn btn-primary" href="{{ route('coordinador.show', $coordinadores->id ) }}">Ver<a>
+                        <a class="btn btn-info" href="{{ route('coordinador.edit', $coordinadores->id ) }}">Editar<a>
                     </td>
                 </tr>
                 @endforeach
@@ -110,6 +68,9 @@
         </table>
   </div>
 </div>
+
+@include('coordinador.modal.create')
+
 <footer class="main-footer" >
     <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
     Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
@@ -117,42 +78,9 @@
       <b>Versión</b> 2.0
     </div>
 </footer>
-@include('comunidades.modal.create')
-
 @stop
 
 @section('js')
-    <script>
-        function editdata(id) {
-            $.ajax({
-                type: "POST",
-                url: "/editcomunid",
-                async: false,
-                cache: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "id":id
-                },
-                success: function(response){
-                    $("#data").html(response);
-                    $('#modal-edit').modal('show');
-                }
-            });
-        }
-        function getdata(id) {
-            $.ajax({
-                type: "GET",
-                url: "/showcomunid/"+id,
-                async: false,
-                cache: false,
-                data: {"_token": "{{ csrf_token() }}"},
-                success: function(response){
-                    $("#getdata").html(response);
-                    $('#modal-show').modal('show');
-                }
-            });
-        }
-    </script>
 
     @if(session('respuesta')=='creado')
     <script>

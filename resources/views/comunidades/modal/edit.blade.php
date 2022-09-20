@@ -8,7 +8,7 @@
 </div>
 @endif
 
-{{-- Modal de Ver {{ route('lineas_investigacion.store') }} --}}
+{{-- Modal de Ver {{ route('comunidad.update', $comunidades->id ) }} --}}
 
 <form action="{{ route('comunidad.update', $comunidades->id ) }}" method="POST" enctype="multipart/form-data">
     {{ method_field('patch') }}

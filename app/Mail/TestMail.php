@@ -29,7 +29,6 @@ class TestMail extends Mailable
      */
     public function build()
     {
-        // return $this->subject('Notificación de SIGEPSI 2.0v');
         return $this->subject('Notificación de SIGEPSI 2.0v')->view('emails.TestEmail');
     }
 }

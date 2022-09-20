@@ -17,7 +17,7 @@
 <div class="card-header bg-primary ">
 
     <div class="color-palette">
-      <h1 class="text-center"><strong>Actualización de carrera</strong></h1>
+      <h1 class="text-center"><strong>Actualización de profesor</strong></h1>
     </div>
 </div>
 
@@ -91,6 +91,23 @@
               value="{{ isset($profesor->email)?$profesor->email:old('email') }}">
 
             </div>
+
+          </div>
+
+          <div class="form-group">
+
+            <label class="form-label">Carrera</label>
+
+            <select id="id_carrera" name="id_carrera" class="form-control">
+            <option selected value="{{$profesor->id_carrera}}">Seleccione su carrera nuevamente (opcional)</option>
+            @foreach ( $carrera as $carreras )
+              @if($carreras[$profesor->id_carrera]!=$carreras->id){
+                  <option value="{{$carreras->id}}">{{ $carreras->carrera }}</option>
+              }
+              @endif
+            @endforeach
+
+        </select>
 
         </div>
 

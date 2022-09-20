@@ -249,12 +249,13 @@
                         }
                     });
                 }else{
+                    //Validación de item para que no se repitas
                     $("#btnADD").attr("hidden",true);
                 }
             }else{
                 Swal.fire({
                     title: 'Informacón Incompleta',
-                    text: "Debe Revisar los  Item por peso",
+                    text: "Debe Revisar la Ponderación de los Item's",
                     icon: 'error',
                 })
             }
@@ -262,7 +263,7 @@
         }else{
             Swal.fire({
                 title: 'Informacón Incompleta',
-                text: "Debe completar el Formulario",
+                text: "Debe completar la Estructura",
                 icon: 'error',
             })
         }

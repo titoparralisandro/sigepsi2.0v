@@ -20,6 +20,7 @@ class CreateFilesTable extends Migration
                 ->references('id')->on('proyectos')
                 ->OnDelete('set null');
             $table->string('documento');
+            $table->string('nombre');
             $table->timestamps();
         });
     }

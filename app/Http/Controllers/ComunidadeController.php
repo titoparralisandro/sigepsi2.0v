@@ -9,7 +9,8 @@ use App\Models\Comunidade;
 use App\Models\Estado;
 use App\Models\Municipio;
 use App\Models\Parroquia;
-
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -68,7 +69,6 @@ class ComunidadeController extends Controller
         $user->name = $request->get('nombre');
         $user->email = $request->get('email');
         $contraseña = 'admin123';
-        // $contraseña = rand(10000000, 99999999);
         $user->password = Hash::make($contraseña);
         $user->assignRole("Comunidad");
 
@@ -90,6 +90,19 @@ class ComunidadeController extends Controller
 
         $comunidad->save();
 
+        $estado = DB::table('estados')
+        ->select('estados.estado')
+        ->where([['estados.id_estado', '=', $comunidad->id_estado]])
+        ->join('comunidades', 'comunidades.id_estado', '=', 'estados.id_estado')
+        ->pluck('estados.estado')
+        ->first();
+   
+        $details = [
+            "title"=>"Registro de Institución u Organización: $comunidad->nombre",
+            "body"=>"Se ha registrado como nueva comunidad en el sistema, perteneciente al estado: $estado",
+            "informacion" =>"Usuario: $comunidad->email"." | Contraseña: $contraseña "
+        ];
+        Mail::to($request->email, "Admin")->send(new TestMail($details));
         return redirect('/comunidades')->with('respuesta', 'creado');
 
     }
@@ -111,8 +124,13 @@ class ComunidadeController extends Controller
             $html.="<div class='form-group col-8'>";
             $html.="<label class='form-label'>Tipo de comunidad</label>";
             $html.="<select name='id_tipo_comunidad' id='id_tipo_comunidad' class='form-control'>";
+
             foreach ($tipo_comunidad as $tipo_comunid) {
-                $html.="<option value='".$tipo_comunid->id."'>".$tipo_comunid->tipo_comunidad."</option>";
+                if($tipo_comunid->id == $comunidad->id_tipo_comunidad){
+                    $html.="<option value='".$tipo_comunid->id."' selected>".$tipo_comunid->tipo_comunidad."</option>";
+                }else{
+                    $html.="<option value='".$tipo_comunid->id."'>".$tipo_comunid->tipo_comunidad."</option>";
+                }
             }
             $html.="</select>";
             $html.="</div>";
@@ -254,6 +272,8 @@ class ComunidadeController extends Controller
         $response = DB::table('comunidades')
               ->where('id', $request->input("id"))
               ->update($array);
+
+              
         return response()->json($response);
     }
 }

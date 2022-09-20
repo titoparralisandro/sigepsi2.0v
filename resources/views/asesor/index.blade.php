@@ -26,7 +26,7 @@
                         <th>Profesor</th>
                         <th>Cédula</th>
                         <th>Correo</th>
-                        <th>Estatus</th>
+                        <th>Departamento</th>
                         <th>Opciones</th>
 
                     </tr>
@@ -39,8 +39,8 @@
                         <td>{{ $asesores->primer_nombre }} {{ $asesores->primer_apellido }}</td>
                         <td>{{ $asesores->cedula }}</td>
                         <td>{{ $asesores->email }}</td>
-                        <td>1</td>
-                        <td><a class="btn btn-primary" href="{{ route('asesor.show', $asesores->id ) }}">Ver</a> |
+                        <td>{{ $asesores->carreras->carrera }}</td>
+                        <td><a class="btn btn-primary" href="{{ route('asesor.show', $asesores->id ) }}">Ver</a> | <a class="btn btn-info" href="{{ route('asesor.edit', $asesores->id ) }}">Editar</a>
                         </td>
 
                       </tr>

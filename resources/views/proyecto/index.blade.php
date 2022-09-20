@@ -253,9 +253,9 @@ $(document).ready(function() {
         $('#btn-search').on( 'click', 'button',(e)=> {
             var valor = $(this)[0].activeElement.value;
             if (valor=="Todos") {
-                table.search('').columns(7).search('').draw();
+                table.search('').columns(6).search('').draw();
             }else{
-                table.column(7).search(valor).draw();
+                table.column(6).search(valor).draw();
             }
         });
     });

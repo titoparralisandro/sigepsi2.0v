@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ComentarioController;
-// use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserControllers;
 use App\Http\Controllers\ReporteController;
 
@@ -26,17 +25,13 @@ Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->na
 // Route::get('/courses',function () {
 //     return view('courses');
 // });
-
 // Route::get('/catalogo', [App\Http\Controllers\ProyectoController::class, 'catalogo']);
+
 Route::resource('/contact', App\Http\Controllers\ContactController::class);
 
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
 
 Auth::routes();
-
-//prueba de enviar correo
-// Route::get('/send-email', [MailController::class, 'sendEmail']);
-//prueba de enviar correo
 
 Route::resource('proyecto',App\Http\Controllers\ProyectoController::class);
 Route::get('proyecto/carta_compromiso/{id}', [ProyectoController::class,'pdf_carta_compromiso'])->name('proyecto.carta_compromiso');
@@ -62,6 +57,7 @@ Route::resource('producto',App\Http\Controllers\ProductoController::class);
 Route::resource('items_estructura',App\Http\Controllers\Items_estructuraController::class);
 Route::resource('estructura',App\Http\Controllers\EstructuraController::class);
 
+Route::resource('coordinador',App\Http\Controllers\CoordinadorController::class);
 Route::resource('asesor',App\Http\Controllers\ProfesoreController::class);
 Route::resource('tipos_asesoria',App\Http\Controllers\Tipos_asesoriaController::class);
 
@@ -97,9 +93,10 @@ Route::put('usuarios/{user}', [UserControllers::class,'update'])->middleware('ca
 Route::delete('usuarios/{user}', [UserControllers::class,'destroy'])->middleware('can:usuarios.destroy')->name('usuarios.destroy');//
 Route::get('reporte', [ReporteController::class,'index'])->middleware('can:reporte')->name('reporte');//->middleware('can:reporte.pdf')
 Route::get('reporte/pdf', [ReporteController::class,'pdf'])->middleware('can:reporte.pdf')->name('reporte.pdf');//->middleware('can:reporte.pdf')
+Route::get('reporte/banca', [ReporteController::class,'banca'])->name('banca');//->middleware('can:reporte.pdf')
+Route::get('reporte/bancareporte', [ReporteController::class,'bancareporte'])->name('reporte.bancareporte');//->middleware('can:reporte.pdf')
 
 //Route::resource('usuarios',UserControllers::class);
-
 
 Route::get('/getdataEstruc/{Typedata}', [App\Http\Controllers\EstructuraController::class, 'getdata']);
 Route::post('/getdataInvest', [App\Http\Controllers\EstructuraController::class, 'getdataInvest']);
@@ -112,7 +109,7 @@ Route::post('/DeshEstruc', [App\Http\Controllers\EstructuraController::class, 'D
 
 Route::get('perfil', function () { return view('perfil'); });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('home',App\Http\Controllers\HomeController::class);
 Route::get('a_cerca_de', function () { return view('a_cerca_de'); });
 
 Route::resource('comentario',ComentarioController::class);

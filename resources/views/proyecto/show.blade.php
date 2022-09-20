@@ -3,6 +3,7 @@
 @section('title', '| Proyecto')
 
 @section('plugins.Toastr', true)
+@section('plugins.Datatables', true)
 
 @section('content_header')
 
@@ -86,6 +87,40 @@
                 {!!$estud!!}
                 </div>
 
+                <hr>
+                
+                <h4 class="text-center">Documentación del proyecto</h4>
+                <div class="row">
+
+                    {{--<h4 class="text-center">Documentación del proyecto</h4>
+                     <a href="{{ route('proyecto.carta_compromiso', $proyecto->id ) }}" class="btn btn-info">Carta de compromiso</a>
+                    <hr> --}}
+
+                        <table id="example" class="table table-striped table-bordered nowrap"  style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>N°</th>
+                                    <th>Documento</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                            @foreach ($file as $files)
+                            <tr>
+                                <td>{{ $files->id }}</td>
+                                <td>{{ $files->nombre }}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" target="_blank" href="{{asset('storage/'.$proyecto->id.'/'.$files->documento)}}">Ver<a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
+
             </div>
 
             <div class="tab-pane fade p-4" id="comunidad-tab">
@@ -95,23 +130,9 @@
                      {!!$html!!}
                 </div>
 
-
             </div>
-
-            {{-- <div class="tab-pane fade p-4" id="documento-tab">
-
-                <h4 class="text-center">Documentación del proyecto</h4>
-                <a href="{{ route('proyecto.carta_compromiso', $proyecto->id ) }}" class="btn btn-info">Carta de compromiso</a>
-                {{-- <hr>
-                <h4 class="text-center">Documentos del proyecto</h4>
-                @foreach ($file as $files) {
-                    <a href="{{ public_path('upload/11/proyect_Informe.pdf') }}" class="btn btn-info">proyect documento</a>
-                }
-                @endforeach 
-            </div> --}}
-            
+  
         </div>
-        
     </div>
 </div>
 

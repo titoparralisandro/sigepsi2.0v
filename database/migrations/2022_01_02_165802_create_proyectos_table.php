@@ -16,21 +16,23 @@ class CreateProyectosTable extends Migration
         Schema::create('proyectos', function (Blueprint $table) {
             $table->id();
             $table->string('titulo')->unique();
+
             // $table->foreign('id_situacion')
             //     ->references('id')->on('necesidades')
             //     ->OnDelete('set null');
-            // $table->string('situacion');
-            // $table->string('objetivo_general')->unique();
-            // $table->string('objetivo_especificos');
-            // $table->text('sinopsis')->unique();
+            // $table->text('situacion');
+            // $table->text('objetivo_general')->unique();
 
-            // // $table->foreignId('id_estatus_proyecto')
-            // //     ->nullable()
-            // //     ->references('id')->on('estatus_proyectos')
-            // //     ->OnDelete('set null');
+            $table->text('sinopsis');
+
+            // $table->foreignId('id_estatus_proyecto')
+            //     ->nullable()
+            //     ->references('id')->on('estatus_proyectos')
+            //     ->OnDelete('set null');
 
             // $table->text('conclusiones');
             // $table->text('recomendaciones');
+
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
 
@@ -65,14 +67,7 @@ class CreateProyectosTable extends Migration
             // $table->string('tutor_comunitario',50);
             // $table->integer('celular_tutor_comunitario');
 
-            //faltan los campos de
-            //los respectivos archivos
-            // formato_informe_final character varying
-            // formato_propuesta character varying
-
             $table->timestamps();
-            // created_by character varying COLLATE pg_catalog."default",
-            // updated_by character varying COLLATE pg_catalog."default",
         });
     }
 

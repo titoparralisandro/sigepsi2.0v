@@ -54,6 +54,13 @@
                             <input id="titulo" class="form-control" type="text" name="titulo" placeholder="Escribe el titulo de tu proyecto."
                             value="{{ isset($proyecto->titulo)?$proyecto->titulo:old('titulo') }}">
                         </div>
+                        <div class="form-group">
+
+                            <label class="form-label">Resumen o Sinopsis</label>
+                            <textarea id="sinopsis" class="form-control" name="sinopsis" cols="25" rows="4"
+                            value="{{ isset($proyecto->sinopsis)?$proyecto->sinopsis:old('sinopsis') }}" placeholder="Escriba tu resumen o sinopsis de tu proyecto."></textarea>
+    
+                        </div>
                         <div class="row">
                             <div class="form-group col col-6">
                                 <label class="form-label">Fecha inicio</label>
@@ -351,17 +358,6 @@
                 }
             }
         });
-        // $("#id_especialidad").select2({
-        //     ajax: {
-        //         url: '/getdataEstruc/carrera',
-        //         dataType: 'json',
-        //         processResults: function (data) {
-        //             return {
-        //                 results: data
-        //             };
-        //         }
-        //     }
-        // });
         $("#id_lineas_investigacion").select2();
         $("#id_carrera").change((e)=> {
             var valor =e.target.value;
@@ -538,8 +534,6 @@
             });
         }
     })
-
-
 
     //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })

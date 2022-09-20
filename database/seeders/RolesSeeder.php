@@ -45,9 +45,9 @@ class RolesSeeder extends Seeder
         Permission::create(['name'=>'comentario.destroy'])->syncRoles($admin);
 
         // Comunidades
-        Permission::create(['name'=>'comunidades.index'])->syncRoles([$admin,$asesor,$estudiante,$comunidad,$director,$coordinador,$diepp]);
-        Permission::create(['name'=>'comunidades.create'])->syncRoles([$admin,$asesor,$estudiante,$comunidad,$director,$coordinador,$diepp]);
-        Permission::create(['name'=>'comunidades.edit'])->syncRoles([$admin,$estudiante,$comunidad,$director]);
+        Permission::create(['name'=>'comunidades.index'])->syncRoles([$admin,$asesor,$estudiante,$director,$coordinador,$diepp]);
+        Permission::create(['name'=>'comunidades.create'])->syncRoles([$admin,$asesor,$estudiante,$director,$coordinador,$diepp]);
+        Permission::create(['name'=>'comunidades.edit'])->syncRoles([$admin,$estudiante]);
         Permission::create(['name'=>'comunidades.destroy'])->syncRoles($admin,);
 
         // Especialidad

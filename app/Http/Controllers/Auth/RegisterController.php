@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Mail\TestMail;
 use Illuminate\Support\Facades\Mail;
 
-
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -14,7 +13,6 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\RegisterStoreRequest;
 use Illuminate\Support\Facades\DB;
-
 
 
 class RegisterController extends Controller
@@ -58,7 +56,7 @@ class RegisterController extends Controller
             $student = Siace::getStudentByEmail($request->email);          
 
             if (is_null($student)) {
-                return redirect('/register')->with('error','El correo {{ $request->email }} No se Encuentra Registrado en SIACE.');
+                return redirect('/register')->with('error','El correo {{ $request->email }} No se Encuentra Registrado en SIACE, en caso de ser un error diríjase a Control de Estudio.');
             }
             
             $user =  User::create($request->except(['customRadio','password','name'])+ ['password' =>  Hash::make($request->password),'name' => $student->nombres.' '.$student->apellidos]);
@@ -78,19 +76,17 @@ class RegisterController extends Controller
                 'seccion',
                 'turno']));
 
+            $details = [
+                "title"=>"Registro de Estudiante",
+                "body"=>"Se he registrado un nuevo estudiante en el sistema: $student->nombres "."$student->apellidos",
+                "informacion" =>"Usuario: $request->email"." | Contraseña: $request->password"
+            ];
+            Mail::to($request->email, "Admin")->send(new TestMail($details));
+
         }else{
             $user =  User::create($request->except(['customRadio','password'])+ ['password' =>  Hash::make($request->password)]);
             $user->assignRole("Comunidad");
         }
-
-        
-        $details = [
-            "title"=>"Registro siace",
-            "body"=>"Un nuevo usuario se ha registrado"
-           
-        ];
-        Mail::to($request->email, "Admin")->send(new TestMail($details));
-
 
         return redirect('/login');
         });
