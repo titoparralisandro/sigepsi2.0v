@@ -338,6 +338,7 @@ class ProyectoController extends Controller
         $proyecto = new Proyecto();
 
         $proyecto->titulo = $request->get('titulo');
+        $proyecto->id_estatus_proyecto = 1;
         $proyecto->sinopsis = $request->get('sinopsis');
         $proyecto->fecha_inicio = $request->get('fecha_inicio');
         $proyecto->fecha_fin = $request->get('fecha_fin');

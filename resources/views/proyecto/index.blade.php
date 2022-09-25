@@ -103,10 +103,9 @@
                             {{-- <a class="btn btn-info" href="{{ route('proyecto.edit', $proyectos->id ) }}">Actualizar<a> --}}
                             {{-- <a class="btn btn-info" href="{{ route('proyecto.index', $proyectos->id ) }}">Corregir<a> --}}
 
-                                    @if ($proyectos->progreso != 100)
-                                        <a href="/evaluar/{{ $proyectos->id }}"class="btn btn-info">Evaluar</a>
-                                    @endif
-
+                                @if ($proyectos->progreso != 100)
+                                    <a href="/evaluar/{{ $proyectos->id }}"class="btn btn-info">Evaluar</a>
+                                @endif
                             
                             <a class="btn btn-primary" href="{{ route('proyecto.show', $proyectos->id ) }}">Ver<a>
                         </div>
@@ -253,9 +252,9 @@ $(document).ready(function() {
         $('#btn-search').on( 'click', 'button',(e)=> {
             var valor = $(this)[0].activeElement.value;
             if (valor=="Todos") {
-                table.search('').columns(6).search('').draw();
+                table.search('').columns(7).search('').draw();
             }else{
-                table.column(6).search(valor).draw();
+                table.column(7).search(valor).draw();
             }
         });
     });

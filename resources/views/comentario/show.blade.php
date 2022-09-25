@@ -36,7 +36,7 @@
           <div class="form-group">
 
             <label class="form-label">Asunto</label>
-            <input disabled class="form-control" type="text" value={{ $comentario->asunto }}>
+            <input disabled class="form-control" type="text" value="{{ $comentario->asunto }}">
 
           </div>
 

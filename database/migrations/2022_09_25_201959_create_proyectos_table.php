@@ -17,21 +17,22 @@ class CreateProyectosTable extends Migration
             $table->id();
             $table->string('titulo')->unique();
 
-            // $table->foreign('id_situacion')
-            //     ->references('id')->on('necesidades')
-            //     ->OnDelete('set null');
-            // $table->text('situacion');
-            // $table->text('objetivo_general')->unique();
+            $table->foreignId('id_situacion')
+                ->nullable()
+                ->references('id')->on('banca_situaciones')
+                ->OnDelete('set null');
+            $table->text('situacion')->nullable();
+            $table->text('objetivo_general')->unique()->nullable();
 
             $table->text('sinopsis');
 
-            // $table->foreignId('id_estatus_proyecto')
-            //     ->nullable()
-            //     ->references('id')->on('estatus_proyectos')
-            //     ->OnDelete('set null');
+            $table->foreignId('id_estatus_proyecto')
+                ->nullable()
+                ->references('id')->on('estatus_proyectos')
+                ->OnDelete('set null');
 
-            // $table->text('conclusiones');
-            // $table->text('recomendaciones');
+            $table->text('conclusiones')->nullable();
+            $table->text('recomendaciones')->nullable();
 
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
@@ -63,9 +64,9 @@ class CreateProyectosTable extends Migration
                ->OnDelete('set null');
             $table->string('direccion');
 
-            // $table->integer('cedula_tutor_comunitario');
-            // $table->string('tutor_comunitario',50);
-            // $table->integer('celular_tutor_comunitario');
+            $table->integer('cedula_tutor_comunitario')->nullable();
+            $table->string('tutor_comunitario',50)->nullable();
+            $table->integer('celular_tutor_comunitario')->nullable();
 
             $table->timestamps();
         });

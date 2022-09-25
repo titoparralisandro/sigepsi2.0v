@@ -421,7 +421,7 @@ return [
         ],
         [
             // // 'can' => 'comentario.index',
-            'can' => 'comentario',
+            'can' => 'reporte',
             'text' => 'Comentarios',
             'url'  => '/comentario',
             'icon' => 'fas fa-fw fa-comments',
