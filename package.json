@@ -22,7 +22,6 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
-        "highcharts": "^10.1.0",
         "inputmask": "^5.0.7",
         "select2": "^4.0.13"
     }
