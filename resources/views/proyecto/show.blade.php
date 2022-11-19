@@ -108,7 +108,7 @@
                             @foreach ($file as $files)
                             <tr>
                                 <td>{{ $files->id }}</td>
-                                <td>{{ $files->nombre }}</td>
+                                <td>{{ $files->id }}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a class="btn btn-primary" target="_blank" href="{{asset('storage/'.$proyecto->id.'/'.$files->documento)}}">Ver<a>
