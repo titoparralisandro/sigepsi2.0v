@@ -11,6 +11,7 @@ use App\Models\Estado;
 use App\Models\Evaluacione;
 use App\Models\Estructuras_evaluacione;
 use App\Models\Proyectos_estudiante;
+use App\Models\proyecto_asesor;
 use App\Models\Files;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +30,8 @@ class ProyectoController extends Controller
                     ->join("carreras","carreras.id", "proyectos.id_carrera")
                     ->join("trayectos","trayectos.id","proyectos.id_trayecto")
                     ->join("evaluaciones","evaluaciones.id_proyecto","proyectos.id")
-                    ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
+                    ->join("estatus_proyectos","estatus_proyectos.id","proyectos.id_estatus_proyecto")
+                    ->select("proyectos.id","proyectos.titulo","estatus_proyectos.estatus_proyecto","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
                     ->get();
                     return view('proyecto.index',["proyecto"=>$proyecto]);
                 break;
@@ -228,6 +230,26 @@ class ProyectoController extends Controller
         return $html;
     }
 
+    public function getAsesor(Request $request){
+        $asesores = DB::table('profesores')
+            ->whereRaw("id_carrera = '".$request->get('carrera')."' AND (CAST(cedula AS VARCHAR(10)) LIKE '".$request->get('q')."%' OR primer_nombre LIKE '".$request->get('q')."%' OR segundo_nombre LIKE '".$request->get('q')."%')")
+            ->select("profesores.id","profesores.primer_nombre","profesores.segundo_nombre","profesores.cedula")
+            ->get();
+        $html="";
+        foreach ($asesores as $asesor) {
+
+            $html .="<tr>";
+            $html .="<td>".$asesor->id."</td>";
+            $html .="<td>".$asesor->cedula."</td>";
+            $html .="<td>".$asesor->primer_nombre." ".$asesor->segundo_nombre."</td>";
+            $html .="<td><select name='tipos_asesorias' id='tipos_asesorias' class='form-control'><option selected='' value='1'>Metodológica</option><option value='2'>Técnica</option></select></td>";
+            $html .="<td><button class='btn btn-success' type='button' onclick=\"selecAsesor(".$asesor->id.",'".$asesor->cedula."','".$asesor->primer_nombre." ".$asesor->segundo_nombre."')\">Seleccionar</button></td>";
+            $html .="</tr>";
+        }
+        return $html;
+        // return true;
+    }
+
     public function getProdestruc(Request $request)
     {
         $comunidades = DB::table('estructuras')
@@ -353,11 +375,15 @@ class ProyectoController extends Controller
         $proyecto->id_parroquia = $request->get('id_parroquiaP');
         $proyecto->direccion = $request->get('direccion');
 
+        $proyecto->tutor_comunitario = $request->get('tComunitario');
+        $proyecto->cedula_tutor_comunitario = $request->get('cedulaTutorC');
+        $proyecto->celular_tutor_comunitario = $request->get('telefonoTutorC');
+
         $proyecto->save();
 
         $evaluaciones = new Evaluacione();
         $evaluaciones->id_proyecto =  $proyecto->id;
-        $evaluaciones->progreso =0;
+        $evaluaciones->progreso = 0;
         $evaluaciones->save();
 
 
@@ -369,6 +395,16 @@ class ProyectoController extends Controller
             $estudiantes_proyecto->id_estatus_estudiante = 1;
             $estudiantes_proyecto->observacion = '';
             $estudiantes_proyecto->save();
+        }
+
+        $AsesorId = $request->get('asesorId');
+        $asesorTipo = $request->get('asesorTipo');
+        foreach ($AsesorId as $key => $value) {
+            $Asesor_proyecto = new proyecto_asesor();
+            $Asesor_proyecto->id_proyecto = $proyecto->id;
+            $Asesor_proyecto->id_asesor = $value;
+            $Asesor_proyecto->id_tipo_asesoria = $asesorTipo[$key];
+            $Asesor_proyecto->save();
         }
 
         mkdir(public_path('storage/'.$proyecto->id), 0777, true);
@@ -510,6 +546,21 @@ class ProyectoController extends Controller
 
         return view('proyecto.show',["html"=>$html,"file"=>$file, "estud"=>$estud, "a"=>$a, "proyecto"=>$proyecto, "estados"=>$estados, "municipios"=>$municipios , "parroquias"=>$parroquias]);
 
+    }
+
+    public function update(Request $request, Proyecto $proyecto){
+        
+        try {
+            $proyecto->objetivo_general = $request->get("objetivo_general");
+            $proyecto->recomendaciones = $request->get("recomendaciones");
+            $proyecto->conclusiones = $request->get("conclusiones");
+            $proyecto->update();
+
+            return redirect()->route('proyecto.index', $proyecto->id)->with('respuesta','editar');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        
     }
 
 }

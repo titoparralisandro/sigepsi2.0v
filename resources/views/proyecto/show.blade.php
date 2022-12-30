@@ -16,124 +16,136 @@
             <li class="nav-item"><a href="#comunidad-tab" class="nav-link" data-toggle="pill"><strong>Comunidad</strong></a></li>
             {{-- <li class="nav-item"><a href="#documento-tab" class="nav-link" data-toggle="pill"><strong>Documentos</strong></a></li> --}}
         </ul>
+        <form action="{{ route('proyecto.update', $proyecto) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('put')
+            <div class="tab-content">
+            
+                <div class="tab-pane show fade active p-4" id="datos-tab">
 
-        <div class="tab-content">
-            <div class="tab-pane show fade active p-4" id="datos-tab">
+                    <div class="form-group">
 
-                <div class="form-group">
-
-                    <label class="form-label">Título</label>
-                    <input class="form-control" type="text" disabled value="{{$proyecto->titulo}}">
-
-                </div>
-                <div class="row">
-                    <div class="form-group col col-2">
-
-                        <label class="form-label">Fecha inicio</label>
-                        <input class="form-control" type="date" disabled value="{{$proyecto->fecha_inicio}}">
+                        <label class="form-label">Título</label>
+                        <input class="form-control" type="text" disabled value="{{$proyecto->titulo}}">
 
                     </div>
-                    <div class="form-group col col-2">
+                    <div class="row">
+                        <div class="form-group col col-2">
 
-                        <label class="form-label">Fecha fin</label>
-                        <input class="form-control" type="date" disabled value="{{$proyecto->fecha_fin}}">
+                            <label class="form-label">Fecha inicio</label>
+                            <input class="form-control" type="date" disabled value="{{$proyecto->fecha_inicio}}">
 
+                        </div>
+                        <div class="form-group col col-2">
+
+                            <label class="form-label">Fecha fin</label>
+                            <input class="form-control" type="date" disabled value="{{$proyecto->fecha_fin}}">
+
+                        </div>
+                        <div class="form-group col col-3">
+
+                            <label class="form-label">Trayecto</label>
+                            <input class="form-control" type="text" disabled value="{{$proyecto->trayectos->trayecto}} ({{$proyecto->trayectos->descripcion}})">
+
+                        </div>
+                        <div class="form-group col col-5">
+
+                            <label class="form-label">Carrera</label>
+                            <input class="form-control" type="text" disabled value="{{$proyecto->carreras->carrera}}">
+
+                        </div>
                     </div>
-                    <div class="form-group col col-3">
+                    <div class="row">
+                        <div class="form-group col col-5">
 
-                        <label class="form-label">Trayecto</label>
-                        <input class="form-control" type="text" disabled value="{{$proyecto->trayectos->trayecto}} ({{$proyecto->trayectos->descripcion}})">
+                            <label class="form-label">Especialidad</label>
+                            <input class="form-control" type="text" disabled value="{{$proyecto->especialidades->especialidad}}">
 
+                        </div>
+                        <div class="form-group col col-7">
+
+                            <label class="form-label">Linea de investigación</label>
+                            <input class="form-control" type="text" disabled value="{{$proyecto->linea_investigaciones->linea_investigacion}}">
+
+                        </div>
                     </div>
-                    <div class="form-group col col-5">
 
-                        <label class="form-label">Carrera</label>
-                        <input class="form-control" type="text" disabled value="{{$proyecto->carreras->carrera}}">
-
+                    <div class="row">
+                        {!!$a!!}
                     </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col col-5">
-
-                        <label class="form-label">Especialidad</label>
-                        <input class="form-control" type="text" disabled value="{{$proyecto->especialidades->especialidad}}">
-
+                    <div class="form-group">
+                        <label class="form-label">Sinopsis</label>
+                        <textarea class="form-control" cols="25" rows="3" disabled>{{$proyecto->direccion}}{{$proyecto->direccion}}</textarea>
                     </div>
-                    <div class="form-group col col-7">
+                    <div class="form-gruo">
+                        <label for="" class="form-label">Objetivo General</label>
+                        <input type="text" name="objetivo_general" id="objetivo_general" class="form-control" value="{{ $proyecto->objetivo_general }}">
 
-                        <label class="form-label">Linea de investigación</label>
-                        <input class="form-control" type="text" disabled value="{{$proyecto->linea_investigaciones->linea_investigacion}}">
+                        <label for="" class="form-label">Recomendaciones</label>
+                        <textarea name="recomendaciones" id="recomendaciones" cols="30" rows="3" class="form-control">{{ $proyecto->recomendaciones }}</textarea>
 
+                        <label for="" class="form-label">Conclusiones</label>
+                        <textarea name="conclusiones" id="conclusiones" cols="30" rows="3" class="form-control">{{ $proyecto->conclusiones }}</textarea>
                     </div>
-                </div>
+                    <a href="{{ route('proyecto.index') }}" class="btn btn-primary">Volver</a>
+                    </div>
 
-                <div class="row">
-                    {!!$a!!}
-                </div>
-                <div class="form-group">
+                    <div class="tab-pane fade p-4" id="equipo-tab">
+                    {{-- <h4 class="text-center">Asesores</h4> <hr> --}}
 
-                    <label class="form-label">Dirección</label>
-                    <textarea class="form-control" cols="25" rows="3" disabled>{{$proyecto->direccion}}{{$proyecto->direccion}}</textarea>
+                    <h4 class="text-center">Equipo</h4>
+                    <div class="row">
+                    {!!$estud!!}
+                    </div>
 
-                </div>
-                <a href="{{ route('proyecto.index') }}" class="btn btn-primary">Volver</a>
-            </div>
+                    <hr>
 
-            <div class="tab-pane fade p-4" id="equipo-tab">
-                {{-- <h4 class="text-center">Asesores</h4> <hr> --}}
+                    <h4 class="text-center">Documentación del proyecto</h4>
+                    <div class="row">
 
-                <h4 class="text-center">Equipo</h4>
-                <div class="row">
-                {!!$estud!!}
-                </div>
+                        {{--<h4 class="text-center">Documentación del proyecto</h4>
+                        <a href="{{ route('proyecto.carta_compromiso', $proyecto->id ) }}" class="btn btn-info">Carta de compromiso</a>
+                        <hr> --}}
 
-                <hr>
-                
-                <h4 class="text-center">Documentación del proyecto</h4>
-                <div class="row">
-
-                    {{--<h4 class="text-center">Documentación del proyecto</h4>
-                     <a href="{{ route('proyecto.carta_compromiso', $proyecto->id ) }}" class="btn btn-info">Carta de compromiso</a>
-                    <hr> --}}
-
-                        <table id="example" class="table table-striped table-bordered nowrap"  style="width:100%">
-                            <thead>
+                            <table id="example" class="table table-striped table-bordered nowrap"  style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Documento</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                            <tbody>
+                                @foreach ($file as $files)
                                 <tr>
-                                    <th>N°</th>
-                                    <th>Documento</th>
-                                    <th>Acción</th>
+                                    <td>{{ $files->id }}</td>
+                                    <td>{{ $files->id }}</td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary" target="_blank" href="{{asset('storage/'.$proyecto->id.'/'.$files->documento)}}">Ver<a>
+                                        </div>
+                                    </td>
                                 </tr>
-                            </thead>
-                        <tbody>
-                            @foreach ($file as $files)
-                            <tr>
-                                <td>{{ $files->id }}</td>
-                                <td>{{ $files->id }}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" target="_blank" href="{{asset('storage/'.$proyecto->id.'/'.$files->documento)}}">Ver<a>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                @endforeach
+                            </tbody>
+                        </table>
 
-                </div>
+                    </div>
 
-            </div>
+                    </div>
 
-            <div class="tab-pane fade p-4" id="comunidad-tab">
+                    <div class="tab-pane fade p-4" id="comunidad-tab">
 
-                <h4 class="text-center">Datos de la comunidad</h4>
-                <div>
-                     {!!$html!!}
-                </div>
+                    <h4 class="text-center">Datos de la comunidad</h4>
+                    <div>
+                        {!!$html!!}
+                    </div>
 
-            </div>
-  
+                    </div>
+                    <button type="submit" class="btn btn-success">Actualizar</button>
+                    </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <footer class="main-footer" >

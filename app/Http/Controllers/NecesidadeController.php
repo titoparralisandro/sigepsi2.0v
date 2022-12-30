@@ -198,8 +198,8 @@ class NecesidadeController extends Controller
     public function edit($id){
 
        $necesidad = Necesidade::find($id);
-
-       $estados        = DB::table('estados')
+        var_dump($id);
+       $estados = DB::table('estados')
        ->select('estado')
        ->where('estados.id_estado', '=',$necesidad->id_estado)
        ->get();

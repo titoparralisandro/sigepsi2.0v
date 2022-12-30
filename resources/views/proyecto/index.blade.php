@@ -77,6 +77,7 @@
                         <th>Proyecto</th>
                         <th>Carrera</th>
                         <th>Linea de investigación</th>
+                        <th>Estado</th>
                         <th>Progreso %</th>
                         <th>Acciones</th>
 
@@ -90,6 +91,7 @@
                     <td>{{ $proyectos->titulo }}</td>
                     <td>{{ $proyectos->carrera }}</td>
                     <td>{{ $proyectos->linea_investigacion }} </td>
+                    <td>{{ $proyectos->estatus_proyecto }} </td>
                     <td>
                         <div class="progress" style="height:15px">
                             <div id="bar_'.$producto->id.'" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" data-progress="0" style="width:{{ $proyectos->progreso }}%;">
@@ -100,7 +102,7 @@
                     <td class="text-center">
                         <div class="btn-group">
                             
-                            {{-- <a class="btn btn-info" href="{{ route('proyecto.edit', $proyectos->id ) }}">Actualizar<a> --}}
+                            <a class="btn btn-info" href="{{ route('proyecto.show', $proyectos->id ) }}">Actualizar<a>
                             {{-- <a class="btn btn-info" href="{{ route('proyecto.index', $proyectos->id ) }}">Corregir<a> --}}
 
                                 @if ($proyectos->progreso != 100)
@@ -252,10 +254,11 @@ $(document).ready(function() {
         $('#btn-search').on( 'click', 'button',(e)=> {
             var valor = $(this)[0].activeElement.value;
             if (valor=="Todos") {
-                table.search('').columns(7).search('').draw();
+                table.search('').columns([4, 5]).search('').draw();
             }else{
-                table.column(7).search(valor).draw();
+                table.column([4, 5]).search(valor).draw();
             }
+            
         });
     });
 

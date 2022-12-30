@@ -61,6 +61,21 @@
                             value="{{ isset($proyecto->sinopsis)?$proyecto->sinopsis:old('sinopsis') }}" placeholder="Escriba tu resumen o sinopsis de tu proyecto."></textarea>
     
                         </div>
+                        <div class="form-group">
+                                <label class="form-label" for="tComunitario">Tutor Comunitario</label>
+                                <input type="text" name="tComunitario" id="tComunitario" class="form-control" placeholder="Escribe el nombre del tutor comunitario.">
+                            </div>
+                        <div class="row">
+                            
+                            <div class="form-group col col-6">
+                                <label class="form-label" for="cedulaTutorC">Cédula Tutor Comunitario</label>
+                                <input type="text" name="cedulaTutorC" id="cedulaTutorC" class="form-control" maxlength="8" >
+                            </div>
+                            <div class="form-group col col-6">
+                                <label class="form-label" for="telefonoTutorC">Teléfono Tutor Comunitario</label>
+                                <input type="text" name="telefonoTutorC" id="telefonoTutorC" class="form-control" data-inputmask='"mask": "9999999999"' data-mask name="telefono">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="form-group col col-6">
                                 <label class="form-label">Fecha inicio</label>
@@ -75,7 +90,7 @@
                             <div class="w-100"></div>
                             <div class="form-group col col-4">
                                 <label class="form-label">trayecto</label>
-                                <select name="id_trayecto" id="id_trayecto" style="width: 100%"></select>
+                                <select name="id_trayecto" id="id_trayecto" style="width: 100%"> </select>
                             </div>
                             <div class="form-group col col-8">
                                 <label class="form-label">Carrera</label>
@@ -196,7 +211,9 @@
                         <div class="row">
                             <div class="col-12 w-100">
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addAlumno">Agregar alumno</button>
-                                <!-- Modal -->
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addAsesor">Agregar Asesor</button>
+
+                                <!-- Modal alumno-->
                                 <div class="modal fade" id="addAlumno" tabindex="-1" role="dialog" aria-labelledby="addAlumno" aria-hidden="true">
                                     <div class="modal-dialog  modal-lg" role="document">
                                         <div class="modal-content">
@@ -238,6 +255,50 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- modal asesor -->
+                                <div class="modal fade" id="addAsesor" tabindex="-1" role="dialog" aria-labelledby="addAsesor" aria-hidden="true">
+                                    <div class="modal-dialog  modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header card-header bg-primary">
+
+                                                <div class="color-palette">
+                                                  <h1 class="text-center" id="addAsesorLabel"><strong>Seleccionar Asesor</strong></h1>
+                                                </div>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="form-group col">
+                                                        <label class="form-label">Buscar</label>
+                                                        <input type="text" id="searchAsesor" name="searchAsesor" class="form-control" placeholder="Ingrese la cedula o el nombre del Docente">
+                                                    </div>
+                                                    <div class="col-12 w-100">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>N°</th>
+                                                                    <th>Cédula</th>
+                                                                    <th>Docente</th>
+                                                                    <th>Tipo</th>
+                                                                    <th>Opción</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="table_asesor_Tmp">
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Listo</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -249,6 +310,21 @@
                                         </tr>
                                     </thead>
                                     <tbody id="table_Alumno">
+                                    </tbody>
+                                </table>
+                                <hr>
+                                <h2>Tabla de asesores</h2>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>N°</th>
+                                            <th>Cédula</th>
+                                            <th>Asesor</th>
+                                            <th>Tipo</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table_asesor">
                                     </tbody>
                                 </table>
                             </div>
@@ -278,8 +354,11 @@
 @section('js')
     <script>
         var incre = 0;
+        let indexAlumn = [];
         function selectAlumno(id,name,trayecto,cedula) {
-            var html = "";
+            let html = "";
+            if (indexAlumn.includes(id)) return false;
+
             if (incre>=1 && incre<5) {
                 html +="<tr id='Alumno_"+id+"'>";
                 html +="<td><input type='text' id='AlumnosId[]' name='AlumnosId[]' class='form-control' readonly value='"+id+"'></td>";
@@ -289,6 +368,7 @@
                 html +="<td><button class='btn btn-primary' type='button' onclick='removeItem(Alumno_"+id+")'><i class='fa fa-trash'></i></button></td>";
                 html +="</tr>";
                 incre++;
+                indexAlumn.push(id);
                 $("#table_Alumno").append(html);
             }else{
                 if (incre==0) {
@@ -300,9 +380,45 @@
                     html +="<td><button class='btn btn-primary' type='button' onclick='removeItem(Alumno_"+id+")'><i class='fa fa-trash'></i></button></td>";
                     html +="</tr>";
                     incre++;
+                    indexAlumn.push(id);
                     $("#table_Alumno").append(html);
                 }else{
                     alert("No se permiten mas de 5 estudiantes en un equipo de proyecto")
+                }
+
+            }
+        }
+        var acu = 0;
+        let indexAsesor = [];
+        function selecAsesor(id,cedula,nombre) {
+            let html = "";
+            if (indexAsesor.includes(id)) return false;
+
+            if (acu>=1 && acu<5) {
+                html +="<tr id='asesor_"+id+"'>";
+                html +="<td><input type='text' id='asesorId[]' name='asesorId[]' class='form-control' readonly value='"+id+"'></td>";
+                html +="<td><input type='text' id='asesorCedula[]' name='asesorCedula[]' class='form-control' readonly value='"+cedula+"'></td>";
+                html +="<td><input type='text' id='asesorNombres[]' name='asesorNombres[]' class='form-control' readonly value='"+nombre+"'></td>";
+                html +="<td><input type='text' id='asesorTipo[]' name='asesorTipo[]' class='form-control' readonly value='"+document.getElementById('tipos_asesorias').value+"'></td>";
+                html +="<td><button class='btn btn-primary' type='button' onclick='removeItem(asesor_"+id+")'><i class='fa fa-trash'></i></button></td>";
+                html +="</tr>";
+                acu++;
+                $("#table_asesor").append(html);
+                indexAsesor.push(id);
+            }else{
+                if (acu==0) {
+                    html +="<tr id='asesor_"+id+"'>";
+                    html +="<td><input type='text' id='asesorId[]' name='asesorId[]' class='form-control' readonly value='"+id+"'></td>";
+                    html +="<td><input type='text' id='asesorCedula[]' name='asesorCedula[]' class='form-control' readonly value='"+cedula+"'></td>";
+                    html +="<td><input type='text' id='asesorNombres[]' name='asesorNombres[]' class='form-control' readonly value='"+nombre+"'></td>";
+                    html +="<td><input type='text' id='asesorTipo[]' name='asesorTipo[]' class='form-control' readonly value='"+document.getElementById('tipos_asesorias').value+"'></td>";
+                    html +="<td><button class='btn btn-primary' type='button' onclick='removeItem(asesor_"+id+")'><i class='fa fa-trash'></i></button></td>";
+                    html +="</tr>";
+                    acu++;
+                    indexAsesor.push(id);
+                    $("#table_asesor").append(html);
+                }else{
+                    alert("No se permiten mas de 5 Asesores en un equipo de proyecto")
                 }
 
             }
@@ -324,8 +440,8 @@
                 async: false,
                 cache: false,
                 data: {
-                    "_token": "{{ csrf_token() }}",
-                    "carrera": carrera,
+                    "_token" : "{{ csrf_token() }}",
+                    "carrera" : carrera,
                     "q" : e.target.value
                 },
                 beforeSend: function() {
@@ -336,6 +452,29 @@
                 }
             });
         });
+        $("#searchAsesor").change(function(e){
+            var id_carrera = $("#id_carrera")[0].value;
+            console.log(id_carrera);
+
+            $.ajax({
+                type: "POST",
+                url: "/getAsesor",
+                async: false,
+                cache: false,
+                data: {
+                    "_token" : "{{ csrf_token() }}",
+                    "carrera" : id_carrera,
+                    "q" : e.target.value
+                },
+                beforeSend: function() {
+                    $("#table_asesor_Tmp").empty().append("<tr><td colspam='5'><h2>Cargando</h2></td></tr>");
+                },
+                success: function(response){
+                    $("#table_asesor_Tmp").empty().append(response);
+                }
+            });
+        });
+
         $("#id_producto").select2({
             ajax: {
                 url: '/getdataEstruc/producto',
@@ -539,6 +678,7 @@
     $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
     //Datemask2 mm/dd/yyyy
     $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    $(function () {$('[data-mask]').inputmask()});
 
 </script>
 @stop

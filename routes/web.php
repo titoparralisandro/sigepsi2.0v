@@ -66,6 +66,7 @@ Route::post('/getparroquias', [App\Http\Controllers\ComunidadeController::class,
 Route::post('/getcomunidad', [App\Http\Controllers\ComunidadeController::class, 'getcomunidad']);
 
 Route::post('/getalumnos', [App\Http\Controllers\ProyectoController::class, 'getalumnos']);
+Route::post('/getAsesor', [App\Http\Controllers\ProyectoController::class, 'getAsesor']);
 Route::post('/getProducto', [App\Http\Controllers\ProyectoController::class, 'getProducto']);
 Route::get('/evaluar/{id}', [App\Http\Controllers\ProyectoController::class, 'evaluar']);
 Route::post('/getProdestruc', [App\Http\Controllers\ProyectoController::class, 'getProdestruc']);
