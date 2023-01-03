@@ -1,5 +1,18 @@
 @extends('layouts.app')
 
+@section('plugins.Sweetalert2', true)
+@section('plugins.Bs-stepper', true)
+@section('plugins.Toastr', true)
+
+@if(count($errors)>0)
+<div class="alert alert-danger" role="alert">
+<ul>
+  @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+  @endforeach
+</ul>
+</div>
+@endif
 @section('content')
 
 <!-- about breadcrumb -->
@@ -25,6 +38,9 @@
 <section class="w3l-contact-1 pb-5" id="contact">
     <div class="contacts-9 py-lg-5 py-md-4">
         <div class="container">
+            <!-- @if(Session::has('respuesta'))
+                <p class="alert alert-success disables">{{ Session::get('respuesta') }}</p>
+            @endif -->
             <div class="d-grid contact-view">
                 <div class="cont-details">
                     <h3 class="title-big mb-4">Ponte en contacto</h3>
@@ -94,13 +110,24 @@
         width="100%" height="400" frameborder="0" style="border: 0px;" allowfullscreen="" loading="lazy"></iframe>
 </div>
 <!-- //contact block -->
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if(Session::has('respuesta') == 'creado' )
+        <script>
+            Swal.fire(
+            'Creado',
+            'El comentario, ha sido creado.',
+            'success')
+        </script>
+    @endif
 @endsection
+    
 
 @section('js')
     @if(session('respuesta')=='creado')
         <script>
-            toastr.success('El comentario, ha sido creado.')
+            toastr.success('El comentario, ha sido creado.');
+            console.log("yolooo");
+            alert("yolo");
         </script>
     @endif
 @stop
