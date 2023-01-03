@@ -164,7 +164,7 @@
                     "id":valor
                 },
                 success: function(response){
-                    console.log(response);
+                    // console.log(response);
                     var opciones ="<option selected >Seleccione una opción</option>";
                     for (let i in response) {
                         opciones+= '<option value="'+response[i].id+'">'+response[i].text+'</option>';
@@ -242,8 +242,19 @@
                             url: '/getdataItem',
                             dataType: 'json',
                             processResults: function (data) {
+                                let items=[];
+                                for (let index = 0; index < rowCount+1; index++) {
+                                    let item = document.getElementById("item"+(index+1)).value
+                                    items.push(item);
+                                }
+                                let options = data.map((element)=>{
+                                   items.includes(element.id.toString()) ? element.disabled = true : element.disabled= false;
+                                
+                                    return element;
+                                });
+
                                 return {
-                                    results: data
+                                    results: options
                                 };
                             }
                         }

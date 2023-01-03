@@ -555,6 +555,7 @@ class ProyectoController extends Controller
             $proyecto->recomendaciones = $request->get("recomendaciones");
             $proyecto->conclusiones = $request->get("conclusiones");
             $proyecto->update();
+            //aqui poner el for de estudiantes y hacer el js para eliminar filas
 
             return redirect()->route('proyecto.index', $proyecto->id)->with('respuesta','editar');
         } catch (\Throwable $th) {

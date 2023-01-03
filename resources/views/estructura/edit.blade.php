@@ -6,6 +6,11 @@
 @section('plugins.Sweetalert2', true)
 
 @section('content_header')
+<style>
+    .select2-container {
+        width: 100% !important;
+    }
+</style>
 <div class="card-header bg-primary ">
   <div class="color-palette">
     <h1 class="text-center"><strong>Estructura evaluativa</strong></h1>
@@ -65,13 +70,13 @@
                                 @endphp
                                     <tr id='file_{{$increment}}'>
                                         <td>
-                                            <select name='item{{$increment}}' id='item{{$increment}}' class='form-control'>
+                                            <select name='item{{$increment}}' id='item{{$increment}}' class='form-control items'>
                                                 <option value="{{$item->id_items}}" selected>{{$item->item}}</option>
-                                                @foreach ($itemsAll as $itemsA)
+                                                <!-- @foreach ($itemsAll as $itemsA)
                                                     @if ($itemsA->id <> $item->id_items)
                                                         <option value="{{$itemsA->id}}">{{$itemsA->item}}</option>
                                                     @endif
-                                                @endforeach
+                                                @endforeach -->
                                             </select>
                                         </td>
                                         <td>
@@ -235,5 +240,29 @@
         }
 
     }
+    $("select.items").select2({
+        ajax: {
+            url: '/getdataItem',
+            dataType: 'json',
+            processResults: function (data) {
+                let items=[];
+                let rowCount = $('#table_item tbody tr').length;
+                console.log(rowCount);
+                for (let index = 0; index < rowCount; index++) {
+                    let item = document.getElementById("item"+(index+1)).value
+                    items.push(item);
+                }
+                let options = data.map((element)=>{
+                    items.includes(element.id.toString()) ? element.disabled = true : element.disabled= false;
+                                
+                    return element;
+                });
+
+                return {
+                    results: options
+                };
+            }
+        }
+    });                
 </script>
 @stop
