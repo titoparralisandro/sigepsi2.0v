@@ -110,16 +110,11 @@
         </table>
   </div>
 </div>
-<footer class="main-footer" >
-    <strong> &copy; 2022 | <a href="{{ url('/a_cerca_de')}}">SIGEPSI</a> | </strong>
-    Todos los derechos reservados Universidad Politécnica Territorial de Caracas "Mariscal Sucre" (UPTECMS)
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Versión</b> 2.0
-    </div>
-</footer>
 @include('comunidades.modal.create')
 
 @stop
+
+@include('layouts.footer')
 
 @section('js')
     <script>
@@ -228,6 +223,18 @@ $(document).ready(function() {
                     renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
                         tableClass: 'table'
                     } )
+                }
+            },
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ Entradas",
+                "zeroRecords": "Nada encontrado",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay registros disponibles",
+                "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+                "search": "Buscar",
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Siguiente"
                 }
             }
         });

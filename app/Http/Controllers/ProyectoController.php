@@ -15,6 +15,8 @@ use App\Models\proyecto_asesor;
 use App\Models\Files;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 class ProyectoController extends Controller
 {
     public function index(){
@@ -47,7 +49,8 @@ class ProyectoController extends Controller
                         ->join("carreras","carreras.id", "proyectos.id_carrera")
                         ->join("trayectos","trayectos.id","proyectos.id_trayecto")
                         ->join("evaluaciones","evaluaciones.id_proyecto","proyectos.id")
-                        ->select("proyectos.id","proyectos.titulo","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
+                        ->join("estatus_proyectos","estatus_proyectos.id","proyectos.id_estatus_proyecto")
+                        ->select("proyectos.id","proyectos.titulo","estatus_proyectos.estatus_proyecto","lineas_investigaciones.linea_investigacion","carreras.carrera","trayectos.trayecto","evaluaciones.progreso")
                         ->where("proyectos.id", $id_proyectos[$key]->id_proyecto)
                         ->get();
                     foreach ($proyectos as $key => $value) {
@@ -425,7 +428,13 @@ class ProyectoController extends Controller
     }
 
     public function show(Proyecto $proyectos, $id){
-
+        try {
+            $id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            return "algun error";
+            //redirigir a donde quieres o mustra el error que quieras
+        }
+        // $id = Crypt::decryptString($id);
         $proyecto = Proyecto::findOrFail($id);
 
         $estados        = DB::table('estados')

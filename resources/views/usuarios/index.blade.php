@@ -126,7 +126,19 @@ toastr.info('Registro editado con éxito.')
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "pdf", "print", "colvis"]
+      "buttons": ["copy", "pdf", "print", "colvis"],
+      "language": {
+          "lengthMenu": "Mostrar _MENU_ Entradas",
+          "zeroRecords": "Nada encontrado",
+          "info": "Mostrando página _PAGE_ de _PAGES_",
+          "infoEmpty": "No hay registros disponibles",
+          "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+          "search": "Buscar",
+          "paginate": {
+            "previous": "Anterior",
+            "next": "Siguiente"
+          }
+      },
       //"copy", "csv", "excel", "pdf", "print", "colvis"
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({

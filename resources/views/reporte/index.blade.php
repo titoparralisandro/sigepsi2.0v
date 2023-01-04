@@ -59,6 +59,18 @@
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
+      "language": {
+          "lengthMenu": "Mostrar _MENU_ Entradas",
+          "zeroRecords": "Nada encontrado",
+          "info": "Mostrando página _PAGE_ de _PAGES_",
+          "infoEmpty": "No hay registros disponibles",
+          "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+          "search": "Buscar",
+          "paginate": {
+            "previous": "Anterior",
+            "next": "Siguiente"
+          }
+      },
       //"buttons": ["copy", "excel", "pdf", "print", "colvis"]
       //"copy", "csv", "excel", "pdf", "print", "colvis"
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
